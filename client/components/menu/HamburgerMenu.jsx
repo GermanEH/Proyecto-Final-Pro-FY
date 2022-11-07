@@ -7,6 +7,7 @@ import { Inicio } from '../screens/Inicio';
 import { Nosotros } from '../screens/Nosotros';
 import { Tarifas } from '../screens/Tarifas';
 import { Text, StyleSheet, View, Image, SafeAreaView } from "react-native";
+import Stripe from '../Stripe/Stripe';
 
 const Menu = createDrawerNavigator()
 
@@ -21,7 +22,9 @@ export function HamburgerMenu() {
                 <Menu.Screen name="Nosotros" component={Nosotros} />
                 <Menu.Screen name="Consultas" component={Consultas} />
                 <Menu.Screen name="Tarifas" component={Tarifas} />
+                {/* <Menu.Screen name="Stripe" component={Stripe} /> */}
             </Menu.Navigator>  
+            
             </View>
       </NavigationContainer>
     );
