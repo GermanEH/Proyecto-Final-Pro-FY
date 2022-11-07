@@ -22,7 +22,6 @@ export function HamburgerMenu() {
                 <Menu.Screen name="Nosotros" component={Nosotros} />
                 <Menu.Screen name="Consultas" component={Consultas} />
                 <Menu.Screen name="Tarifas" component={Tarifas} />
-                {/* <Menu.Screen name="Stripe" component={Stripe} /> */}
             </Menu.Navigator>  
             </View>
       </NavigationContainer>
