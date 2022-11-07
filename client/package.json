@@ -13,6 +13,8 @@
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",
     "@reduxjs/toolkit": "^1.9.0",
+    "@stripe/stripe-react-native": "^0.20.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "expo": "~46.0.16",
     "expo-status-bar": "~1.4.0",
     "react": "^18.0.0",
