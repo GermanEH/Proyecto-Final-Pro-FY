@@ -7,10 +7,12 @@ const stripe = new Stripe(STRIPE_KEY,{
 )
 
 const useStripe = async(req,res) => {
+  const {name} = req.body
            try {
          const paymentIntent = await stripe.paymentIntents.create({
            amount : 500,
            courrency :"usd",
+           metadata: {name},
            payment_method_cards: ["card"]
          })
          const clientSecret = paymentIntent.client_secret
