@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native'
-
+import { HamburgerMenu } from '../main/HamburgerMenu'
 
 export function HomePacient ({navigation}) {
     return (
