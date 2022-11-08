@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
+import { View, Button } from 'react-native'
 import React from 'react'
 
-export function HomeProfessional() {
+export function HomeProfessional({navigation}) {
     return (
         <View>
-        <Text>HomeProfessional</Text>
+        <Button
+            title='Consultas'
+            onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
         </View>
     )
 }

@@ -6,10 +6,10 @@ export function OnBoard({navigation}) {
         <Image style={styles.img} source={require('../../../assets/logo.png')}/>
         <Button 
           title="Pacient"
-          onPress={() => navigation.navigate('HomePacient')}></Button>
+          onPress={() => navigation.navigate('HamburguerMenu')}></Button>
         <Button 
           title="Professional"
-          onPress={() => navigation.navigate('HomeProfessional')}></Button>
+          onPress={() => navigation.navigate('HamburguerMenu')}></Button>
       </View>
   );
 }

@@ -16,11 +16,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="OnBoard"
+          component={OnBoard}/>
+        <Stack.Screen
           name="HamburguerMenu"
           component={HamburgerMenu}/>
-        <Stack.Screen
-          name="Home"
-          component={OnBoard}/>
         <Stack.Screen
           name="FormPacient"
           component={FormPacient}/>
