@@ -4,10 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 
 //screens
-import { Inicio } from "../screens/Inicio";
-import { Tarifas } from '../screens/Tarifas'
-import { Consultas } from '../screens/Notificaciones'
-import { Denuncias} from '../screens/Denuncias'
+import { Inicio } from "../x-tras/Inicio";
+import { Tarifas } from '../x-tras/Tarifas'
+import { Consultas } from '../x-tras/Notificaciones'
+import { Denuncias} from '../x-tras/Denuncias'
 
 const Tab = createBottomTabNavigator();
 
