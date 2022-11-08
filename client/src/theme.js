@@ -19,4 +19,6 @@ const theme = {
     normal: '400',
     light: '200'
   }
-}
+};
+
+export default theme;

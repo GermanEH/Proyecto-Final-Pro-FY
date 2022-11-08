@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 //screens
 import { Inicio } from "../screens/Inicio";
 import { Tarifas } from '../screens/Tarifas'
-import { Consultas } from '../screens/Consultas'
+import { Consultas } from '../screens/Notificaciones'
 import { Denuncias} from '../screens/Denuncias'
 
 const Tab = createBottomTabNavigator();

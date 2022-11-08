@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Consultas } from '../screens/Consultas';
-import { Denuncias } from '../screens/Denuncias';
+import { SafeAreaView, View, Image, StyleSheet } from "react-native";
 import { Inicio } from '../screens/Inicio';
-import { Nosotros } from '../screens/Nosotros';
-import { Tarifas } from '../screens/Tarifas';
-import { StyleSheet, View, Image, SafeAreaView } from "react-native";
+import { Notificaciones } from '../screens/Notificaciones';
+import { Foro } from '../screens/Foro';
+import { Ajustes } from '../screens/Ajustes';
 
 const Menu = createDrawerNavigator()
 
@@ -17,10 +16,9 @@ export function HamburgerMenu() {
           {/* <Image style={styles.img} source={require('../../assets/logo.png')} /> */}
           <Menu.Navigator>
             <Menu.Screen name="Inicio" component={Inicio} />
-            <Menu.Screen name="Denuncias" component={Denuncias} />
-            <Menu.Screen name="Nosotros" component={Nosotros} />
-            <Menu.Screen name="Consultas" component={Consultas} />
-            <Menu.Screen name="Tarifas" component={Tarifas} />
+            <Menu.Screen name="Notificaciones" component={Notificaciones} />
+            <Menu.Screen name="Foro" component={Foro} />
+            <Menu.Screen name="Ajustes" component={Ajustes} />
           </Menu.Navigator>
         </View>
       </NavigationContainer>
@@ -36,8 +34,8 @@ const styles = StyleSheet.create({
     marginBottom: 30
   }, 
   container: {
-    flexDirection: 'row-reverse',
-    height: 1000,
+    // flexDirection: 'row-reverse',
+    height: 900,
 
 
   }

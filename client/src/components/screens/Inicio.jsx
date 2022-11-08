@@ -1,9 +1,9 @@
-import { Text, StyleSheet, View, Image, SafeAreaView } from "react-native";
+import { View, Image, StyleSheet, } from "react-native";
 
 export function Inicio() {
   return (
       <View style={styles.container}>
-        {/* <Image style={styles.img} source={require('../../assets/logo.png')}/> */}
+        <Image style={styles.img} source={require('../../../assets/logo.png')}/>
       </View>
   );
 }

@@ -1,9 +1,9 @@
-import { Text, StyleSheet, View } from "react-native";
+import {  View, Text, StyleSheet } from "react-native";
 
-export function Nosotros() {
+export function Notificaciones() {
   return (
     <View style={styles.container}>
-      <Text>Acercade</Text>
+      <Text>Notificaciones</Text>
     </View>
   );
 }
