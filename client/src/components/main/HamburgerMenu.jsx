@@ -10,17 +10,17 @@ const Menu = createDrawerNavigator()
 
 export function HamburgerMenu() {
   return (
-    // <SafeAreaView >
+    <SafeAreaView >
         <View style={styles.container}>
           {/* <Image style={styles.img} source={require('../../assets/logo.png')} /> */}
           <Menu.Navigator initialRouteName="HomePacient">
-            <Menu.Screen name="Home" component={HomePacient}/>
+            <Menu.Screen name="Home" component={HomeProfessional}/>
             <Menu.Screen name="Notificaciones" component={Notificaciones} />
             <Menu.Screen name="Foro" component={Foro} />
             <Menu.Screen name="Ajustes" component={Ajustes} />
           </Menu.Navigator>
         </View>
-    // </SafeAreaView>
+    </SafeAreaView>
   );
 }
 

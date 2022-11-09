@@ -8,12 +8,9 @@ import { FormProfessional } from './src/components/professional/FormProfessional
 import { HomePacient } from './src/components/pacient/HomePacient'
 import { HomeProfessional } from './src/components/professional/HomeProfessional'
 import { Consultas } from './src/components/shared/Consultas'
-/* import { Loading } from './components/loading/Loading'; */
-/* import { HamburgerMenu} from './components/menu/HamburgerMenu'; */
-import { store } from './src/store';
-import { Provider } from 'react-redux'; 
-
-
+import { Provider } from 'react-redux'
+import { store } from './src/store'
+/* import { Loading } from './src/components/loading/Loading'; */
 
 const Stack = createStackNavigator()
 

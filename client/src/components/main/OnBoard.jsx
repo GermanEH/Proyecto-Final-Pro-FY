@@ -3,8 +3,8 @@ import theme from '../../theme';
 export function OnBoard({navigation}) {
   return (
       <View style={styles.container}>
-        <Image style={styles.img} source={require('../../../assets/logo.png')}/>
-        <TouchableOpacity
+        <Image style={styles.img} source={require('../../assets/logo.png')}/>
+         <TouchableOpacity
           style={styles.btn} 
           title="Pacient"
           onPress={() => navigation.navigate('HamburguerMenu')}>
