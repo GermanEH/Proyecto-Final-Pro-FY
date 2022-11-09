@@ -16,7 +16,7 @@ router.put("/", editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 
-router.post("/pay", useStripe)  //!  no entiendo preguntar rod
+// router.post("/pay", useStripe)
 
 
 
