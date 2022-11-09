@@ -50,7 +50,6 @@ const createUsers = async (req, res) => {
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error creando al usuario")
-
   }
 }
 /**
@@ -68,8 +67,16 @@ const deleteUsers = async (req, res) => {
  * @param {*} res 
  */
 const editUsers = async (req, res) => {
-
-
+  try {
+    const { id, ...body } = matchedData(req)
+    // console.log(body, bodyClean);
+    const data = await usersModel.findOneAndUpdate(
+      id, body
+    )
+    res.send({ data })
+  } catch (error) {
+    handleHttpError(res, "Error editando al usuario")
+  }
 }
 
 
