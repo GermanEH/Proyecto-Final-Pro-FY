@@ -8,6 +8,28 @@ const UserScheme = new mongoose.Schema(
     name: {
       type: String,
     },
+    lastname: {
+      type: String,
+    },
+    dni: {
+      type: String,
+    },
+    country: {
+      type: String,
+      default: 'Argentina'
+    },
+    state: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    zip: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
     email: {
       type: String,
       unique: true,

@@ -1,6 +1,6 @@
 const express = require("express");
 const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require("../controllers/users");
-const {useStripe} = require("../controllers/stripe")
+const { useStripe } = require("../controllers/stripe")
 const { validatorCreateUser, validatorIdUser } = require("../validators/users");
 const router = express.Router();
 
