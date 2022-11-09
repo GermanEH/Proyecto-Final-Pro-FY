@@ -7,7 +7,7 @@ export function OnBoard({navigation}) {
          <TouchableOpacity
           style={styles.btn} 
           title="Pacient"
-          onPress={() => navigation.navigate('HamburguerMenu')}>
+          onPress={() => navigation.navigate('HamburguerMenu', {usertype: 'pacient'})}>
             <Text style={styles.text}>
               Pacient
             </Text>
@@ -15,7 +15,7 @@ export function OnBoard({navigation}) {
         <TouchableOpacity
           style={styles.btn} 
           title="Professional"
-          onPress={() => navigation.navigate('HamburguerMenu')}>
+          onPress={() => navigation.navigate('HamburguerMenu', {usertype: 'professional'})}>
             <Text  style={styles.text}>
               Professional
             </Text>

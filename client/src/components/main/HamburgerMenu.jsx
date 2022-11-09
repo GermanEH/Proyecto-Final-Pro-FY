@@ -8,13 +8,13 @@ import { Ajustes } from '../x-tras/Ajustes';
 
 const Menu = createDrawerNavigator()
 
-export function HamburgerMenu() {
+export function HamburgerMenu({route}) {
   return (
     <SafeAreaView >
         <View style={styles.container}>
           {/* <Image style={styles.img} source={require('../../assets/logo.png')} /> */}
           <Menu.Navigator initialRouteName="HomePacient">
-            <Menu.Screen name="Home" component={HomeProfessional}/>
+            {(route.params.usertype === 'pacient') ? <Menu.Screen name="Home" component={HomePacient}/> : <Menu.Screen name="Home" component={HomeProfessional}/>}
             <Menu.Screen name="Notificaciones" component={Notificaciones} />
             <Menu.Screen name="Foro" component={Foro} />
             <Menu.Screen name="Ajustes" component={Ajustes} />
