@@ -10,13 +10,7 @@ import { HomeProfessional } from './src/components/professional/HomeProfessional
 import { Consultas } from './src/components/shared/Consultas'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
-/* import { Loading } from './components/loading/Loading'; */
-/* import { HamburgerMenu} from './components/menu/HamburgerMenu'; */
-import { Intro } from './components/intro/Intro';
-
-/* import { store } from './store'
-import { Provider } from 'react-redux' */
-
+/* import { Loading } from './src/components/loading/Loading'; */
 
 const Stack = createStackNavigator()
 
@@ -50,14 +44,9 @@ export default function App() {
               component={HomeProfessional}/>
           </Stack.Navigator>
         </NavigationContainer>
-       </Provider>
+      </Provider>
       // </React.StrictMode>
   );
-    // <>
-    //   {/* <HamburgerMenu/> */}
-    // {/*   <Loading/> */}
-    //   <Intro/>
-    // </>
 }
 
 

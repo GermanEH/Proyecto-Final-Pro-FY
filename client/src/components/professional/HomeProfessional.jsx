@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { View, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProfessionals } from '../../slices/getPacients'
+import { getProfessionals } from '../../slices/getProfessionals'
 
 export function HomeProfessional({navigation}) {
 
@@ -14,7 +14,7 @@ export function HomeProfessional({navigation}) {
     return (
         <View>
         <Button
-            title='GetPacients'
+            title='GetProfessionals'
             onPress={() => dispatch(getProfessionals())}/>
         <Button
             title='Consultas'

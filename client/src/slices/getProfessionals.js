@@ -10,14 +10,11 @@ const initialState = {
 export const getProfessionals = createAsyncThunk('getProfessionals', async () => {
   try {
       const response = await axios.get('http://localhost:3001/api/professionals')
-      console.log(response)
-      console.log('entramos')
       const data = response.data.sort(function(a, b) {
           if(a.name < b.name) return -1;
           if(a.name > b.name) return 1;
           return 0
       })
-      console.log(data)
       return data
   } catch (error) {
       return error.message
@@ -25,7 +22,7 @@ export const getProfessionals = createAsyncThunk('getProfessionals', async () =>
 })
 
 export const getProfessionalsSlice = createSlice({
-  name: 'getPacientsSlice',
+  name: 'getProfessionalsSlice',
   initialState: initialState,
   reducers: {},
   extraReducers(builder) {
