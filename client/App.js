@@ -43,8 +43,8 @@ export default function App() {
               component={HomeProfessional}/>
           </Stack.Navigator>
         </NavigationContainer>
-      </Provider>
-    // </React.StrictMode>
+       </Provider>
+      // </React.StrictMode>
   );
 }
 
