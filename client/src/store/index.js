@@ -1,6 +1,6 @@
 import { configureStore} from '@reduxjs/toolkit';
-import { getPacientsSlice } from '../slices/getPacientsSlice'
+import { getPacientsSlice } from '../slices/getPacients'
 
 export const store = configureStore({
-    getPacientsSlice
+    reducer: getPacientsSlice
 })
