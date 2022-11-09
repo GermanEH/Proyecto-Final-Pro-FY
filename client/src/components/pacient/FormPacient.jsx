@@ -9,15 +9,15 @@ export function FormPacient () {
   const dispatch = useDispatch()
 
   const newPacient = {
-    first_name: Germánicus,
+    first_name: Germanicus,
     last_name: Hori,
     DNI: 30213311,
-    provincia: 'Buenos Aires',
-    ciudad: 'Mar del Plata',
-    código_postal: 7600,
-    dirección: 'Siempre viva 123',
+    province: 'Buenos Aires',
+    city: 'Mar del Plata',
+    postcode: 7600,
+    address: 'Siempre viva 123',
     email: 'asfd@gmail.com',
-    contraseña: '12m1m2'
+    password: '12m1m2'
   }
 
   return (
