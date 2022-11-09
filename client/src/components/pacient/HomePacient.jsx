@@ -16,11 +16,11 @@ export function HomePacient ({navigation}) {
             <Text>Hola,</Text>
             <Text>fulana</Text>
             <Button
-            title='GetPacients'
-            onPress={() => dispatch(getPacients())}/>
+                title='GetPacients'
+                onPress={() => dispatch(getPacients())}/>
             <Button
-            title='Consultas'
-            onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
+                title='Consultas'
+                onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
         </View>
     )
 }

@@ -1,30 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { pacients } from './getPacients'
 
 const initialState = {
-  value: 0,
+  success: "",
+  status: "",
+  error: ""
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
-  initialState,
+export const postPacientSlice = createSlice({
+  name: 'postPacientSlice',
+  initialState: initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },
-  },
-})
+    postPacient: (state, action) => { 
+      try {
+        const response = axios.post('http://localhost:3001/api/users', action.payload)
+        pacients.push(action.payload)
+        state.success = response
+        return response
+      } catch (error) {
+          return error.message
+      }  
+    }
+  }
+});
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+// export const postSuccess = (state) => state.sucess
+// export const postStatus = (state) => state.status
+// export const postError = (state) => state.error
 
-export default counterSlice.reducer
+export const { postPacient } = postPacientSlice.actions
