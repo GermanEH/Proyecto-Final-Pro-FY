@@ -42,7 +42,7 @@ export default function App() {
             <Stack.Screen
               name="HomeProfessional"
               component={HomeProfessional}/>
-          </Stack.Navigator>
+          </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
       // </React.StrictMode>
