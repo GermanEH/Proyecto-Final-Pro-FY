@@ -32,7 +32,7 @@ const getProfessionalById = async (req, res) => {
     const data = await professionalsModel.findById(id)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error id usuario")
+    handleHttpError(res, "Error id profesional")
 
   }
 }
@@ -44,13 +44,15 @@ const getProfessionalById = async (req, res) => {
  */
 
 const createProfessional = async (req, res) => {
+  try {
+    const { body } = req
+    // console.log(body)
+    const data = await professionalsModel.create(body)
+    res.send({ data })
+  } catch (error) {
+    handleHttpError(res, "Error creando al profesional")
+  }
 
-
-  const { body } = req
-  console.log(body)
-  const data = await professionalsModel.create(body)
-
-  res.send({ data })
 
 
 }

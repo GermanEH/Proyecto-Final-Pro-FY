@@ -8,47 +8,46 @@ const validatorCreateProfessional = [
     .exists()
     .notEmpty()
     .isLength({ min: 4, max: 30 }),
-  // check("lastname")
-  //   .optional(),
-  // .exists()
-  // .notEmpty()
-  // .isLength({ min: 4, max: 30 }),
-  // check("email")
-  //   .optional(),
-  // .exists()
-  // .notEmpty()
-  // .isEmail(),
-  // check("password")
-  //   .exists()
-  //   .notEmpty(),
-  // check("dni")
-  //   .exists()
-  //   .notEmpty(),
-  // check("professionalId")
-  //   .exists()
-  //   .notEmpty(),
-  // check("speciality")
-  //   .exists()
-  //   .notEmpty(),
-  // check("country")
-  //   .exists()
-  //   .notEmpty(),
-  // check("state")
-  //   .exists()
-  //   .notEmpty(),
-  // check("city")
-  //   .exists()
-  //   .notEmpty(),
-  // check("zip")
-  //   .exists()
-  //   .notEmpty(),
-  // check("professionalAdress")
-  //   .exists()
-  //   .notEmpty(),
-  // check("schedule")
-  //   .optional(), //! temporal
-  // check("modality")
-  //   .optional(), //! temporal
+
+  check("lastname")
+    .exists()
+    .notEmpty()
+    .isLength({ min: 4, max: 30 }),
+  check("email")
+    .exists()
+    .notEmpty()
+    .isEmail(),
+  check("password")
+    .exists()
+    .notEmpty(),
+  check("dni")
+    .exists()
+    .notEmpty(),
+  check("professionalId")
+    .exists()
+    .notEmpty(),
+  check("speciality")
+    .exists()
+    .notEmpty(),
+  check("country")
+    .exists()
+    .notEmpty(),
+  check("state")
+    .exists()
+    .notEmpty(),
+  check("city")
+    .exists()
+    .notEmpty(),
+  check("zip")
+    .exists()
+    .notEmpty(),
+  check("professionalAdress")
+    .exists()
+    .notEmpty(),
+  check("schedule")
+    .optional(), //! temporal
+  check("modality")
+    .optional(), //! temporal
 
 
   (req, res, next) => {
