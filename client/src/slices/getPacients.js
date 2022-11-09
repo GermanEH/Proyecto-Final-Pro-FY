@@ -10,14 +10,11 @@ const initialState = {
 export const getPacients = createAsyncThunk('getPacients', async () => {
   try {
       const response = await axios.get('http://localhost:3001/api/users')
-      console.log(response)
-      console.log('entramos')
       const data = response.data.sort(function(a, b) {
           if(a.name < b.name) return -1;
           if(a.name > b.name) return 1;
           return 0
       })
-      console.log(data)
       return data
   } catch (error) {
       return error.message

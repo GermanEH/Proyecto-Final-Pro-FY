@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Button } from "react-native";
 export function OnBoard({navigation}) {
   return (
       <View style={styles.container}>
-        <Image style={styles.img} source={require('../../../assets/logo.png')}/>
+        <Image style={styles.img} source={require('../../assets/logo.png')}/>
         <Button 
           title="Pacient"
           onPress={() => navigation.navigate('HamburguerMenu')}></Button>

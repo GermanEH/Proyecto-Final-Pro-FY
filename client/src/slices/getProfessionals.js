@@ -1,15 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const initialState = {
-
+  professionals: [],
+  status: "",
+  error: ""
 }
 
-const getProfessionals = createSlice({
-  name: second,
-  initialState,
-  reducers: {}
+export const getProfessionals = createAsyncThunk('getProfessionals', async () => {
+  try {
+      const response = await axios.get('http://localhost:3001/api/professionals')
+      console.log(response)
+      console.log('entramos')
+      const data = response.data.sort(function(a, b) {
+          if(a.name < b.name) return -1;
+          if(a.name > b.name) return 1;
+          return 0
+      })
+      console.log(data)
+      return data
+  } catch (error) {
+      return error.message
+  }        
+})
+
+export const getProfessionalsSlice = createSlice({
+  name: 'getPacientsSlice',
+  initialState: initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder 
+        .addCase(getProfessionals.pending, (state, _action) => {
+            state.status = 'loading'
+        })
+        .addCase(getProfessionals.fulfilled, (state, action) => {
+            state.status = 'succeeded'
+            state.pacients = action.payload
+            return action.payload
+        })
+        .addCase(getProfessionals.rejected, (state, action) => {
+            state.status = 'failed'
+            state.error = action.error.message
+        })
+      }
 });
 
-export const {} = getProfessionals.actions
-
-export default getProfessionals.reducer
+// export default state;
+//  = (state) => state.professionals
+// export const pacientsStatus = (state) => state.status
+// export const pacientsError = (state) => state.error

@@ -53,12 +53,11 @@ export default function App() {
        </Provider>
       // </React.StrictMode>
   );
-    <>
-      {/* <HamburgerMenu/> */}
-    {/*   <Loading/> */}
-      <Intro/>
-    </>
-);
+    // <>
+    //   {/* <HamburgerMenu/> */}
+    // {/*   <Loading/> */}
+    //   <Intro/>
+    // </>
 }
 
 

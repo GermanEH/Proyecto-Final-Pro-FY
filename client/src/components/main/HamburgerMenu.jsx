@@ -10,7 +10,7 @@ const Menu = createDrawerNavigator()
 
 export function HamburgerMenu() {
   return (
-    // <SafeAreaView >
+    <SafeAreaView >
         <View style={styles.container}>
           {/* <Image style={styles.img} source={require('../../assets/logo.png')} /> */}
           <Menu.Navigator initialRouteName="HomePacient">
@@ -20,7 +20,7 @@ export function HamburgerMenu() {
             <Menu.Screen name="Ajustes" component={Ajustes} />
           </Menu.Navigator>
         </View>
-    // </SafeAreaView>
+    </SafeAreaView>
   );
 }
 
