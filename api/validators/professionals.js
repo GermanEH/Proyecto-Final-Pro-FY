@@ -41,10 +41,15 @@ const validatorCreateProfessional = [
   check("professionalAdress")
     .exists()
     .notEmpty(),
+  check('specialtyId')
+    .exists()
+    .notEmpty()
+    .isMongoId(),
   check("schedule")
     .optional(), //! temporal
   check("modality")
     .optional(), //! temporal
+
 
 
   (req, res, next) => {

@@ -48,6 +48,9 @@ const ProfessionalScheme = new mongoose.Schema(
       type: ["presential", "remote"],
       default: 'presential',
     },
+    specialtyId: {
+      type: mongoose.Types.ObjectId,
+    },
   },
 
   {
@@ -56,6 +59,23 @@ const ProfessionalScheme = new mongoose.Schema(
   }
 
 );
+
+ProfessionalScheme.statics.findSpecialty = function () {
+  const joinSpe = this.aggregate([
+    {
+      $lookup: {
+        from: "specialities",
+        localField: "id",
+        foreignField: "_id",
+        as: "professionalSpeciality"
+      }
+    }
+  ])
+  return joinSpe
+  // return this.find({ name: new RegExp(name, 'i') });
+};
+
+
 
 ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
