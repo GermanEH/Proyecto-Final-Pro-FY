@@ -7,11 +7,11 @@ const validatorCreateProfessional = [
   check("name")
     .exists()
     .notEmpty()
-    .isLength({ min: 4, max: 30 }),
+    .isLength({ min: 4, max: 100 }),
   check("lastname")
     .exists()
     .notEmpty()
-    .isLength({ min: 4, max: 30 }),
+    .isLength({ min: 4, max: 100 }),
   check("email")
     .exists()
     .notEmpty()
