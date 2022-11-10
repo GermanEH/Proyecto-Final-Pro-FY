@@ -1,24 +1,28 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { useDispatch } from 'react-redux'
+import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 //hola
 export function FormPacient  ()  {
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      dni: '',
-      provincia:'',
-      ciudad:'',
-      cp:'',
-      direccion:'',
+      first_name: '',
+      last_name: '',
+      DNI: '',
+      state:'',
+      city:'',
+      postcode:'',
+      address:'',
       email:'',
       password:''
     }
   });
   const onSubmit = data => {
-    console.log(data);
+    console.log('entramos')
+    console.log(data)
+    dispatch(postPacient(data))
   };
 
   const onChange = arg => {
@@ -27,7 +31,7 @@ export function FormPacient  ()  {
     };
   };
 
-  console.log('errors', errors);
+  const dispatch = useDispatch()
 
   return (
     <View style={styles.container}>
@@ -42,7 +46,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="nombre"
+        name="first_name"
         rules={{ required: true }}
       />{errors.nombre && <Text>This is required.</Text>}
       <Text style={styles.label}>Apellido</Text>
@@ -56,7 +60,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="apellido"
+        name="last_name"
         rules={{ required: true }}
       />
       <Text style={styles.label}>D.N.I</Text>
@@ -70,7 +74,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="dni"
+        name="DNI"
         rules={{ required: true }}
       />
          <Text style={styles.label}>Provincia</Text>
@@ -84,7 +88,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="provincia"
+        name="state"
         rules={{ required: true }}
       />
 
@@ -99,7 +103,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="ciudad"
+        name="city"
         rules={{ required: true }}
       />
 
@@ -114,7 +118,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="cp"
+        name="postcode"
         rules={{ required: true }}
       />
 
@@ -129,7 +133,7 @@ export function FormPacient  ()  {
             value={value}
           />
         )}
-        name="direccion"
+        name="address"
         rules={{ required: true }}
       />
       <Text style={styles.label}>E-mail</Text>
@@ -161,11 +165,6 @@ export function FormPacient  ()  {
         name="password"
         rules={{ required: true }}
       />
-
-
-   
-
-      
 
       <View style={styles.button}>
         <Button

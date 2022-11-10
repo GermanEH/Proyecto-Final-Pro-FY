@@ -12,7 +12,8 @@ const theme = {
     terciaryText: 14,
   },
   fonts: {
-    main: 'System'
+    main: 'System',
+    form: 'Arial'
   },
   fontWeights: {
     bold: '700',
