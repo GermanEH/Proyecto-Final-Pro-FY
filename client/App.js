@@ -11,6 +11,7 @@ import { HomeProfessional } from './src/components/professional/HomeProfessional
 import { Consultas } from './src/components/shared/Consultas'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
+import { DatingStatuses } from './src/components/professional/DatingStatuses'
 /* import { Loading } from './src/components/loading/Loading'; */
 
 const Stack = createStackNavigator()
@@ -42,7 +43,10 @@ export default function App() {
               component={FormProfessional}/>
             <Stack.Screen
               name="HomeProfessional"
-              component={HomeProfessional}/>
+              component={HomeProfessional}/> 
+            <Stack.Screen
+              name="DatingStatuses"
+              component={DatingStatuses}/>
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
