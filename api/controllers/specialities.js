@@ -49,7 +49,7 @@ const createSpecialities = async (req, res) => {
     const data = await specialtiesModel.create(body)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error creando al usuario")
+    handleHttpError(res, "Error creando la especialidad")
   }
 }
 /**
@@ -66,7 +66,7 @@ const deleteSpecialities = async (req, res) => {
     res.send({ data })
   } catch (error) {
     console.log(error);
-    handleHttpError(res, "Error borrando usuario")
+    handleHttpError(res, "Error borrando la especialidad")
   }
 }
 
@@ -84,7 +84,7 @@ const editSpecialities = async (req, res) => {
     )
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error editando al usuario")
+    handleHttpError(res, "Error editando la especialidad")
   }
 }
 
