@@ -20,6 +20,8 @@ router.put("/:id", validatorCreateProfessional, editProfessional)
 
 router.post("/", validatorCreateProfessional, createProfessional)
 
+
+
 // validatorCreateProfessional
 
 

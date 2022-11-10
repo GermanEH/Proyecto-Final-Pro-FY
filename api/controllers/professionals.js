@@ -44,15 +44,15 @@ const getProfessionalById = async (req, res) => {
  */
 
 const createProfessional = async (req, res) => {
+  try {
+    const body = matchedData(req)
+    console.log(body)
+    const data = await professionalsModel.create(body)
+    res.send({ data })
 
-
-  const { body } = req
-  console.log(body)
-  const data = await professionalsModel.create(body)
-
-  res.send({ data })
-
-
+  } catch (error) {
+    handleHttpError(res, "Error creando al profesional")
+  }
 }
 
 /**
