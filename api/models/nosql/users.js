@@ -17,7 +17,7 @@ const UserScheme = new mongoose.Schema(
     country: {       //opcional para uso nuestro
       type: String,
     },
-    province: {
+    state: {
       type: String,
     },
     city: {
