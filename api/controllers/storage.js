@@ -1,4 +1,6 @@
+const { matchedData } = require('express-validator');
 const { storageModel } = require('../models')
+const { handleHttpError } = require('../utils/handleError');
 const PUBLIC_URL = process.env.PUBLIC_URL
 
 
@@ -10,17 +12,30 @@ const PUBLIC_URL = process.env.PUBLIC_URL
  * @param {*} res 
  */
 const getItems = async (req, res) => {
-  const data = await storageModel.find({});
-
-  res.send({ data })
+  try {
+    const data = await storageModel.find({});
+    res.send({ data })
+  } catch (error) {
+    handleHttpError(res, "Error subiendo media")
+  }
 }
 
+
 /**
- *  Obtener un detalle!
+ *  Obtener por id!
  * @param {*} req 
  * @param {*} res 
  */
-const getItemsById = (req, res) => { }
+const getItemsById = async (req, res) => {
+  try {
+    const { id } = matchedData(req)
+    const data = await storageModel.findById(id);
+    res.send({ data })
+  } catch (error) {
+    console.log(error);
+    handleHttpError(res, "Error obteniendo media")
+  }
+}
 /**
  *  Obtener lista de la base de datos!
  * @param {*} req 
@@ -41,13 +56,24 @@ const createItem = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteItem = (req, res) => { }
+const deleteItem = async (req, res) => {
+  try {
+    req = matchedData(req)
+    const { id } = req
+    // console.log(id)
+    const data = await storageModel.delete({ _id: id })
+    res.send({ data })
+  } catch (error) {
+    handleHttpError(res, "Error borrando la información")
+
+  }
+}
 /**
  *  actualizar un registro!
  * @param {*} req 
  * @param {*} res 
  */
-const editItem = (req, res) => { }
+const editItem = async (req, res) => { }
 
 
 

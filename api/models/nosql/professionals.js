@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
-
+const mongooseDelete = require('mongoose-delete')
 const ProfessionalScheme = new mongoose.Schema(
   {
     id: {
       type: mongoose.Types.ObjectId,
     },
-    name: {
+    first_name: {
       type: String
     },
-    lastname: {
+    last_name: {
       type: String,
     },
     email: {
@@ -17,38 +17,28 @@ const ProfessionalScheme = new mongoose.Schema(
     },
     password: {
       type: String,
-      // default: "1234"
     },
     dni: {
       type: String,
     },
     professionalId: {
       type: String,
-      // default: 'SD-1234'
     },
-    speciality: {
-      type: String,
-      // default: "asesino"
-    },
+
     country: {
       type: String,
-      // default: 'Argentina'
     },
     state: {
       type: String,
-      // default: "La Pampa",
     },
     city: {
       type: String,
-      // default: 'pepeCity'
     },
     zip: {
       type: String,
-      // default: "123321"
     },
     professionalAdress: {
       type: String,
-      // default: "asdasd"
     },
     schedule: {
       type: String,
@@ -57,9 +47,8 @@ const ProfessionalScheme = new mongoose.Schema(
     modality: {
       type: ["presential", "remote"],
       default: 'presential',
-    }
+    },
   },
-
 
   {
     temestamps: true,
@@ -68,6 +57,7 @@ const ProfessionalScheme = new mongoose.Schema(
 
 );
 
+ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
 
 

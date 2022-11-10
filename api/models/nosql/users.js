@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const mongooseDelete = require('mongoose-delete')
 const UserScheme = new mongoose.Schema(
   {
     id: {
@@ -17,7 +17,7 @@ const UserScheme = new mongoose.Schema(
     country: {       //opcional para uso nuestro
       type: String,
     },
-    province: {
+    state: {
       type: String,
     },
     city: {
@@ -49,5 +49,5 @@ const UserScheme = new mongoose.Schema(
     versionKey: false,
   }
 )
-
+UserScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("users", UserScheme)

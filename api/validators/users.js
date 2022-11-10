@@ -18,7 +18,7 @@ const validatorCreateUser = [
     .isEmail(),
   check("favorites")
     .optional(),
-  check("province")
+  check("state")
     .exists()
     .notEmpty(),
   check("city")

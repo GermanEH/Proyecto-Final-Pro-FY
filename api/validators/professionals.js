@@ -4,11 +4,11 @@ const validateResults = require("../utils/handleValidator");
 
 const validatorCreateProfessional = [
 
-  check("name")
+  check("first_name")
     .exists()
     .notEmpty()
     .isLength({ min: 4, max: 100 }),
-  check("lastname")
+  check("last_name")
     .exists()
     .notEmpty()
     .isLength({ min: 4, max: 100 }),
@@ -20,12 +20,10 @@ const validatorCreateProfessional = [
     .exists()
     .notEmpty(),
   check("dni")
-    .exists()
-    .notEmpty(),
+    .optional(),
+  // .exists()
+  // .notEmpty(),
   check("professionalId")
-    .exists()
-    .notEmpty(),
-  check("speciality")
     .exists()
     .notEmpty(),
   check("country")
