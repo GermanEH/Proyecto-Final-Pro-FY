@@ -14,7 +14,7 @@ router.get("/", getAllProfessionals);
 
 router.get("/:id", validatorIdProfessional, getProfessionalById);
 
-router.delete("/", deleteProfessional);
+router.delete("/:id", validatorIdProfessional, deleteProfessional);
 
 router.put("/:id", validatorCreateProfessional, editProfessional)
 
