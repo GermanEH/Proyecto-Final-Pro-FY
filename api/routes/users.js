@@ -12,7 +12,7 @@ router.get("/:id", validatorIdUser, getUserById);
 
 router.delete("/", deleteUsers);
 
-router.put("/:1d", validatorCreateUser, editUsers)
+router.put("/:id", validatorCreateUser, editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 

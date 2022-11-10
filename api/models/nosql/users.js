@@ -5,26 +5,25 @@ const UserScheme = new mongoose.Schema(
     id: {
       type: mongoose.Types.ObjectId,
     },
-    name: {
+    first_name: {
       type: String,
     },
-    lastname: {
+    last_name: {
       type: String,
     },
-    dni: {
+    DNI: {
+      type: Number,
+    },
+    country: {       //opcional para uso nuestro
       type: String,
     },
-    country: {
-      type: String,
-      default: 'Argentina'
-    },
-    state: {
+    province: {
       type: String,
     },
     city: {
       type: String,
     },
-    zip: {
+    postcode: {
       type: String,
     },
     address: {
@@ -34,13 +33,13 @@ const UserScheme = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    favorites: {
+    favorites: {  //opcional para uso nuestro
       type: String,
     },
     password: {
       type: String,
     },
-    role: {
+    role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",
     }

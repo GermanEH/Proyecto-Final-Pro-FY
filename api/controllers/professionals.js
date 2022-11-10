@@ -28,7 +28,7 @@ const getProfessionalById = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
-    console.log(id)
+    // console.log(id)
     const data = await professionalsModel.findById(id)
     res.send({ data })
   } catch (error) {
@@ -70,7 +70,16 @@ const deleteProfessional = async (req, res) => {
  * @param {*} res 
  */
 const editProfessional = async (req, res) => {
-  res.send('hola')
+  try {
+    const { id, ...body } = matchedData(req)
+    const data = await professionalsModel.findOneAndUpdate(
+      id, body
+    )
+    res.send({ data })
+  } catch (error) {
+    console.log(error);
+    handleHttpError(res, "Error editando al profesional")
+  }
 
 }
 
