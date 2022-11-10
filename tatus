@@ -1,0 +1,237 @@
+[33mcommit a281653bdad076d5e7b7e5d502a729139acb7f14[m[33m ([m[1;36mHEAD -> [m[1;32mGermán[m[33m)[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Wed Nov 9 13:32:12 2022 -0300
+
+    Hice getProfessionals
+
+[33mcommit 6f7f4cdd0281567fa7c44a0e46fa2acad6c286d6[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Wed Nov 9 13:17:56 2022 -0300
+
+    Borré la carpeta components del 1er nivel, porque usamos la que está dentro de 'src'
+
+[33mcommit 508897ced138f322f4697d7cd7b05f882d0a2240[m[33m ([m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: 9e6683e 588ed18
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Wed Nov 9 11:37:02 2022 -0300
+
+    Merge pull request #17 from rodrisantes/amma2win
+    
+    Agregando formulario de creacion
+
+[33mcommit 588ed18d2865094bd7de77e9ceac74562ec9438d[m
+Author: amma2win <102752491+amma2win@users.noreply.github.com>
+Date:   Wed Nov 9 10:29:44 2022 -0300
+
+    Agregando formulario de creacion
+
+[33mcommit 9e6683e58f919c25dcb4cb311b7d11db97bec811[m
+Merge: b1385b5 e3ad052
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Wed Nov 9 01:16:09 2022 -0300
+
+    Merge pull request #15 from rodrisantes/Germán
+    
+    Hice getPacients y correjí los errores de Redux
+
+[33mcommit b1385b564ef612b59482e92c540ad988f645db0d[m
+Merge: 50212f5 ccd5880
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Tue Nov 8 22:14:54 2022 -0600
+
+    Merge pull request #16 from rodrisantes/Juan
+    
+    Merge pull request #14 from rodrisantes/develop
+
+[33mcommit e3ad052b35da4cbc5b88adf52376b3a868a9b1c8[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Wed Nov 9 01:03:57 2022 -0300
+
+    Hice getPacients y correjí los errores de Redux
+
+[33mcommit ccd588094a6742e7a7331b84ecaf74eb8146a633[m[33m ([m[1;31morigin/Juan[m[33m)[m
+Merge: f969533 50212f5
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Wed Nov 9 00:22:33 2022 -0300
+
+    Merge pull request #14 from rodrisantes/develop
+    
+    componente Logging y estilos Onboard
+
+[33mcommit 50212f59f8edafae236a39945dd3972557f16b9f[m
+Merge: b5dd2f1 f969533
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Wed Nov 9 00:22:21 2022 -0300
+
+    Merge branch 'Juan' into develop
+
+[33mcommit b5dd2f17d3af8c8efcfa6c026e0fd0f3dc456e9f[m
+Merge: 32432f3 a123708
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Tue Nov 8 20:38:40 2022 -0600
+
+    Merge pull request #12 from Vontrauwitz/nueva
+    
+    123
+
+[33mcommit a1237089d412088bd2d24fe6d2dff075bc8728ce[m
+Author: rodrisantes <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 23:38:03 2022 -0300
+
+    123
+
+[33mcommit 32432f3a541f7c5a3513f39eaf2788b680a2c60b[m
+Merge: 4733045 943d227
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 23:36:37 2022 -0300
+
+    Merge pull request #11 from Vontrauwitz/hans
+    
+    Ruta profesionales, faltan validaciones y manejo de errores
+
+[33mcommit 943d22737a2e0d495e47d73a5b54a906a3d85302[m
+Merge: 4400353 4733045
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 23:36:17 2022 -0300
+
+    Merge branch 'develop' into hans
+
+[33mcommit 44003535d58bf3fb3bf2a7fa943758d38c534c65[m
+Author: Hans F. Trauwitz V <hans.trauwitz@gmail.com>
+Date:   Tue Nov 8 20:33:24 2022 -0600
+
+    Ruta profesionales, faltan validaciones y manejo de errores
+
+[33mcommit 47330451b540556bd56703cbfdfc79d24f48e7c9[m
+Merge: ea349eb a67f880
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 22:56:09 2022 -0300
+
+    Merge pull request #10 from Vontrauwitz/Germán
+    
+    Hice el slice getPacientsSlice
+
+[33mcommit a67f8804e7d0882c2254d3b282635151ae583892[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Tue Nov 8 22:55:09 2022 -0300
+
+    Hice el slice getPacientsSlice
+
+[33mcommit ea349eb11371b783efefa762c70bf9aaeeaa2185[m
+Merge: e57d015 3900e4c
+Author: Rodrigo Santesteban <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 22:54:05 2022 -0300
+
+    Merge pull request #9 from Vontrauwitz/martes
+    
+    cambio
+
+[33mcommit 3900e4c1c32268b15842a6f8a3e051d3523789b9[m
+Author: rodrisantes <104109457+rodrisantes@users.noreply.github.com>
+Date:   Tue Nov 8 22:51:17 2022 -0300
+
+    cambio
+
+[33mcommit e57d01553f24a4de5f03bc6b69f65ccc30395ff4[m[33m ([m[1;31morigin/ivan[m[33m)[m
+Merge: c8e7658 2d38b33
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Tue Nov 8 15:21:17 2022 -0600
+
+    Merge pull request #8 from Vontrauwitz/Germán
+    
+    Reordené el flujo: primero OnBoard, luego menú hamburguesa en cualqui…
+
+[33mcommit 2d38b333edf13d0dac4b13acb4d973611a643eb5[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Tue Nov 8 18:15:16 2022 -0300
+
+    Reordené el flujo: primero OnBoard, luego menú hamburguesa en cualquiera de los dos botones (que renderiza el respectivo Home de Paciente o Profesional)
+
+[33mcommit c8e7658f948000d31e5c09795bf05d3713d65540[m
+Merge: c56c1f5 40d86d0
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Tue Nov 8 14:06:32 2022 -0600
+
+    Merge pull request #7 from Vontrauwitz/Germán
+    
+    Germán
+
+[33mcommit 40d86d017717865e24cddd437269372c1aaf0a10[m
+Merge: 17ae2f1 c56c1f5
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Tue Nov 8 17:00:53 2022 -0300
+
+    Hice la estructura de carpetas de nuevo, creé la mayoría de los archivos sobre los que hay que trabajar, e hice la navegación de OnBoard
+
+[33mcommit 17ae2f1d706a46e61b8370a35fc6a359f4d23ef3[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Tue Nov 8 14:45:39 2022 -0300
+
+    instalé el paquete de stripe para poder leer la pasarela de pagos que incorporó Rodri
+
+[33mcommit 6e4a4fe39a88a6040097916460cb49a6951c063c[m
+Author: German Horianski <germanezequielhorianski@gmail.com>
+Date:   Tue Nov 8 14:44:01 2022 -0300
+
+    Hice el contenido mínimo del Home de cliente de suscripción básica
+
+[33mcommit c56c1f516ab4d42395502b32406e611bbd3bea9b[m
+Merge: b1f3eb8 8e3028c
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Tue Nov 8 11:09:52 2022 -0600
+
+    Merge pull request #6 from Vontrauwitz/Yaileen
+    
+    Yaileen
+
+[33mcommit 8e3028c13c2499766cf0d567844ab4bc13ec5503[m[33m ([m[1;31morigin/Yaileen[m[33m)[m
+Author: Yaileen Manjarres <yaileenmanjarres@gmail.com>
+Date:   Tue Nov 8 12:05:17 2022 -0500
+
+    Theme- estilos, Nav "organizada"
+
+[33mcommit e8369a363c0eaf30f8931fb7d73c468082138903[m
+Author: Yaileen Manjarres <yaileenmanjarres@gmail.com>
+Date:   Tue Nov 8 11:29:05 2022 -0500
+
+    Nav 'organizada' y archivo theme
+
+[33mcommit b1f3eb8c567b46a68095e26d49a9b8f63ebe729f[m
+Merge: de056c2 e170a9a
+Author: juan lopez <105992766+juanml08@users.noreply.github.com>
+Date:   Mon Nov 7 18:16:04 2022 -0500
+
+    Merge pull request #5 from Vontrauwitz/Stripe
+    
+    Stripe213412
+
+[33mcommit e170a9a1564da2796cd3c2d389e39a0bc4fd9b9f[m
+Author: rodrisantes <104109457+rodrisantes@users.noreply.github.com>
+Date:   Mon Nov 7 20:12:35 2022 -0300
+
+    Stripe213412
+
+[33mcommit f96953305d7f1e36233e1f3e46e11838b3d42101[m
+Author: juanml08 <jmlopez-08@gotmail.com>
+Date:   Mon Nov 7 16:13:32 2022 -0500
+
+    componente Loading y componente Intro
+
+[33mcommit de056c2fa57faa938d1a48e37428df4e757466f0[m
+Merge: 18d27c9 dc34784
+Author: Hans F. Trauwitz V <58121617+Vontrauwitz@users.noreply.github.com>
+Date:   Mon Nov 7 14:47:51 2022 -0600
+
+    Merge pull request #4 from Vontrauwitz/Stripe
+    
+    Stripe123
+
+[33mcommit dc347840fd19b06ff9dedd5c4fb52781c7eea718[m
+Author: rodrisantes <104109457+rodrisantes@users.noreply.github.com>
+Date:   Mon Nov 7 17:44:25 2022 -0300
+
+    Stripe4
+
+[33mcommit 40632cc27cbef6bf62792646a34b8456e578d69f[m
+Author: rodrisantes <104109457+rodrisantes@users.noreply.github.com>
+Date:   Mon N

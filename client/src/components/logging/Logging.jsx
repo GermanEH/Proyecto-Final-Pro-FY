@@ -4,7 +4,7 @@ import theme from '../../theme';
 export function Logging() {
 	return (
 		<View style={styles.container}>
-			<Image style={styles.img} source={require('../../../assets/logo.png')}/>
+			<Image style={styles.img} source={require('../../assets/logo.png')}/>
 			<TextInput style={styles.input} 
 			placeholder='Correo electrónico'/>
 			<TextInput style={styles.input} 
@@ -35,7 +35,7 @@ export function Logging() {
 			</TouchableOpacity>	
 			</View>
 		</View>
-  );
+	);
 }
 
 
