@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const mongooseDelete = require('mongoose-delete')
 const ProfessionalScheme = new mongoose.Schema(
   {
     id: {
@@ -68,6 +68,7 @@ const ProfessionalScheme = new mongoose.Schema(
 
 );
 
+ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
 
 

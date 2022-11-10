@@ -37,7 +37,7 @@ const getUserById = async (req, res) => {
 }
 
 /**
- *  Obtener lista de la base de datos!
+ * Crear un usuario!
  * @param {*} req 
  * @param {*} res 
  */
@@ -53,16 +53,25 @@ const createUsers = async (req, res) => {
   }
 }
 /**
- *  crear un registro!
+ * Borrar un uruario!
  * @param {*} req 
  * @param {*} res 
  */
 const deleteUsers = async (req, res) => {
-
-
+  try {
+    req = matchedData(req)
+    const { id } = req
+    console.log(id)
+    const data = await usersModel.delete({ _id: id })
+    res.send({ data })
+  } catch (error) {
+    console.log(error);
+    handleHttpError(res, "Error borrando usuario")
+  }
 }
+
 /**
- *  actualizar un registro!
+ *  actualizar un usuario!
  * @param {*} req 
  * @param {*} res 
  */

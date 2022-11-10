@@ -10,7 +10,7 @@ router.get("/", getUsers);
 
 router.get("/:id", validatorIdUser, getUserById);
 
-router.delete("/", deleteUsers);
+router.delete("/:id", validatorIdUser, deleteUsers);
 
 router.put("/:id", validatorCreateUser, editUsers)
 
