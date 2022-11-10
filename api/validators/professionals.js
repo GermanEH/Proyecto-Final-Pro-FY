@@ -2,51 +2,59 @@ const { check } = require("express-validator");
 const validateResults = require("../utils/handleValidator");
 
 
-const validatorCreateUser = [
+const validatorCreateProfessional = [
 
-  check("first_name")
+  check("name")
     .exists()
     .notEmpty()
-    .isLength({ min: 4, max: 30 }),
-  check("last_name")
+    .isLength({ min: 4, max: 100 }),
+  check("lastname")
     .exists()
     .notEmpty()
-    .isLength({ min: 4, max: 30 }),
+    .isLength({ min: 4, max: 100 }),
   check("email")
     .exists()
     .notEmpty()
     .isEmail(),
-  check("favorites")
-    .optional(),
-  check("province")
+  check("password")
+    .exists()
+    .notEmpty(),
+  check("dni")
+    .exists()
+    .notEmpty(),
+  check("professionalId")
+    .exists()
+    .notEmpty(),
+  check("speciality")
+    .exists()
+    .notEmpty(),
+  check("country")
+    .exists()
+    .notEmpty(),
+  check("state")
     .exists()
     .notEmpty(),
   check("city")
     .exists()
     .notEmpty(),
-  check("password")
+  check("zip")
     .exists()
     .notEmpty(),
-  check("role")
-    .optional(),
-  check("address")
+  check("professionalAdress")
     .exists()
     .notEmpty(),
-  check("DNI")
-    .exists()
-    .notEmpty(),
-  check("countries")
-    .optional(),
-  check("postcode")
-    .exists()
-    .notEmpty(),
+  check("schedule")
+    .optional(), //! temporal
+  check("modality")
+    .optional(), //! temporal
+
 
   (req, res, next) => {
     return validateResults(req, res, next)
   }
 ];
 
-const validatorIdUser = [
+const validatorIdProfessional = [
 
   check("id")
     .exists()
@@ -59,4 +67,4 @@ const validatorIdUser = [
 
 
 
-module.exports = { validatorCreateUser, validatorIdUser }
+module.exports = { validatorCreateProfessional, validatorIdProfessional }

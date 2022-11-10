@@ -1,5 +1,5 @@
 
-const handleHttpError = (res, message = "algo sucuedio", code = 403) => {
+const handleHttpError = (res, message = "someting happens", code = 403) => {
   res.status(code);
   res.send({ error: message })
 
