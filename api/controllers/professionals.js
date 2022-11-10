@@ -28,11 +28,11 @@ const getProfessionalById = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
-    console.log(id)
+    // console.log(id)
     const data = await professionalsModel.findById(id)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error id usuario")
+    handleHttpError(res, "Error id profesional")
 
   }
 }
@@ -44,15 +44,15 @@ const getProfessionalById = async (req, res) => {
  */
 
 const createProfessional = async (req, res) => {
+  try {
+    const body = matchedData(req)
+    console.log(body)
+    const data = await professionalsModel.create(body)
+    res.send({ data })
 
-
-  const { body } = req
-  console.log(body)
-  const data = await professionalsModel.create(body)
-
-  res.send({ data })
-
-
+  } catch (error) {
+    handleHttpError(res, "Error creando al profesional")
+  }
 }
 
 /**
@@ -61,7 +61,16 @@ const createProfessional = async (req, res) => {
  * @param {*} res 
  */
 const deleteProfessional = async (req, res) => {
-  res.send('hola')
+  try {
+    req = matchedData(req)
+    const { id } = req
+    // console.log(id)
+    const data = await professionalsModel.delete({ _id: id })
+    res.send({ data })
+  } catch (error) {
+    handleHttpError(res, "Error borrando al profesional")
+
+  }
 
 }
 /**
@@ -70,7 +79,16 @@ const deleteProfessional = async (req, res) => {
  * @param {*} res 
  */
 const editProfessional = async (req, res) => {
-  res.send('hola')
+  try {
+    const { id, ...body } = matchedData(req)
+    const data = await professionalsModel.findOneAndUpdate(
+      id, body
+    )
+    res.send({ data })
+  } catch (error) {
+    console.log(error);
+    handleHttpError(res, "Error editando al profesional")
+  }
 
 }
 

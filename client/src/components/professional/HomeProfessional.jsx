@@ -15,16 +15,36 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfessionals } from "../../slices/getProfessionals";
 
-const TodayClients = [];
-
 export function HomeProfessional({ navigation }) {
   const professionals = useSelector((state) => state.professionals);
   const dispatch = useDispatch();
 
   useEffect(() => console.log(professionals), [professionals]);
   return (
-    <SafeAreaView>
-      <ScrollView>
+  <SafeAreaView>
+    <ScrollView>
+     <View>
+        <Button
+            title='Formulario Profesional'
+            onPress={() => navigation.navigate('FormProfessional', {name: 'FormProfessional'})}></Button>
+
+        <Button
+            title='GetProfessionals'
+            onPress={() => dispatch(getProfessionals())}/>
+
+        <Button
+            title='Consultas'
+            onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
+        <Button
+            title='FormProfessional'
+            onPress={() => navigation.navigate('FormProfessional')}></Button>
+        <Button
+            title='updateData'
+            onPress={() => dispatch(putProfessional(updated.id, updated))}/>
+        <Button
+            title='delete'
+            onPress={() => dispatch(deleteProfessional(updated.id))}/>
+    
         <View style={styles.container}>
           <Button
             title="GetProfessionals"

@@ -1,22 +1,21 @@
 const mongoose = require('mongoose')
-
+const mongooseDelete = require('mongoose-delete')
 const UserScheme = new mongoose.Schema(
   {
     id: {
       type: mongoose.Types.ObjectId,
     },
-    name: {
+    first_name: {
       type: String,
     },
-    lastname: {
+    last_name: {
       type: String,
     },
-    dni: {
-      type: String,
+    DNI: {
+      type: Number,
     },
-    country: {
+    country: {       //opcional para uso nuestro
       type: String,
-      default: 'Argentina'
     },
     state: {
       type: String,
@@ -24,7 +23,7 @@ const UserScheme = new mongoose.Schema(
     city: {
       type: String,
     },
-    zip: {
+    postcode: {
       type: String,
     },
     address: {
@@ -34,13 +33,13 @@ const UserScheme = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    favorites: {
+    favorites: {  //opcional para uso nuestro
       type: String,
     },
     password: {
       type: String,
     },
-    role: {
+    role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",
     }
@@ -50,5 +49,5 @@ const UserScheme = new mongoose.Schema(
     versionKey: false,
   }
 )
-
+UserScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("users", UserScheme)

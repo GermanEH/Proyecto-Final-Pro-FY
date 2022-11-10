@@ -1,4 +1,4 @@
-const { usersModel } = require('../models');
+const { specialtiesModel } = require('../models');
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 
@@ -9,9 +9,9 @@ const { matchedData } = require('express-validator');
  * @param {*} req 
  * @param {*} res 
  */
-const getUsers = async (req, res) => {
+const getSpecialities = async (req, res) => {
   try {
-    const data = await usersModel.find({});
+    const data = await specialtiesModel.find({});
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_items")
@@ -23,15 +23,15 @@ const getUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const getUserById = async (req, res) => {
+const getSpecialitiesById = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
-    console.log(id)
-    const data = await usersModel.findById(id)
+    // console.log(id)
+    const data = await specialtiesModel.findById(id)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error id usuario")
+    handleHttpError(res, "Error id especialidad")
 
   }
 }
@@ -42,14 +42,14 @@ const getUserById = async (req, res) => {
  * @param {*} res 
  */
 
-const createUsers = async (req, res) => {
+const createSpecialities = async (req, res) => {
   try {
+
     const body = matchedData(req)
-    // console.log(body, bodyClean);
-    const data = await usersModel.create(body)
+    const data = await specialtiesModel.create(body)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error creando al usuario")
+    handleHttpError(res, "Error creando la especialidad")
   }
 }
 /**
@@ -57,16 +57,16 @@ const createUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteUsers = async (req, res) => {
+const deleteSpecialities = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
-    console.log(id)
-    const data = await usersModel.delete({ _id: id })
+    // console.log(id)
+    const data = await specialtiesModel.delete({ _id: id })
     res.send({ data })
   } catch (error) {
     console.log(error);
-    handleHttpError(res, "Error borrando usuario")
+    handleHttpError(res, "Error borrando la especialidad")
   }
 }
 
@@ -75,7 +75,7 @@ const deleteUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const editUsers = async (req, res) => {
+const editSpecialities = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
     // console.log(body, bodyClean);
@@ -84,10 +84,10 @@ const editUsers = async (req, res) => {
     )
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error editando al usuario")
+    handleHttpError(res, "Error editando la especialidad")
   }
 }
 
 
 
-module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers }
+module.exports = { getSpecialities, createSpecialities, getSpecialitiesById, deleteSpecialities, editSpecialities }

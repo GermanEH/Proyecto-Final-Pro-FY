@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-
+  specialties: []
 }
 
-const getSpecialties = createSlice({
-  name: second,
+const specialtiesSlice = createSlice({
+  name: specialtiesSlice,
   initialState,
-  reducers: {}
+  reducers: {},
 });
 
 export const {} = getSpecialties.actions
