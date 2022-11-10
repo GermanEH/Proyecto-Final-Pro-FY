@@ -14,8 +14,13 @@ export function HomeProfessional({navigation}) {
     return (
         <View>
         <Button
+            title='Formulario Profesional'
+            onPress={() => navigation.navigate('FormProfessional', {name: 'FormProfessional'})}></Button>
+
+        <Button
             title='GetProfessionals'
             onPress={() => dispatch(getProfessionals())}/>
+
         <Button
             title='Consultas'
             onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>

@@ -16,6 +16,9 @@ export function HomePacient ({navigation}) {
             <Text>Hola,</Text>
             <Text>fulana</Text>
             <Button
+           title='Formulario Usuario'
+           onPress={() => navigation.navigate('FormPacient', {name: 'FormPacient'})}></Button>
+            <Button
                 title='GetPacients'
                 onPress={() => dispatch(getPacients())}/>
             <Button
