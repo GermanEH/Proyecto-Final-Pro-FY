@@ -13,7 +13,7 @@ import { CardProfessional } from "./CardProfessional";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfessionals } from "../../slices/getProfessionals";
+import { getProfessionals } from "../../slices/professionalsActions";
 
 export function HomeProfessional({ navigation }) {
   const professionals = useSelector((state) => state.professionals);
@@ -21,129 +21,146 @@ export function HomeProfessional({ navigation }) {
 
   useEffect(() => console.log(professionals), [professionals]);
   return (
-  <SafeAreaView>
-    <ScrollView>
-     <View>
-        <Button
-            title='Formulario Profesional'
-            onPress={() => navigation.navigate('FormProfessional', {name: 'FormProfessional'})}></Button>
+    <SafeAreaView>
+      <ScrollView>
+        <View>
+          <Button
+            title="Formulario Profesional"
+            onPress={() =>
+              navigation.navigate("FormProfessional", {
+                name: "FormProfessional",
+              })
+            }
+          ></Button>
 
-        <Button
-            title='GetProfessionals'
-            onPress={() => dispatch(getProfessionals())}/>
-
-        <Button
-            title='Consultas'
-            onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
-        <Button
-            title='FormProfessional'
-            onPress={() => navigation.navigate('FormProfessional')}></Button>
-        <Button
-            title='updateData'
-            onPress={() => dispatch(putProfessional(updated.id, updated))}/>
-        <Button
-            title='delete'
-            onPress={() => dispatch(deleteProfessional(updated.id))}/>
-    
-        <View style={styles.container}>
           <Button
             title="GetProfessionals"
             onPress={() => dispatch(getProfessionals())}
           />
+
           <Button
             title="Consultas"
             onPress={() =>
               navigation.navigate("Consultas", { name: "Consultas" })
             }
           ></Button>
-          <Text
-            style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
-          >
-            Hola,
-          </Text>
-          <Text
-            style={{
-              fontSize: theme.fontSize.primaryText,
-              paddingBottom: 10,
-              paddingLeft: 10,
-            }}
-          >
-            Juan Dominguéz
-          </Text>
-          <Text
-            style={{
-              fontSize: theme.fontSize.secondaryText,
-              paddingVertical: 15,
-            }}
-          >
-            Consulta del dia de hoy:
-          </Text>
-          <View style={{ paddingVertical: 10 }}>
-            <CardProfessional />
-          </View>
-          <View style={{ paddingVertical: 10 }}>
-            <CardProfessional />
-          </View>
-          <View>
+          <Button
+            title="FormProfessional"
+            onPress={() => navigation.navigate("FormProfessional")}
+          ></Button>
+          <Button
+            title="updateData"
+            onPress={() => dispatch(putProfessional(updated.id, updated))}
+          />
+          <Button
+            title="delete"
+            onPress={() => dispatch(deleteProfessional(updated.id))}
+          />
+
+          <View style={styles.container}>
+            <Button
+              title="GetProfessionals"
+              onPress={() => dispatch(getProfessionals())}
+            />
+            <Button
+              title="Consultas"
+              onPress={() =>
+                navigation.navigate("Consultas", { name: "Consultas" })
+              }
+            ></Button>
+            <Text
+              style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
+            >
+              Hola,
+            </Text>
+            <Text
+              style={{
+                fontSize: theme.fontSize.primaryText,
+                paddingBottom: 10,
+                paddingLeft: 10,
+              }}
+            >
+              Juan Dominguéz
+            </Text>
             <Text
               style={{
                 fontSize: theme.fontSize.secondaryText,
                 paddingVertical: 15,
               }}
             >
-              Proximas Consultas:
+              Consulta del dia de hoy:
             </Text>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional />
             </View>
-            <View style={{ paddingVertical: 10, marginBottom: 10 }}>
+            <View style={{ paddingVertical: 10 }}>
               <CardProfessional />
             </View>
-          </View>
-          <View style={{ paddingTop: 15 }}>
-            <Text style={{ fontSize: theme.fontSize.secondaryText }}>
-              Consultas de los Pacientes:
-            </Text>
-          </View>
-          <View style={styles.containerComments}>
-            <ScrollView>
-              <View style={styles.comments}>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
+            <View>
+              <Text
+                style={{
+                  fontSize: theme.fontSize.secondaryText,
+                  paddingVertical: 15,
+                }}
+              >
+                Proximas Consultas:
+              </Text>
+              <View style={{ paddingVertical: 10 }}>
+                <CardProfessional />
               </View>
-            </ScrollView>
-            <View style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}>
-              <TextInput
-                style={styles.input}
-                placeholder="Responder Consultas"
-              />
-              <View style={{ justifyContent: "space-around" }}>
-                <TouchableOpacity style={styles.btn}>
-                  <Text style={{ textAlign: "center" }}>Responder</Text>
-                </TouchableOpacity>
+              <View style={{ paddingVertical: 10, marginBottom: 10 }}>
+                <CardProfessional />
               </View>
             </View>
-          </View>
-          <View style={{ textAlign: "center", width: 200, paddingBottom: 50 }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("DatingStatuses", {
-                  name: "DatingStatuses",
-                })
-              }
-              style={styles.btn}
+            <View style={{ paddingTop: 15 }}>
+              <Text style={{ fontSize: theme.fontSize.secondaryText }}>
+                Consultas de los Pacientes:
+              </Text>
+            </View>
+            <View style={styles.containerComments}>
+              <ScrollView>
+                <View style={styles.comments}>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                  <Text>COMENTARIOS</Text>
+                </View>
+              </ScrollView>
+              <View
+                style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
+              >
+                <TextInput
+                  style={styles.input}
+                  placeholder="Responder Consultas"
+                />
+                <View style={{ justifyContent: "space-around" }}>
+                  <TouchableOpacity style={styles.btn}>
+                    <Text style={{ textAlign: "center" }}>Responder</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
             >
-              <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("DatingStatuses", {
+                    name: "DatingStatuses",
+                  })
+                }
+                style={styles.btn}
+              >
+                <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>
