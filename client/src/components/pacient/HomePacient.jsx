@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPacients } from '../../slices/getPacients'
-
+//hola
 
 export function HomePacient ({navigation}) {
 
