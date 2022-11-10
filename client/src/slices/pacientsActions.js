@@ -42,9 +42,9 @@ export const putPacient = createAsyncThunk('pacients/putPacient', async (id, pac
     }        
 })
 
-export const deletePacient = createAsyncThunk('pacients/deletePacient', async (pacient) => {
+export const deletePacient = createAsyncThunk('pacients/deletePacient', async (id) => {
     try {
-        const response = axios.delete(`http://localhost:3001/api/users`, pacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = axios.delete(`http://localhost:3001/api/users/${id}`)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
         return response.data.data
     } catch (error) {
         return error.message

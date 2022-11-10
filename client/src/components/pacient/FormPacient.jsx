@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
 import { useDispatch } from 'react-redux'
-import { postPacient } from '../../slices/pacients'
+import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 //hola
@@ -10,7 +10,7 @@ export function FormPacient  ()  {
     defaultValues: {
       first_name: '',
       last_name: '',
-      dni: '',
+      DNI: '',
       state:'',
       city:'',
       postcode:'',
@@ -20,6 +20,8 @@ export function FormPacient  ()  {
     }
   });
   const onSubmit = data => {
+    console.log('entramos')
+    console.log(data)
     dispatch(postPacient(data))
   };
 
