@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import { getPacients, postPacient, putPacient } from './pacientsActions'
 
 const initialState = {
   pacients: [],
@@ -44,33 +43,7 @@ export const pacientsSlice = createSlice({
             state.error = action.error.message
           }
         )
-        
-        // .addCase(getPacients.pending, (state, _action) => {
-        //     state.status = 'loading'
-        // })
-        // .addCase(getPacients.fulfilled, (state, action) => {
-        //     state.status = 'succeeded'
-        //     state.pacients = action.payload
-        // })
-        // .addCase(getPacients.rejected, (state, action) => {
-        //     state.status = 'failed'
-        //     state.error = action.error.message
-        // })
       }, 
-  // extraReducers(builder)    {
-  //   builder
-  //       .addCase(postPacient.pending, (state, _action) => {
-  //         state.status = 'loading'
-  //     })
-  //       .addCase(postPacient.fulfilled, (state, action) => {
-  //         state.status = 'succeeded'
-  //         state.pacients = action.payload.data.data     //VER QUÉ HACER CON ESTO
-  //     })
-  //       .addCase(postPacient.rejected, (state, action) => {
-  //         state.status = 'failed'
-  //         state.error = action.error.message
-  //     })
-  //     }
 });
 
 export const pacients = (state) => state.pacients
