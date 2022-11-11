@@ -31,7 +31,7 @@ const professionalsSlice = createSlice({
             if(prop[key] === action.payload) selectedFilter = i.name
           }
         }
-        state.filtered = state.professionals.filter(p => p.specialtyId !== selectedFilter)
+        state.filtered = state.professionals.filter(p => p.specialtyId === selectedFilter)
     }
     // filterProfessionals: (state) => {
     //   state.filtered = state.professionals.filter(p => state.filters.every(f => p[Object.keys(f)[0]].includes(Object.values(f)[0])))
