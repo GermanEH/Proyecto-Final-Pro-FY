@@ -12,16 +12,16 @@ export function HomePacient ({navigation}) {
     useEffect (() => console.log(pacients), [pacients])
 
     const updated = {
-        _id: '636d6d00b57f8d59fec7c2b5',
-        first_name: "Valentina Maria",
-        last_name: "Hormaechea",
-        DNI: 1231231,
+        _id: '636d72f5b57f8d59fec7c2c2',
+        first_name: "Jorge",
+        last_name: "Otamendi",
+        DNI: 5124124,
         state: "Buenos Aires",
         city: "Mar del Plata",
         postcode: "7600",
         address: "San Martin 123",
-        email: "poiu@gmail.com",
-        password: "poiuqwer"
+        email: "ityiutyi@gmail.com",
+        password: "tyuityit"
     }
 
     return (
