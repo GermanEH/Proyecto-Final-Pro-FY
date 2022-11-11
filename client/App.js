@@ -13,7 +13,9 @@ import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
+import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
 /* import { Loading } from './src/components/loading/Loading'; */
+import { Queries } from './src/components/pacient/Queries'
 
 const Stack = createStackNavigator()
 
@@ -48,9 +50,15 @@ export default function App() {
             <Stack.Screen
               name="DatingStatuses"
               component={DatingStatuses}/>
-               <Stack.Screen
+            <Stack.Screen
               name="DatingStatusesBasic"
               component={DatingStatusesBasic}/>
+            <Stack.Screen
+              name="ProfessionalsList"
+              component={ProfessionalsList}/>
+            <Stack.Screen
+              name="Queries"
+              component={Queries}/>
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
