@@ -35,7 +35,7 @@ const validatorCreateUser = [
   check("DNI")
     .exists()
     .notEmpty(),
-  check("countries")
+  check("country")
     .optional(),
   check("postcode")
     .exists()

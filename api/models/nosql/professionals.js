@@ -24,7 +24,6 @@ const ProfessionalScheme = new mongoose.Schema(
     professionalId: {
       type: String,
     },
-
     country: {
       type: String,
     },
