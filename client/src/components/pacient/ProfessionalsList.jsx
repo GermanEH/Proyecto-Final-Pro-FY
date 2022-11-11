@@ -1,68 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView, View, StyleSheet, ScrollView, Text } from 'react-native';
 import { CardPacient } from './CardPacient';
 import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
 import { getProfessionals, getSpecialties } from '../../slices/professionalsActions'
 import { handleFilter, setFiltered } from '../../slices/professionals'
 
 
-const professionals = [
-  {
-    name: 'Fulano',
-    speciality: 'Medico 1',
-    country: 'Pais 1',
-    phone: '1234567890'
-  },
-  {
-    name: 'Sutano',
-    speciality: 'Medico 2',
-    country: 'Pais 2',
-    phone: '333333333'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-  {
-    name: 'Sutanejo',
-    speciality: 'Medico 3',
-    country: 'Pais 3',
-    phone: '0987654321'
-  },
-]
+// const professionals = [
+//   {
+//     name: 'Fulano',
+//     speciality: 'Medico 1',
+//     country: 'Pais 1',
+//     phone: '1234567890'
+//   },
+//   {
+//     name: 'Sutano',
+//     speciality: 'Medico 2',
+//     country: 'Pais 2',
+//     phone: '333333333'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+//   {
+//     name: 'Sutanejo',
+//     speciality: 'Medico 3',
+//     country: 'Pais 3',
+//     phone: '0987654321'
+//   },
+// ]
 
 export function ProfessionalsList() {
 
@@ -86,7 +86,7 @@ export function ProfessionalsList() {
   useEffect (() => {console.log(filtered)}, [filtered])
 
   return (
-    <SafeAreaView>
+    // <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
           <SelectList
@@ -102,17 +102,21 @@ export function ProfessionalsList() {
             label="Categories"
           />
           {
-            professionals.map((professional, index) => (
+            filtered?.map((p, index) => {return (
               <CardPacient
                 key={index}
-                {...professional}
+                first_name={p.first_name}
+                last_name={p.last_name} 
+                speciality={p.speciality.name}
+                country={p.country}
+                // phone={p.phone}
               />
-            ))
+            )
+            })
           }
-        {filtered?.map((p,i) => {return <View key={i}><Text>{p.first_name}</Text></View>})}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    // {/* </SafeAreaView> */}
   )
 }
 
