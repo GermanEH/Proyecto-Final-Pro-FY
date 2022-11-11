@@ -1,59 +1,53 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { useDispatch } from 'react-redux'
+import { postProfessional } from '../../slices/professionals'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-import { postProfessional  } from '../../slices/professionalsActions'
-import { useDispatch } from 'react-redux'
 
 export function FormProfessional  ()  {
-
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       first_name: '',
       last_name: '',
-      email:'',
-      password:'',
       professionalId: '',
       dni:'',
-      country:'',
       state:'',
       city:'',
       postcode:'',
-      professionalAdress:'',
+      professionalAddress:'',
+      country:'',
       schedule:'',
       modality:''
     }
   });
-
-  const dispatch = useDispatch();
-
   const onSubmit = data => {
     dispatch(postProfessional(data))
   };
-
   const onChange = arg => {
     return {
       value: arg.nativeEvent.text,
     };
   };
 
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Nombre</Text>
       <Controller
-          control={control}
-          render={({field: { onChange, onBlur, value }}) => (
-            <TextInput
-                style={styles.input}
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-                value={value}
-            />
-          )}
-          name="first_name"
-          rules={{ required: true }}
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="first_name"
+        rules={{ required: true }}
       />
-
       <Text style={styles.label}>Apellido</Text>
       <Controller
         control={control}
@@ -68,54 +62,7 @@ export function FormProfessional  ()  {
         name="last_name"
         rules={{ required: true }}
       />
-
-      <Text style={styles.label}>email</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="email"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>contraseña</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-            secureTextEntry={true}
-          />
-        )}
-        name="password"
-        rules={{ required: true }}
-      />
-      
-    <Text style={styles.label}>dni</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="dni"
-        rules={{ required: true }}
-      />
-
-        <Text style={styles.label}>Matricula</Text>
+      <Text style={styles.label}>Matricula</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -129,7 +76,7 @@ export function FormProfessional  ()  {
         name="professionalId"
         rules={{ required: true }}
       />
-<Text style={styles.label}>Pais</Text>
+{/* <Text style={styles.label}>Especialidad</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -140,11 +87,11 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="country"
+        name="speciality"
         rules={{ required: true }}
-      />
+      /> */}
 
-  <Text style={styles.label}>Estado</Text>
+        <Text style={styles.label}>Provincia</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -174,7 +121,6 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-
       <Text style={styles.label}>Codigo Postal</Text>
       <Controller
         control={control}
@@ -186,7 +132,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="zip"
+        name="postcode"
         rules={{ required: true }}
       />
 
@@ -201,10 +147,9 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="professionalAdress"
+        name="address"
         rules={{ required: true }}
       />
-
       <Text style={styles.label}>Disponibilidad Horaria</Text>
       <Controller
         control={control}
@@ -219,44 +164,20 @@ export function FormProfessional  ()  {
         name="schedule"
         rules={{ required: true }}
       />
-
-      <Text style={styles.label}>Modalidad de Consulta</Text>
-      <Picker
-        //selectedValue={modalidad}
-        style={{ height: 50, width: 150 }}
-        //name="modalidad"
-        onValueChange={(itemValue, itemIndex) =>setValue("modalidad",itemValue)}
-      >
-        <Picker.Item label="Teleconsulta" value="remote" />
-        <Picker.Item label="Presencial" value="presential" />
-      
-      </Picker>
-
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Reset"
-          onPress={() => {
-            reset({
-                first_name: '',
-                last_name: '',
-                email:'',
-                password:'',
-                professionalId: '',
-                dni:'',
-                country:'',
-                state:'',
-                city:'',
-                zip:'',
-                professionalAdress:'',
-                schedule:'',
-                modalidad:''
-            })
-          }}
-        />
-      </View>
-
+    <Text style={styles.label}>Modalidad de Consulta</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="modality"
+        rules={{ required: true }}
+      />
       <View style={styles.button}>
         <Button
           style={styles.buttonInner}
