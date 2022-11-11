@@ -1,25 +1,36 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
+import { postProfessional  } from '../../slices/professionalsActions'
+import { useDispatch } from 'react-redux'
 //hola
 export function FormProfessional  ()  {
+
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      numeroTarjeta: '',
-      especialidad:'',
-      provincia:'',
-      ciudad:'',
-      cp:'',
-      direccion:'',
-      disponibilidad:'',
+      first_name: '',
+      last_name: '',
+      email:'',
+      password:'',
+      professionalId: '',
+      dni:'',
+      country:'',
+      state:'',
+      city:'',
+      zip:'',
+      professionalAdress:'',
+      schedule:'',
       modalidad:''
     }
   });
+
+  const dispatch = useDispatch();
+
   const onSubmit = data => {
-    console.log(data);
+     console.log('entramos')
+     console.log(data)
+     //dispatch(postProfessional(data))
   };
 
   const onChange = arg => {
@@ -28,24 +39,27 @@ export function FormProfessional  ()  {
     };
   };
 
-  console.log('errors', errors);
+  
+ 
+  //console.log('errors', errors);
 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Nombre</Text>
       <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="Nombre"
-        rules={{ required: true }}
+          control={control}
+          render={({field: { onChange, onBlur, value }}) => (
+            <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+            />
+          )}
+          name="first_name"
+          rules={{ required: true }}
       />
+
       <Text style={styles.label}>Apellido</Text>
       <Controller
         control={control}
@@ -57,39 +71,11 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="apellido"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>Matricula</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="numeroTarjeta"
-        rules={{ required: true }}
-      />
-<Text style={styles.label}>Especialidad</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="especialidad"
+        name="last_name"
         rules={{ required: true }}
       />
 
-         <Text style={styles.label}>Provincia</Text>
+     <Text style={styles.label}>email</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -100,7 +86,82 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="provincia"
+        name="email"
+        rules={{ required: true }}
+      />
+
+      <Text style={styles.label}>contraseña</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+            secureTextEntry={true}
+          />
+        )}
+        name="password"
+        rules={{ required: true }}
+      />
+      
+    <Text style={styles.label}>dni</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="dni"
+        rules={{ required: true }}
+      />
+
+        <Text style={styles.label}>Matricula</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="professionalId"
+        rules={{ required: true }}
+      />
+<Text style={styles.label}>Pais</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="country"
+        rules={{ required: true }}
+      />
+
+  <Text style={styles.label}>Estado</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="state"
         rules={{ required: true }}
       />
 
@@ -115,9 +176,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="ciudad"
+        name="city"
         rules={{ required: true }}
       />
+
 
       <Text style={styles.label}>Codigo Postal</Text>
       <Controller
@@ -130,7 +192,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="cp"
+        name="zip"
         rules={{ required: true }}
       />
 
@@ -145,9 +207,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="direccion"
+        name="professionalAdress"
         rules={{ required: true }}
       />
+
       <Text style={styles.label}>Disponibilidad Horaria</Text>
       <Controller
         control={control}
@@ -159,28 +222,50 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="disponibilidad"
-        rules={{ required: true }}
-      />
-    <Text style={styles.label}>Modalidad de Consulta</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="modalidad"
+        name="schedule"
         rules={{ required: true }}
       />
 
-
-   
-
+    
+       
+      <Text style={styles.label}>Modalidad de Consulta</Text>
+      
+       <Picker
+        //selectedValue={modalidad}
+        style={{ height: 50, width: 150 }}
+        //name="modalidad"
+        onValueChange={(itemValue, itemIndex) =>setValue("modalidad",itemValue)}
+      >
+        <Picker.Item label="Teleconsulta" value="remote" />
+        <Picker.Item label="Presencial" value="presential" />
+      
+      </Picker>
      
+
+      <View style={styles.button}>
+        <Button
+          style={styles.buttonInner}
+          color
+          title="Reset"
+          onPress={() => {
+            reset({
+                first_name: '',
+                last_name: '',
+                email:'',
+                password:'',
+                professionalId: '',
+                dni:'',
+                country:'',
+                state:'',
+                city:'',
+                zip:'',
+                professionalAdress:'',
+                schedule:'',
+                modalidad:''
+            })
+          }}
+        />
+      </View>
 
       <View style={styles.button}>
         <Button

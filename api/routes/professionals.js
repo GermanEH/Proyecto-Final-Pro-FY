@@ -16,9 +16,11 @@ router.get("/:id", validatorIdProfessional, getProfessionalById);
 
 router.delete("/:id", validatorIdProfessional, deleteProfessional);
 
-router.put("/:id", validatorCreateProfessional, editProfessional)
+router.put("/:id", validatorIdProfessional, validatorCreateProfessional, editProfessional)
 
 router.post("/", validatorCreateProfessional, createProfessional)
+
+
 
 // validatorCreateProfessional
 

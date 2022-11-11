@@ -17,14 +17,14 @@ const UserScheme = new mongoose.Schema(
     country: {       //opcional para uso nuestro
       type: String,
     },
-    province: {
+    state: {
       type: String,
     },
     city: {
       type: String,
     },
     postcode: {
-      type: String,
+      type: Number,
     },
     address: {
       type: String,

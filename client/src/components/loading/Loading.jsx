@@ -1,4 +1,4 @@
-import { Text,StyleSheet, View, Image} from 'react-native';
+import { Text, StyleSheet, View, Image} from 'react-native';
 
 export function Loading() {
     return (

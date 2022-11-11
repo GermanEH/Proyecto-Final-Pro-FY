@@ -50,7 +50,7 @@ const createItem = async (req, res) => {
   }
   const data = await storageModel.create(fileData)
   res.send({ data })
-}
+};
 /**
  *  crear un registro!
  * @param {*} req 

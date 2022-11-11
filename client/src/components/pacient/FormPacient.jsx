@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { useDispatch } from 'react-redux'
+import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import CustomInput from '../CustomInput/CustomInput'
@@ -7,6 +9,7 @@ import CustomInput from '../CustomInput/CustomInput'
 export function FormPacient  ()  {
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
+
       name: '',
       lastname: '',
       email:'',
@@ -17,10 +20,13 @@ export function FormPacient  ()  {
       ciudad:'',
       zip:'',
       adress:'',
+
     }
   });
   const onSubmit = data => {
-    console.log(data);
+    console.log('entramos')
+    console.log(data)
+    dispatch(postPacient(data))
   };
 
   const onChange = arg => {
@@ -29,10 +35,11 @@ export function FormPacient  ()  {
     };
   };
 
-  console.log('errors', errors);
+  const dispatch = useDispatch()
 
   return (
     <View style={styles.container}>
+
       
       <CustomInput
         name="name"
@@ -40,29 +47,40 @@ export function FormPacient  ()  {
         control={control}
         rules={{required: 'First name is required'}}
        
+
       />
       <CustomInput
         name="lastname"
         placeholder="Last name"
         control={control}
+
         rules={{required: 'Last name is required'}}
       
+
+
       />
         <CustomInput
         name="password"
         placeholder="Password"
         control={control}
+
         secureTextEntry
         rules={{required: 'Password is required'}}
+
       />
       
         <CustomInput
         name="state"
         placeholder="State"
         control={control}
+
         rules={{required: 'State is required'}}
 
+
+       
       />
+
+    
         <CustomInput
           name="city"
           placeholder="City"
@@ -79,6 +97,7 @@ export function FormPacient  ()  {
         rules={{required: 'Zip code is required'}}
         
       />
+
 
         <CustomInput
           name="dni"
@@ -97,6 +116,8 @@ export function FormPacient  ()  {
 
 
   
+
+
 
       <View style={styles.button}>
         <Button
