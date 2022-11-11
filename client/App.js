@@ -12,6 +12,7 @@ import { Consultas } from './src/components/shared/Consultas'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
+import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 
 const Stack = createStackNavigator()
@@ -47,6 +48,9 @@ export default function App() {
             <Stack.Screen
               name="DatingStatuses"
               component={DatingStatuses}/>
+               <Stack.Screen
+              name="DatingStatusesBasic"
+              component={DatingStatusesBasic}/>
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>

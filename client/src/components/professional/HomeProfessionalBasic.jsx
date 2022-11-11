@@ -14,7 +14,9 @@ import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfessionals } from "../../slices/professionalsActions";
-export function HomeProfessional({ navigation }) {
+import IconAntDesign from 'react-native-vector-icons/AntDesign'
+
+export function HomeProfessionalBasic({ navigation }) {
 const professionals = useSelector((state) => state.professionals);
 const dispatch = useDispatch();
 
@@ -81,6 +83,16 @@ return (
         >
             Juan Dominguéz
         </Text>
+     <View style={styles.estrella} >
+       < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+        < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+
+     </View>
+
         <Text
             style={{
             fontSize: theme.fontSize.secondaryText,
@@ -146,14 +158,19 @@ return (
             </View>
             </View>
         </View>
+       
+            <View style={styles.containerComments}>
+                <Text>COMENTARIO</Text>
+                
+                
+            </View>
+     
         <View
             style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
         >
             <TouchableOpacity
             onPress={() =>
-                navigation.navigate("DatingStatuses", {
-                name: "DatingStatuses",
-                })
+                navigation.navigate("DatingStatusesBasic", {name: "DatingStatusesBasic",})
             }
             style={styles.btn}
             >
@@ -205,5 +222,10 @@ const styles = StyleSheet.create({
         width: "70%",
         padding: theme.padding.padding10,
         borderColor: "grey",
+    },
+    estrella:{
+               flexDirection: "row",
+              flexWrap: "wrap",
+
     },
 });

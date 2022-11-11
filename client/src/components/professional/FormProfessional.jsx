@@ -6,23 +6,26 @@ import { postProfessional  } from '../../slices/professionalsActions'
 import { useDispatch } from 'react-redux'
 //hola
 export function FormProfessional  ()  {
+
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      contrasena:'',
-      numeroTarjeta: '',
-      especialidad:'',
-      provincia:'',
-      ciudad:'',
-      cp:'',
-      direccion:'',
-      disponibilidad:'',
+      first_name: '',
+      last_name: '',
+      email:'',
+      password:'',
+      professionalId: '',
+      dni:'',
+      country:'',
+      state:'',
+      city:'',
+      zip:'',
+      professionalAdress:'',
+      schedule:'',
       modalidad:''
     }
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
      console.log('entramos')
@@ -44,18 +47,19 @@ export function FormProfessional  ()  {
     <View style={styles.container}>
       <Text style={styles.label}>Nombre</Text>
       <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="nombre"
-        rules={{ required: true }}
+          control={control}
+          render={({field: { onChange, onBlur, value }}) => (
+            <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+            />
+          )}
+          name="first_name"
+          rules={{ required: true }}
       />
+
       <Text style={styles.label}>Apellido</Text>
       <Controller
         control={control}
@@ -67,9 +71,25 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="apellido"
+        name="last_name"
         rules={{ required: true }}
       />
+
+     <Text style={styles.label}>email</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="email"
+        rules={{ required: true }}
+      />
+
       <Text style={styles.label}>contraseña</Text>
       <Controller
         control={control}
@@ -82,9 +102,25 @@ export function FormProfessional  ()  {
             secureTextEntry={true}
           />
         )}
-        name="contrasena"
+        name="password"
         rules={{ required: true }}
       />
+      
+    <Text style={styles.label}>dni</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="dni"
+        rules={{ required: true }}
+      />
+
         <Text style={styles.label}>Matricula</Text>
       <Controller
         control={control}
@@ -96,10 +132,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="numeroTarjeta"
+        name="professionalId"
         rules={{ required: true }}
       />
-<Text style={styles.label}>Especialidad</Text>
+<Text style={styles.label}>Pais</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -110,11 +146,11 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="especialidad"
+        name="country"
         rules={{ required: true }}
       />
 
-         <Text style={styles.label}>Provincia</Text>
+  <Text style={styles.label}>Estado</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -125,7 +161,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="provincia"
+        name="state"
         rules={{ required: true }}
       />
 
@@ -140,9 +176,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="ciudad"
+        name="city"
         rules={{ required: true }}
       />
+
 
       <Text style={styles.label}>Codigo Postal</Text>
       <Controller
@@ -155,7 +192,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="cp"
+        name="zip"
         rules={{ required: true }}
       />
 
@@ -170,9 +207,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="direccion"
+        name="professionalAdress"
         rules={{ required: true }}
       />
+
       <Text style={styles.label}>Disponibilidad Horaria</Text>
       <Controller
         control={control}
@@ -184,7 +222,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="disponibilidad"
+        name="schedule"
         rules={{ required: true }}
       />
 
@@ -211,17 +249,19 @@ export function FormProfessional  ()  {
           title="Reset"
           onPress={() => {
             reset({
-               nombre: '',
-              apellido: '',
-              contrasena:'',
-              numeroTarjeta: '',
-              especialidad:'',
-              provincia:'',
-              ciudad:'',
-              cp:'',
-              direccion:'',
-              disponibilidad:'',
-              modalidad:''
+                first_name: '',
+                last_name: '',
+                email:'',
+                password:'',
+                professionalId: '',
+                dni:'',
+                country:'',
+                state:'',
+                city:'',
+                zip:'',
+                professionalAdress:'',
+                schedule:'',
+                modalidad:''
             })
           }}
         />
