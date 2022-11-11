@@ -13,7 +13,7 @@ import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { ProfessionalList } from './src/components/pacient/ProfessionalsList'
-import { QueriesDetailPacient, QueriesDetailPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
+import {  QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 
 const Stack = createStackNavigator()
