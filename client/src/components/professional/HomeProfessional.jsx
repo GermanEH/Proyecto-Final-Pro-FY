@@ -13,7 +13,7 @@ import { CardProfessional } from "./CardProfessional";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfessionals } from "../../slices/getProfessionals";
+import { getProfessionals } from "../../slices/professionalsActions";
 
 export function HomeProfessional({ navigation }) {
   const professionals = useSelector((state) => state.professionals);
@@ -144,6 +144,7 @@ export function HomeProfessional({ navigation }) {
             >
               <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
             </TouchableOpacity>
+          </View>
           </View>
         </View>
       </ScrollView>
