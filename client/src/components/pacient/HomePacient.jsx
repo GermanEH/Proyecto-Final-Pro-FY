@@ -12,7 +12,7 @@ export function HomePacient ({navigation}) {
     useEffect (() => console.log(pacients), [pacients])
 
     const updated = {
-        _id: '636d6d00b57f8d59fec7c2b5',
+        _id: '636e8e4100414c3752e3f88d',
         first_name: "Valentina Maria",
         last_name: "Hormaechea",
         DNI: 1231231,
@@ -43,6 +43,10 @@ export function HomePacient ({navigation}) {
             <Button
                 title='delete'
                 onPress={() => dispatch(deletePacient(updated._id))}/>
+            <Button
+            title="Queries"
+            onPress={() => navigation.navigate("Queries")}
+            />
         </View>
     )
 }

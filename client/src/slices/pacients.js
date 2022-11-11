@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   pacients: [],
+  pacient: {},
   status: "",
   error: ""
 }
@@ -25,6 +26,13 @@ export const pacientsSlice = createSlice({
           }
         )
         .addMatcher(
+          (action) => action.type.startsWith("pacients/getPacient") && action.type.endsWith("/fulfilled"),
+          (state, action) => {
+            state.status = 'succeeded'
+            state.pacient = action.payload
+          }
+        )
+        .addMatcher(
           (action) => action.type.startsWith("pacients/postPacient"||"pacients/putPacient") && action.type.endsWith("/fulfilled"),
           (state) => {
             state.status = 'succeeded'
@@ -44,38 +52,13 @@ export const pacientsSlice = createSlice({
             state.error = action.error.message
           }
         )
-        
-        // .addCase(getPacients.pending, (state, _action) => {
-        //     state.status = 'loading'
-        // })
-        // .addCase(getPacients.fulfilled, (state, action) => {
-        //     state.status = 'succeeded'
-        //     state.pacients = action.payload
-        // })
-        // .addCase(getPacients.rejected, (state, action) => {
-        //     state.status = 'failed'
-        //     state.error = action.error.message
-        // })
       }, 
-  // extraReducers(builder)    {
-  //   builder
-  //       .addCase(postPacient.pending, (state, _action) => {
-  //         state.status = 'loading'
-  //     })
-  //       .addCase(postPacient.fulfilled, (state, action) => {
-  //         state.status = 'succeeded'
-  //         state.pacients = action.payload.data.data     //VER QUÉ HACER CON ESTO
-  //     })
-  //       .addCase(postPacient.rejected, (state, action) => {
-  //         state.status = 'failed'
-  //         state.error = action.error.message
-  //     })
-  //     }
 });
 
 export const pacients = (state) => state.pacients
 export const pacientsStatus = (state) => state.status
 export const pacientsError = (state) => state.error
+export const pacient = (state) => state.pacient
 export const pacientStatus = (state) => state.status
 export const pacientError = (state) => state.error
 
