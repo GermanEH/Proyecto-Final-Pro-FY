@@ -9,7 +9,6 @@ import CustomInput from '../CustomInput/CustomInput'
 export function FormPacient  ()  {
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-
       name: '',
       lastname: '',
       email:'',
@@ -20,7 +19,6 @@ export function FormPacient  ()  {
       ciudad:'',
       zip:'',
       adress:'',
-
     }
   });
   const onSubmit = data => {
@@ -40,85 +38,57 @@ export function FormPacient  ()  {
   return (
     <View style={styles.container}>
 
-      
       <CustomInput
         name="name"
         placeholder="Name"
         control={control}
         rules={{required: 'First name is required'}}
-       
-
       />
       <CustomInput
         name="lastname"
         placeholder="Last name"
         control={control}
-
         rules={{required: 'Last name is required'}}
-      
-
-
       />
-        <CustomInput
+      <CustomInput
         name="password"
         placeholder="Password"
         control={control}
-
         secureTextEntry
         rules={{required: 'Password is required'}}
-
       />
       
-        <CustomInput
+      <CustomInput
         name="state"
         placeholder="State"
         control={control}
-
         rules={{required: 'State is required'}}
-
-
-       
       />
-
-    
         <CustomInput
           name="city"
           placeholder="City"
           control={control}
           rules={{required: 'City is required'}}
-        
-      
       />
-
-        <CustomInput
+      <CustomInput
         name="zip"
         placeholder="P.C"
         control={control}
         rules={{required: 'Zip code is required'}}
         
       />
-
-
-        <CustomInput
+      <CustomInput
           name="dni"
           placeholder="D.N.I"
           control={control}
           rules={{required: 'DNI is required'}}
         />
-        <CustomInput
+      <CustomInput
           name="email"
           placeholder="E-mail"
           control={control}
           rules={{required: 'E-mail is required'}}
-      
       />
-    
-
-
-  
-
-
-
       <View style={styles.button}>
         <Button
           style={styles.buttonInner}
