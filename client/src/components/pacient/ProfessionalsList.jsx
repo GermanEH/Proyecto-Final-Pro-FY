@@ -86,7 +86,7 @@ export function ProfessionalsList() {
   useEffect (() => {console.log(filtered)}, [filtered])
 
   return (
-    // <SafeAreaView>
+    <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
           <SelectList
@@ -103,12 +103,7 @@ export function ProfessionalsList() {
           />
           {
             filtered?.map((p, index) => {return (
-              <CardPacient
-                key={index}
-                first_name={p.first_name}
-                last_name={p.last_name} 
-                speciality={p.speciality.name}
-                country={p.country}
+              <CardPacient key={index} first_name={p.first_name} last_name={p.last_name} speciality={p.speciality.name} country={p.country}
                 // phone={p.phone}
               />
             )
@@ -116,7 +111,7 @@ export function ProfessionalsList() {
           }
         </View>
       </ScrollView>
-    // {/* </SafeAreaView> */}
+    </SafeAreaView>
   )
 }
 
