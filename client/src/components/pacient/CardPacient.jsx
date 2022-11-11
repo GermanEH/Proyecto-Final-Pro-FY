@@ -4,7 +4,7 @@ import theme from '../../theme';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-export function CardPacient({ name, speciality, country, phone }) {
+export function CardPacient({first_name, last_name, speciality, country, phone}) {
   return (
     <SafeAreaView>
       <View >
@@ -13,14 +13,14 @@ export function CardPacient({ name, speciality, country, phone }) {
             <Image style={styles.image} source={require('../../assets/foto.jpg')} />
           </View>
           <View style={styles.description}>
-            <Text style={styles.name}>{name}
+            <Text style={styles.name}>{first_name} {last_name}
             </Text>
             <Text style={styles.speciality}>{speciality}
             </Text>
             <Text style={styles.location}>{country}
             </Text>
-            <Text style={styles.phone}>{phone}
-            </Text>
+            {/* <Text style={styles.phone}>{phone} */}
+            {/* </Text> */}
             <View style={styles.star}>
               <FontAwesome style={{paddingLeft: 5}} name="star-o" size={15} color="black" />
               <FontAwesome style={{paddingLeft: 5}} name="star-o" size={15} color="black" />

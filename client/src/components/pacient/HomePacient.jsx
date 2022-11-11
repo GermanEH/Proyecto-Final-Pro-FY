@@ -34,7 +34,6 @@ export function HomePacient({ navigation }) {
     email: "poiu@gmail.com",
     password: "poiuqwer",
   };
-
   return (
     <SafeAreaView>
       <ScrollView>

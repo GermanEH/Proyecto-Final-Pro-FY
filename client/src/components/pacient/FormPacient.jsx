@@ -4,19 +4,21 @@ import { useDispatch } from 'react-redux'
 import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-//hola
+import CustomInput from '../CustomInput/CustomInput'
+
 export function FormPacient  ()  {
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      DNI: '',
-      state:'',
-      city:'',
-      postcode:'',
-      address:'',
+      name: '',
+      lastname: '',
       email:'',
-      password:''
+      password:'',
+      dni: '',
+      country:'',
+      state:'',
+      ciudad:'',
+      zip:'',
+      adress:'',
     }
   });
   const onSubmit = data => {
@@ -35,137 +37,58 @@ export function FormPacient  ()  {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Nombre</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="first_name"
-        rules={{ required: true }}
-      />{errors.nombre && <Text>This is required.</Text>}
-      <Text style={styles.label}>Apellido</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="last_name"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>D.N.I</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="DNI"
-        rules={{ required: true }}
-      />
-         <Text style={styles.label}>Provincia</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="state"
-        rules={{ required: true }}
-      />
 
-      <Text style={styles.label}>Ciudad</Text>
-      <Controller
+      <CustomInput
+        name="name"
+        placeholder="Name"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="city"
-        rules={{ required: true }}
+        rules={{required: 'First name is required'}}
       />
-
-      <Text style={styles.label}>Codigo Postal</Text>
-      <Controller
+      <CustomInput
+        name="lastname"
+        placeholder="Last name"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="postcode"
-        rules={{ required: true }}
+        rules={{required: 'Last name is required'}}
       />
-
-      <Text style={styles.label}>Direccion</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="address"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>E-mail</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="email"
-        rules={{ required: true }}
-      />
-    <Text style={styles.label}>Contraseña</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            secureTextEntry={true}
-            value={value}
-          />
-        )}
+      <CustomInput
         name="password"
-        rules={{ required: true }}
+        placeholder="Password"
+        control={control}
+        secureTextEntry
+        rules={{required: 'Password is required'}}
       />
-
+      
+      <CustomInput
+        name="state"
+        placeholder="State"
+        control={control}
+        rules={{required: 'State is required'}}
+      />
+        <CustomInput
+          name="city"
+          placeholder="City"
+          control={control}
+          rules={{required: 'City is required'}}
+      />
+      <CustomInput
+        name="zip"
+        placeholder="P.C"
+        control={control}
+        rules={{required: 'Zip code is required'}}
+        
+      />
+      <CustomInput
+          name="dni"
+          placeholder="D.N.I"
+          control={control}
+          rules={{required: 'DNI is required'}}
+        />
+      <CustomInput
+          name="email"
+          placeholder="E-mail"
+          control={control}
+          rules={{required: 'E-mail is required'}}
+      />
       <View style={styles.button}>
         <Button
           style={styles.buttonInner}
@@ -179,30 +102,20 @@ export function FormPacient  ()  {
 };
 
 const styles = StyleSheet.create({
-  label: {
-    color: 'black',
-    margin: 20,
-    marginLeft: 0,
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
   },
   button: {
     marginTop: 40,
     color: 'white',
     height: 40,
     backgroundColor: 'orange',
-    borderRadius: 4,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8,
-    backgroundColor: 'white',
-  },
-  input: {
-    backgroundColor: 'orange',
-    borderColor: 'none',
-    height: 40,
-    padding: 10,
     borderRadius: 4,
   },
 });
