@@ -12,7 +12,7 @@ export function HomePacient ({navigation}) {
     useEffect (() => console.log(pacients), [pacients])
 
     const updated = {
-        _id: '636d72f5b57f8d59fec7c2c2',
+        _id: '636e8e4100414c3752e3f88d',
         first_name: "Jorge",
         last_name: "Otamendi",
         DNI: 5124124,
@@ -32,21 +32,11 @@ export function HomePacient ({navigation}) {
             title='Formulario Usuario'
             onPress={() => navigation.navigate('FormPacient', {name: 'FormPacient'})}></Button>
             <Button
-                title='GetPacients'
-                onPress={() => dispatch(getPacients())}/>
-            <Button
                 title='Consultas'
-                onPress={() => navigation.navigate('Consultas', {name: 'Consultas'})}></Button>
+                onPress={() => navigation.navigate('Queries')}/>
             <Button
                 title='updateData'
                 onPress={() => dispatch(putPacient(updated._id, updated))}/>
-            <Button
-                title='delete'
-                onPress={() => dispatch(deletePacient(updated._id))}/>
-            <Button
-            title="Queries"
-            onPress={() => navigation.navigate("Queries")}
-            />
         </View>
     )
 }
