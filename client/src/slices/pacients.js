@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
+// import { getPacients, postPacient, putPacient } from './pacientsActions'
 
 const initialState = {
   pacients: [],
+  pacient: {},
   status: "",
   error: ""
 }
@@ -21,6 +23,13 @@ export const pacientsSlice = createSlice({
           (state, action) => {
             state.status = 'succeeded'
             state.pacients = action.payload
+          }
+        )
+        .addMatcher(
+          (action) => action.type.startsWith("pacients/getPacient") && action.type.endsWith("/fulfilled"),
+          (state, action) => {
+            state.status = 'succeeded'
+            state.pacient = action.payload
           }
         )
         .addMatcher(
@@ -49,6 +58,7 @@ export const pacientsSlice = createSlice({
 export const pacients = (state) => state.pacients
 export const pacientsStatus = (state) => state.status
 export const pacientsError = (state) => state.error
+export const pacient = (state) => state.pacient
 export const pacientStatus = (state) => state.status
 export const pacientError = (state) => state.error
 
