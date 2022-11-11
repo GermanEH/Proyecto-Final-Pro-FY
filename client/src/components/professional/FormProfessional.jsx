@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, TextField } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
+import {Picker} from '@react-native-picker/picker';
 import { postProfessional  } from '../../slices/professionalsActions'
 import { useDispatch } from 'react-redux'
 
@@ -39,26 +40,29 @@ export function FormProfessional  ()  {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Nombre</Text>
+      
       <Controller
           control={control}
-          render={({field: { onChange, onBlur, value }}) => (
+          render={({field: { onChange, onBlur, value },fieldState:{error}}) => (
+            <View style={styles.campo} >
             <TextInput
+                placeholder='Nombre'
                 style={styles.input}
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
             />
+            </View>
           )}
           name="first_name"
           rules={{ required: true }}
       />
 
-      <Text style={styles.label}>Apellido</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+            placeholder='Apellido'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -68,12 +72,13 @@ export function FormProfessional  ()  {
         name="last_name"
         rules={{ required: true }}
       />
-
+     
       <Text style={styles.label}>email</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='email'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -84,11 +89,11 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-      <Text style={styles.label}>contraseña</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Password'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -100,11 +105,12 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
       
-    <Text style={styles.label}>dni</Text>
+    
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+            placeholder='dni'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -115,11 +121,13 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-        <Text style={styles.label}>Matricula</Text>
+       
       <Controller
         control={control}
+        
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Matricula'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -129,11 +137,11 @@ export function FormProfessional  ()  {
         name="professionalId"
         rules={{ required: true }}
       />
-<Text style={styles.label}>Pais</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Pais'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -144,11 +152,12 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-  <Text style={styles.label}>Estado</Text>
+  
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Estado'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -159,11 +168,11 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-      <Text style={styles.label}>Ciudad</Text>
-      <Controller
+       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Ciudad'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -175,11 +184,12 @@ export function FormProfessional  ()  {
       />
 
 
-      <Text style={styles.label}>Codigo Postal</Text>
+     
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+            placeholder='Codigo Postal'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -190,11 +200,11 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-      <Text style={styles.label}>Direccion</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+            placeholder='Direccion'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -205,11 +215,12 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
 
-      <Text style={styles.label}>Disponibilidad Horaria</Text>
+      
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+           placeholder='Disponibilidad Horaria'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -270,11 +281,7 @@ export function FormProfessional  ()  {
 };
 
 const styles = StyleSheet.create({
-  label: {
-    color: 'white',
-    margin: 20,
-    marginLeft: 0,
-  },
+ 
   button: {
     marginTop: 40,
     color: 'white',
@@ -293,7 +300,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'none',
     height: 40,
-    padding: 10,
+    padding: 20,
+    marginBottom:30,
     borderRadius: 4,
+    top:20
+  },
+  campo:{
+       
+      
+       
+
   },
 });
