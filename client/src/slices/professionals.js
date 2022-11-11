@@ -22,6 +22,7 @@ const professionalsSlice = createSlice({
     // filterProfessionals: (state) => {
     //   state.filtered = state.professionals.filter(p => state.filters.every(f => p[Object.keys(f)[0]].includes(Object.values(f)[0])))
     // }  
+    
   },
   extraReducers(builder) {
     builder 
@@ -57,35 +58,6 @@ const professionalsSlice = createSlice({
           }
         )
   }
-  // extraReducers(builder) {
-  //   builder 
-  //       .addCase(getProfessionals.pending, (state, _action) => {
-  //           state.status = 'loading'
-  //       })
-  //       .addCase(getProfessionals.fulfilled, (state, action) => {
-  //           state.status = 'succeeded'
-  //           console.log(action.payload)
-  //           state.professionals = action.payload      
-  //       })
-  //       .addCase(getProfessionals.rejected, (state, action) => {
-  //           state.status = 'failed'
-  //           state.error = action.error.message
-  //       })
-  //     },
-  //   extraReducers(builder)    {
-  //     builder
-  //         .addCase(postProfessional.pending, (state, _action) => {
-  //           state.status = 'loading'
-  //       })
-  //         .addCase(postProfessional.fulfilled, (state, action) => {
-  //           state.status = 'succeeded'
-  //           state.professionals = action.payload.data.data        //VER QUE HACER CON ESTO
-  //       })
-  //         .addCase(postProfessional.rejected, (state, action) => {
-  //           state.status = 'failed'
-  //           state.error = action.error.message
-  //       })
-  //       }
 });
 
 export const professionals = (state) => state.professionals

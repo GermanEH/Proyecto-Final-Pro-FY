@@ -33,9 +33,9 @@ export const putProfessional = createAsyncThunk('professionals/postProfessional'
     }        
 })
 
-export const deleteProfessional = createAsyncThunk('professionals/deleteProfessional', async (professional) => {
+export const deleteProfessional = createAsyncThunk('professionals/deleteProfessional', async (id) => {
     try {
-        const response = axios.delete('http://localhost:3001/api/professionals', professional)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.delete(`http://localhost:3001/api/professionals/${id}`)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
         return response.data.data
     } catch (error) {
         return error.message
