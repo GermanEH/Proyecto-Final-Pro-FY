@@ -1,36 +1,44 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
-import { useDispatch } from 'react-redux'
-import { postProfessional } from '../../slices/professionals'
+import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-
+import { postProfessional  } from '../../slices/professionalsActions'
+import { useDispatch } from 'react-redux'
+//hola
 export function FormProfessional  ()  {
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      professionalId: '',
-      dni:'',
-      state:'',
-      city:'',
-      postcode:'',
-      professionalAddress:'',
-      country:'',
-      schedule:'',
-      modality:''
+      nombre: '',
+      apellido: '',
+      contrasena:'',
+      numeroTarjeta: '',
+      especialidad:'',
+      provincia:'',
+      ciudad:'',
+      cp:'',
+      direccion:'',
+      disponibilidad:'',
+      modalidad:''
     }
   });
+
+  const dispatch = useDispatch()
+
   const onSubmit = data => {
-    dispatch(postProfessional(data))
+     console.log('entramos')
+     console.log(data)
+     //dispatch(postProfessional(data))
   };
+
   const onChange = arg => {
     return {
       value: arg.nativeEvent.text,
     };
   };
 
-  const dispatch = useDispatch()
+  
+ 
+  //console.log('errors', errors);
 
   return (
     <View style={styles.container}>
@@ -45,7 +53,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="first_name"
+        name="nombre"
         rules={{ required: true }}
       />
       <Text style={styles.label}>Apellido</Text>
@@ -59,10 +67,25 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="last_name"
+        name="apellido"
         rules={{ required: true }}
       />
-      <Text style={styles.label}>Matricula</Text>
+      <Text style={styles.label}>contraseña</Text>
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+            secureTextEntry={true}
+          />
+        )}
+        name="contrasena"
+        rules={{ required: true }}
+      />
+        <Text style={styles.label}>Matricula</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -73,10 +96,10 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="professionalId"
+        name="numeroTarjeta"
         rules={{ required: true }}
       />
-{/* <Text style={styles.label}>Especialidad</Text>
+<Text style={styles.label}>Especialidad</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -87,11 +110,11 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="speciality"
+        name="especialidad"
         rules={{ required: true }}
-      /> */}
+      />
 
-        <Text style={styles.label}>Provincia</Text>
+         <Text style={styles.label}>Provincia</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -102,7 +125,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="state"
+        name="provincia"
         rules={{ required: true }}
       />
 
@@ -117,7 +140,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="city"
+        name="ciudad"
         rules={{ required: true }}
       />
 
@@ -132,7 +155,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="postcode"
+        name="cp"
         rules={{ required: true }}
       />
 
@@ -147,7 +170,7 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="address"
+        name="direccion"
         rules={{ required: true }}
       />
       <Text style={styles.label}>Disponibilidad Horaria</Text>
@@ -161,23 +184,49 @@ export function FormProfessional  ()  {
             value={value}
           />
         )}
-        name="schedule"
+        name="disponibilidad"
         rules={{ required: true }}
       />
-    <Text style={styles.label}>Modalidad de Consulta</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="modality"
-        rules={{ required: true }}
-      />
+
+    
+       
+      <Text style={styles.label}>Modalidad de Consulta</Text>
+      
+       <Picker
+        //selectedValue={modalidad}
+        style={{ height: 50, width: 150 }}
+        //name="modalidad"
+        onValueChange={(itemValue, itemIndex) =>setValue("modalidad",itemValue)}
+      >
+        <Picker.Item label="Teleconsulta" value="remote" />
+        <Picker.Item label="Presencial" value="presential" />
+      
+      </Picker>
+     
+
+      <View style={styles.button}>
+        <Button
+          style={styles.buttonInner}
+          color
+          title="Reset"
+          onPress={() => {
+            reset({
+               nombre: '',
+              apellido: '',
+              contrasena:'',
+              numeroTarjeta: '',
+              especialidad:'',
+              provincia:'',
+              ciudad:'',
+              cp:'',
+              direccion:'',
+              disponibilidad:'',
+              modalidad:''
+            })
+          }}
+        />
+      </View>
+
       <View style={styles.button}>
         <Button
           style={styles.buttonInner}
