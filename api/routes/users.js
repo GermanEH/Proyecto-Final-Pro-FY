@@ -1,7 +1,7 @@
 const express = require("express");
 const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require("../controllers/users");
 const { useStripe } = require("../controllers/stripe")
-const { validatorCreateUser, validatorIdUser, } = require("../validators/users");
+const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../validators/users");
 const router = express.Router();
 
 
@@ -12,7 +12,7 @@ router.get("/:id", validatorIdUser, getUserById);
 
 router.delete("/:id", validatorIdUser, deleteUsers);
 
-router.put("/:id", validatorIdUser, validatorCreateUser, editUsers)
+router.put("/:id", validatorIdUser, validatorPutUsers, editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 

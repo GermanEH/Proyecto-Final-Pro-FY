@@ -12,9 +12,9 @@ import { Consultas } from './src/components/shared/Consultas'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
-import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
-// import { Logging } from './src/components/shared/Logging' 
+import {  QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
+import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
 
@@ -52,6 +52,9 @@ export default function App() {
               name="DatingStatuses"
               component={DatingStatuses}/>
             <Stack.Screen
+              name="QueriesHistorialPacientBasic"
+              component={QueriesHistorialPacientBasic}/>
+            <Stack.Screen 
               name="DatingStatusesBasic"
               component={DatingStatusesBasic}/>
             <Stack.Screen
@@ -60,9 +63,6 @@ export default function App() {
             <Stack.Screen
               name="Queries"
               component={Queries}/>
-            {/* <Stack.Screen
-              name="Logging"
-              component={Logging}/> */}
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
