@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, TextField } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, TextField,ScrollView,
+  SafeAreaView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import {Picker} from '@react-native-picker/picker';
@@ -39,6 +40,8 @@ export function FormProfessional  ()  {
   };
 
   return (
+      <SafeAreaView>
+      <ScrollView style={{flex: 1}}  contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
     <View style={styles.container}>
       
       <Controller
@@ -276,7 +279,10 @@ export function FormProfessional  ()  {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
+
     </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
