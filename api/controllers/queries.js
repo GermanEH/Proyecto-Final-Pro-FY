@@ -1,4 +1,4 @@
-const { usersModel } = require('../models');
+const { queriesModel } = require('../models');
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 
@@ -9,12 +9,12 @@ const { matchedData } = require('express-validator');
  * @param {*} req 
  * @param {*} res 
  */
-const getUsers = async (req, res) => {
+const getQueries = async (req, res) => {
   try {
-    const data = await usersModel.find({});
+    const data = await queriesModel.find({});
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error_get_items")
+    handleHttpError(res, "Error_get_queries")
   }
 }
 
@@ -23,12 +23,12 @@ const getUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const getUserById = async (req, res) => {
+const getQueryById = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await usersModel.findById(id)
+    const data = await queriesModel.findById(id)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id usuario")
@@ -42,11 +42,11 @@ const getUserById = async (req, res) => {
  * @param {*} res 
  */
 
-const createUsers = async (req, res) => {
+const createQueries = async (req, res) => {
   try {
     const body = matchedData(req)
     // console.log(body, bodyClean);
-    const data = await usersModel.create(body)
+    const data = await queriesModel.create(body)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error creando al usuario")
@@ -57,12 +57,12 @@ const createUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteUsers = async (req, res) => {
+const deleteQueries = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await usersModel.delete({ _id: id })
+    const data = await queriesModel.delete({ _id: id })
     res.send({ data })
   } catch (error) {
     console.log(error);
@@ -75,11 +75,11 @@ const deleteUsers = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const editUsers = async (req, res) => {
+const editQuery = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
 
-    const data = await usersModel.findOneAndUpdate(
+    const data = await queriesModel.findOneAndUpdate(
       id, body,
     )
     res.send({ data })
@@ -90,4 +90,4 @@ const editUsers = async (req, res) => {
 
 
 
-module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers }
+module.exports = { getQueries, createQueries, getQueryById, deleteQueries, editQuery }
