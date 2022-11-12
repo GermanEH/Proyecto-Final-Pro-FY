@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPacients, putPacient, deletePacient } from '../../slices/pacientsActions'
+import { getQueries, getQuerie, postQuerie, putQuerie, deleteQuerie  } from '../../slices/queriesActions'
 
 export function HomePacient ({navigation}) {
 
@@ -12,15 +12,15 @@ export function HomePacient ({navigation}) {
     useEffect (() => console.log(pacients), [pacients])
 
     const updated = {
-        _id: '636e8e4100414c3752e3f88d',
-        first_name: "Jorge",
-        last_name: "Otamendi",
+        _id: '636ed79bb7ca887031f3da81',
+        first_name: "Lorenzo",
+        last_name: "Bernal",
         DNI: 5124124,
         state: "Buenos Aires",
         city: "Mar del Plata",
-        postcode: "7600",
+        postcode: 7600,
         address: "San Martin 123",
-        email: "ityiutyi@gmail.com",
+        email: "asdfasfsfgh@gmail.com",
         password: "tyuityit"
     }
 
@@ -35,8 +35,20 @@ export function HomePacient ({navigation}) {
                 title='Consultas'
                 onPress={() => navigation.navigate('Queries')}/>
             <Button
-                title='updateData'
-                onPress={() => dispatch(putPacient(updated._id, updated))}/>
+                title='getQueries'
+                onPress={() => dispatch(getQueries())}/>
+            <Button
+                title='getQuerie'
+                onPress={() => dispatch(getQuerie(newQuerie._id))}/>
+            <Button
+                title='postQuerie'
+                onPress={() => dispatch(postQuerie(newQuerie))}/>
+            <Button
+                title='putQuerie'
+                onPress={() => dispatch(putQuerie(modQuerie))}/>
+            <Button
+                title='deleteQuerie'
+                onPress={() => dispatch(deleteQuerie(querie._id))}/>
         </View>
     )
 }
