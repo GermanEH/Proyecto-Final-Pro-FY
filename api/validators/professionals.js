@@ -41,7 +41,7 @@ const validatorCreateProfessional = [
   check("professionalAdress")
     .exists()
     .notEmpty(),
-  check('specialityId')
+  check('specialities')
     .optional(),
   check("schedule")
     .optional(), //! temporal
@@ -80,7 +80,7 @@ const validatorPutProfessional = [
     .optional(),
   check("professionalAdress")
     .optional(),
-  check('specialityId')
+  check('specialities')
     .optional(),
   check("schedule")
     .optional(), //! temporal
