@@ -41,10 +41,47 @@ const validatorCreateProfessional = [
   check("professionalAdress")
     .exists()
     .notEmpty(),
-  check('specialtyId')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('specialityId')
+    .optional(),
+  check("schedule")
+    .optional(), //! temporal
+  check("modality")
+    .optional(), //! temporal
+
+
+
+
+  (req, res, next) => {
+    return validateResults(req, res, next)
+  }
+];
+
+const validatorPutProfessional = [
+
+  check("first_name")
+    .optional(),
+  check("last_name")
+    .optional(),
+  check("email")
+    .optional(),
+  check("password")
+    .optional(),
+  check("dni")
+    .optional(),
+  check("professionalId")
+    .optional(),
+  check("country")
+    .optional(),
+  check("state")
+    .optional(),
+  check("city")
+    .optional(),
+  check("zip")
+    .optional(),
+  check("professionalAdress")
+    .optional(),
+  check('specialityId')
+    .optional(),
   check("schedule")
     .optional(), //! temporal
   check("modality")
@@ -70,4 +107,4 @@ const validatorIdProfessional = [
 
 
 
-module.exports = { validatorCreateProfessional, validatorIdProfessional }
+module.exports = { validatorCreateProfessional, validatorIdProfessional, validatorPutProfessional }

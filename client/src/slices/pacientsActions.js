@@ -17,7 +17,7 @@ export const getPacients = createAsyncThunk('pacients/getPacients', async () => 
 
 export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => {
     try {
-        const response = axios.get(`http://localhost:3001/api/users/${id}`)             //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.get(`http://localhost:3001/api/users/${id}`)
         return response.data.data
     } catch (error) {
         return error.message
@@ -26,16 +26,16 @@ export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => 
 
 export const postPacient = createAsyncThunk('pacients/postPacient', async (newPacient) => {
     try {
-        const response = axios.post('http://localhost:3001/api/users', newPacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.post('http://localhost:3001/api/users', newPacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
         return response.data.data
     } catch (error) {
         return error.message
     }        
 })
 
-export const putPacient = createAsyncThunk('pacients/putPacient', async (id, pacient) => {
+export const putPacient = createAsyncThunk('pacients/putPacient', async ({_id, ...pacient}) => {
     try {
-        const response = axios.put(`http://localhost:3001/api/users/${id}`, pacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.put(`http://localhost:3001/api/users/${_id}`, pacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
         return response.data.data
     } catch (error) {
         return error.message
@@ -44,7 +44,7 @@ export const putPacient = createAsyncThunk('pacients/putPacient', async (id, pac
 
 export const deletePacient = createAsyncThunk('pacients/deletePacient', async (id) => {
     try {
-        const response = axios.delete(`http://localhost:3001/api/users/${id}`)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.delete(`http://localhost:3001/api/users/${id}`)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
         return response.data.data
     } catch (error) {
         return error.message

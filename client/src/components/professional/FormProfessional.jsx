@@ -1,33 +1,36 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, TextField,ScrollView,
+  SafeAreaView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
+import {Picker} from '@react-native-picker/picker';
 import { postProfessional  } from '../../slices/professionalsActions'
 import { useDispatch } from 'react-redux'
-//hola
+
 export function FormProfessional  ()  {
+
   const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      contrasena:'',
-      numeroTarjeta: '',
-      especialidad:'',
-      provincia:'',
-      ciudad:'',
-      cp:'',
-      direccion:'',
-      disponibilidad:'',
-      modalidad:''
+      first_name: '',
+      last_name: '',
+      email:'',
+      password:'',
+      professionalId: '',
+      dni:'',
+      country:'',
+      state:'',
+      city:'',
+      postcode:'',
+      professionalAdress:'',
+      schedule:'',
+      modality:''
     }
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
-     console.log('entramos')
-     console.log(data)
-     //dispatch(postProfessional(data))
+    dispatch(postProfessional(data))
   };
 
   const onChange = arg => {
@@ -36,45 +39,64 @@ export function FormProfessional  ()  {
     };
   };
 
-  
- 
-  //console.log('errors', errors);
-
   return (
+      <SafeAreaView>
+      <ScrollView style={{flex: 1}}  contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
     <View style={styles.container}>
-      <Text style={styles.label}>Nombre</Text>
+      
+      <Controller
+          control={control}
+          render={({field: { onChange, onBlur, value },fieldState:{error}}) => (
+            <View style={styles.campo} >
+            <TextInput
+                placeholder='Nombre'
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+            />
+            </View>
+          )}
+          name="first_name"
+          rules={{ required: true }}
+      />
+
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+            placeholder='Apellido'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
             value={value}
           />
         )}
-        name="nombre"
+        name="last_name"
         rules={{ required: true }}
       />
-      <Text style={styles.label}>Apellido</Text>
+     
+      <Text style={styles.label}>email</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='email'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
             value={value}
           />
         )}
-        name="apellido"
+        name="email"
         rules={{ required: true }}
       />
-      <Text style={styles.label}>contraseña</Text>
+
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
           <TextInput
+          placeholder='Password'
             style={styles.input}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
@@ -82,117 +104,138 @@ export function FormProfessional  ()  {
             secureTextEntry={true}
           />
         )}
-        name="contrasena"
+        name="password"
         rules={{ required: true }}
       />
-        <Text style={styles.label}>Matricula</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="numeroTarjeta"
-        rules={{ required: true }}
-      />
-<Text style={styles.label}>Especialidad</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="especialidad"
-        rules={{ required: true }}
-      />
-
-         <Text style={styles.label}>Provincia</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="provincia"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Ciudad</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="ciudad"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Codigo Postal</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="cp"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Direccion</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="direccion"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>Disponibilidad Horaria</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="disponibilidad"
-        rules={{ required: true }}
-      />
-
-    
-       
-      <Text style={styles.label}>Modalidad de Consulta</Text>
       
-       <Picker
+    
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            placeholder='dni'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="dni"
+        rules={{ required: true }}
+      />
+
+       
+      <Controller
+        control={control}
+        
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+          placeholder='Matricula'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="professionalId"
+        rules={{ required: true }}
+      />
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+          placeholder='Pais'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="country"
+        rules={{ required: true }}
+      />
+
+  
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+          placeholder='Estado'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="state"
+        rules={{ required: true }}
+      />
+
+       <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+          placeholder='Ciudad'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="city"
+        rules={{ required: true }}
+      />
+
+
+     
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            placeholder='Codigo Postal'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="zip"
+        rules={{ required: true }}
+      />
+
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+            placeholder='Direccion'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="professionalAdress"
+        rules={{ required: true }}
+      />
+
+      
+      <Controller
+        control={control}
+        render={({field: { onChange, onBlur, value }}) => (
+          <TextInput
+           placeholder='Disponibilidad Horaria'
+            style={styles.input}
+            onBlur={onBlur}
+            onChangeText={value => onChange(value)}
+            value={value}
+          />
+        )}
+        name="schedule"
+        rules={{ required: true }}
+      />
+
+      <Text style={styles.label}>Modalidad de Consulta</Text>
+      <Picker
         //selectedValue={modalidad}
         style={{ height: 50, width: 150 }}
         //name="modalidad"
@@ -202,7 +245,6 @@ export function FormProfessional  ()  {
         <Picker.Item label="Presencial" value="presential" />
       
       </Picker>
-     
 
       <View style={styles.button}>
         <Button
@@ -211,17 +253,19 @@ export function FormProfessional  ()  {
           title="Reset"
           onPress={() => {
             reset({
-               nombre: '',
-              apellido: '',
-              contrasena:'',
-              numeroTarjeta: '',
-              especialidad:'',
-              provincia:'',
-              ciudad:'',
-              cp:'',
-              direccion:'',
-              disponibilidad:'',
-              modalidad:''
+                first_name: '',
+                last_name: '',
+                email:'',
+                password:'',
+                professionalId: '',
+                dni:'',
+                country:'',
+                state:'',
+                city:'',
+                zip:'',
+                professionalAdress:'',
+                schedule:'',
+                modalidad:''
             })
           }}
         />
@@ -235,16 +279,15 @@ export function FormProfessional  ()  {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
+
     </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  label: {
-    color: 'white',
-    margin: 20,
-    marginLeft: 0,
-  },
+ 
   button: {
     marginTop: 40,
     color: 'white',
@@ -263,7 +306,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'none',
     height: 40,
-    padding: 10,
+    padding: 20,
+    marginBottom:30,
     borderRadius: 4,
+    top:20
+  },
+  campo:{
+       
+      
+       
+
   },
 });

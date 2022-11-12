@@ -12,7 +12,7 @@ const { matchedData } = require('express-validator');
 const getAllProfessionals = async (req, res) => {
 
   try {
-    const data = await professionalsModel.find({});
+    const data = await professionalsModel.find({})
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_items")
@@ -48,6 +48,7 @@ const createProfessional = async (req, res) => {
     const body = matchedData(req)
     console.log(body)
     const data = await professionalsModel.create(body)
+    specialtiesModel.findById(id, {})
     res.send({ data })
 
   } catch (error) {
@@ -81,9 +82,9 @@ const deleteProfessional = async (req, res) => {
 const editProfessional = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
-    const data = await professionalsModel.findOneAndUpdate(
-      id, body
-    )
+    console.log(id, body)
+    const data = await professionalsModel.findOneAndUpdate(id, body)
+    console.log(data)
     res.send({ data })
   } catch (error) {
     console.log(error);

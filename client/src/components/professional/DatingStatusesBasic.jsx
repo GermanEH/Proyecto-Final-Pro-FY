@@ -7,8 +7,8 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-
 export function DatingStatusesBasic(props) {
+export function DatingStatusesBasic() {
   return (
     <View>
       <ScrollView>
@@ -22,7 +22,6 @@ export function DatingStatusesBasic(props) {
               <Text>Tipo de Consulta</Text>
               <Text>Profesional</Text>
             </View>
-
             <View style={{ flexDirection: "row", padding: 10 }}>
               <Text>Estado:</Text>
               <Text style={{ color: "blue", padding: 10 }}>Resuelta</Text>
@@ -31,7 +30,6 @@ export function DatingStatusesBasic(props) {
               <Text>Estado:</Text>
               <Text style={{ color: "#f0c325", padding: 10 }}>Pendiente</Text>
             </View>
-
             <View style={styles.containerObservations}>
               <View style={styles.observations}>
                 <Text>Observasiones</Text>
