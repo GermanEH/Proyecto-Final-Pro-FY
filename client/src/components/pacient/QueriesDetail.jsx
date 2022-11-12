@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import theme from "../../theme";
 
-export function DatingStatusesBasic(props) {
+export function QueriesDetail() {
   return (
     <View>
       <ScrollView>
