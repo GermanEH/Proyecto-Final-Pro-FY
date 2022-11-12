@@ -1,5 +1,6 @@
 import {
 View,
+Image,
 Button,
 Text,
 StyleSheet,
@@ -23,7 +24,7 @@ const dispatch = useDispatch();
 useEffect(() => console.log(professionals), [professionals]);
 return (
 <SafeAreaView>
-    <ScrollView>
+    <ScrollView  contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }} >
     <View>
         <Button
         title="Formulario Profesional"
@@ -45,10 +46,7 @@ return (
             navigation.navigate("Consultas", { name: "Consultas" })
         }
         ></Button>
-        <Button
-        title="FormProfessional"
-        onPress={() => navigation.navigate("FormProfessional")}
-        ></Button>
+       
         <Button
         title="updateData"
         onPress={() => dispatch(putProfessional(updated.id, updated))}
@@ -107,6 +105,7 @@ return (
         <View style={{ paddingVertical: 10 }}>
             <CardProfessional />
         </View>
+
         <View>
             <Text
             style={{
@@ -123,34 +122,25 @@ return (
             <CardProfessional />
             </View>
         </View>
+
         <View style={{ paddingTop: 15 }}>
             <Text style={{ fontSize: theme.fontSize.secondaryText }}>
             Consultas de los Pacientes:
             </Text>
         </View>
+
         <View style={styles.containerComments}>
-            <ScrollView>
-            <View style={styles.comments}>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-            </View>
+            <ScrollView horizontal={true} >
+            
+            <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
+           <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
+           <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
+           <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
+            
             </ScrollView>
-            <View
-            style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
-            >
-            <TextInput
-                style={styles.input}
-                placeholder="Responder Consultas"
-            />
+         <View  style={{ flexDirection: "row", paddingTop: 15, margin: 15 }} >
+            <TextInput  style={styles.input}  placeholder="Responder Consultas" />
+           
             <View style={{ justifyContent: "space-around" }}>
                 <TouchableOpacity style={styles.btn}>
                 <Text style={{ textAlign: "center" }}>Responder</Text>
@@ -158,30 +148,38 @@ return (
             </View>
             </View>
         </View>
-       
+        </View>
             <View style={styles.containerComments}>
-                <Text>COMENTARIO</Text>
-                
-                
-            </View>
-     
-        <View
-            style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-        >
-            <TouchableOpacity
-            onPress={() =>
-                navigation.navigate("DatingStatusesBasic", {name: "DatingStatusesBasic",})
-            }
-            style={styles.btn}
-            >
+                <ScrollView>
+                    <View style={styles.comments}>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                        <Text>COMENTARIOS</Text>
+                    </View>
+                </ScrollView>
+                 <View style={{ textAlign: "center", width: 200, paddingBottom: 50 }}   >
+            <TouchableOpacity   onPress={() =>    navigation.navigate("DatingStatusesBasic", {name: "DatingStatusesBasic",}) }
+            style={styles.btn} >
             <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
             </TouchableOpacity>
 
+          
           </View>
-          </View>
+                
+             </View>
+    
+        
 
         
-    </View>
+      </View>
     </ScrollView>
 </SafeAreaView>
 );
