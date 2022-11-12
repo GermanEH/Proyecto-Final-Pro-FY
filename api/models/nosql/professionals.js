@@ -47,7 +47,8 @@ const ProfessionalScheme = new mongoose.Schema(
       type: ["presential", "remote"],
       default: 'presential',
     },
-    specialties: {
+
+    specialities: {
       type: mongoose.Types.ObjectId,
       required: true,
       ref: "specialities"

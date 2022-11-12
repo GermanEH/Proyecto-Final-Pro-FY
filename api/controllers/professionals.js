@@ -43,19 +43,17 @@ const getProfessionalById = async (req, res) => {
  * @param {*} res 
  */
 
+
 const createProfessional = async (req, res) => {
   try {
     const body = matchedData(req)
-    console.log(body)
+    // console.log(body);
     const data = await professionalsModel.create(body)
-    specialtiesModel.findById(id, {})
     res.send({ data })
-
   } catch (error) {
     handleHttpError(res, "Error creando al profesional")
   }
 }
-
 /**
  *  crear un registro!
  * @param {*} req 
