@@ -72,10 +72,10 @@ export function QueriesHistorialPacientBasic({ navigation }) {
           </View>
           <View style={{ width: 200, paddingBottom: 40 }}>
             <TouchableOpacity
-              title="Consultas"
+              title="ProfessionalsList"
               onPress={() =>
-                navigation.navigate("ProfessionalList", {
-                  name: "ProfessionalList",
+                navigation.navigate("ProfessionalsList", {
+                  name: "ProfessionalsList",
                 })
               }
               style={styles.btn}
