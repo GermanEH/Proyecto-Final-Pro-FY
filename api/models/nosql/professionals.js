@@ -51,12 +51,10 @@ const ProfessionalScheme = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
     },
   },
-
   {
     temestamps: true,
     versionKey: false,
   }
-
 );
 
 ProfessionalScheme.statics.findSpecialty = function () {
