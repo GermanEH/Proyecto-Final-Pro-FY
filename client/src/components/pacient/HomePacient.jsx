@@ -9,6 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
+import { View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPacients,
@@ -17,23 +18,13 @@ import {
 } from "../../slices/pacientsActions";
 import theme from "../../theme";
 import { CardPacient } from "./CardPacient";
+import { getQueries, getQuerie, postQuerie, putQuerie, deleteQuerie  } from '../../slices/queriesActions'
 
 export function HomePacient({ navigation }) {
+
   const pacients = useSelector((state) => state.pacients);
   const dispatch = useDispatch();
-
-  const updated = {
-    _id: "636d6d00b57f8d59fec7c2b5",
-    first_name: "Valentina Maria",
-    last_name: "Hormaechea",
-    DNI: 1231231,
-    state: "Buenos Aires",
-    city: "Mar del Plata",
-    postcode: "7600",
-    address: "San Martin 123",
-    email: "poiu@gmail.com",
-    password: "poiuqwer",
-  };
+  
   return (
     <SafeAreaView>
       <ScrollView>
@@ -51,14 +42,27 @@ export function HomePacient({ navigation }) {
               navigation.navigate("Consultas", { name: "Consultas" })
             }
           ></Button>
-          <Button
-            title="updateData"
-            onPress={() => dispatch(putPacient(updated._id, updated))}
-          />
-          <Button
-            title="delete"
-            onPress={() => dispatch(deletePacient(updated._id))}
-          />
+       <Button
+            title='Formulario Usuario'
+            onPress={() => navigation.navigate('FormPacient', {name: 'FormPacient'})}></Button>
+            <Button
+                title='Consultas'
+                onPress={() => navigation.navigate('Queries')}/>
+            <Button
+                title='getQueries'
+                onPress={() => dispatch(getQueries())}/>
+            <Button
+                title='getQuerie'
+                onPress={() => dispatch(getQuerie(newQuerie._id))}/>
+            <Button
+                title='postQuerie'
+                onPress={() => dispatch(postQuerie(newQuerie))}/>
+            <Button
+                title='putQuerie'
+                onPress={() => dispatch(putQuerie(modQuerie))}/>
+            <Button
+                title='deleteQuerie'
+                onPress={() => dispatch(deleteQuerie(querie._id))}/>
           <Text
             style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
           >
