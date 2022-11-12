@@ -9,20 +9,21 @@ const ReviewsScheme = new mongoose.Schema(
       type: String
     },
     user: {
-      userId: mongoose.Types.ObjectId,
-      required: true,
-      ref: "users"
+      userId: {
+        type: mongoose.Types.ObjectId,
+      }
     },
     professional: {
       professionalId: mongoose.Types.ObjectId,
-      required: true,
-      ref: "professionals"
     },
+
     response: {
-      reviewId: mongoose.Types.ObjectId,
-      type: String,
+      reviewId: {
+        type: mongoose.Types.ObjectId,
+      },
+
       //hola
-    }
+    },
   },
   {
     temestamps: true,

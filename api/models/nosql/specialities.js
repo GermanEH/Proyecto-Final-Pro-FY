@@ -3,7 +3,9 @@ const mongooseDelete = require('mongoose-delete')
 const SpecialitiesScheme = new mongoose.Schema(
 
   {
-
+    id: {
+      type: mongoose.Types.ObjectId,
+    },
     name: {
       type: String,
       unique: true
