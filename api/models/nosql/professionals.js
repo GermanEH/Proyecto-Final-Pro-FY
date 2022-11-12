@@ -50,6 +50,9 @@ const ProfessionalScheme = new mongoose.Schema(
     specialtyId: {
       type: mongoose.Types.ObjectId,
     },
+    specialtyName: {
+      name: String
+    }
   },
 
   {

@@ -57,6 +57,44 @@ const validatorCreateProfessional = [
   }
 ];
 
+const validatorPutProfessional = [
+
+  check("first_name")
+    .optional(),
+  check("last_name")
+    .optional(),
+  check("email")
+    .optional(),
+  check("password")
+    .optional(),
+  check("dni")
+    .optional(),
+  check("professionalId")
+    .optional(),
+  check("country")
+    .optional(),
+  check("state")
+    .optional(),
+  check("city")
+    .optional(),
+  check("zip")
+    .optional(),
+  check("professionalAdress")
+    .optional(),
+  check('specialtyId')
+    .optional(),
+  check("schedule")
+    .optional(), //! temporal
+  check("modality")
+    .optional(), //! temporal
+
+
+
+  (req, res, next) => {
+    return validateResults(req, res, next)
+  }
+];
+
 const validatorIdProfessional = [
 
   check("id")
@@ -70,4 +108,4 @@ const validatorIdProfessional = [
 
 
 
-module.exports = { validatorCreateProfessional, validatorIdProfessional }
+module.exports = { validatorCreateProfessional, validatorIdProfessional, validatorPutProfessional }
