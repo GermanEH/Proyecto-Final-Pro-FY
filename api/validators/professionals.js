@@ -41,14 +41,13 @@ const validatorCreateProfessional = [
   check("professionalAdress")
     .exists()
     .notEmpty(),
-  check('specialtyId')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('specialityId')
+    .optional(),
   check("schedule")
     .optional(), //! temporal
   check("modality")
     .optional(), //! temporal
+
 
 
 
@@ -81,7 +80,7 @@ const validatorPutProfessional = [
     .optional(),
   check("professionalAdress")
     .optional(),
-  check('specialtyId')
+  check('specialityId')
     .optional(),
   check("schedule")
     .optional(), //! temporal
