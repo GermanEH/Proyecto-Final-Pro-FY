@@ -116,7 +116,14 @@ export function QueriesHistorialPacientBasic({ navigation }) {
               }}
             >
               <View style={styles.queriesYellow}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  title="QueriesDetail"
+                  onPress={() =>
+                    navigation.navigate("QueriesDetail", {
+                      name: "QueriesDetail",
+                    })
+                  }
+                >
                   <Text style={styles.textQueries}>Pendiente</Text>
                 </TouchableOpacity>
               </View>

@@ -1,4 +1,12 @@
 import {
+  View,
+  Button,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
 View,
 Image,
 Button,
@@ -16,11 +24,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfessionals } from "../../slices/professionalsActions";
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
-
 export function HomeProfessionalBasic({ navigation }) {
 const professionals = useSelector((state) => state.professionals);
 const dispatch = useDispatch();
-
 useEffect(() => console.log(professionals), [professionals]);
 return (
 <SafeAreaView>
@@ -90,7 +96,6 @@ return (
          < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
 
      </View>
-
         <Text
             style={{
             fontSize: theme.fontSize.secondaryText,
@@ -105,7 +110,6 @@ return (
         <View style={{ paddingVertical: 10 }}>
             <CardProfessional />
         </View>
-
         <View>
             <Text
             style={{
@@ -122,7 +126,6 @@ return (
             <CardProfessional />
             </View>
         </View>
-
         <View style={{ paddingTop: 15 }}>
             <Text style={{ fontSize: theme.fontSize.secondaryText }}>
             Consultas de los Pacientes:
@@ -130,8 +133,7 @@ return (
         </View>
 
         <View style={styles.containerComments}>
-            <ScrollView horizontal={true} >
-            
+            <ScrollView horizontal={true} >        
             <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
            <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
            <Image source={{uri: 'https://reactjs.org/logo-og.png'}}  style={{width: 400, height: 400}} />
@@ -169,16 +171,9 @@ return (
             <TouchableOpacity   onPress={() =>    navigation.navigate("DatingStatusesBasic", {name: "DatingStatusesBasic",}) }
             style={styles.btn} >
             <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
-            </TouchableOpacity>
-
-          
-          </View>
-                
+            </TouchableOpacity>  
+          </View>     
              </View>
-    
-        
-
-        
       </View>
     </ScrollView>
 </SafeAreaView>
@@ -224,6 +219,5 @@ const styles = StyleSheet.create({
     estrella:{
                flexDirection: "row",
               flexWrap: "wrap",
-
     },
 });
