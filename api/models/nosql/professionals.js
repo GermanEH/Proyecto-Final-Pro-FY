@@ -48,12 +48,10 @@ const ProfessionalScheme = new mongoose.Schema(
       default: 'presential',
     },
 
-    specialities: {
-
-      type: mongoose.Types.ObjectId,
-      // required: true,
-      // ref: "specialities"
-    },
+    // specialities: {
+    // type: Schema.ObjectId,
+    // ref: "specialities"
+    // },
 
   },
   {
