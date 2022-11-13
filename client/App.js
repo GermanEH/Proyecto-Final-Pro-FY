@@ -19,6 +19,7 @@ import { DatingStatusesBasic } from './src/components/professional/DatingStatuse
 import { Queries } from './src/components/pacient/Queries'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
+import { QueriesHistorialPacient } from './src/components/pacient/QuereriesHistorialPacient'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -66,7 +67,10 @@ export default function App() {
               component={Queries}/>
             <Stack.Screen
               name="QueriesDetail"
-              component={QueriesDetail}/>  
+              component={QueriesDetail}/> 
+            <Stack.Screen
+              name="QueriesHistorialPacient"
+              component={QueriesHistorialPacient}/> 
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>

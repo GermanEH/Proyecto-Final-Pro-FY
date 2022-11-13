@@ -22,8 +22,8 @@ export function CardProfessional({ navigation }) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("DatingStatusesBasic", {
-                  name: "DatingStatusesBasic",
+                navigation.navigate("DatingStatuses", {
+                  name: "DatingStatuses",
                 });
               }}
               style={styles.btn}

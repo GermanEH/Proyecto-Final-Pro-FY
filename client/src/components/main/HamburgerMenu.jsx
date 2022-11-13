@@ -18,7 +18,7 @@ export function HamburgerMenu({ route }) {
           {route.params.usertype === "pacient" ? (
             <Menu.Screen name="Home" component={HomePacient} />
           ) : (
-            <Menu.Screen name="Home" component={HomeProfessionalBasic} />
+            <Menu.Screen name="Home" component={HomeProfessional} />
           )}
           <Menu.Screen name="Notificaciones" component={Notificaciones} />
           <Menu.Screen name="Foro" component={Foro} />
