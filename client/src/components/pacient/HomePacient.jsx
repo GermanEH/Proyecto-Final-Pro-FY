@@ -23,6 +23,7 @@ import {
   deleteQuerie,
 } from "../../slices/queriesActions";
 import { ButtonHomePacientQueries } from "../shared/Button";
+import { ListaConsultas } from "./ListaConsultas";
 
 export function HomePacient({ navigation }) {
   const pacients = useSelector((state) => state.pacients);
@@ -75,7 +76,8 @@ export function HomePacient({ navigation }) {
           <Text
             style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
           >
-            Hola,
+           
+            <ListaConsultas/>
           </Text>
           <Text
             style={{

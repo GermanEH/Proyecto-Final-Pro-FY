@@ -1,36 +1,49 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, TextField,ScrollView,
-  SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions } from 'react-native';
+import { useDispatch } from 'react-redux'
+import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-import {Picker} from '@react-native-picker/picker';
-import { postProfessional  } from '../../slices/professionalsActions'
-import { useDispatch } from 'react-redux'
+import CustomInput from '../CustomInput/CustomInput'
+import CustomButtom from '../CustomButton/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../../assets/logo.png';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export function FormProfessional  ()  {
-
-  const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+  const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      first_name: '',
-      last_name: '',
+      name: '',
+      lastname: '',
       email:'',
       password:'',
-      professionalId: '',
-      dni:'',
+      passswordRepeat:'',
+      dni: '',
+      professionalId:'',
+      speciality:'',
       country:'',
       state:'',
       city:'',
-      postcode:'',
+      zip:'',
       professionalAdress:'',
       schedule:'',
       modality:''
     }
   });
-
-  const dispatch = useDispatch();
-
+  const navigation = useNavigation();
+  const onSignUpPress = () => {
+    navigation.navigate('SignInScreen')
+  }
+  const onSignInPressed = () => {
+    // validate user
+    navigation.navigate('Home');
+  };
+  const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = data => {
-    dispatch(postProfessional(data))
+    console.log('entramos')
+    console.log(data)
+    dispatch(postPacient(data))
   };
 
   const onChange = arg => {
@@ -38,238 +51,136 @@ export function FormProfessional  ()  {
       value: arg.nativeEvent.text,
     };
   };
+  const {height} = useWindowDimensions();
+  const dispatch = useDispatch()
 
   return (
-      <SafeAreaView>
-      <ScrollView style={{flex: 1}}  contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
     <View style={styles.container}>
-      
-      <Controller
-          control={control}
-          render={({field: { onChange, onBlur, value },fieldState:{error}}) => (
-            <View style={styles.campo} >
-            <TextInput
-                placeholder='Nombre'
-                style={styles.input}
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-                value={value}
-            />
-            </View>
-          )}
-          name="first_name"
-          rules={{ required: true }}
-      />
-
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            placeholder='Apellido'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="last_name"
-        rules={{ required: true }}
-      />
-     
-      <Text style={styles.label}>email</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='email'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="email"
-        rules={{ required: true }}
-      />
-
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='Password'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-            secureTextEntry={true}
-          />
-        )}
-        name="password"
-        rules={{ required: true }}
-      />
-      
-    
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            placeholder='dni'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="dni"
-        rules={{ required: true }}
-      />
-
-       
-      <Controller
-        control={control}
-        
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='Matricula'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="professionalId"
-        rules={{ required: true }}
-      />
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='Pais'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="country"
-        rules={{ required: true }}
-      />
-
-  
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='Estado'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="state"
-        rules={{ required: true }}
-      />
-
-       <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-          placeholder='Ciudad'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="city"
-        rules={{ required: true }}
-      />
-
-
-     
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            placeholder='Codigo Postal'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="zip"
-        rules={{ required: true }}
-      />
-
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            placeholder='Direccion'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="professionalAdress"
-        rules={{ required: true }}
-      />
-
-      
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-           placeholder='Disponibilidad Horaria'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="schedule"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Modalidad de Consulta</Text>
-      <Picker
-        //selectedValue={modalidad}
-        style={{ height: 50, width: 150 }}
-        //name="modalidad"
-        onValueChange={(itemValue, itemIndex) =>setValue("modalidad",itemValue)}
-      >
-        <Picker.Item label="Teleconsulta" value="remote" />
-        <Picker.Item label="Presencial" value="presential" />
-      
-      </Picker>
-
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Reset"
-          onPress={() => {
-            reset({
-                first_name: '',
-                last_name: '',
-                email:'',
-                password:'',
-                professionalId: '',
-                dni:'',
-                country:'',
-                state:'',
-                city:'',
-                zip:'',
-                professionalAdress:'',
-                schedule:'',
-                modalidad:''
-            })
-          }}
+      <View style={styles.root}>   
+        <Image
+          source={Logo}
+          style={[styles.logo, {height: height * 0.3}]}
+          resizeMode="contain"
         />
-      </View>
+
+      <CustomInput
+        name="name"
+        placeholder="Name"
+        control={control}
+        rules={{
+          required: 'Name is required',
+          minLength:{
+            value:4,
+            message: 'Name should be minimum 4 characters long'
+          },
+          maxLength:{
+            value:20,
+            message: 'Name should be max 20 characters long'
+          }
+        }}
+      />
+      <CustomInput
+        name="lastname"
+        placeholder="Last name"
+        control={control}
+        rules={{
+          required: 'Lastname is required',
+          minLength:{
+            value:4,
+            message: 'Lastname should be minimum 4 characters long'
+          },
+          maxLength:{
+            value:20,
+            message: 'Lastname should be max 20 characters long'
+          }
+        }}
+      />
+     <CustomInput
+      name="password"
+      placeholder="Password"
+      control={control}
+      secureTextEntry
+      rules={{
+        required: 'Password is required',
+        minLength:{
+          value:8,
+          message: 'Password must be at least 8 characters long'
+        },
+       
+      }}
+    />
+     <CustomInput
+      name="passwordRepeat"
+      placeholder="Repeat Password"
+      control={control}
+      secureTextEntry
+    rules={{
+      validate: value =>
+      value === pwd   || 'Password do not match'
+    }}
+    />
+       <CustomInput
+          name="country"
+          placeholder="Country"
+          control={control}
+          rules={{required: 'Country is required'}}
+        />
+      <CustomInput
+        name="state"
+        placeholder="State"
+        control={control}
+        rules={{required: 'State is required'}}
+      />
+        <CustomInput
+          name="city"
+          placeholder="City"
+          control={control}
+          rules={{required: 'City is required'}}
+      />
+      <CustomInput
+        name="zip"
+        placeholder="P.C"
+        control={control}
+        rules={{required: 'Zip code is required'}}
+        
+      />
+       <CustomInput
+          name="professionalId"
+          placeholder="Professional ID"
+          control={control}
+          rules={{required: 'Professional ID is required'}}
+        />
+      <CustomInput
+          name="dni"
+          placeholder="D.N.I"
+          control={control}
+          rules={{required: 'DNI is required'}}
+        />
+         <CustomInput
+          name="professionalAdress"
+          placeholder="Professional Adress "
+          control={control}
+          rules={{required: 'Professional Adress is required'}}
+        />
+         <CustomInput
+          name="schedule"
+          placeholder="Schedule"
+          control={control}
+          rules={{required: 'Schedule is required'}}
+        />
+         <CustomInput
+          name="modalty"
+          placeholder="Modality"
+          control={control}
+          rules={{required: 'Modality is required'}}
+        />
+      <CustomInput
+          name="email"
+          placeholder="E-mail"
+          control={control}
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
+      />
+
 
       <View style={styles.button}>
         <Button
@@ -279,42 +190,35 @@ export function FormProfessional  ()  {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
-
+      
+      <View>
+      <CustomButtom
+          text="Ya tienes una cuenta? Ingresa Aquí"
+          onPress={onSignUpPress}
+          type="TERTIARY"
+        />
+      </View>
+      </View>
     </View>
-      </ScrollView>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
- 
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
+  },
   button: {
     marginTop: 40,
     color: 'white',
     height: 40,
-    backgroundColor: '#ec5990',
+    backgroundColor: 'orange',
     borderRadius: 4,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8,
-    backgroundColor: '#0e101c',
-  },
-  input: {
-    backgroundColor: 'white',
-    borderColor: 'none',
-    height: 40,
-    padding: 20,
-    marginBottom:30,
-    borderRadius: 4,
-    top:20
-  },
-  campo:{
-       
-      
-       
-
   },
 });
+
