@@ -1,18 +1,24 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions } from 'react-native';
 import { useDispatch } from 'react-redux'
 import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import CustomInput from '../CustomInput/CustomInput'
+import CustomButtom from '../CustomButton/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../../assets/logo.png';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export function FormPacient  ()  {
-  const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+  const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
       lastname: '',
       email:'',
       password:'',
+      passswordRepeat:'',
       dni: '',
       country:'',
       state:'',
@@ -21,6 +27,15 @@ export function FormPacient  ()  {
       adress:'',
     }
   });
+  const navigation = useNavigation();
+  const onSignUpPress = () => {
+    navigation.navigate('SignInScreen')
+  }
+  const onSignInPressed = () => {
+    // validate user
+    navigation.navigate('Home');
+  };
+  const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = data => {
     console.log('entramos')
     console.log(data)
@@ -32,31 +47,74 @@ export function FormPacient  ()  {
       value: arg.nativeEvent.text,
     };
   };
-
+  const {height} = useWindowDimensions();
   const dispatch = useDispatch()
 
   return (
     <View style={styles.container}>
+      <View style={styles.root}>   
+        <Image
+          source={Logo}
+          style={[styles.logo, {height: height * 0.3}]}
+          resizeMode="contain"
+        />
 
       <CustomInput
         name="name"
         placeholder="Name"
         control={control}
-        rules={{required: 'First name is required'}}
+        rules={{
+          required: 'Name is required',
+          minLength:{
+            value:4,
+            message: 'Name should be minimum 4 characters long'
+          },
+          maxLength:{
+            value:20,
+            message: 'Name should be max 20 characters long'
+          }
+        }}
       />
       <CustomInput
         name="lastname"
         placeholder="Last name"
         control={control}
-        rules={{required: 'Last name is required'}}
+        rules={{
+          required: 'Lastname is required',
+          minLength:{
+            value:4,
+            message: 'Lastname should be minimum 4 characters long'
+          },
+          maxLength:{
+            value:20,
+            message: 'Lastname should be max 20 characters long'
+          }
+        }}
       />
-      <CustomInput
-        name="password"
-        placeholder="Password"
-        control={control}
-        secureTextEntry
-        rules={{required: 'Password is required'}}
-      />
+     <CustomInput
+      name="password"
+      placeholder="Password"
+      control={control}
+      secureTextEntry
+      rules={{
+        required: 'Password is required',
+        minLength:{
+          value:8,
+          message: 'Password must be at least 8 characters long'
+        },
+       
+      }}
+    />
+     <CustomInput
+      name="passwordRepeat"
+      placeholder="Repeat Password"
+      control={control}
+      secureTextEntry
+    rules={{
+      validate: value =>
+      value === pwd   || 'Password do not match'
+    }}
+    />
       
       <CustomInput
         name="state"
@@ -87,8 +145,10 @@ export function FormPacient  ()  {
           name="email"
           placeholder="E-mail"
           control={control}
-          rules={{required: 'E-mail is required'}}
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
       />
+
+
       <View style={styles.button}>
         <Button
           style={styles.buttonInner}
@@ -96,6 +156,15 @@ export function FormPacient  ()  {
           title="Crear usuario"
           onPress={handleSubmit(onSubmit)}
         />
+      </View>
+      
+      <View>
+      <CustomButtom
+          text="Ya tienes una cuenta? Ingresa Aquí"
+          onPress={onSignUpPress}
+          type="TERTIARY"
+        />
+      </View>
       </View>
     </View>
   );

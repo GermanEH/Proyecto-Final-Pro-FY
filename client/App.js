@@ -16,7 +16,7 @@ import { DatingStatusesBasic } from './src/components/professional/DatingStatuse
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
-
+import { SignInScreen } from './src/components/SignIn/SignInScreen'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -32,6 +32,9 @@ export default function App() {
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
+              <Stack.Screen
+              name="SignInScreen"
+              component={SignInScreen}/>
             <Stack.Screen
               name="FormPacient"
               component={FormPacient}/>
