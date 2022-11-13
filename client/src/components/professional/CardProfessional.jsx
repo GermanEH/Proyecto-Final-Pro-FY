@@ -21,11 +21,11 @@ export function CardProfessional({ navigation }) {
           </Text>
           <View>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("DatingStatuses", {
-                  name: "DatingStatuses",
-                })
-              }
+              onPress={() => {
+                navigation.navigate("DatingStatusesBasic", {
+                  name: "DatingStatusesBasic",
+                });
+              }}
               style={styles.btn}
             >
               <Text>Ver más {">"}</Text>

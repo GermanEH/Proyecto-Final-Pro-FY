@@ -7,8 +7,9 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
+import { ButtonGreen, ButtonRed } from "../shared/Button";
+
 export function DatingStatusesBasic(props) {
-export function DatingStatusesBasic() {
   return (
     <View>
       <ScrollView>
@@ -70,7 +71,14 @@ export function DatingStatusesBasic() {
               </View>
             </View>
           </View>
-          <View style={styles.containerBtn}></View>
+          <ButtonRed
+            text={"Cancelar consulta"}
+            color={theme.colors.secondaryText}
+          />
+          <ButtonGreen
+            text={"Confirmar consulta"}
+            color={theme.colors.secondaryText}
+          />
         </View>
       </ScrollView>
     </View>
