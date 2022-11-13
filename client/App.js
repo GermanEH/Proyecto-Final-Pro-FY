@@ -17,8 +17,12 @@ import {  QueriesHistorialPacientBasic } from './src/components/pacient/QueriesH
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
+
+import { SignInScreen } from './src/components/SignIn/SignInScreen'
+
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
+
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -34,6 +38,9 @@ export default function App() {
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
+              <Stack.Screen
+              name="SignInScreen"
+              component={SignInScreen}/>
             <Stack.Screen
               name="FormPacient"
               component={FormPacient}/>
