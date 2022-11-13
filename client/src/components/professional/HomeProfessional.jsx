@@ -11,14 +11,12 @@ import {
 import React from "react";
 import { CardProfessional } from "./CardProfessional";
 import theme from "../../theme";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProfessionals, putProfessional, deleteProfessional } from "../../slices/professionalsActions";
+import {
+  getProfessionals,
+  putProfessional,
+  deleteProfessional,
+} from "../../slices/professionalsActions";
 export function HomeProfessional({ navigation }) {
-  const professionals = useSelector((state) => state.professionals);
-  const dispatch = useDispatch();
-
-  useEffect(() => console.log(professionals), [professionals]);
   return (
     <SafeAreaView>
       <ScrollView>

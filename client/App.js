@@ -58,16 +58,12 @@ export default function App() {
             <Stack.Screen 
               name="DatingStatusesBasic"
               component={DatingStatusesBasic}/>
-
             <Stack.Screen
               name="ProfessionalsList"
               component={ProfessionalsList}/>
             <Stack.Screen
               name="Queries"
               component={Queries}/>
-            <Stack.Screen
-              name="DatingStatusesBasic"
-              component={DatingStatusesBasic}/>
             <Stack.Screen
               name="QueriesDetail"
               component={QueriesDetail}/>  
