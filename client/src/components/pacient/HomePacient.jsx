@@ -6,7 +6,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPacients,
@@ -15,14 +15,20 @@ import {
 } from "../../slices/pacientsActions";
 import theme from "../../theme";
 import { CardPacient } from "./CardPacient";
+import {
+  getQueries,
+  getQuerie,
+  postQuerie,
+  putQuerie,
+  deleteQuerie,
+} from "../../slices/queriesActions";
+import { ButtonHomePacientQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
-import { getQueries, getQuerie, postQuerie, putQuerie, deleteQuerie  } from '../../slices/queriesActions'
 
 export function HomePacient({ navigation }) {
-
   const pacients = useSelector((state) => state.pacients);
   const dispatch = useDispatch();
-  
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -40,27 +46,33 @@ export function HomePacient({ navigation }) {
               navigation.navigate("Consultas", { name: "Consultas" })
             }
           ></Button>
-       <Button
-            title='Formulario Usuario'
-            onPress={() => navigation.navigate('FormPacient', {name: 'FormPacient'})}></Button>
-            <Button
-                title='Consultas'
-                onPress={() => navigation.navigate('Queries')}/>
-            <Button
-                title='getQueries'
-                onPress={() => dispatch(getQueries())}/>
-            <Button
-                title='getQuerie'
-                onPress={() => dispatch(getQuerie(newQuerie._id))}/>
-            <Button
-                title='postQuerie'
-                onPress={() => dispatch(postQuerie(newQuerie))}/>
-            <Button
-                title='putQuerie'
-                onPress={() => dispatch(putQuerie(modQuerie))}/>
-            <Button
-                title='deleteQuerie'
-                onPress={() => dispatch(deleteQuerie(querie._id))}/>
+          <Button
+            title="Formulario Usuario"
+            onPress={() =>
+              navigation.navigate("FormPacient", { name: "FormPacient" })
+            }
+          ></Button>
+          <Button
+            title="Consultas"
+            onPress={() => navigation.navigate("Queries")}
+          />
+          <Button title="getQueries" onPress={() => dispatch(getQueries())} />
+          <Button
+            title="getQuerie"
+            onPress={() => dispatch(getQuerie(newQuerie._id))}
+          />
+          <Button
+            title="postQuerie"
+            onPress={() => dispatch(postQuerie(newQuerie))}
+          />
+          <Button
+            title="putQuerie"
+            onPress={() => dispatch(putQuerie(modQuerie))}
+          />
+          <Button
+            title="deleteQuerie"
+            onPress={() => dispatch(deleteQuerie(querie._id))}
+          />
           <Text
             style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
           >
@@ -82,18 +94,8 @@ export function HomePacient({ navigation }) {
             voluptatem, voluptates repellat deserunt dolore atque voluptatibus
             id totam sapiente a incidunt!
           </Text>
-          <View style={styles.containerBtnQueries}>
-            <TouchableOpacity
-              title="QueriesHistorialPacientBasic"
-              onPress={() =>
-                navigation.navigate("QueriesHistorialPacientBasic", {
-                  name: "QueriesHistorialPacientBasic",
-                })
-              }
-              style={styles.btn}
-            >
-              <Text style={{ textAlign: "center" }}>Consultas</Text>
-            </TouchableOpacity>
+          <View style={{ alignItems: "center", padding: 100 }}>
+            <ButtonHomePacientQueries navigation={navigation} />
           </View>
           <Text>Favoritos:</Text>
           <CardPacient />

@@ -7,7 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { ButtonGreen, ButtonRed } from "../shared/Button";
+import { ButtonDating, ButtonGreen, ButtonRed } from "../shared/Button";
 
 export function DatingStatuses() {
   return (
@@ -79,11 +79,13 @@ export function DatingStatuses() {
               </View>
             </View>
           </View>
-          <ButtonRed
+          <ButtonDating
+            backgroundColor={"red"}
             text={"Cancelar consulta"}
             color={theme.colors.secondaryText}
           />
-          <ButtonGreen
+          <ButtonDating
+            backgroundColor={"green"}
             text={"Confirmar consulta"}
             color={theme.colors.secondaryText}
           />
