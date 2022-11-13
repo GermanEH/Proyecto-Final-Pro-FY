@@ -15,6 +15,7 @@ import {
 } from "../../slices/pacientsActions";
 import theme from "../../theme";
 import { CardPacient } from "./CardPacient";
+import { ListaConsultas } from "./ListaConsultas";
 import { getQueries, getQuerie, postQuerie, putQuerie, deleteQuerie  } from '../../slices/queriesActions'
 
 export function HomePacient({ navigation }) {
@@ -63,7 +64,8 @@ export function HomePacient({ navigation }) {
           <Text
             style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
           >
-            Hola,
+           
+            <ListaConsultas/>
           </Text>
           <Text
             style={{
