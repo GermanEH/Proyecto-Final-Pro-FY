@@ -79,7 +79,7 @@ const editReview = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
 
-    const data = await reviewsModel.findOneAndUpdate(
+    const data = await reviewsModel.findByIdAndUpdate(
       id, body,
     )
     res.send({ data })

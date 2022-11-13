@@ -13,10 +13,20 @@ const validatorCreateSpecialities = [
   }
 ]
 
+const validatorPutSpecialities = [
+
+  check("name")
+    .optional(),
+
+  (req, res, next) => {
+    return validateResults(req, res, next)
+  }
+];
 
 const validatorIdSpecialities = [
 
   check("id")
+
     .exists()
     .notEmpty()
     .isMongoId(),
@@ -26,4 +36,4 @@ const validatorIdSpecialities = [
 ];
 
 
-module.exports = { validatorCreateSpecialities, validatorIdSpecialities }
+module.exports = { validatorCreateSpecialities, validatorIdSpecialities, validatorPutSpecialities }

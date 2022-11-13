@@ -4,22 +4,23 @@ const { matchedData } = require('express-validator');
 
 
 
-/**
- *  Obtener lista de la base de datos!
+/***
+ *  Obtener lista de la base de datos!/
  * @param {*} req 
  * @param {*} res 
  */
 const getAllProfessionals = async (req, res) => {
-
-
   try {
-    const data = await professionalsModel.find({})
+
+    const data = await professionalsModel.find({}).populate("specialities")
+
     res.send({ data })
+
   } catch (error) {
     handleHttpError(res, "Error_get_items")
   }
-}
 
+}
 /**
  *  Obtener un detalle!
  * @param {*} req 
@@ -50,6 +51,7 @@ const createProfessional = async (req, res) => {
     const body = matchedData(req)
     // console.log(body);
     const data = await professionalsModel.create(body)
+
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error creando al profesional")

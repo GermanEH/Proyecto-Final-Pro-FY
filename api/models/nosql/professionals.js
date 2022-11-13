@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
 const ProfessionalScheme = new mongoose.Schema(
   {
@@ -48,37 +49,29 @@ const ProfessionalScheme = new mongoose.Schema(
       default: 'presential',
     },
 
-    // specialities: {
-    // type: Schema.ObjectId,
-    // ref: "specialities"
-    // },
+    specialities: {
+      type: Schema.Types.ObjectId,
+      ref: "specialities"
+    },
+
 
   },
+
   {
     temestamps: true,
     versionKey: false,
   }
+
 );
 
-// ProfessionalScheme.statics.findSpecialty = function () {
-//   const joinSpe = this.aggregate([
-//     {
-//       $lookup: {
-//         from: "specialities",
-//         localField: "id",
-//         foreignField: "_id",
-//         as: "professionalSpeciality"
-//       }
-//     }
-//   ])
-//   return joinSpe
+
+
 // return this.find({ name: new RegExp(name, 'i') });
-//};
+
 
 
 
 ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
-
 
 
