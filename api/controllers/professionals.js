@@ -11,8 +11,9 @@ const { matchedData } = require('express-validator');
  */
 const getAllProfessionals = async (req, res) => {
 
+
   try {
-    const data = await professionalsModel.find({});
+    const data = await professionalsModel.find({})
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_items")
@@ -43,18 +44,17 @@ const getProfessionalById = async (req, res) => {
  * @param {*} res 
  */
 
+
 const createProfessional = async (req, res) => {
   try {
     const body = matchedData(req)
-    console.log(body)
+    // console.log(body);
     const data = await professionalsModel.create(body)
     res.send({ data })
-
   } catch (error) {
     handleHttpError(res, "Error creando al profesional")
   }
 }
-
 /**
  *  crear un registro!
  * @param {*} req 
@@ -80,15 +80,22 @@ const deleteProfessional = async (req, res) => {
  */
 const editProfessional = async (req, res) => {
   try {
-    const { id, ...body } = matchedData(req)
-    const data = await professionalsModel.findOneAndUpdate(
-      id, body
-    )
+
+    const { id } = req.params
+
+    const { ...body } = matchedData(req)
+    console.log("iniciooooooooo");
+    console.log(id, body)
+    console.log("finalllllllllll");
+    const data = await professionalsModel.findByIdAndUpdate(id, body)
+    console.log(data)
     res.send({ data })
   } catch (error) {
     console.log(error);
     handleHttpError(res, "Error editando al profesional")
   }
+
+  //478c  eusebio enviado => raul
 
 }
 
