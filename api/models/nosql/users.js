@@ -39,10 +39,10 @@ const UserScheme = new mongoose.Schema(
     password: {
       type: String,
     },
-    role: {  //opcional para uso nuestro
-      type: ["user", "admin", "pro"],
-      default: "user",
-    }
+    // role: {  //opcional para uso nuestro
+    //   type: ["user", "admin", "pro"],
+    //   default: "user",
+    // }
   },
   {
     temestamps: true,

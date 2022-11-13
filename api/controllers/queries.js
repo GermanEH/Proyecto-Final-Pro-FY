@@ -79,7 +79,7 @@ const editQuery = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
 
-    const data = await queriesModel.findOneAndUpdate(
+    const data = await queriesModel.findByIdAndUpdate(
       id, body,
     )
     res.send({ data })
