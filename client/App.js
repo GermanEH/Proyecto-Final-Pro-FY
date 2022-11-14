@@ -24,6 +24,7 @@ import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
 import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
+import { GenerateQuery } from './src/components/pacient/GenerateQuery'
 
 
 const Stack = createStackNavigator()
@@ -34,7 +35,7 @@ export default function App() {
     // <React.StrictMode>
       <Provider store={store}>
         <NavigationContainer>
-           <Stack.Navigator>
+          <Stack.Navigator>
            <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
@@ -82,7 +83,10 @@ export default function App() {
               component={QueriesHistorialPacient}/>  
             <Stack.Screen
               name="ProfessionalDetail"
-              component={ProfessionalDetail}/>  
+              component={ProfessionalDetail}/>   
+            <Stack.Screen
+              name="GenerateQuery"
+              component={GenerateQuery}/>   
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
