@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
 const queriesScheme = new mongoose.Schema(
   {
@@ -21,12 +22,12 @@ const queriesScheme = new mongoose.Schema(
       defualt: 'pending'
     },
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: "users"
     },
     professionalId: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: "professionals"
     },

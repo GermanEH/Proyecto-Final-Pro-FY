@@ -52,6 +52,7 @@ const ProfessionalScheme = new mongoose.Schema(
     specialities: {
       type: Schema.Types.ObjectId,
       ref: "specialities"
+
     },
 
 

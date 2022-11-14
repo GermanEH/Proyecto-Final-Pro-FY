@@ -11,7 +11,14 @@ const { matchedData } = require('express-validator');
  */
 const getQueries = async (req, res) => {
   try {
-    const data = await queriesModel.find({});
+
+    const data = await queriesModel.find({})
+    // .populate({
+    //   path: "professionals",
+    //   populate: {
+    //     path: "users",
+    //   }
+    // });
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_queries")
