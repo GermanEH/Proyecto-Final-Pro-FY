@@ -23,6 +23,7 @@ import { SignInScreen } from './src/components/SignIn/SignInScreen'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
 import { QueriesHistorialPacient } from './src/components/pacient/QuereriesHistorialPacient'
+import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail'
 
 const Stack = createStackNavigator()
 
@@ -33,7 +34,7 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
            <Stack.Navigator>
-            <Stack.Screen
+           <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
             <Stack.Screen
@@ -77,7 +78,10 @@ export default function App() {
               component={QueriesDetail}/> 
             <Stack.Screen
               name="QueriesHistorialPacient"
-              component={QueriesHistorialPacient}/> 
+              component={QueriesHistorialPacient}/>  
+            <Stack.Screen
+              name="ProfessionalDetail"
+              component={ProfessionalDetail}/>  
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>

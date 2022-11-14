@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: theme.borderRadius.borderRadiusBotton,
   },
 
   textQueries: {
