@@ -14,17 +14,16 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 export function FormPacient  ()  {
   const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      name: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email:'',
       password:'',
-      passswordRepeat:'',
-      dni: '',
+    /*   passswordRepeat:'', */
+      DNI: '',
       country:'',
       state:'',
-      ciudad:'',
-      zip:'',
-      adress:'',
+      postcode:'',
+      address:'',
     }
   });
   const navigation = useNavigation();
@@ -36,10 +35,11 @@ export function FormPacient  ()  {
     navigation.navigate('Home');
   };
   const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log('entramos')
     console.log(data)
     dispatch(postPacient(data))
+    navigation.navigate('SignInScreen')
   };
 
   const onChange = arg => {
@@ -59,7 +59,7 @@ export function FormPacient  ()  {
           resizeMode="contain"
         />
   <CustomInput
-        name="name"
+        name="first_name"
         placeholder="Nombre"
         control={control}
         rules={{
@@ -75,7 +75,7 @@ export function FormPacient  ()  {
         }}
       />
       <CustomInput
-        name="lastname"
+        name="last_name"
         placeholder="Apellido"
         control={control}
         rules={{
@@ -104,7 +104,7 @@ export function FormPacient  ()  {
        
       }}
     />
-      <CustomInput
+     {/*  <CustomInput
       name="passwordRepeat"
       placeholder="Repetir Contraseña"
       control={control}
@@ -113,7 +113,7 @@ export function FormPacient  ()  {
       validate: value =>
       value === pwd   || 'Las contraseñas no son iguales'
     }}
-    />
+    /> */}
       
       <CustomInput
           name="country"
@@ -134,19 +134,19 @@ export function FormPacient  ()  {
           rules={{required: 'Ciudad es requerida'}}
       />
         <CustomInput
-          name="adress"
+          name="address"
           placeholder="Direccion"
           control={control}
           rules={{required: 'Direccion es requerida'}}
         />
        <CustomInput
-        name="zip"
+        name="postcode"
         placeholder="P.C"
         control={control}
         rules={{required: 'Codigo Postal es requerido'}}
       />
         <CustomInput
-          name="dni"
+          name="DNI"
           placeholder="D.N.I"
           control={control}
           rules={{required: 'DNI es requerido'}}
