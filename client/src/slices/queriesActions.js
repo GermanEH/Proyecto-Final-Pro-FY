@@ -10,15 +10,13 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
             return 0
         })
         return data.map(q => {
-            console.log(professionals)
-            console.log(q)
             let professional = professionals.find(p => p._id === q.professionalId)
             let professionalName = professional.last_name
             return {
                 id:q._id,
                 doctorName: professionalName,
                 description: q.motive,
-                date: q.queryDate,
+                date: q.queryDate, 
                 state: q.state,
                 // isExpanded: false,
             }
@@ -30,6 +28,7 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
 export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) => {
     try {
         const response = await axios.get(`http://localhost:3001/api/queries/${id}`)
+        console.log( response.data.data)
         return response.data.data
     } catch (error) {
         return error.message

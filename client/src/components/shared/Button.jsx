@@ -11,6 +11,21 @@ export function ButtonDating(props) {
   );
 }
 
+export function ButtonGenerateQuery(props) {
+  return (
+    <TouchableOpacity
+      onPress={() =>
+        props.navigation.navigate("ProfessionalsList", {
+          name: "ProfessionalsList",
+        })
+      }
+      style={{ ...styles.btn, backgroundColor: `${props.backgroundColor}` }}
+    >
+      <Text style={{ color: `${props.color}` }}>{props.text}</Text>
+    </TouchableOpacity>
+  );
+}
+
 export function ButtonQueries(props) {
   return (
     // <TouchableOpacity
@@ -20,16 +35,16 @@ export function ButtonQueries(props) {
     //     })
     //   }
     // >
-      <View style={{ paddingVertical: 5, paddingHorizontal: 20 }}>
-        <View
-          style={{
-            ...styles.btnQueries,
-            backgroundColor: `${props.backgroundColor}`,
-          }}
-        >
-          <Text style={styles.textQueries}>{props.text}</Text>
-        </View>
+    <View style={{ paddingVertical: 5, paddingHorizontal: 20 }}>
+      <View
+        style={{
+          ...styles.btnQueries,
+          backgroundColor: `${props.backgroundColor}`,
+        }}
+      >
+        <Text style={styles.textQueries}>{props.text}</Text>
       </View>
+    </View>
     // </TouchableOpacity>
   );
 }

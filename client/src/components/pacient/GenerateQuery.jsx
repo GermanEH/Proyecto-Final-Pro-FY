@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
-import { ButtonDating } from "../shared/Button";
+import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 
 export function GenerateQuery({ navigation }) {
   const [text, onChangeText] = useState("");
@@ -73,6 +73,12 @@ export function GenerateQuery({ navigation }) {
             backgroundColor={theme.colors.primaryColor}
           />
         </View>
+        <ButtonGenerateQuery
+          navigation={navigation}
+          text={"Elegir Profesional"}
+          color={theme.colors.secondaryText}
+          backgroundColor={theme.colors.primaryColor}
+        />
       </View>
     </ScrollView>
   );

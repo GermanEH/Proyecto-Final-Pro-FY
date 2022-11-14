@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Text,
   StyleSheet,
@@ -9,17 +9,16 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { getQueryById } from '../../slices/queriesActions'
-import { getPacients } from '../../slices/pacientsActions'
-import { getProfessionals } from '../../slices/professionalsActions'
+import { getQueryById } from "../../slices/queriesActions";
+import { getPacients } from "../../slices/pacientsActions";
+import { getProfessionals } from "../../slices/professionalsActions";
 
 export function QueriesDetail({ route }) {
-
   const [text, onChangeText] = useState("");
-  const [render, setRender] = useState(false)
+  const [render, setRender] = useState(false);
 
-  const query = useSelector(state => state.queries.query)
-  const dispatch = useDispatch()
+  const query = useSelector((state) => state.queries.query);
+  const dispatch = useDispatch();
 
   // const pacients = useSelector(state => state.pacients.pacients)
   // const professionals = useSelector(state => state.professionals.professionals)
@@ -27,58 +26,76 @@ export function QueriesDetail({ route }) {
   // let pacient = {}
   // let professional = {}
 
-  useEffect(() => {dispatch(getQueryById(route.params.id)); setRender(true)}, [])
-  useEffect(() => {if(query) setRender(true)}, [query])
+  useEffect(() => {
+    dispatch(getQueryById(route.params.id));
+    setRender(true);
+  }, []);
+  useEffect(() => {
+    if (query) setRender(true);
+  }, [query]);
   // useEffect(() => {dispatch(getPacients())}, [])
   // useEffect(() => {dispatch(getProfessionals())}, [])
   // useEffect(() => {if(pacients && query) pacient = pacients.find(p => p._id === query.userId); setRender(true)}, [pacients])
   // useEffect(() => {if(professionals && query) professional = professionals.find(p => p.id === query.professionalId); setRender(true)}, [professionals])
-  useEffect(() => {if(render) setRender(false)}, [render])
+  useEffect(() => {
+    if (render) setRender(false);
+  }, [render]);
 
-  console.log(query)
+  console.log(query);
 
   return (
     <View>
       <ScrollView>
         <View>
-          {(query) ? 
-          <View style={styles.container}>
-            <View style={{ padding: 10 }}>
-              {/* <Text>Paciente: {pacient.name}</Text> */}
-              <Text>Fecha de creación de la consulta: {query.createdDate}</Text>
-              <Text>Fecha de la consulta: {query.queryDate}</Text>
-            </View>
-            <View style={{ padding: 10 }}>
-              <Text>Tipo de Consulta: {query.motive}</Text>
-              {/* <Text>Profesional: {professional.last_name}</Text> */}
-            </View>
-            <View style={{ flexDirection: "row", padding: 10 }}>
-              {/* <Text>Estado: {query.state[0]}</Text> */}
-            </View>
-            <View style={styles.containerObservations}>
-              <View style={styles.observations}>
-                <View
-                  style={{
-                    flexDirection: "column",
-                    paddingTop: 30,
-                  }}
-                >
-                  <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={onChangeText}
-                    style={styles.textInput}
-                    placeholder="Anote aquí lo que considere importante recordar"
-                    value={text}
-                  />
+          {query ? (
+            <View style={styles.container}>
+              <View style={{ padding: 10 }}>
+                {/* <Text>Paciente: {pacient.name}</Text> */}
+                <Text>
+                  Fecha de creación de la consulta:{" "}
+                  {query.createdDate &&
+                    query.createdDate.substring(
+                      0,
+                      query.createdDate.indexOf("T")
+                    )}
+                </Text>
+                <Text>Fecha de la consulta: {query.queryDate}</Text>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Text>Tipo de Consulta: {query.motive}</Text>
+                {/* <Text>Profesional: {professional.last_name}</Text> */}
+              </View>
+              <View style={{ flexDirection: "row", padding: 10 }}>
+                {/* <Text>Estado: {query.state[0]}</Text> */}
+              </View>
+              <View style={styles.containerObservations}>
+                <View style={styles.observations}>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      paddingTop: 30,
+                    }}
+                  >
+                    <TextInput
+                      multiline={true}
+                      numberOfLines={4}
+                      onChangeText={onChangeText}
+                      style={styles.textInput}
+                      placeholder="Anote aquí lo que considere importante recordar"
+                      value={text}
+                    />
+                  </View>
                 </View>
               </View>
             </View>
+          ) : (
+            // <View style={styles.containerBtn}>
+            // </View>
+            <View>
+              <Text> Loading...</Text>
             </View>
-          // <View style={styles.containerBtn}>
-          // </View>
-          : <View><Text> Loading...</Text></View>}
-        </View> 
+          )}
+        </View>
       </ScrollView>
     </View>
   );
@@ -132,6 +149,6 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "#A8A7A3",
     borderRadius: 10,
-    margin: 25,
+    alignItems: "center",
   },
 });
