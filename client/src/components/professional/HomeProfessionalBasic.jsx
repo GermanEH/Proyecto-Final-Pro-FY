@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfessionals } from "../../slices/professionalsActions";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 export function HomeProfessionalBasic({ navigation }) {
+
   const changePage = (direction, name) => {
     navigation.navigate(direction, {
       name: name,
@@ -39,37 +40,12 @@ export function HomeProfessionalBasic({ navigation }) {
           ></Button>
 
           <Button
-            title="GetProfessionals"
-            onPress={() => dispatch(getProfessionals())}
-          />
-
-          <Button
             title="Consultas"
             onPress={() =>
               navigation.navigate("Consultas", { name: "Consultas" })
-            }
-          ></Button>
-
-          <Button
-            title="updateData"
-            onPress={() => dispatch(putProfessional(updated.id, updated))}
-          />
-          <Button
-            title="delete"
-            onPress={() => dispatch(deleteProfessional(updated.id))}
-          />
-
+            }/>
+            
           <View style={styles.container}>
-            <Button
-              title="GetProfessionals"
-              onPress={() => dispatch(getProfessionals())}
-            />
-            <Button
-              title="Consultas"
-              onPress={() =>
-                navigation.navigate("Consultas", { name: "Consultas" })
-              }
-            ></Button>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
             >

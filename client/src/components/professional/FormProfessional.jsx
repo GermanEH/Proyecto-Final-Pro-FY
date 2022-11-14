@@ -62,7 +62,6 @@ export function FormProfessional  ()  {
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />
-
       <CustomInput
         name="name"
         placeholder="Name"

@@ -3,6 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     queries: [],
     query: {},
+    motives: [],
+    modalities: ["Llamada urgente", "Videollamada", "Email", "Presencial"],
+    payments: ["Transferencia", "Tarjeta de crédito"],
     status: "",
     error: ""
 }
@@ -22,6 +25,16 @@ export const queriesSlice = createSlice({
             (state, action) => {
                 state.status = 'succeeded'
                 state.queries = action.payload
+                for (const query of action.payload) {
+                    if(!state.motives.includes(query['motive'])) state.motives.push(query['motive'])
+                }
+            }
+        )
+        .addMatcher(
+            (action) => action.type.startsWith("queries/getQuery") && action.type.endsWith("/fulfilled"),
+            (state, action) => {
+                state.status = 'succeeded'
+                state.query = action.payload
             }
         )
         .addMatcher(

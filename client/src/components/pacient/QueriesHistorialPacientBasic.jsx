@@ -6,22 +6,31 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import theme from "../../theme";
 import {
   SelectList,
   MultipleSelectList,
 } from "react-native-dropdown-select-list";
+import { getQueries } from '../../slices/queriesActions';
 
 export function QueriesHistorialPacientBasic({ navigation }) {
   const [selected, setSelected] = useState("");
+  const [render, setRender] = useState(false)
 
-  const data = [
-    { key: "1", value: "uno" },
-    { key: "2", value: "dos" },
-    { key: "3", value: "tres" },
-    { key: "4", value: "jhdskjfhkd" },
-  ];
+  const dispatch = useDispatch()
+  const queries = useSelector(state => state.queries.queries)
+  let motives = useSelector(state => state.queries.motives)
+  const modalities = useSelector (state => state.queries.modalities)
+  const payments = useSelector (state => state.queries.payments)
+
+  useEffect (() => {dispatch(getQueries()).then(() => setRender(true))}, [])
+  useEffect (() => {if (render === true) selectOptions()}, [render])
+  
+  const selectOptions = () => {
+    setRender(false)
+  }
 
   return (
     <ScrollView>
@@ -38,37 +47,37 @@ export function QueriesHistorialPacientBasic({ navigation }) {
 
         <View style={{ width: "100%", paddingVertical: 30 }}>
           <View>
-            <Text style={styles.text}>¿Que tipo de consulta desea?</Text>
-            <SelectList
+            <Text style={styles.text}>¿Que tipo de consulta desea realizar?</Text>
+            {motives ? <SelectList
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               setSelected={(val) => setSelected(val)}
-              data={data}
+              data={motives}
               save="value"
               placeholder="Seleccionar Opción"
               inputStyles={{ fontSize: 12 }}
-            />
+            /> : <Text>Loading...</Text>}
           </View>
           <View style={{ paddingVertical: 15 }}>
             <Text style={styles.text}>Modalidad de consulta:</Text>
-            <SelectList
+            { (modalities.length > 0) ? <SelectList
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               setSelected={(val) => setSelected(val)}
-              data={data}
+              data={modalities}
               save="value"
               inputStyles={{ fontSize: 12 }}
-            />
+            /> : <Text>Loading...</Text>}
           </View>
           <View style={{ paddingVertical: 15 }}>
             <Text style={styles.text}>Modo de pago:</Text>
-            <MultipleSelectList
+            { (motives.length > 0) ? <MultipleSelectList
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               setSelected={(val) => setSelected(val)}
-              data={data}
+              data={payments}
               save="value"
               onSelect={() => alert(selected)}
               label="Categories"
               inputStyles={{ fontSize: 12 }}
-            />
+            /> : <Text>Loading...</Text>}
           </View>
           <View style={{ width: 200, paddingBottom: 40 }}>
             <TouchableOpacity
