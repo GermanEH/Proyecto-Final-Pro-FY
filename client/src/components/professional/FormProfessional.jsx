@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions, ScrollView,
   SafeAreaView, } from 'react-native';
 import { useDispatch } from 'react-redux'
-import { postPacient } from '../../slices/pacientsActions'
+import { postProfessional } from '../../slices/professionalsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import CustomInput from '../CustomInput/CustomInput'
@@ -15,11 +15,11 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 export function FormProfessional  ()  {
   const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      name: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email:'',
       password:'',
-      passswordRepeat:'',
+      /* passswordRepeat:'', */
       dni: '',
       professionalId:'',
       speciality:'',
@@ -29,7 +29,7 @@ export function FormProfessional  ()  {
       zip:'',
       professionalAdress:'',
       schedule:'',
-      modality:''
+      modality:[]
     }
   });
   const navigation = useNavigation();
@@ -44,14 +44,15 @@ export function FormProfessional  ()  {
   const onSubmit = (data) => {
     console.log('entramos')
     console.log(data)
-    dispatch(postPacient(data))
+    dispatch(postProfessional(data))
+    navigation.navigate('SignInScreen')
   };
 
-  const onChange = arg => {
+  /* const onChange = arg => {
     return {
       value: arg.nativeEvent.text,
     };
-  };
+  }; */
   const {height} = useWindowDimensions();
   const dispatch = useDispatch()
 
@@ -68,7 +69,7 @@ export function FormProfessional  ()  {
           resizeMode="contain"
         />
       <CustomInput
-        name="name"
+        name="first_name"
         placeholder="Nombre"
         control={control}
         rules={{
@@ -84,7 +85,7 @@ export function FormProfessional  ()  {
         }}
       />
       <CustomInput
-        name="lastname"
+        name="last_name"
         placeholder="Apellido"
         control={control}
         rules={{
@@ -113,7 +114,7 @@ export function FormProfessional  ()  {
        
       }}
     />
-     <CustomInput
+    {/*  <CustomInput
       name="passwordRepeat"
       placeholder="Repetir Contraseña"
       control={control}
@@ -122,7 +123,7 @@ export function FormProfessional  ()  {
       validate: value =>
       value === pwd   || 'Las contraseñas no son iguales'
     }}
-    />
+    /> */}
        <CustomInput
           name="country"
           placeholder="Pais"
@@ -146,6 +147,14 @@ export function FormProfessional  ()  {
         placeholder="P.C"
         control={control}
         rules={{required: 'Codigo Postal es requerido'}}
+        
+      />
+
+<CustomInput
+        name="speciality"
+        placeholder="Especialidad"
+        control={control}
+        
         
       />
        <CustomInput
@@ -173,10 +182,10 @@ export function FormProfessional  ()  {
           rules={{required: 'Turnos son requeridos'}}
         />
          <CustomInput
-          name="modalty"
+          name="modality"
           placeholder="Modalidad"
           control={control}
-          rules={{required: 'Modalidad es requerida'}}
+          /* rules={{required: 'Modalidad es requerida'}} */
         />
       <CustomInput
           name="email"
