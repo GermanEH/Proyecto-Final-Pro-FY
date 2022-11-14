@@ -2,147 +2,87 @@ import {
   Text,
   StyleSheet,
   View,
-  Image,
-  TextInput,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
-import {
-  SelectList,
-} from "react-native-dropdown-select-list";
+import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
 
 export function QueriesHistorialPacient({ navigation }) {
-  
-  const [text, onChangeText] = useState("");
-  const [modalitie, setModalitie] = useState("");
-  const [payment, setPayment] = useState("");
-  const [render, setRender] = useState(false)
-
-  const dispatch = useDispatch()
-  const queries = useSelector(state => state.queries.queries)
-  const modalities = useSelector (state => state.queries.modalities)
-  const payments = useSelector (state => state.queries.payments)
-
   return (
     <ScrollView>
-      <View style={styles.containerBtnQueries}>
-        <Text
+      <View style={{ alignItems: "center" }}>
+        <View
           style={{
-            textAlign: "center",
-            fontSize: 20,
-            fontWeight: "bold",
+            width: 200,
+            paddingBottom: 20,
+            paddingTop: 30,
           }}
         >
-          GENERAR CONSULTAS:
-        </Text>
-        <View style={{ width: "100%", paddingVertical: 30 }}>
-            <Text style={styles.text}>¿Que tipo de consulta desea?</Text>
-            <TextInput
-              multiline={true}
-              numberOfLines={4}
-              onChangeText={onChangeText}
-              style={styles.textInput}
-              placeholder="Describa su problema"
-              value={text}/>
-          </View>
-          <View style={{ paddingVertical: 15 }}>
-            <Text style={styles.text}>Modalidad de consulta:</Text>
-            {(modalities.length > 0) ? <SelectList
-              boxStyles={{ backgroundColor: "#A8A7A3" }}
-              setSelected={(val) => setModalitie(val)}
-              data={modalities}
-              save="value"
-              inputStyles={{ fontSize: 12 }}
-            /> : <Text>Loading...</Text>}
-          </View>
-          <View style={{ paddingVertical: 15 }}>
-            <Text style={styles.text}>Modo de pago:</Text>
-            { (payments.length > 0) ? <SelectList
-              boxStyles={{ backgroundColor: "#A8A7A3" }}
-              setSelected={(val) => setPayment(val)}
-              data={payments}
-              save="value"
-              onSelect={() => alert(payment)}
-              label="Categories"
-              inputStyles={{ fontSize: 12 }}
-            /> : <Text>Loading...</Text>}
-          </View>
-          <View style={{ width: 200, paddingBottom: 40 }}>
-            <TouchableOpacity
-              title="ProfessionalsList"
-              onPress={() =>
-                navigation.navigate("ProfessionalsList", {
-                  name: "ProfessionalsList",
-                })
-              }
-              style={styles.btn}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  color: theme.colors.secondaryText,
-                }}
-              >
-                Elegir Profesional
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <TouchableOpacity
-          title="ProfessionalsList"
-          onPress={() =>
-            navigation.navigate("ProfessionalList", {
-              name: "ProfessionalList",
-            })
-          }
-          style={styles.btn}
-        >
-          </TouchableOpacity>
-          <Text
-            style={{ textAlign: "center", color: theme.colors.secondaryText }}
+          <TouchableOpacity
+            title="GenerateQuery"
+            onPress={() =>
+              navigation.navigate("GenerateQuery", {
+                name: "GenerateQuery",
+              })
+            }
+            style={styles.btn}
           >
-            Historial
-          </Text>
-        <ScrollView style={styles.containerHistorial}>
-          <View>
-            <View
+            <Text
               style={{
-                paddingTop: 50,
-                paddingBottom: 5,
+                textAlign: "center",
+                color: theme.colors.secondaryText,
               }}
             >
-              <ButtonQueries
-                navigation={navigation}
-                backgroundColor={theme.colors.primaryColor}
-                text={"Pendiente"}
-              />
-              <ButtonQueries
-                navigation={navigation}
-                backgroundColor={"blue"}
-                text={"Resuelta"}
-              />
-              <ButtonQueries
-                backgroundColor={"red"}
-                text={"Cancelar"}
-                navigation={navigation}
-              />
-              <ButtonQueries
-                backgroundColor={"green"}
-                text={"Confirmada"}
-                navigation={navigation}
-              />
-            </View>
+              GENERAR CONSULTA
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.containerBtnQueries}></View>
+      <View>
+        <Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>
+          Historial de Consultas
+        </Text>
+      </View>
+      <ScrollView style={styles.containerHistorial}>
+        <View>
+          <View
+            style={{
+              paddingTop: 50,
+              paddingBottom: 5,
+            }}
+          >
+            <ButtonQueries
+              navigation={navigation}
+              backgroundColor={theme.colors.primaryColor}
+              text={"Pendiente"}
+            />
+            <ButtonQueries
+              navigation={navigation}
+              backgroundColor={"blue"}
+              text={"Resuelta"}
+            />
+            <ButtonQueries
+              backgroundColor={"red"}
+              text={"Cancelar"}
+              navigation={navigation}
+            />
+            <ButtonQueries
+              backgroundColor={"green"}
+              text={"Confirmada"}
+              navigation={navigation}
+            />
           </View>
           <View>
             <ListaConsultas navigation={navigation}/>
           </View>
-        </ScrollView>
       </ScrollView>
+    </ScrollView>
   );
 }
 
@@ -193,6 +133,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     backgroundColor: "#A8A7A3",
-    borderRadius: 10
-  }
+    borderRadius: 10,
+  },
 });

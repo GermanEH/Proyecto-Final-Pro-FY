@@ -33,6 +33,28 @@ export function ButtonQueries(props) {
     </TouchableOpacity>
   );
 }
+export function ButtonQueriesDetail(props) {
+  return (
+    <TouchableOpacity
+      onPress={() =>
+        props.navigation.navigate("QueriesHistorialPacient", {
+          name: "QueriesHistorialPacient",
+        })
+      }
+    >
+      <View style={{ paddingVertical: 5, paddingHorizontal: 20 }}>
+        <View
+          style={{
+            ...styles.btnQueries,
+            backgroundColor: `${props.backgroundColor}`,
+          }}
+        >
+          <Text style={styles.textQueries}>{props.text}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 export function ButtonHomePacientQueries(props) {
   return (
@@ -52,7 +74,7 @@ export function ButtonHomePacientQueries(props) {
 
 const styles = StyleSheet.create({
   btn: {
-    paddingVertical: 20,
+    paddingVertical: 15,
     borderRadius: theme.borderRadius.borderRadiusBotton,
     alignSelf: "flex-end",
     padding: 20,
@@ -65,7 +87,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: theme.borderRadius.borderRadiusBotton,
   },
 
   textQueries: {
