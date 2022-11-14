@@ -31,7 +31,7 @@ export const queriesSlice = createSlice({
             }
         )
         .addMatcher(
-            (action) => action.type.startsWith("queries/getQuery") && action.type.endsWith("/fulfilled"),
+            (action) => action.type.startsWith("queries/getQueryById") && action.type.endsWith("/fulfilled"),
             (state, action) => {
                 state.status = 'succeeded'
                 state.query = action.payload
@@ -45,9 +45,9 @@ export const queriesSlice = createSlice({
         )
         .addMatcher(
             (action) => action.type.startsWith("queries/deleteQuery") && action.type.endsWith("/fulfilled"),
-            (state) => {
+            (state, action) => {
                 state.status = 'succeeded'
-                state.queries = state.queries.filter(p => p.id !== action.payload.id)
+                state.queries = state.queries.filter(p => p.id !== action.payload)
             }
         )
         .addMatcher(

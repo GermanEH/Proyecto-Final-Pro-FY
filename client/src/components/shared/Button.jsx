@@ -13,13 +13,13 @@ export function ButtonDating(props) {
 
 export function ButtonQueries(props) {
   return (
-    <TouchableOpacity
-      onPress={() =>
-        props.navigation.navigate("DatingStatuses", {
-          name: "DatingStatuses",
-        })
-      }
-    >
+    // <TouchableOpacity
+    //   onPress={() =>
+    //     props.navigation.navigate("DatingStatuses", {
+    //       name: "DatingStatuses",
+    //     })
+    //   }
+    // >
       <View style={{ paddingVertical: 5, paddingHorizontal: 20 }}>
         <View
           style={{
@@ -30,7 +30,7 @@ export function ButtonQueries(props) {
           <Text style={styles.textQueries}>{props.text}</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    // </TouchableOpacity>
   );
 }
 export function ButtonQueriesDetail(props) {

@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
@@ -13,6 +13,7 @@ import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
 
 export function QueriesHistorialPacient({ navigation }) {
+
   return (
     <ScrollView>
       <View style={{ alignItems: "center" }}>
@@ -57,7 +58,7 @@ export function QueriesHistorialPacient({ navigation }) {
               paddingBottom: 5,
             }}
           >
-            <ButtonQueries
+            {/* <ButtonQueries
               navigation={navigation}
               backgroundColor={theme.colors.primaryColor}
               text={"Pendiente"}
@@ -76,11 +77,12 @@ export function QueriesHistorialPacient({ navigation }) {
               backgroundColor={"green"}
               text={"Confirmada"}
               navigation={navigation}
-            />
+            /> */}
           </View>
           <View>
             <ListaConsultas navigation={navigation}/>
           </View>
+        </View>
       </ScrollView>
     </ScrollView>
   );
@@ -131,8 +133,8 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
     padding: 10,
   },
-  textInput: {
-    backgroundColor: "#A8A7A3",
-    borderRadius: 10,
-  },
+  // textInput: {
+  //   backgroundColor: "#A8A7A3",
+  //   borderRadius: 10,
+  // },
 });

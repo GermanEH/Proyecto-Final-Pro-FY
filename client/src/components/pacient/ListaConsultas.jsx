@@ -12,7 +12,10 @@ import {
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProfessionals } from '../../slices/professionalsActions'
-import { getQueries, deleteQuerie } from '../../slices/queriesActions'
+import { getQueries, deleteQuery } from '../../slices/queriesActions'
+import { ButtonBlue, ButtonQueries } from "../shared/Button";
+import theme from "../../theme";
+
 
 // const Consultas=[
 //                 {
@@ -44,6 +47,8 @@ import { getQueries, deleteQuerie } from '../../slices/queriesActions'
 export function ListaConsultas ({ navigation }) {
     
     const [multiSelect, setMultiSelect] = useState(false);
+    const [render, setRender] = useState(false)   
+    
     // const [LIstaConsulta,setLIstaConsulta]=useState(Consultas);
 
     const queries = useSelector(state => state.queries.queries)
@@ -52,7 +57,8 @@ export function ListaConsultas ({ navigation }) {
 
     useEffect(() => {if (professionals.length > 0) dispatch(getQueries(professionals))}, [professionals])
     useEffect(() => {dispatch(getProfessionals())}, [])
-
+    useEffect(() => {if(queries)setRender(true)}, [queries])
+    useEffect(() => {if(render) setRender(false)}, [render])
 
     if(Platform.OS==='android'){
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -86,12 +92,12 @@ export function ListaConsultas ({ navigation }) {
         // },[item.item.isExpanded])
             return(
                 <View>
-                    <TouchableOpacity style={styles.item} onPress={item.onPress}>
+                    <TouchableOpacity style={[styles.item, styles.btnQueries, styles.textQueries]} onPress={item.onPress}>
                         <Text style={styles.itemText}>
                             Consulta con el Dr. {item.item.doctorName}
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor:'red', padding:'5'}} onPress={() => dispatch(deleteQuerie())}>
+                    <TouchableOpacity style={{backgroundColor:'red', padding:'5'}} onPress={() => dispatch(deleteQuery(item.item.id))}>
                         <Text >
                             X
                         </Text>
@@ -119,8 +125,8 @@ export function ListaConsultas ({ navigation }) {
 return  (
     <SafeAreaView style={{flex:1}}>
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.titleText}>
+            {/* <View style={styles.header}> */}
+                {/* <Text style={styles.titleText}>
                     LISTA DE CONSULTAS
                 </Text>
                 <TouchableOpacity 
@@ -133,15 +139,16 @@ return  (
                             : 'Enable multiple \n Expand'
                         }
                     </Text>
-                </TouchableOpacity>
-            </View>
+                </TouchableOpacity> */}
+            {/* </View> */}
             <ScrollView>
                 { queries?.map((item, key) => {
                         return (
                                 <ExpandableComponent
                                     key={key} 
                                     item={item} 
-                                    onPress={() => navigation.navigate('QueriesDetail', {name: `${item._id}`})}
+                                    onPress={() => navigation.navigate('QueriesDetail', {id: `${item.id}`})}
+                                    style={[(item.state[0] ==='rejected') ? styles.rejected : (item.state[0] === 'resolved') ? styles.resolved : (item.state[0] === 'unresolved') ? styles.unresolved : styles.confirmed]}
                                     // onClickFunction={()=>{
                                     //     upDateLayout(key)
                                     //     }
@@ -171,7 +178,7 @@ titleText:{
     fontWeight: 'bold'
 },
 item:{
-    backgroundColor:'orange',
+    // backgroundColor:'orange',
     padding:20
 
 },
@@ -183,7 +190,7 @@ itemText:{
 content:{
     paddingLeft:10,
     paddingRight:10,
-    backgroundColor:'#fff'
+    // backgroundColor:'#fff'
 },
 text:{
     fontSize:16,
@@ -193,6 +200,29 @@ separator:{
     height:0.5,
     backgroundColor:'#c8c8c8',
     width:'100%'
+},
+rejected: {
+    backgroundColor:'red'
+},
+resolved: {
+    backgroundColor:'blue'
+},
+unresolved: {
+    backgroundColor:'yellow'
+},
+confirmed: {
+    backgroundColor:'green'
+},
+btnQueries: {
+    width: 200,
+    height: 50,
+    justifyContent: "center",
+    borderRadius: theme.borderRadius.borderRadiusBotton,
+},
+
+textQueries: {
+    color: "white",
+    textAlign: "center",
 }
 
 });
