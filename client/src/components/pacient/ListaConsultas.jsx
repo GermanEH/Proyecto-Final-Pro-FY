@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProfessionals } from '../../slices/professionalsActions'
-import { getQueries } from '../../slices/queriesActions'
+import { getQueries, deleteQuerie } from '../../slices/queriesActions'
 
 // const Consultas=[
 //                 {
@@ -42,8 +42,6 @@ import { getQueries } from '../../slices/queriesActions'
 //     ];
 
 export function ListaConsultas ({ navigation }) {
-    
-    console.log(navigation)
     
     const [multiSelect, setMultiSelect] = useState(false);
     // const [LIstaConsulta,setLIstaConsulta]=useState(Consultas);
@@ -93,6 +91,11 @@ export function ListaConsultas ({ navigation }) {
                             Consulta con el Dr. {item.item.doctorName}
                         </Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={{backgroundColor:'red', padding:'5'}} onPress={() => dispatch(deleteQuerie())}>
+                        <Text >
+                            X
+                        </Text>
+                    </TouchableOpacity>
                     {/* <View style={{ height: layoutHeight, overflow: 'hidden'}}> */}
 
 
@@ -109,9 +112,6 @@ export function ListaConsultas ({ navigation }) {
                                     </TouchableOpacity>
                         }
                     </View> */}
-
-
-
                 </View>
             )
     }
