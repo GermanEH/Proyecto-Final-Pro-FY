@@ -32,37 +32,8 @@ return (
             name: "FormProfessional",
             })
         }
-        ></Button>
-
-        <Button
-        title="GetProfessionals"
-        onPress={() => dispatch(getProfessionals())}
         />
-
-        <Button
-        title="Consultas"
-        onPress={() =>
-            navigation.navigate("Consultas", { name: "Consultas" })
-        }
-        ></Button>
-        <Button
-        title="FormProfessional"
-        onPress={() => navigation.navigate("FormProfessional")}
-        ></Button>
-        <Button
-        title="updateData"
-        onPress={() => dispatch(putProfessional(updated.id, updated))}
-        />
-        <Button
-        title="delete"
-        onPress={() => dispatch(deleteProfessional(updated.id))}
-        />
-
         <View style={styles.container}>
-        <Button
-            title="GetProfessionals"
-            onPress={() => dispatch(getProfessionals())}
-        />
         <Button
             title="Consultas"
             onPress={() =>
@@ -83,15 +54,15 @@ return (
         >
             Juan Dominguéz
         </Text>
-     <View style={styles.estrella} >
-       < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
-         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
-         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+        <View style={styles.estrella} >
         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
-         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
-         < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+            < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+            < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+            < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+            < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
+            < TouchableOpacity><IconAntDesign name="staro"/></TouchableOpacity>
 
-     </View>
+        </View>
 
         <Text
             style={{

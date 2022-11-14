@@ -73,7 +73,6 @@ export function FormProfessional  ()  {
         rules={{ required: true }}
       />
      
-      <Text style={styles.label}>email</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (

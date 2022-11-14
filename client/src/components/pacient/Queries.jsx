@@ -4,6 +4,8 @@ import React from 'react'
 export function Queries ({navigation}) {
     return (
         <View>
+        <Button
+        title="Nueva"/>
         <Button 
         title="ProfessionalsList"
         onPress={() => navigation.navigate('ProfessionalsList')}></Button>

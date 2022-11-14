@@ -33,40 +33,13 @@ export function HomeProfessional({ navigation }) {
           ></Button>
 
           <Button
-            title="GetProfessionals"
-            onPress={() => dispatch(getProfessionals())}
-          />
-
-          <Button
             title="Consultas"
             onPress={() =>
               navigation.navigate("Consultas", { name: "Consultas" })
             }
           ></Button>
-          <Button
-            title="FormProfessional"
-            onPress={() => navigation.navigate("FormProfessional")}
-          ></Button>
-          <Button
-            title="updateData"
-            onPress={() => dispatch(putProfessional(updated.id, updated))}
-          />
-          <Button
-            title="delete"
-            onPress={() => dispatch(deleteProfessional(updated.id))}
-          />
 
           <View style={styles.container}>
-            <Button
-              title="GetProfessionals"
-              onPress={() => dispatch(getProfessionals())}
-            />
-            <Button
-              title="Consultas"
-              onPress={() =>
-                navigation.navigate("Consultas", { name: "Consultas" })
-              }
-            ></Button>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
             >

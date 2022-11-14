@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux' 
+import { getSpecialties } from '../../slices/professionalsActions'
 import { View, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
 import theme from '../../theme';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-export function CardPacient({first_name, last_name, speciality, country, phone}) {
+export function CardPacient({first_name, last_name, country, specialty}) {
+
   return (
     <SafeAreaView>
       <View >
@@ -15,7 +19,7 @@ export function CardPacient({first_name, last_name, speciality, country, phone})
           <View style={styles.description}>
             <Text style={styles.name}>{first_name} {last_name}
             </Text>
-            <Text style={styles.speciality}>{speciality}
+            <Text style={styles.speciality}>{specialty}
             </Text>
             <Text style={styles.location}>{country}
             </Text>
