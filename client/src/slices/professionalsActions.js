@@ -9,7 +9,25 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
             if(a.name > b.name) return 1;
             return 0
         })
-        return data
+        return data.map(d => {
+            return {
+                _id: d._id,
+                first_name: d.frist_name,
+                last_name: d.last_name,
+                email: d.email,
+                password: d.password,
+                dni: d.dni,
+                professionalId: d.professionalId,
+                country: d.country,
+                state: d.state,
+                city: d.city,
+                zip: d.zip,
+                professionalAdress: d.professionalAdress,
+                schedule: d.schedule,
+                modality: d.modality,
+                specialities: d.specialities.name,
+            }
+        })
     } catch (error) {
         return error.message
     }        

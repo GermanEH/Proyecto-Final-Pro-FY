@@ -45,7 +45,7 @@ const professionalsSlice = createSlice({
           (state, action) => {
             state.status = 'succeeded'
             state.professionals = action.payload
-            console.log(state.professionals)
+            console.log(action.payload)
             const totalBdCountries = action.payload.map(p => p.country)
             console.log(totalBdCountries)
             const uniqueBdCountries = [...new Set(totalBdCountries)]
