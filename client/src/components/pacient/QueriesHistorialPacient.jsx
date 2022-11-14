@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
+import { ListaConsultas } from "./ListaConsultas";
 
 export function QueriesHistorialPacient({ navigation }) {
   return (
@@ -77,7 +78,9 @@ export function QueriesHistorialPacient({ navigation }) {
               navigation={navigation}
             />
           </View>
-        </View>
+          <View>
+            <ListaConsultas navigation={navigation}/>
+          </View>
       </ScrollView>
     </ScrollView>
   );
