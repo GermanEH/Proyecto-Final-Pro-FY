@@ -42,13 +42,6 @@ export function HomeProfessionalBasic({ navigation }) {
             }
           ></TouchableOpacity>
 
-          <Button
-            title="Consultas"
-            onPress={() =>
-              navigation.navigate("Consultas", { name: "Consultas" })
-            }
-          />
-
           <View style={styles.container}>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
@@ -120,6 +113,14 @@ export function HomeProfessionalBasic({ navigation }) {
                 <CardProfessional />
               </View>
             </View>
+
+            <Button
+            title="Listado de Pacientes"
+            onPress={() =>
+              navigation.navigate("PacientsList", { name: "PacientsList" })
+            }
+            />
+
             <View style={{ paddingTop: 15 }}>
               <Text style={{ fontSize: theme.fontSize.secondaryText }}>
                 Consultas de los Pacientes:
