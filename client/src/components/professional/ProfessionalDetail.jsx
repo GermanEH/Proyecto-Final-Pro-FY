@@ -1,8 +1,8 @@
 import { Text, StyleSheet, View, Image, ScrollView } from "react-native";
 import theme from "../../theme";
-import { ButtonQueries } from "../shared/Button";
+import { ButtonQueries, ButtonQueriesDetail } from "../shared/Button";
 
-export function ProfessionalDetail() {
+export function ProfessionalDetail({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -30,9 +30,10 @@ export function ProfessionalDetail() {
           </View>
         </View>
         <View style={{ marginTop: 40 }}>
-          <ButtonQueries
+          <ButtonQueriesDetail
             text={"Consulta"}
             backgroundColor={theme.colors.primaryColor}
+            navigation={navigation}
           />
         </View>
         <View style={{ marginTop: 30 }}>

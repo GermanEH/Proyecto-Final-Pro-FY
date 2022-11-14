@@ -15,30 +15,34 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export function HomeProfessional({ navigation }) {
-  
   const professionals = useSelector((state) => state.professionals);
   const dispatch = useDispatch();
 
   useEffect(() => console.log(professionals), [professionals]);
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         <View>
-          <Button
-            title="Formulario Profesional"
-            onPress={() =>
-              navigation.navigate("FormProfessional", {
-                name: "FormProfessional",
-              })
-            }
-          ></Button>
+          <View style={{ alignItems: "center", paddingTop: 20 }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: theme.colors.primaryColor,
 
-          <Button
-            title="Consultas"
-            onPress={() =>
-              navigation.navigate("Consultas", { name: "Consultas" })
-            }
-          ></Button>
+                padding: 15,
+                borderRadius: 10,
+              }}
+              title="Formulario Profesional"
+              onPress={() =>
+                navigation.navigate("FormProfessional", {
+                  name: "FormProfessional",
+                })
+              }
+            >
+              <Text style={{ color: theme.colors.secondaryText }}>
+                Formulario Profesional
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <View style={styles.container}>
             <Text
@@ -84,6 +88,31 @@ export function HomeProfessional({ navigation }) {
               <View style={{ paddingVertical: 10, marginBottom: 10 }}>
                 <CardProfessional />
               </View>
+            </View>
+            <View
+              style={{
+                alignItems: "center",
+                padding: 20,
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  backgroundColor: theme.colors.primaryColor,
+                  justifyContent: "center",
+                  padding: 15,
+                  borderRadius: 10,
+                }}
+                title="Consultas"
+                onPress={() =>
+                  navigation.navigate("Consultas", {
+                    name: "Consultas",
+                  })
+                }
+              >
+                <Text style={{ color: theme.colors.secondaryText }}>
+                  Listado de Consultas
+                </Text>
+              </TouchableOpacity>
             </View>
             <View style={{ paddingTop: 15 }}>
               <Text style={{ fontSize: theme.fontSize.secondaryText }}>
