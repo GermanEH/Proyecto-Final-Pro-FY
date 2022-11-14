@@ -58,96 +58,106 @@ export function FormPacient  ()  {
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />
-
-      <CustomInput
+  <CustomInput
         name="name"
-        placeholder="Name"
+        placeholder="Nombre"
         control={control}
         rules={{
-          required: 'Name is required',
+          required: 'Nombre es requerido',
           minLength:{
             value:4,
-            message: 'Name should be minimum 4 characters long'
+            message: 'El nombre deberia tener 4 letras como minimo'
           },
           maxLength:{
             value:20,
-            message: 'Name should be max 20 characters long'
+            message: 'El nombre debe tener como maximo 20 letras'
           }
         }}
       />
       <CustomInput
         name="lastname"
-        placeholder="Last name"
+        placeholder="Apellido"
         control={control}
         rules={{
-          required: 'Lastname is required',
+          required: 'Apellido es requerido',
           minLength:{
             value:4,
-            message: 'Lastname should be minimum 4 characters long'
+            message: 'El Apellido deberia tener 4 letras como minimo'
           },
           maxLength:{
             value:20,
-            message: 'Lastname should be max 20 characters long'
+            message: 'El apellido debe tener como maximo 20 letras'
           }
         }}
       />
-     <CustomInput
+        <CustomInput
       name="password"
-      placeholder="Password"
+      placeholder="Contraseña"
       control={control}
       secureTextEntry
       rules={{
-        required: 'Password is required',
+        required: 'Contraseña requerida',
         minLength:{
           value:8,
-          message: 'Password must be at least 8 characters long'
+          message: 'La contraseña deberia tener 8 letras como minimo'
         },
        
       }}
     />
-     <CustomInput
+      <CustomInput
       name="passwordRepeat"
-      placeholder="Repeat Password"
+      placeholder="Repetir Contraseña"
       control={control}
       secureTextEntry
     rules={{
       validate: value =>
-      value === pwd   || 'Password do not match'
+      value === pwd   || 'Las contraseñas no son iguales'
     }}
     />
       
       <CustomInput
+          name="country"
+          placeholder="Pais"
+          control={control}
+          rules={{required: 'Pais es requerido'}}
+        />
+      <CustomInput
         name="state"
-        placeholder="State"
+        placeholder="Provincia"
         control={control}
-        rules={{required: 'State is required'}}
+        rules={{required: 'Provincia es requerida'}}
       />
         <CustomInput
           name="city"
-          placeholder="City"
+          placeholder="Ciudad"
           control={control}
-          rules={{required: 'City is required'}}
+          rules={{required: 'Ciudad es requerida'}}
       />
-      <CustomInput
+        <CustomInput
+          name="adress"
+          placeholder="Direccion"
+          control={control}
+          rules={{required: 'Direccion es requerida'}}
+        />
+       <CustomInput
         name="zip"
         placeholder="P.C"
         control={control}
-        rules={{required: 'Zip code is required'}}
-        
+        rules={{required: 'Codigo Postal es requerido'}}
       />
-      <CustomInput
+        <CustomInput
           name="dni"
           placeholder="D.N.I"
           control={control}
-          rules={{required: 'DNI is required'}}
+          rules={{required: 'DNI es requerido'}}
         />
       <CustomInput
           name="email"
           placeholder="E-mail"
           control={control}
-          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email es invalido'}}}
       />
-
+      
 
       <View style={styles.button}>
         <Button
