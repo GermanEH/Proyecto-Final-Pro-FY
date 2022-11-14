@@ -17,9 +17,8 @@ import { QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHi
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
-
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
-
+import { ListaConsultas } from './src/components/pacient/ListaConsultas'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
@@ -78,6 +77,9 @@ export default function App() {
             <Stack.Screen
               name="QueriesHistorialPacient"
               component={QueriesHistorialPacient}/> 
+            <Stack.Screen
+              name="ListaConsultas"
+              component={ListaConsultas}/> 
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>

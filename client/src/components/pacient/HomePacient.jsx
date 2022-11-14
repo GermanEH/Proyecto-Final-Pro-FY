@@ -64,14 +64,6 @@ export function HomePacient({ navigation }) {
                     CARRUSEL DE LA CONTRATACION
                 </Text>
                 </View>
-                            <ListaConsultas/>
-            <Text
-            style={{
-                fontSize: theme.fontSize.primaryText,
-                paddingBottom: 10,
-                paddingLeft: 10,
-            }}
-            />
         </ScrollView>
     </SafeAreaView>
     );

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getQueries = createAsyncThunk('queries/getQueries', async () => {
+export const getQueries = createAsyncThunk('queries/getQueries', async (professionals) => {
     try {
         const response = await axios.get('http://localhost:3001/api/queries')
         const data = response.data.data.sort(function(a, b) {
@@ -9,7 +9,21 @@ export const getQueries = createAsyncThunk('queries/getQueries', async () => {
             if(a.name > b.name) return 1;
             return 0
         })
-        return data
+        return data.map(q => {
+            console.log(professionals)
+            console.log(q)
+            let professional = professionals.find(p => p._id === q.professionalId)
+            console.log(professional)
+            let professionalName = professional.last_name
+            console.log(professional)
+            return {
+                id:q._id,
+                doctorName: professionalName,
+                description: q.motive,
+                date: q.queryDate,
+                // isExpanded: false,
+            }
+        })
     } catch (error) {
         return error.message
     }        

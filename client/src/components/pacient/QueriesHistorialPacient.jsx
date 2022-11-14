@@ -14,6 +14,7 @@ import {
   SelectList,
 } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
+import { ListaConsultas } from "./ListaConsultas";
 
 export function QueriesHistorialPacient({ navigation }) {
   
@@ -136,6 +137,9 @@ export function QueriesHistorialPacient({ navigation }) {
                 navigation={navigation}
               />
             </View>
+          </View>
+          <View>
+            <ListaConsultas navigation={navigation}/>
           </View>
         </ScrollView>
       </ScrollView>
