@@ -9,27 +9,29 @@ import CustomInput from '../CustomInput/CustomInput'
 import CustomButtom from '../CustomButton/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import Logo from '../../assets/logo.png';
+import {Picker} from '@react-native-picker/picker';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export function FormProfessional  ()  {
   const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      name: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email:'',
       password:'',
-      passswordRepeat:'',
+      /* passswordRepeat:'', */
       dni: '',
       professionalId:'',
-      speciality:'',
+      
       country:'',
       state:'',
       city:'',
       zip:'',
       professionalAdress:'',
       schedule:'',
-      modality:''
+      modality:[],
+      specialities:''
     }
   });
   const navigation = useNavigation();
@@ -45,6 +47,7 @@ export function FormProfessional  ()  {
     console.log('entramos')
     console.log(data)
     dispatch(postPacient(data))
+    navigation.navigate('SignInScreen')
   };
 
   const onChange = arg => {
@@ -68,7 +71,7 @@ export function FormProfessional  ()  {
           resizeMode="contain"
         />
       <CustomInput
-        name="name"
+        name="first_name"
         placeholder="Nombre"
         control={control}
         rules={{
@@ -84,7 +87,7 @@ export function FormProfessional  ()  {
         }}
       />
       <CustomInput
-        name="lastname"
+        name="last_name"
         placeholder="Apellido"
         control={control}
         rules={{
@@ -113,7 +116,7 @@ export function FormProfessional  ()  {
        
       }}
     />
-     <CustomInput
+    {/*  <CustomInput
       name="passwordRepeat"
       placeholder="Repetir Contraseña"
       control={control}
@@ -122,7 +125,7 @@ export function FormProfessional  ()  {
       validate: value =>
       value === pwd   || 'Las contraseñas no son iguales'
     }}
-    />
+    /> */}
        <CustomInput
           name="country"
           placeholder="Pais"
@@ -134,6 +137,12 @@ export function FormProfessional  ()  {
         placeholder="Provincia"
         control={control}
         rules={{required: 'Provincia es requerida'}}
+      />
+      <CustomInput
+        name="specialities"
+        placeholder="Especialidades"
+        control={control}
+       
       />
         <CustomInput
           name="city"
@@ -173,10 +182,10 @@ export function FormProfessional  ()  {
           rules={{required: 'Turnos son requeridos'}}
         />
          <CustomInput
-          name="modalty"
+          name="modality"
           placeholder="Modalidad"
           control={control}
-          rules={{required: 'Modalidad es requerida'}}
+          /* rules={{required: 'Modalidad es requerida'}} */
         />
       <CustomInput
           name="email"
@@ -184,7 +193,7 @@ export function FormProfessional  ()  {
           control={control}
           rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
       />
-
+     
 
       <View style={styles.button}>
         <Button
