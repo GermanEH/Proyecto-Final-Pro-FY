@@ -3,26 +3,29 @@ import {
   StyleSheet,
   View,
   Image,
+  TextInput,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import theme from "../../theme";
 import {
   SelectList,
-  MultipleSelectList,
 } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 
 export function QueriesHistorialPacient({ navigation }) {
-  const [selected, setSelected] = useState("");
+  
+  const [text, onChangeText] = useState("");
+  const [modalitie, setModalitie] = useState("");
+  const [payment, setPayment] = useState("");
+  const [render, setRender] = useState(false)
 
-  const data = [
-    { key: "1", value: "uno" },
-    { key: "2", value: "dos" },
-    { key: "3", value: "tres" },
-    { key: "4", value: "jhdskjfhkd" },
-  ];
+  const dispatch = useDispatch()
+  const queries = useSelector(state => state.queries.queries)
+  const modalities = useSelector (state => state.queries.modalities)
+  const payments = useSelector (state => state.queries.payments)
 
   return (
     <ScrollView>
@@ -36,40 +39,37 @@ export function QueriesHistorialPacient({ navigation }) {
         >
           GENERAR CONSULTAS:
         </Text>
-
         <View style={{ width: "100%", paddingVertical: 30 }}>
-          <View>
             <Text style={styles.text}>¿Que tipo de consulta desea?</Text>
-            <SelectList
-              boxStyles={{ backgroundColor: "#A8A7A3" }}
-              setSelected={(val) => setSelected(val)}
-              data={data}
-              save="value"
-              placeholder="Seleccionar Opción"
-              inputStyles={{ fontSize: 12 }}
-            />
+            <TextInput
+              multiline={true}
+              numberOfLines={4}
+              onChangeText={onChangeText}
+              style={styles.textInput}
+              placeholder="Describa su problema"
+              value={text}/>
           </View>
           <View style={{ paddingVertical: 15 }}>
             <Text style={styles.text}>Modalidad de consulta:</Text>
-            <SelectList
+            {(modalities.length > 0) ? <SelectList
               boxStyles={{ backgroundColor: "#A8A7A3" }}
-              setSelected={(val) => setSelected(val)}
-              data={data}
+              setSelected={(val) => setModalitie(val)}
+              data={modalities}
               save="value"
               inputStyles={{ fontSize: 12 }}
-            />
+            /> : <Text>Loading...</Text>}
           </View>
           <View style={{ paddingVertical: 15 }}>
             <Text style={styles.text}>Modo de pago:</Text>
-            <MultipleSelectList
+            { (payments.length > 0) ? <SelectList
               boxStyles={{ backgroundColor: "#A8A7A3" }}
-              setSelected={(val) => setSelected(val)}
-              data={data}
+              setSelected={(val) => setPayment(val)}
+              data={payments}
               save="value"
-              onSelect={() => alert(selected)}
+              onSelect={() => alert(payment)}
               label="Categories"
               inputStyles={{ fontSize: 12 }}
-            />
+            /> : <Text>Loading...</Text>}
           </View>
           <View style={{ width: 200, paddingBottom: 40 }}>
             <TouchableOpacity
@@ -93,7 +93,7 @@ export function QueriesHistorialPacient({ navigation }) {
           </View>
         </View>
         <TouchableOpacity
-          title="Consultas"
+          title="ProfessionalsList"
           onPress={() =>
             navigation.navigate("ProfessionalList", {
               name: "ProfessionalList",
@@ -101,12 +101,12 @@ export function QueriesHistorialPacient({ navigation }) {
           }
           style={styles.btn}
         >
+          </TouchableOpacity>
           <Text
             style={{ textAlign: "center", color: theme.colors.secondaryText }}
           >
             Historial
           </Text>
-        </TouchableOpacity>
         <ScrollView style={styles.containerHistorial}>
           <View>
             <View
@@ -138,8 +138,7 @@ export function QueriesHistorialPacient({ navigation }) {
             </View>
           </View>
         </ScrollView>
-      </View>
-    </ScrollView>
+      </ScrollView>
   );
 }
 
@@ -188,4 +187,8 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
     padding: 10,
   },
+  textInput: {
+    backgroundColor: "#A8A7A3",
+    borderRadius: 10
+  }
 });
