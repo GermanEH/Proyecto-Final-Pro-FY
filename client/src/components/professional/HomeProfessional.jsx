@@ -102,15 +102,15 @@ export function HomeProfessional({ navigation }) {
                   padding: 15,
                   borderRadius: 10,
                 }}
-                title="Consultas"
+                title="Listado de Pacientes"
                 onPress={() =>
-                  navigation.navigate("Consultas", {
-                    name: "Consultas",
+                  navigation.navigate("PacientsList", {
+                    name: "PacientsList",
                   })
                 }
               >
                 <Text style={{ color: theme.colors.secondaryText }}>
-                  Listado de Consultas
+                  Listado de Pacientes
                 </Text>
               </TouchableOpacity>
             </View>

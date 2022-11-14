@@ -8,7 +8,6 @@ import { FormPacient } from './src/components/pacient/FormPacient'
 import { FormProfessional } from './src/components/professional/FormProfessional'
 import { HomePacient } from './src/components/pacient/HomePacient'
 import { HomeProfessional } from './src/components/professional/HomeProfessional'
-import { Consultas } from './src/components/shared/Consultas'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
@@ -23,8 +22,8 @@ import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
 import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
-import { GenerateQuery } from './src/components/pacient/GenerateQuery'
-
+import { PacientsList } from './src/components/professional/PacientsList'
+import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
 
 const Stack = createStackNavigator()
 
@@ -50,9 +49,6 @@ export default function App() {
             <Stack.Screen
               name="HomePacient"
               component={HomePacient}/>
-            <Stack.Screen
-              name="Consultas"
-              component={Consultas}/>
             <Stack.Screen
               name="FormProfessional"
               component={FormProfessional}/>
@@ -86,7 +82,13 @@ export default function App() {
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
-
+              component={GenerateQuery}/>   
+            <Stack.Screen
+              name="PacientsList"
+              component={PacientsList}/>   
+            <Stack.Screen
+              name="ListaConsultas"
+              component={ListaConsultas}/>
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
