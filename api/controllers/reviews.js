@@ -1,4 +1,4 @@
-const { queriesModel } = require('../models');
+const { reviewsModel } = require('../models');
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 
@@ -9,12 +9,12 @@ const { matchedData } = require('express-validator');
  * @param {*} req 
  * @param {*} res 
  */
-const getQueries = async (req, res) => {
+const getReviews = async (req, res) => {
   try {
-    const data = await queriesModel.find({});
+    const data = await reviewsModel.find({});
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error_get_queries")
+    handleHttpError(res, "Error_get_reviews")
   }
 }
 
@@ -23,15 +23,15 @@ const getQueries = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const getQueryById = async (req, res) => {
+const getReviewById = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await queriesModel.findById(id)
+    const data = await reviewsModel.findById(id)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error id usuario")
+    handleHttpError(res, "Error id review")
 
   }
 }
@@ -42,14 +42,14 @@ const getQueryById = async (req, res) => {
  * @param {*} res 
  */
 
-const createQueries = async (req, res) => {
+const createReview = async (req, res) => {
   try {
     const body = matchedData(req)
     // console.log(body, bodyClean);
-    const data = await queriesModel.create(body)
+    const data = await reviewsModel.create(body)
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error creando al usuario")
+    handleHttpError(res, "Error creando al review")
   }
 }
 /**
@@ -57,16 +57,16 @@ const createQueries = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteQueries = async (req, res) => {
+const deleteReview = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await queriesModel.delete({ _id: id })
+    const data = await reviewsModel.delete({ _id: id })
     res.send({ data })
   } catch (error) {
     console.log(error);
-    handleHttpError(res, "Error borrando usuario")
+    handleHttpError(res, "Error borrando review")
   }
 }
 
@@ -75,19 +75,19 @@ const deleteQueries = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const editQuery = async (req, res) => {
+const editReview = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
 
-    const data = await queriesModel.findByIdAndUpdate(
+    const data = await reviewsModel.findByIdAndUpdate(
       id, body,
     )
     res.send({ data })
   } catch (error) {
-    handleHttpError(res, "Error editando al usuario")
+    handleHttpError(res, "Error editando al review")
   }
 }
 
 
 
-module.exports = { getQueries, createQueries, getQueryById, deleteQueries, editQuery }
+module.exports = { getReviews, createReview, getReviewById, deleteReview, editReview }

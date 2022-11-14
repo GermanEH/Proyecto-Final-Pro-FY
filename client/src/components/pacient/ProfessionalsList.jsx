@@ -20,7 +20,7 @@ export function ProfessionalsList() {
   const specialties = useSelector(state => state.professionals.specialties)
   const countries = useSelector(state => state.professionals.countries)
   const specialtiesNames = useSelector(state => state.professionals.specialtiesNames)
-  // let specialtieId = ""
+ 
   const dispatch = useDispatch()
   let s = {}
 
@@ -68,9 +68,12 @@ export function ProfessionalsList() {
             (filtered.length > 0 && specialties.length > 0) ? filtered.map((p, index) => {
               let specialty = specialties.filter(s => s._id === p.specialities)[0]
               return (
-              <CardPacient first_name={p.first_name} last_name={p.last_name} country={p.country} 
-              specialty={specialty.name} 
-              key={index} 
+              <CardPacient 
+                first_name={p.first_name} 
+                last_name={p.last_name} 
+                country={p.country} 
+                specialty={specialty.name} 
+                key={index} 
               />
             )
             }) : <Text>Loading...</Text>
@@ -78,13 +81,13 @@ export function ProfessionalsList() {
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
   },
 });

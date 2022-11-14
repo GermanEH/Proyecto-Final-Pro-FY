@@ -18,6 +18,12 @@ import { DatingStatusesBasic } from './src/components/professional/DatingStatuse
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
 
+import { SignInScreen } from './src/components/SignIn/SignInScreen'
+
+import { QueriesDetail} from './src/components/pacient/QueriesDetail'
+import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
+import { QueriesHistorialPacient } from './src/components/pacient/QuereriesHistorialPacient'
+
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -26,13 +32,16 @@ export default function App() {
     // <React.StrictMode>
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator>
+           <Stack.Navigator>
             <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
+              <Stack.Screen
+              name="SignInScreen"
+              component={SignInScreen}/>
             <Stack.Screen
               name="FormPacient"
               component={FormPacient}/>
@@ -63,6 +72,12 @@ export default function App() {
             <Stack.Screen
               name="Queries"
               component={Queries}/>
+            <Stack.Screen
+              name="QueriesDetail"
+              component={QueriesDetail}/> 
+            <Stack.Screen
+              name="QueriesHistorialPacient"
+              component={QueriesHistorialPacient}/> 
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>

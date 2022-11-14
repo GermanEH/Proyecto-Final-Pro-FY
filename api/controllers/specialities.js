@@ -78,9 +78,9 @@ const deleteSpecialities = async (req, res) => {
 const editSpecialities = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
-    // console.log(body, bodyClean);
-    const data = await specialitiesModel.findOneAndUpdate(
-      id, body
+    console.log(id, body,);
+    const data = await specialitiesModel.findByIdAndUpdate(
+      id, body,
     )
     res.send({ data })
   } catch (error) {

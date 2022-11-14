@@ -7,9 +7,8 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { ButtonGreen, ButtonRed } from "../shared/Button";
 
-export function DatingStatusesBasic(props) {
+export function QueriesDetail() {
   return (
     <View>
       <ScrollView>
@@ -23,6 +22,7 @@ export function DatingStatusesBasic(props) {
               <Text>Tipo de Consulta</Text>
               <Text>Profesional</Text>
             </View>
+
             <View style={{ flexDirection: "row", padding: 10 }}>
               <Text>Estado:</Text>
               <Text style={{ color: "blue", padding: 10 }}>Resuelta</Text>
@@ -31,6 +31,7 @@ export function DatingStatusesBasic(props) {
               <Text>Estado:</Text>
               <Text style={{ color: "#f0c325", padding: 10 }}>Pendiente</Text>
             </View>
+
             <View style={styles.containerObservations}>
               <View style={styles.observations}>
                 <Text>Observasiones</Text>
@@ -71,14 +72,7 @@ export function DatingStatusesBasic(props) {
               </View>
             </View>
           </View>
-          <ButtonRed
-            text={"Cancelar consulta"}
-            color={theme.colors.secondaryText}
-          />
-          <ButtonGreen
-            text={"Confirmar consulta"}
-            color={theme.colors.secondaryText}
-          />
+          <View style={styles.containerBtn}></View>
         </View>
       </ScrollView>
     </View>

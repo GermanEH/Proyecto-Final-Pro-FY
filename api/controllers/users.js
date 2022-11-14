@@ -78,8 +78,8 @@ const deleteUsers = async (req, res) => {
 const editUsers = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
-
-    const data = await usersModel.findOneAndUpdate(
+    //console.log(id, body);
+    const data = await usersModel.findByIdAndUpdate(
       id, body,
     )
     res.send({ data })

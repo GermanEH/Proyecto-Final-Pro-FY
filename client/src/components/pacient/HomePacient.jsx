@@ -11,8 +11,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
 import { CardPacient } from "./CardPacient";
-import { getProfessionals, getProfessional, postProfessional, putProfessional, deleteProfessional  } from '../../slices/professionalsActions'
-import { getQueries, getQuery, postQuery, putQuery, deleteQuery  } from '../../slices/queriesActions'
+import { ButtonHomePacientQueries } from "../shared/Button";
+import { ListaConsultas } from "./ListaConsultas";
 
 export function HomePacient({ navigation }) {
 
@@ -74,8 +74,24 @@ export function HomePacient({ navigation }) {
                 CARRUSEL DE LA CONTRATACION
             </Text>
             </View>
+                        <ListaConsultas/>
+          </Text>
+          <Text
+            style={{
+              fontSize: theme.fontSize.primaryText,
+              paddingBottom: 10,
+              paddingLeft: 10,
+            }}
+          >
+          <View style={{ alignItems: "center", padding: 100 }}>
+            <ButtonHomePacientQueries navigation={navigation} />
+          </View>
+          <Text>Favoritos:</Text>
+          <CardPacient />
+        </View>
         </ScrollView>
         </SafeAreaView>
+
     );
 }
 
