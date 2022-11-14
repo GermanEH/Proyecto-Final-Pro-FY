@@ -18,73 +18,65 @@ export function HomePacient({ navigation }) {
   const pacients = useSelector((state) => state.pacients);
   const dispatch = useDispatch();
 
-  return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.containerBtnForm}>
-          <TouchableOpacity
-            title="FormularioUsuario"
-            onPress={() =>
-              navigation.navigate("FormPacient", {
-                name: "FormPacient",
-              })
-            }
-            style={styles.btn}
-          >
-            <Text style={{ textAlign: "center" }}>Formulario de Usuario</Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
-        >
-          Hola,
-        </Text>
-        <Text
-          style={{
-            fontSize: theme.fontSize.primaryText,
-            paddingBottom: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Daniela Gomez
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-          similique, illo expedita et dicta ullam, voluptate animi quasi
-          voluptatem, voluptates repellat deserunt dolore atque voluptatibus id
-          totam sapiente a incidunt!
-        </Text>
-        <View style={styles.containerBtnQueries}>
-          <TouchableOpacity
-            title="QueriesHistorialPacientBasic"
-            onPress={() =>
-              navigation.navigate("QueriesHistorialPacientBasic", {
-                name: "QueriesHistorialPacientBasic",
-              })
-            }
-            style={styles.btn}
-          >
-            <Text style={{ textAlign: "center" }}>Consultas</Text>
-          </TouchableOpacity>
-        </View>
-        <Text>Favoritos:</Text>
-        {/* <CardPacient /> */}
-        <View style={styles.containerComments}>
-          <Text style={{ textAlign: "center" }}>
-            CARRUSEL DE LA CONTRATACION
-          </Text>
-        </View>
-        <ListaConsultas />
-        <View
-          style={{
-            fontSize: theme.fontSize.primaryText,
-            paddingBottom: 10,
-            paddingLeft: 10,
-          }}
-        ></View>
-      </ScrollView>
+    const pacients = useSelector((state) => state.pacients);
+    const dispatch = useDispatch();
+
+    return (
+        <SafeAreaView>
+            <ScrollView>
+                    <View style={styles.containerBtnForm}>
+                            <TouchableOpacity
+                                title="FormularioUsuario"
+                                onPress={() =>
+                                    navigation.navigate("FormPacient", {
+                                    name: "FormPacient",
+                                    })
+                                }
+                                style={styles.btn}
+                                >
+                                <Text style={{ textAlign: "center" }}>Formulario de Usuario</Text>
+                                </TouchableOpacity>
+                    </View>
+                <Text 
+                    style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}>
+                    Hola,
+                </Text>
+                <Text
+                    style={{
+                    fontSize: theme.fontSize.primaryText,
+                    paddingBottom: 10,
+                    paddingLeft: 10,
+                    }}
+                >
+                    Daniela Gomez
+                </Text>
+                <Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+                    similique, illo expedita et dicta ullam, voluptate animi quasi
+                    voluptatem, voluptates repellat deserunt dolore atque voluptatibus
+                    id totam sapiente a incidunt!
+                </Text>
+                <View style={{ alignItems: "center", padding: 100 }}>
+                <ButtonHomePacientQueries navigation={navigation} />
+                </View>
+                <Text>Favoritos:</Text>
+                {/* <CardPacient first_name={first_name} last_name, country, specialty}/> */}
+                <View style={styles.containerComments}>
+                <Text style={{ textAlign: "center" }}>
+                    CARRUSEL DE LA CONTRATACION
+                </Text>
+                </View>
+                            <ListaConsultas/>
+            <Text
+            style={{
+                fontSize: theme.fontSize.primaryText,
+                paddingBottom: 10,
+                paddingLeft: 10,
+            }}
+            />
+        </ScrollView>
     </SafeAreaView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({

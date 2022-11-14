@@ -13,7 +13,7 @@ import { Provider } from 'react-redux'
 import { store } from './src/store'
 import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
-import {  QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
+import { QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
 /* import { Loading } from './src/components/loading/Loading'; */
 import { Queries } from './src/components/pacient/Queries'
@@ -22,8 +22,9 @@ import { SignInScreen } from './src/components/SignIn/SignInScreen'
 
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
-import { QueriesHistorialPacient } from './src/components/pacient/QuereriesHistorialPacient'
 import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail'
+import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
+
 
 const Stack = createStackNavigator()
 
