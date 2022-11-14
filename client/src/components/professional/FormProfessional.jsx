@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions, ScrollView,
+  SafeAreaView, } from 'react-native';
 import { useDispatch } from 'react-redux'
 import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
@@ -40,7 +41,7 @@ export function FormProfessional  ()  {
     navigation.navigate('Home');
   };
   const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log('entramos')
     console.log(data)
     dispatch(postPacient(data))
@@ -55,6 +56,10 @@ export function FormProfessional  ()  {
   const dispatch = useDispatch()
 
   return (
+    <SafeAreaView>
+      <ScrollView>
+
+    
     <View style={styles.container}>
       <View style={styles.root}>   
         <Image
@@ -65,114 +70,114 @@ export function FormProfessional  ()  {
 
       <CustomInput
         name="name"
-        placeholder="Name"
+        placeholder="Nombre"
         control={control}
         rules={{
-          required: 'Name is required',
+          required: 'Nombre es requerido',
           minLength:{
             value:4,
-            message: 'Name should be minimum 4 characters long'
+            message: 'El nombre deberia tener 4 letras como minimo'
           },
           maxLength:{
             value:20,
-            message: 'Name should be max 20 characters long'
+            message: 'El nombre debe tener como maximo 20 letras'
           }
         }}
       />
       <CustomInput
         name="lastname"
-        placeholder="Last name"
+        placeholder="Apellido"
         control={control}
         rules={{
-          required: 'Lastname is required',
+          required: 'Apellido es requerido',
           minLength:{
             value:4,
-            message: 'Lastname should be minimum 4 characters long'
+            message: 'El Apellido deberia tener 4 letras como minimo'
           },
           maxLength:{
             value:20,
-            message: 'Lastname should be max 20 characters long'
+            message: 'El apellido debe tener como maximo 20 letras'
           }
         }}
       />
      <CustomInput
       name="password"
-      placeholder="Password"
+      placeholder="Contraseña"
       control={control}
       secureTextEntry
       rules={{
-        required: 'Password is required',
+        required: 'Contraseña requerida',
         minLength:{
           value:8,
-          message: 'Password must be at least 8 characters long'
+          message: 'La contraseña deberia tener 8 letras como minimo'
         },
        
       }}
     />
      <CustomInput
       name="passwordRepeat"
-      placeholder="Repeat Password"
+      placeholder="Repetir Contraseña"
       control={control}
       secureTextEntry
     rules={{
       validate: value =>
-      value === pwd   || 'Password do not match'
+      value === pwd   || 'Las contraseñas no son iguales'
     }}
     />
        <CustomInput
           name="country"
-          placeholder="Country"
+          placeholder="Pais"
           control={control}
-          rules={{required: 'Country is required'}}
+          rules={{required: 'Pais es requerido'}}
         />
       <CustomInput
         name="state"
-        placeholder="State"
+        placeholder="Provincia"
         control={control}
-        rules={{required: 'State is required'}}
+        rules={{required: 'Provincia es requerida'}}
       />
         <CustomInput
           name="city"
-          placeholder="City"
+          placeholder="Ciudad"
           control={control}
-          rules={{required: 'City is required'}}
+          rules={{required: 'Ciudad es requerida'}}
       />
       <CustomInput
         name="zip"
         placeholder="P.C"
         control={control}
-        rules={{required: 'Zip code is required'}}
+        rules={{required: 'Codigo Postal es requerido'}}
         
       />
        <CustomInput
           name="professionalId"
-          placeholder="Professional ID"
+          placeholder="Matricula del profesional"
           control={control}
-          rules={{required: 'Professional ID is required'}}
+          rules={{required: 'Matricula del profesional es requerida'}}
         />
       <CustomInput
           name="dni"
           placeholder="D.N.I"
           control={control}
-          rules={{required: 'DNI is required'}}
+          rules={{required: 'DNI es requerido'}}
         />
          <CustomInput
           name="professionalAdress"
-          placeholder="Professional Adress "
+          placeholder="Direccion del profesional"
           control={control}
-          rules={{required: 'Professional Adress is required'}}
+          rules={{required: 'Direccion del profesional es requerida'}}
         />
          <CustomInput
           name="schedule"
-          placeholder="Schedule"
+          placeholder="Turnos"
           control={control}
-          rules={{required: 'Schedule is required'}}
+          rules={{required: 'Turnos son requeridos'}}
         />
          <CustomInput
           name="modalty"
-          placeholder="Modality"
+          placeholder="Modalidad"
           control={control}
-          rules={{required: 'Modality is required'}}
+          rules={{required: 'Modalidad es requerida'}}
         />
       <CustomInput
           name="email"
@@ -200,6 +205,8 @@ export function FormProfessional  ()  {
       </View>
       </View>
     </View>
+    </ScrollView>
+    </SafeAreaView>
   );
 };
 
