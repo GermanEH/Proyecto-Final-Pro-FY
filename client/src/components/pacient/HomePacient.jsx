@@ -1,12 +1,12 @@
 import React from "react";
 import {
-    View,
-    Text,
-    Button,
-    StyleSheet,
-    TouchableOpacity,
-    ScrollView,
-    SafeAreaView,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
@@ -15,6 +15,8 @@ import { ButtonHomePacientQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
 
 export function HomePacient({ navigation }) {
+  const pacients = useSelector((state) => state.pacients);
+  const dispatch = useDispatch();
 
     const pacients = useSelector((state) => state.pacients);
     const dispatch = useDispatch();
@@ -78,38 +80,38 @@ export function HomePacient({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 25,
+  container: {
+    marginHorizontal: 25,
+  },
+  containerBtnForm: {
+    alignItems: "center",
+    padding: 25,
+  },
+  containerBtnQueries: {
+    alignItems: "center",
+    padding: 100,
+  },
+  btn: {
+    backgroundColor: theme.colors.primaryColor,
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: theme.borderRadius.borderRadiusBotton,
+  },
+  containerComments: {
+    width: "100%",
+    height: 300,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
     },
-    containerBtnForm: {
-        alignItems: "center",
-        padding: 25
-    },
-    containerBtnQueries: {
-        alignItems: "center",
-        padding: 100,
-    },
-    btn: {
-        backgroundColor: theme.colors.primaryColor,
-        paddingHorizontal: 30,
-        paddingVertical: 10,
-        borderRadius: theme.borderRadius.borderRadiusBotton,
-    },
-    containerComments: {
-        width: "100%",
-        height: 300,
-        backgroundColor: "white",
-        shadowColor: "#000",
-        shadowOffset: {
-        width: 0,
-        height: 8,
-        },
-        shadowOpacity: 0.44,
-        shadowRadius: 10.32,
-        elevation: 16,
-        borderRadius: 10,
-        marginVertical: 40,
-        justifyContent: "center",
-        paddingBottom: 40,
-    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
+    marginVertical: 40,
+    justifyContent: "center",
+    paddingBottom: 40,
+  },
 });
