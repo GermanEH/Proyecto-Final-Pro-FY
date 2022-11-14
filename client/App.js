@@ -34,7 +34,7 @@ export default function App() {
     // <React.StrictMode>
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator>
+           <Stack.Navigator>
            <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
@@ -74,18 +74,19 @@ export default function App() {
             <Stack.Screen
               name="Queries"
               component={Queries}/>
-            <Stack.Screen
-              name="QueriesDetail"
-              component={QueriesDetail}/> 
-            <Stack.Screen
+              <Stack.Screen
               name="QueriesHistorialPacient"
               component={QueriesHistorialPacient}/>  
-            <Stack.Screen
+              <Stack.Screen
               name="ProfessionalDetail"
               component={ProfessionalDetail}/>   
-            <Stack.Screen
+              <Stack.Screen
               name="GenerateQuery"
-              component={GenerateQuery}/>   
+            component={GenerateQuery}/>   
+              <Stack.Screen
+              name="QueriesDetail"
+            component={QueriesDetail}/>   
+
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
