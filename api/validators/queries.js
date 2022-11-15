@@ -16,10 +16,10 @@ const validatorCreateQuery = [
   check("state")
     .exists()
     .notEmpty(),
-  check("userId")
+  check("users")
     .exists()
     .notEmpty(),
-  check("professionalId")
+  check("professionals")
     .exists()
     .notEmpty(),
 
