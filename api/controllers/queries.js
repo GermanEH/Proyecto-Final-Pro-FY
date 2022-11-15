@@ -9,16 +9,9 @@ const { matchedData } = require('express-validator');
  * @param {*} req 
  * @param {*} res 
  */
-const getQueries = async (req, res) => {
+const getQueries = async (_req, res) => {
   try {
-
-    const data = await queriesModel.find({})
-    // .populate({
-    //   path: "professionals",
-    //   populate: {
-    //     path: "users",
-    //   }
-    // });
+    const data = await queriesModel.find({}).populate("users").populate("professionals")
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_queries")

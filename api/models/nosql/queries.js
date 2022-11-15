@@ -21,13 +21,13 @@ const queriesScheme = new mongoose.Schema(
       type: ['pending', 'resolved'],
       defualt: 'pending'
     },
-    userId: {
-      type: Schema.Types.ObjectId,
+    users: {
+      type: mongoose.Types.ObjectId,
       required: true,
       ref: "users"
     },
-    professionalId: {
-      type: Schema.Types.ObjectId,
+    professionals: {
+      type: mongoose.Types.ObjectId,
       required: true,
       ref: "professionals"
     },
