@@ -1,231 +1,199 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert,Picker, TextField } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions, ScrollView,
+  SafeAreaView, } from 'react-native';
+import { useDispatch } from 'react-redux'
+import { postProfessional } from '../../slices/professionalsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-import { postProfessional  } from '../../slices/professionalsActions'
-import { useDispatch } from 'react-redux'
-//hola
+import CustomInput from '../CustomInput/CustomInput'
+import CustomButtom from '../CustomButton/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../../assets/logo.png';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
 export function FormProfessional  ()  {
-  const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+  const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      contrasena:'',
-      numeroTarjeta: '',
-      especialidad:'',
-      provincia:'',
-      ciudad:'',
-      cp:'',
-      direccion:'',
-      disponibilidad:'',
-      modalidad:''
+      first_name: '',
+      last_name: '',
+      email:'',
+      password:'',
+      /* passswordRepeat:'', */
+      dni: '',
+      professionalId:'',
+      speciality:'',
+      country:'',
+      state:'',
+      city:'',
+      zip:'',
+      professionalAdress:'',
+      schedule:'',
+      modality:[]
     }
   });
-
-  const dispatch = useDispatch()
-
-  const onSubmit = data => {
-     console.log('entramos')
-     console.log(data)
-     //dispatch(postProfessional(data))
+  const navigation = useNavigation();
+  const onSignUpPress = () => {
+    navigation.navigate('SignInScreen')
+  }
+  const onSignInPressed = () => {
+    // validate user
+    navigation.navigate('Home');
+  };
+  const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
+  const onSubmit = (data) => {
+    console.log('entramos')
+    console.log(data)
+    dispatch(postProfessional(data))
+    navigation.navigate('SignInScreen')
   };
 
-  const onChange = arg => {
+  /* const onChange = arg => {
     return {
       value: arg.nativeEvent.text,
     };
-  };
-
-  
- 
-  //console.log('errors', errors);
+  }; */
+  const {height} = useWindowDimensions();
+  const dispatch = useDispatch()
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Nombre</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="nombre"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>Apellido</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="apellido"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>contraseña</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-            secureTextEntry={true}
-          />
-        )}
-        name="contrasena"
-        rules={{ required: true }}
-      />
-        <Text style={styles.label}>Matricula</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="numeroTarjeta"
-        rules={{ required: true }}
-      />
-<Text style={styles.label}>Especialidad</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="especialidad"
-        rules={{ required: true }}
-      />
-
-         <Text style={styles.label}>Provincia</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="provincia"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Ciudad</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="ciudad"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Codigo Postal</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="cp"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Direccion</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="direccion"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>Disponibilidad Horaria</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="disponibilidad"
-        rules={{ required: true }}
-      />
+    <SafeAreaView>
+      <ScrollView>
 
     
-       
-      <Text style={styles.label}>Modalidad de Consulta</Text>
-      
-       <Picker
-        //selectedValue={modalidad}
-        style={{ height: 50, width: 150 }}
-        //name="modalidad"
-        onValueChange={(itemValue, itemIndex) =>setValue("modalidad",itemValue)}
-      >
-        <Picker.Item label="Teleconsulta" value="remote" />
-        <Picker.Item label="Presencial" value="presential" />
-      
-      </Picker>
-     
-
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Reset"
-          onPress={() => {
-            reset({
-               nombre: '',
-              apellido: '',
-              contrasena:'',
-              numeroTarjeta: '',
-              especialidad:'',
-              provincia:'',
-              ciudad:'',
-              cp:'',
-              direccion:'',
-              disponibilidad:'',
-              modalidad:''
-            })
-          }}
+    <View style={styles.container}>
+      <View style={styles.root}>   
+        <Image
+          source={Logo}
+          style={[styles.logo, {height: height * 0.3}]}
+          resizeMode="contain"
         />
-      </View>
+      <CustomInput
+        name="first_name"
+        placeholder="Nombre"
+        control={control}
+        rules={{
+          required: 'Nombre es requerido',
+          minLength:{
+            value:4,
+            message: 'El nombre deberia tener 4 letras como minimo'
+          },
+          maxLength:{
+            value:20,
+            message: 'El nombre debe tener como maximo 20 letras'
+          }
+        }}
+      />
+      <CustomInput
+        name="last_name"
+        placeholder="Apellido"
+        control={control}
+        rules={{
+          required: 'Apellido es requerido',
+          minLength:{
+            value:4,
+            message: 'El Apellido deberia tener 4 letras como minimo'
+          },
+          maxLength:{
+            value:20,
+            message: 'El apellido debe tener como maximo 20 letras'
+          }
+        }}
+      />
+     <CustomInput
+      name="password"
+      placeholder="Contraseña"
+      control={control}
+      secureTextEntry
+      rules={{
+        required: 'Contraseña requerida',
+        minLength:{
+          value:8,
+          message: 'La contraseña deberia tener 8 letras como minimo'
+        },
+       
+      }}
+    />
+    {/*  <CustomInput
+      name="passwordRepeat"
+      placeholder="Repetir Contraseña"
+      control={control}
+      secureTextEntry
+    rules={{
+      validate: value =>
+      value === pwd   || 'Las contraseñas no son iguales'
+    }}
+    /> */}
+       <CustomInput
+          name="country"
+          placeholder="Pais"
+          control={control}
+          rules={{required: 'Pais es requerido'}}
+        />
+      <CustomInput
+        name="state"
+        placeholder="Provincia"
+        control={control}
+        rules={{required: 'Provincia es requerida'}}
+      />
+        <CustomInput
+          name="city"
+          placeholder="Ciudad"
+          control={control}
+          rules={{required: 'Ciudad es requerida'}}
+      />
+      <CustomInput
+        name="zip"
+        placeholder="P.C"
+        control={control}
+        rules={{required: 'Codigo Postal es requerido'}}
+        
+      />
+
+<CustomInput
+        name="speciality"
+        placeholder="Especialidad"
+        control={control}
+        
+        
+      />
+       <CustomInput
+          name="professionalId"
+          placeholder="Matricula del profesional"
+          control={control}
+          rules={{required: 'Matricula del profesional es requerida'}}
+        />
+      <CustomInput
+          name="dni"
+          placeholder="D.N.I"
+          control={control}
+          rules={{required: 'DNI es requerido'}}
+        />
+         <CustomInput
+          name="professionalAdress"
+          placeholder="Direccion del profesional"
+          control={control}
+          rules={{required: 'Direccion del profesional es requerida'}}
+        />
+         <CustomInput
+          name="schedule"
+          placeholder="Turnos"
+          control={control}
+          rules={{required: 'Turnos son requeridos'}}
+        />
+         <CustomInput
+          name="modality"
+          placeholder="Modalidad"
+          control={control}
+          /* rules={{required: 'Modalidad es requerida'}} */
+        />
+      <CustomInput
+          name="email"
+          placeholder="E-mail"
+          control={control}
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
+      />
+
 
       <View style={styles.button}>
         <Button
@@ -235,35 +203,37 @@ export function FormProfessional  ()  {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
+      
+      <View>
+      <CustomButtom
+          text="Ya tienes una cuenta? Ingresa Aquí"
+          onPress={onSignUpPress}
+          type="TERTIARY"
+        />
+      </View>
+      </View>
     </View>
+    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  label: {
-    color: 'white',
-    margin: 20,
-    marginLeft: 0,
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
   },
   button: {
     marginTop: 40,
     color: 'white',
     height: 40,
-    backgroundColor: '#ec5990',
-    borderRadius: 4,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8,
-    backgroundColor: '#0e101c',
-  },
-  input: {
-    backgroundColor: 'white',
-    borderColor: 'none',
-    height: 40,
-    padding: 10,
+    backgroundColor: 'orange',
     borderRadius: 4,
   },
 });
+

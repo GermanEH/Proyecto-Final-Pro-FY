@@ -1,4 +1,4 @@
-const { specialtiesModel } = require('../models');
+const { specialitiesModel } = require('../models');
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 
@@ -11,7 +11,7 @@ const { matchedData } = require('express-validator');
  */
 const getSpecialities = async (req, res) => {
   try {
-    const data = await specialtiesModel.find({});
+    const data = await specialitiesModel.find({});
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_items")
@@ -28,7 +28,7 @@ const getSpecialitiesById = async (req, res) => {
     req = matchedData(req)
     const { id } = req
     // console.log(id)
-    const data = await specialtiesModel.findById(id)
+    const data = await specialitiesModel.findById(id)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id especialidad")
@@ -46,7 +46,7 @@ const createSpecialities = async (req, res) => {
   try {
 
     const body = matchedData(req)
-    const data = await specialtiesModel.create(body)
+    const data = await specialitiesModel.create(body)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error creando la especialidad")
@@ -62,7 +62,7 @@ const deleteSpecialities = async (req, res) => {
     req = matchedData(req)
     const { id } = req
     // console.log(id)
-    const data = await specialtiesModel.delete({ _id: id })
+    const data = await specialitiesModel.delete({ _id: id })
     res.send({ data })
   } catch (error) {
     console.log(error);
@@ -78,9 +78,9 @@ const deleteSpecialities = async (req, res) => {
 const editSpecialities = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req)
-    // console.log(body, bodyClean);
-    const data = await usersModel.findOneAndUpdate(
-      id, body
+    console.log(id, body,);
+    const data = await specialitiesModel.findByIdAndUpdate(
+      id, body,
     )
     res.send({ data })
   } catch (error) {

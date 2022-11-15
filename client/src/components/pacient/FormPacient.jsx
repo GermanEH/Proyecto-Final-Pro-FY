@@ -1,28 +1,45 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions } from 'react-native';
 import { useDispatch } from 'react-redux'
 import { postPacient } from '../../slices/pacientsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
-//hola
+import CustomInput from '../CustomInput/CustomInput'
+import CustomButtom from '../CustomButton/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../../assets/logo.png';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
 export function FormPacient  ()  {
-  const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+  const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       first_name: '',
       last_name: '',
+      email:'',
+      password:'',
+    /*   passswordRepeat:'', */
       DNI: '',
+      country:'',
       state:'',
-      city:'',
       postcode:'',
       address:'',
-      email:'',
-      password:''
     }
   });
-  const onSubmit = data => {
+  const navigation = useNavigation();
+  const onSignUpPress = () => {
+    navigation.navigate('SignInScreen')
+  }
+  const onSignInPressed = () => {
+    // validate user
+    navigation.navigate('Home');
+  };
+  const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
+  const onSubmit = (data) => {
     console.log('entramos')
     console.log(data)
     dispatch(postPacient(data))
+    navigation.navigate('SignInScreen')
   };
 
   const onChange = arg => {
@@ -30,141 +47,117 @@ export function FormPacient  ()  {
       value: arg.nativeEvent.text,
     };
   };
-
+  const {height} = useWindowDimensions();
   const dispatch = useDispatch()
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Nombre</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
+      <View style={styles.root}>   
+        <Image
+          source={Logo}
+          style={[styles.logo, {height: height * 0.3}]}
+          resizeMode="contain"
+        />
+  <CustomInput
         name="first_name"
-        rules={{ required: true }}
-      />{errors.nombre && <Text>This is required.</Text>}
-      <Text style={styles.label}>Apellido</Text>
-      <Controller
+        placeholder="Nombre"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
+        rules={{
+          required: 'Nombre es requerido',
+          minLength:{
+            value:4,
+            message: 'El nombre deberia tener 4 letras como minimo'
+          },
+          maxLength:{
+            value:20,
+            message: 'El nombre debe tener como maximo 20 letras'
+          }
+        }}
+      />
+      <CustomInput
         name="last_name"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>D.N.I</Text>
-      <Controller
+        placeholder="Apellido"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="DNI"
-        rules={{ required: true }}
+        rules={{
+          required: 'Apellido es requerido',
+          minLength:{
+            value:4,
+            message: 'El Apellido deberia tener 4 letras como minimo'
+          },
+          maxLength:{
+            value:20,
+            message: 'El apellido debe tener como maximo 20 letras'
+          }
+        }}
       />
-         <Text style={styles.label}>Provincia</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
+        <CustomInput
+      name="password"
+      placeholder="Contraseña"
+      control={control}
+      secureTextEntry
+      rules={{
+        required: 'Contraseña requerida',
+        minLength:{
+          value:8,
+          message: 'La contraseña deberia tener 8 letras como minimo'
+        },
+       
+      }}
+    />
+     {/*  <CustomInput
+      name="passwordRepeat"
+      placeholder="Repetir Contraseña"
+      control={control}
+      secureTextEntry
+    rules={{
+      validate: value =>
+      value === pwd   || 'Las contraseñas no son iguales'
+    }}
+    /> */}
+      
+      <CustomInput
+          name="country"
+          placeholder="Pais"
+          control={control}
+          rules={{required: 'Pais es requerido'}}
+        />
+      <CustomInput
         name="state"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Ciudad</Text>
-      <Controller
+        placeholder="Provincia"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="city"
-        rules={{ required: true }}
+        rules={{required: 'Provincia es requerida'}}
       />
-
-      <Text style={styles.label}>Codigo Postal</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
+        <CustomInput
+          name="city"
+          placeholder="Ciudad"
+          control={control}
+          rules={{required: 'Ciudad es requerida'}}
+      />
+        <CustomInput
+          name="address"
+          placeholder="Direccion"
+          control={control}
+          rules={{required: 'Direccion es requerida'}}
+        />
+       <CustomInput
         name="postcode"
-        rules={{ required: true }}
-      />
-
-      <Text style={styles.label}>Direccion</Text>
-      <Controller
+        placeholder="P.C"
         control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="address"
-        rules={{ required: true }}
+        rules={{required: 'Codigo Postal es requerido'}}
       />
-      <Text style={styles.label}>E-mail</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="email"
-        rules={{ required: true }}
+        <CustomInput
+          name="DNI"
+          placeholder="D.N.I"
+          control={control}
+          rules={{required: 'DNI es requerido'}}
+        />
+      <CustomInput
+          name="email"
+          placeholder="E-mail"
+          control={control}
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email es invalido'}}}
       />
-    <Text style={styles.label}>Contraseña</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            secureTextEntry={true}
-            value={value}
-          />
-        )}
-        name="password"
-        rules={{ required: true }}
-      />
+      
 
       <View style={styles.button}>
         <Button
@@ -174,35 +167,34 @@ export function FormPacient  ()  {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
+      
+      <View>
+      <CustomButtom
+          text="Ya tienes una cuenta? Ingresa Aquí"
+          onPress={onSignUpPress}
+          type="TERTIARY"
+        />
+      </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  label: {
-    color: 'black',
-    margin: 20,
-    marginLeft: 0,
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
   },
   button: {
     marginTop: 40,
     color: 'white',
     height: 40,
     backgroundColor: 'orange',
-    borderRadius: 4,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8,
-    backgroundColor: 'white',
-  },
-  input: {
-    backgroundColor: 'orange',
-    borderColor: 'none',
-    height: 40,
-    padding: 10,
     borderRadius: 4,
   },
 });

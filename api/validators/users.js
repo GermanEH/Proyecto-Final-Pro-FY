@@ -46,6 +46,40 @@ const validatorCreateUser = [
   }
 ];
 
+const validatorPutUsers = [
+
+  check("first_name")
+    .optional(),
+  check("last_name")
+    .optional(),
+  check("email")
+    .optional(),
+  check("favorites")
+    .optional(),
+  check("state")
+    .optional(),
+  check("city")
+    .optional(),
+  check("password")
+    .optional(),
+  check("role")
+    .optional(),
+  check("address")
+    .optional(),
+  check("DNI")
+    .optional(),
+  check("country")
+    .optional(),
+  check("postcode")
+    .optional(),
+
+
+
+  (req, res, next) => {
+    return validateResults(req, res, next)
+  }
+];
+
 const validatorIdUser = [
 
   check("id")
@@ -59,4 +93,4 @@ const validatorIdUser = [
 
 
 
-module.exports = { validatorCreateUser, validatorIdUser }
+module.exports = { validatorCreateUser, validatorIdUser, validatorPutUsers }

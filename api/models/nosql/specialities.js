@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
-const SpecialtiesScheme = new mongoose.Schema(
+const SpecialitiesScheme = new mongoose.Schema(
 
   {
+    id: {
+      type: mongoose.Types.ObjectId,
+    },
     name: {
       type: String,
       unique: true
@@ -15,5 +18,5 @@ const SpecialtiesScheme = new mongoose.Schema(
   }
 
 );
-SpecialtiesScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
-module.exports = mongoose.model("specialties", SpecialtiesScheme)
+SpecialitiesScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
+module.exports = mongoose.model("specialities", SpecialitiesScheme)

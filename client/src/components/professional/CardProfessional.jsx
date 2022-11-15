@@ -1,6 +1,6 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import theme from "../../theme";
-export function CardProfessional() {
+export function CardProfessional({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
@@ -20,7 +20,14 @@ export function CardProfessional() {
             Ranita Pelona
           </Text>
           <View>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("DatingStatuses", {
+                  name: "DatingStatuses",
+                });
+              }}
+              style={styles.btn}
+            >
               <Text>Ver más {">"}</Text>
             </TouchableOpacity>
           </View>

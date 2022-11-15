@@ -91,7 +91,8 @@ export function HomeProfessional({ navigation }) {
               Consulta del dia de hoy:
             </Text>
             <View style={{ paddingVertical: 10 }}>
-              <CardProfessional />
+              <CardProfessional navigation={navigation} />
+
             </View>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional />
