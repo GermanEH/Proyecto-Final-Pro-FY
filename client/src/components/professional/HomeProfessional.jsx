@@ -13,7 +13,8 @@ import { CardProfessional } from "./CardProfessional";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getProfessionals } from "../../slices/professionalsActions";
+import { Carousel } from "../Carousel/Carousel";
 export function HomeProfessional({ navigation }) {
   const professionals = useSelector((state) => state.professionals);
   const dispatch = useDispatch();
@@ -21,30 +22,52 @@ export function HomeProfessional({ navigation }) {
   useEffect(() => console.log(professionals), [professionals]);
   return (
     <SafeAreaView>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
+      <ScrollView>
         <View>
-          <View style={{ alignItems: "center", paddingTop: 20 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: theme.colors.primaryColor,
+          <Button
+            title="Formulario Profesional"
+            onPress={() =>
+              navigation.navigate("FormProfessional", {
+                name: "FormProfessional",
+              })
+            }
+          ></Button>
 
-                padding: 15,
-                borderRadius: 10,
-              }}
-              title="Formulario Profesional"
-              onPress={() =>
-                navigation.navigate("FormProfessional", {
-                  name: "FormProfessional",
-                })
-              }
-            >
-              <Text style={{ color: theme.colors.secondaryText }}>
-                Formulario Profesional
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <Button
+            title="GetProfessionals"
+            onPress={() => dispatch(getProfessionals())}
+          />
+
+          <Button
+            title="Consultas"
+            onPress={() =>
+              navigation.navigate("Consultas", { name: "Consultas" })
+            }
+          ></Button>
+          <Button
+            title="FormProfessional"
+            onPress={() => navigation.navigate("FormProfessional")}
+          ></Button>
+          <Button
+            title="updateData"
+            onPress={() => dispatch(putProfessional(updated.id, updated))}
+          />
+          <Button
+            title="delete"
+            onPress={() => dispatch(deleteProfessional(updated.id))}
+          />
 
           <View style={styles.container}>
+            <Button
+              title="GetProfessionals"
+              onPress={() => dispatch(getProfessionals())}
+            />
+            <Button
+              title="Consultas"
+              onPress={() =>
+                navigation.navigate("Consultas", { name: "Consultas" })
+              }
+            ></Button>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
             >
@@ -69,6 +92,7 @@ export function HomeProfessional({ navigation }) {
             </Text>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional navigation={navigation} />
+
             </View>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional />
@@ -88,31 +112,6 @@ export function HomeProfessional({ navigation }) {
               <View style={{ paddingVertical: 10, marginBottom: 10 }}>
                 <CardProfessional />
               </View>
-            </View>
-            <View
-              style={{
-                alignItems: "center",
-                padding: 20,
-              }}
-            >
-              <TouchableOpacity
-                style={{
-                  backgroundColor: theme.colors.primaryColor,
-                  justifyContent: "center",
-                  padding: 15,
-                  borderRadius: 10,
-                }}
-                title="Listado de Pacientes"
-                onPress={() =>
-                  navigation.navigate("PacientsList", {
-                    name: "PacientsList",
-                  })
-                }
-              >
-                <Text style={{ color: theme.colors.secondaryText }}>
-                  Listado de Pacientes
-                </Text>
-              </TouchableOpacity>
             </View>
             <View style={{ paddingTop: 15 }}>
               <Text style={{ fontSize: theme.fontSize.secondaryText }}>
@@ -151,11 +150,27 @@ export function HomeProfessional({ navigation }) {
             </View>
             <View
               style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-            ></View>
+            >
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("DatingStatuses", {
+                    name: "DatingStatuses",
+                  })
+                }
+                style={styles.btn}
+              >
+                <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
+              </TouchableOpacity>
+
+            </View>
           </View>
+
+
+            <Carousel />
+
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </ScrollView >
+    </SafeAreaView >
   );
 }
 
