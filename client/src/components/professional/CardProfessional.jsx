@@ -28,7 +28,7 @@ export function CardProfessional({ navigation }) {
               }}
               style={styles.btn}
             >
-              <Text>Ver más {">"}</Text>
+              <Text style={{ color: "white" }}>Ver más {">"}</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -11,80 +11,73 @@ import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
+import { Loading } from "../loading/Loading";
 
 export function QueriesHistorialPacient({ navigation }) {
-
+  const queries = useSelector((state) => state.queries.queries);
+  const professionals = useSelector(
+    (state) => state.professionals.professionals
+  );
   return (
-    <ScrollView>
-      <View style={{ alignItems: "center" }}>
-        <View
-          style={{
-            width: 200,
-            paddingBottom: 20,
-            paddingTop: 30,
-          }}
-        >
-          <TouchableOpacity
-            title="GenerateQuery"
-            onPress={() =>
-              navigation.navigate("GenerateQuery", {
-                name: "GenerateQuery",
-              })
-            }
-            style={styles.btn}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: theme.colors.secondaryText,
-              }}
-            >
-              GENERAR CONSULTA
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.containerBtnQueries}></View>
-      <View>
-        <Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>
-          Historial de Consultas
-        </Text>
-      </View>
-      <ScrollView style={styles.containerHistorial}>
-        <View>
+    <View>
+      <ScrollView>
+        <View style={{ alignItems: "center" }}>
           <View
             style={{
-              paddingTop: 50,
-              paddingBottom: 5,
+              width: 200,
+              paddingBottom: 20,
+              paddingTop: 30,
             }}
           >
-            {/* <ButtonQueries
-              navigation={navigation}
-              backgroundColor={theme.colors.primaryColor}
-              text={"Pendiente"}
-            />
-            <ButtonQueries
-              navigation={navigation}
-              backgroundColor={"blue"}
-              text={"Resuelta"}
-            />
-            <ButtonQueries
-              backgroundColor={"red"}
-              text={"Cancelar"}
-              navigation={navigation}
-            />
-            <ButtonQueries
-              backgroundColor={"green"}
-              text={"Confirmada"}
-              navigation={navigation}
-            /> */}
-          </View>
-          <View>
-            <ListaConsultas navigation={navigation}/>
+            <TouchableOpacity
+              title="GenerateQuery"
+              onPress={() =>
+                navigation.navigate("GenerateQuery", {
+                  name: "GenerateQuery",
+                })
+              }
+              style={styles.btn}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: theme.colors.secondaryText,
+                }}
+              >
+                GENERAR CONSULTA
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
+        <View style={styles.containerBtnQueries}></View>
+        <View>
+          <Text
+            style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}
+          >
+            Historial de Consultas
+          </Text>
+        </View>
+        {!queries.length && !professionals ? (
+          <Loading />
+        ) : (
+          <View style={styles.containerHistorial}>
+            <ScrollView>
+              <View>
+                <View
+                  style={{
+                    paddingTop: 50,
+                    paddingBottom: 5,
+                  }}
+                ></View>
+                <View>
+                  <ListaConsultas navigation={navigation} />
+                </View>
+              </View>
+            </ScrollView>
+          </View>
+        )}
       </ScrollView>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -114,7 +107,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   containerHistorial: {
-    width: "100%",
+    margin: 35,
+    width: "90%",
     height: 300,
     backgroundColor: "white",
     shadowColor: "#000",

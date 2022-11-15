@@ -22,7 +22,7 @@ export function HomeProfessional({ navigation }) {
   useEffect(() => console.log(professionals), [professionals]);
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         <View>
           <Button
             title="Formulario Profesional"
@@ -92,7 +92,6 @@ export function HomeProfessional({ navigation }) {
             </Text>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional navigation={navigation} />
-
             </View>
             <View style={{ paddingVertical: 10 }}>
               <CardProfessional />
@@ -143,7 +142,9 @@ export function HomeProfessional({ navigation }) {
                 />
                 <View style={{ justifyContent: "space-around" }}>
                   <TouchableOpacity style={styles.btn}>
-                    <Text style={{ textAlign: "center" }}>Responder</Text>
+                    <Text style={{ textAlign: "center", color: "white" }}>
+                      Responder
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -159,18 +160,18 @@ export function HomeProfessional({ navigation }) {
                 }
                 style={styles.btn}
               >
-                <Text style={{ textAlign: "center" }}>Estado de Consultas</Text>
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Estado de Consultas
+                </Text>
               </TouchableOpacity>
-
             </View>
           </View>
-
-
-            <Carousel />
-
         </View>
-      </ScrollView >
-    </SafeAreaView >
+        <View style={styles.containerCarousel}>
+          <Carousel />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -209,5 +210,22 @@ const styles = StyleSheet.create({
     width: "70%",
     padding: theme.padding.padding10,
     borderColor: "grey",
+  },
+  containerCarousel: {
+    width: "100%",
+    height: 670,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
+    marginVertical: 40,
+    justifyContent: "center",
+    paddingBottom: 40,
   },
 });

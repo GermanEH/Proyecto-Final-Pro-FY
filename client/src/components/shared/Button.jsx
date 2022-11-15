@@ -82,7 +82,9 @@ export function ButtonHomePacientQueries(props) {
       }
       style={styles.btnCenter}
     >
-      <Text style={{ textAlign: "center" }}>Consultas</Text>
+      <Text style={{ textAlign: "center", color: theme.colors.secondaryText }}>
+        Consultas
+      </Text>
     </TouchableOpacity>
   );
 }
