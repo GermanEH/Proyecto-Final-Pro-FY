@@ -5,16 +5,15 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
     try {
         const response = await axios.get('http://localhost:3001/api/queries')
         const data = response.data.data.sort(function(a, b) {
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
+            if(a.queryDate < b.queryDate) return -1;
+            if(a.queryDate > b.queryDate) return 1;
             return 0
         })
         return data.map(q => {
-            let professional = professionals.find(p => p._id === q.professionalId)
-            let professionalName = professional.last_name
             return {
                 id:q._id,
-                doctorName: professionalName,
+                doctorName: q.professionals.last_name,
+                pacientName: `${q.users.first_name} ${q.users.last_name}`,
                 description: q.motive,
                 date: q.queryDate, 
                 state: q.state,

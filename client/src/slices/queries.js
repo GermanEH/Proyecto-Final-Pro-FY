@@ -1,7 +1,11 @@
+import React from 'react'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     queries: [],
+    todayQueries: [],
+    tomorrowQueries: [],
+    tomorrowAfterQueries: [],
     query: {},
     motives: [],
     modalities: ["Llamada urgente", "Videollamada", "Email", "Presencial"],
@@ -28,6 +32,17 @@ export const queriesSlice = createSlice({
                 for (const query of action.payload) {
                     if(!state.motives.includes(query['motive'])) state.motives.push(query['motive'])
                 }
+                const today = new Date().getDate()
+                const tomorrow = new Date().getDate() + 1
+                const tomorrowAfter = new Date().getDate() + 2
+                const month = new Date().getMonth() + 1 
+                const year = new Date().getFullYear()
+                const fullToday = year + '-' + month + '-' + today
+                const fullTomorrow = year + '-' + month + '-' + tomorrow
+                const fullTomorrowAfter = year + '-' + month + '-' + tomorrowAfter
+                state.todayQueries = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
+                state.tomorrowQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
+                state.tomorrowAfterQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
             }
         )
         .addMatcher(
