@@ -78,11 +78,10 @@ export default function App() {
               component={ProfessionalDetail}/>   
               <Stack.Screen
               name="GenerateQuery"
-            component={GenerateQuery}/>   
+              component={GenerateQuery}/>   
               <Stack.Screen
               name="QueriesDetail"
-            component={QueriesDetail}/>   
-              component={GenerateQuery}/>   
+              component={QueriesDetail}/>   
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   
