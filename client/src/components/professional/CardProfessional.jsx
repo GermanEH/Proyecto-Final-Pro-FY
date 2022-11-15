@@ -24,8 +24,8 @@ export function CardProfessional({ navigation, pacient }) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("DatingStatuses", {
-                  name: "DatingStatuses",
+                navigation.navigate("QueriesDetail", {
+                  name: "QueriesDetail",
                 });
               }}
               style={styles.btn}
