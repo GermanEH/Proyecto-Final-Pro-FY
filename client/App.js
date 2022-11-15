@@ -82,7 +82,7 @@ export default function App() {
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
-              component={GenerateQuery}/>   
+             
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   
@@ -95,6 +95,3 @@ export default function App() {
       // </React.StrictMode>
   );
 }
-
-
-
