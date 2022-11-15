@@ -14,13 +14,17 @@ import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
+import { getQueries } from "../../slices/queriesActions"
 
 export function HomeProfessional({ navigation }) {
 
-    const professionals = useSelector((state) => state.professionals);
+    const todayQueries = useSelector((state) => state.queries.todayQueries);
+    const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
+    const tomorrowAfterQueries = useSelector((state) => state.queries.tomorrowAfterQueries);
     const dispatch = useDispatch();
 
-  useEffect(() => console.log(professionals), [professionals]);
+  useEffect(() => {dispatch(getQueries())}, [])
+
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
@@ -67,13 +71,13 @@ export function HomeProfessional({ navigation }) {
                 paddingVertical: 15,
               }}
             >
-              Consulta del dia de hoy:
+              Consultas del dia de hoy:
             </Text>
-            <View style={{ paddingVertical: 10 }}>
-              <CardProfessional navigation={navigation} />
-            </View>
-            <View style={{ paddingVertical: 10 }}>
-              <CardProfessional />
+            <View>
+                {todayQueries?.map((p, i) => 
+                  <View key={i} style={{ paddingVertical: 10 }}>
+                      <CardProfessional navigation={navigation} pacient={p}/>
+                  </View>)}
             </View>
             <View>
               <Text
@@ -84,12 +88,14 @@ export function HomeProfessional({ navigation }) {
               >
                 Proximas Consultas:
               </Text>
-              <View style={{ paddingVertical: 10 }}>
-                <CardProfessional />
-              </View>
-              <View style={{ paddingVertical: 10, marginBottom: 10 }}>
-                <CardProfessional />
-              </View>
+                {tomorrowQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} pacient={p}/>
+                    </View>)}
+                {tomorrowAfterQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} pacient={p}/>
+                    </View>)}
             </View>
             <View
               style={{
