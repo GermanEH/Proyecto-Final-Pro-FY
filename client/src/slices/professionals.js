@@ -5,7 +5,7 @@ const initialState = {
   professional: {},
   specialties: [],
   specialtiesNames: [],
-  countries: ['Argentina'],
+  countries: [],
   filtered: [],
   status: "",
   error: ""
@@ -45,12 +45,8 @@ const professionalsSlice = createSlice({
           (state, action) => {
             state.status = 'succeeded'
             state.professionals = action.payload
-            console.log(action.payload)
             const totalBdCountries = action.payload.map(p => p.country)
-            console.log(totalBdCountries)
-            const uniqueBdCountries = [...new Set(totalBdCountries)]
-            console.log(uniqueBdCountries)
-            state.countries.push(Array.from(uniqueBdCountries)[0])
+            state.countries = [...new Set(totalBdCountries)]
           }
         )
         .addMatcher(

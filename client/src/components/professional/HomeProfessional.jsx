@@ -13,12 +13,18 @@ import { CardProfessional } from "./CardProfessional";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Carousel } from "../Carousel/Carousel";
+import { getQueries } from "../../slices/queriesActions"
 
 export function HomeProfessional({ navigation }) {
-  const professionals = useSelector((state) => state.professionals);
-  const dispatch = useDispatch();
 
-  useEffect(() => console.log(professionals), [professionals]);
+    const todayQueries = useSelector((state) => state.queries.todayQueries);
+    const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
+    const tomorrowAfterQueries = useSelector((state) => state.queries.tomorrowAfterQueries);
+    const dispatch = useDispatch();
+
+  useEffect(() => {dispatch(getQueries())}, [])
+
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
@@ -65,13 +71,13 @@ export function HomeProfessional({ navigation }) {
                 paddingVertical: 15,
               }}
             >
-              Consulta del dia de hoy:
+              Consultas del dia de hoy:
             </Text>
-            <View style={{ paddingVertical: 10 }}>
-              <CardProfessional navigation={navigation} />
-            </View>
-            <View style={{ paddingVertical: 10 }}>
-              <CardProfessional />
+            <View>
+                {todayQueries?.map((p, i) => 
+                  <View key={i} style={{ paddingVertical: 10 }}>
+                      <CardProfessional navigation={navigation} pacient={p}/>
+                  </View>)}
             </View>
             <View>
               <Text
@@ -82,12 +88,14 @@ export function HomeProfessional({ navigation }) {
               >
                 Proximas Consultas:
               </Text>
-              <View style={{ paddingVertical: 10 }}>
-                <CardProfessional />
-              </View>
-              <View style={{ paddingVertical: 10, marginBottom: 10 }}>
-                <CardProfessional />
-              </View>
+                {tomorrowQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} pacient={p}/>
+                    </View>)}
+                {tomorrowAfterQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} pacient={p}/>
+                    </View>)}
             </View>
             <View
               style={{
@@ -102,7 +110,7 @@ export function HomeProfessional({ navigation }) {
                   padding: 15,
                   borderRadius: 10,
                 }}
-                title="Listado de Pacientes"
+                title="Lista de consultas"
                 onPress={() =>
                   navigation.navigate("PacientsList", {
                     name: "PacientsList",
@@ -110,7 +118,7 @@ export function HomeProfessional({ navigation }) {
                 }
               >
                 <Text style={{ color: theme.colors.secondaryText }}>
-                  Listado de Pacientes
+                  Listado de Consultas
                 </Text>
               </TouchableOpacity>
             </View>
@@ -140,7 +148,7 @@ export function HomeProfessional({ navigation }) {
               >
                 <TextInput
                   style={styles.input}
-                  placeholder="Responder Consultas"
+                  placeholder="Responder Reviews"
                 />
                 <View style={{ justifyContent: "space-around" }}>
                   <TouchableOpacity style={styles.btn}>
@@ -153,6 +161,7 @@ export function HomeProfessional({ navigation }) {
               style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
             ></View>
           </View>
+          <Carousel />
         </View>
       </ScrollView>
     </SafeAreaView>
