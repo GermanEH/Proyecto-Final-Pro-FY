@@ -7,7 +7,7 @@ export const slides = [
     characteristic3: 'characteristic 3',
     characteristic4: 'characteristic 4',
     price: '$1',
-    image: require('./assets/logo.png'),
+    image: require('../../assets/logo.png'),
   },
   {
     id: '2',
@@ -17,6 +17,6 @@ export const slides = [
     characteristic3: 'characteristic 3',
     characteristic4: 'characteristic 4',
     price: '$2',
-    image: require('./assets/logo.png'),
+    image: require('../../assets/logo.png'),
   },
 ]

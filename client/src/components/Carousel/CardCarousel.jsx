@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet, useWindowDimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity } from 'react-native';
 
 
 export function CardCarousel({ item }) {
@@ -7,22 +7,21 @@ export function CardCarousel({ item }) {
   const { width } = useWindowDimensions();
 
   return (
-    <SafeAreaView>
-      <View style={[styles.container, { width }]}>
-        <Image source={item.image} style={[styles.image, { width, resizeMode: 'contain' }]} />
-        <View>
-          <Text style={styles.title}> {item.title} </Text>
-          <Text style={styles.description}> {item.characteristic1} </Text>
-          <Text style={styles.description}> {item.characteristic2} </Text>
-          <Text style={styles.description}> {item.characteristic3} </Text>
-          <Text style={styles.description}> {item.characteristic4} </Text>
-          <Text style={styles.price}> {item.price} </Text>
-        </View>
-        <TouchableOpacity style={styles.btn}>
-          <Text>GO</Text>
-        </TouchableOpacity>
+    <View style={[styles.container, { width }]}>
+      <Image source={item.image} style={[styles.image, { width, resizeMode: 'contain' }]} />
+      <View>
+        <Text style={styles.title}> {item.title} </Text>
+        <Text style={styles.description}> {item.characteristic1} </Text>
+        <Text style={styles.description}> {item.characteristic2} </Text>
+        <Text style={styles.description}> {item.characteristic3} </Text>
+        <Text style={styles.description}> {item.characteristic4} </Text>
+        <Text style={styles.price}> {item.price} </Text>
       </View>
-    </SafeAreaView>
+      <TouchableOpacity style={styles.btn}>
+        <Text>GO</Text>
+      </TouchableOpacity>
+    </View>
+
   )
 }
 
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'center',
-    margin: 5,
+    margin: 20,
     height: 600,
     backgroundColor: "white",
     borderRadius: 10,

@@ -14,6 +14,7 @@ import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfessionals } from "../../slices/professionalsActions";
+import { Carousel } from "../Carousel/Carousel";
 export function HomeProfessional({ navigation }) {
   const professionals = useSelector((state) => state.professionals);
   const dispatch = useDispatch();
@@ -162,6 +163,9 @@ export function HomeProfessional({ navigation }) {
 
             </View>
           </View>
+
+
+            <Carousel />
 
         </View>
       </ScrollView >
