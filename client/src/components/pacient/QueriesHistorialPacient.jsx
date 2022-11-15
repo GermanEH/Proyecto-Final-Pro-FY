@@ -80,7 +80,7 @@ export function QueriesHistorialPacient({ navigation }) {
             /> */}
           </View>
           <View>
-            <ListaConsultas navigation={navigation}/>
+            
           </View>
         </View>
       </ScrollView>
