@@ -28,7 +28,7 @@ const getQueryById = async (req, res) => {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await queriesModel.findById(id)
+    const data = await queriesModel.findById(id).populate("users").populate("professionals")
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id usuario")

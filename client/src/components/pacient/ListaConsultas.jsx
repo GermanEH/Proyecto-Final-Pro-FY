@@ -53,6 +53,7 @@ export function ListaConsultas({ navigation }) {
   const professionals = useSelector(
     (state) => state.professionals.professionals
   );
+  console.log(queries);
   const dispatch = useDispatch();
 
   useEffect(() => {

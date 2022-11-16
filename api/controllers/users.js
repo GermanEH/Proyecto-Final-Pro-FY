@@ -11,8 +11,10 @@ const { matchedData } = require('express-validator');
  */
 const getUsers = async (req, res) => {
   try {
+    const user = req.user;
+    console.log(`USER ASKING DATA: ${user}`);
     const data = await usersModel.find({});
-    res.send({ data })
+    res.send({ user, data })
   } catch (error) {
     handleHttpError(res, "Error_get_items")
   }

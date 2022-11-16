@@ -87,8 +87,6 @@ export function ProfessionalsList({ navigation }) {
             setSelected={(val) => setCountry(val)}
             data={countries}
             save="value"
-            // onSelect={() => alert(selected)}
-            // label="Categories"
           />
           {filtered.length > 0 && specialties.length > 0 ? (
             filtered.map((p, index) => {
