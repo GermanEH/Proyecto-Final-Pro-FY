@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
 export function ProfessionalDetail({ navigation, route }) {
-  console.log(route)
 
   const [text, onChangeText] = useState("");
 
@@ -16,6 +15,8 @@ export function ProfessionalDetail({ navigation, route }) {
 
   useEffect(() => {dispatch(getProfessionalById(route.params.id))}, [])
 
+  console.log(professional)
+  
   return (
     <ScrollView>
       <View 
