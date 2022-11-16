@@ -2,9 +2,12 @@ const express = require("express");
 const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require("../controllers/users");
 const { useStripe } = require("../controllers/stripe")
 const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../validators/users");
+const autMiddleware = require("../middleware/session");
 const router = express.Router();
 
 
+
+// router.get("/", autMiddleware, getUsers);
 
 router.get("/", getUsers);
 

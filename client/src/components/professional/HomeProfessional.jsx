@@ -14,63 +14,65 @@ import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
-import { getQueries } from "../../slices/queriesActions"
+import { getQueries } from "../../slices/queriesActions";
 
 export function HomeProfessional({ navigation }) {
+  const todayQueries = useSelector((state) => state.queries.todayQueries);
+  const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
+  const tomorrowAfterQueries = useSelector(
+    (state) => state.queries.tomorrowAfterQueries
+  );
+  const dispatch = useDispatch();
 
-    const todayQueries = useSelector((state) => state.queries.todayQueries);
-    const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
-    const tomorrowAfterQueries = useSelector((state) => state.queries.tomorrowAfterQueries);
-    const dispatch = useDispatch();
-
-  useEffect(() => {dispatch(getQueries())}, [])
+  useEffect(() => {
+    dispatch(getQueries());
+  }, []);
 
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
-        <View>
-          <View style={{ alignItems: "center", paddingTop: 20 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: theme.colors.primaryColor,
+        <View style={{ alignItems: "center", paddingTop: 20 }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: theme.colors.primaryColor,
 
-                padding: 15,
-                borderRadius: 10,
-              }}
-              title="Formulario Profesional"
-              onPress={() =>
-                navigation.navigate("FormProfessional", {
-                  name: "FormProfessional",
-                })
-              }
-            >
-              <Text style={{ color: theme.colors.secondaryText }}>
-                Formulario Profesional
-              </Text>
-            </TouchableOpacity>
-          </View>
+              padding: 15,
+              borderRadius: 10,
+            }}
+            title="Formulario Profesional"
+            onPress={() =>
+              navigation.navigate("FormProfessional", {
+                name: "FormProfessional",
+              })
+            }
+          >
+            <Text style={{ color: theme.colors.secondaryText }}>
+              Formulario Profesional
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-          <View style={styles.container}>
-            <Text
-              style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
-            >
-              Hola,
-            </Text>
-            <Text
-              style={{
-                fontSize: theme.fontSize.primaryText,
-                paddingBottom: 10,
-                paddingLeft: 10,
-              }}
-            >
-              Juan Dominguéz
-            </Text>
-            <Text
-              style={{
-                fontSize: theme.fontSize.secondaryText,
-                paddingVertical: 15,
-              }}
-            >
+        <View style={styles.container}>
+          <Text
+            style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
+          >
+            Hola,
+          </Text>
+          <Text
+            style={{
+              fontSize: theme.fontSize.primaryText,
+              paddingBottom: 10,
+              paddingLeft: 10,
+            }}
+          >
+            Juan Dominguéz
+          </Text>
+          <Text
+            style={{
+              fontSize: theme.fontSize.secondaryText,
+              paddingVertical: 15,
+            }}
+          >
               Consultas del dia de hoy:
             </Text>
             <View>
@@ -152,15 +154,32 @@ export function HomeProfessional({ navigation }) {
                 />
                 <View style={{ justifyContent: "space-around" }}>
                   <TouchableOpacity style={styles.btn}>
-                    <Text style={{ textAlign: "center" }}>Responder</Text>
+                    <Text style={{ textAlign: "center", color: "white" }}>
+                      Responder
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
             <View
               style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-            ></View>
+            >
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("DatingStatuses", {
+                    name: "DatingStatuses",
+                  })
+                }
+                style={styles.btn}
+              >
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Estado de Consultas
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+        </View>
+        <View style={styles.containerCarousel}>
           <Carousel />
         </View>
       </ScrollView>
@@ -203,5 +222,22 @@ const styles = StyleSheet.create({
     width: "70%",
     padding: theme.padding.padding10,
     borderColor: "grey",
+  },
+  containerCarousel: {
+    width: "100%",
+    height: 670,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
+    marginVertical: 40,
+    justifyContent: "center",
+    paddingBottom: 40,
   },
 });
