@@ -15,6 +15,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { ButtonDating, ButtonQueries } from "../shared/Button";
 
 export function CardPacient({
+  id,
   first_name,
   last_name,
   country,
@@ -77,7 +78,7 @@ export function CardPacient({
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("ProfessionalDetail", {
-                    name: "ProfessionalDetail",
+                    id: id,
                   });
                 }}
                 style={styles.btn}

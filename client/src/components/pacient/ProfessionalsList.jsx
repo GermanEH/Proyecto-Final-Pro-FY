@@ -94,6 +94,7 @@ export function ProfessionalsList({ navigation }) {
             filtered.map((p, index) => {
               return (
                 <CardPacient
+                  id={p._id}
                   first_name={p.first_name}
                   last_name={p.last_name}
                   country={p.country}
