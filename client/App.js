@@ -83,9 +83,6 @@ export default function App() {
               name="QueriesDetail"
 
             component={QueriesDetail}/>   
-             
-
-               
 
             <Stack.Screen
               name="PacientsList"
