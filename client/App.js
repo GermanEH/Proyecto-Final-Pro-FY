@@ -25,6 +25,8 @@ import { ProfessionalDetail } from './src/components/pacient/ProfessionalDetail'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
 import { PacientsList } from './src/components/professional/PacientsList'
 import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
+import Toast from 'react-native-toast-message';
+import { toastConfig }from './customNotificationConfig'
 
 const Stack = createStackNavigator()
 
@@ -93,6 +95,7 @@ export default function App() {
               name="ListaConsultas"
               component={ListaConsultas}/> 
           </Stack.Navigator>  
+          <Toast config={toastConfig} />
         </NavigationContainer>
       </Provider>
       // </React.StrictMode>
