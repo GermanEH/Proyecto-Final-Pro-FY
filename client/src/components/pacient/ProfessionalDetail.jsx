@@ -9,20 +9,23 @@ import { useSelector, useDispatch } from 'react-redux'
 export function ProfessionalDetail({ navigation, route }) {
 
   const [text, onChangeText] = useState("");
+  const [render, setRender] = useState(false)
 
-  const professional = useSelector((state) => state.professionals.professional)[0];
+  const professional = useSelector((state) => state.professionals.professional);
   const dispatch = useDispatch();
 
-  useEffect(() => {dispatch(getProfessionalById(route.params.id))}, [])
+  useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
+  useEffect(() => {if(render) setRender(false)}, [render])
 
-  console.log(professional)
+  console.log(route)
+  console.log(typeof professional)
   
   return ( 
     <ScrollView>
       <View 
       style={styles.container}
       >
-        {professional ? (
+        {(Object.keys(professional).length > 0) ? (
         <View 
         style={styles.imgContainer}
         >
@@ -39,7 +42,7 @@ export function ProfessionalDetail({ navigation, route }) {
             }}
           >
             <Text>{professional?.first_name} {professional?.last_name}</Text>
-            <Text>Especialidad: {professional?.specialities}</Text>
+            <Text>Especialidad: {professional?.specialities.name}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>Tipos de Consulta: {professional?.modality}</Text>
             </View>
