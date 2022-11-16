@@ -76,7 +76,7 @@ export function HomeProfessional({ navigation }) {
             <View>
                 {todayQueries?.map((p, i) => 
                   <View key={i} style={{ paddingVertical: 10 }}>
-                      <CardProfessional navigation={navigation} pacient={p}/>
+                      <CardProfessional navigation={navigation} query={p}/>
                   </View>)}
             </View>
             <View>
@@ -90,11 +90,11 @@ export function HomeProfessional({ navigation }) {
               </Text>
                 {tomorrowQueries?.map((p, i) => 
                     <View key={i} style={{ paddingVertical: 10 }}>
-                    <CardProfessional navigation={navigation} pacient={p}/>
+                    <CardProfessional navigation={navigation} query={p}/>
                     </View>)}
                 {tomorrowAfterQueries?.map((p, i) => 
                     <View key={i} style={{ paddingVertical: 10 }}>
-                    <CardProfessional navigation={navigation} pacient={p}/>
+                    <CardProfessional navigation={navigation} query={p}/>
                     </View>)}
             </View>
             <View
