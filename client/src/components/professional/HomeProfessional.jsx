@@ -73,110 +73,109 @@ export function HomeProfessional({ navigation }) {
               paddingVertical: 15,
             }}
           >
-              Consultas del dia de hoy:
-            </Text>
-            <View>
-                {todayQueries?.map((p, i) => 
-                  <View key={i} style={{ paddingVertical: 10 }}>
-                      <CardProfessional navigation={navigation} query={p}/>
-                  </View>)}
-            </View>
-            <View>
-              <Text
-                style={{
-                  fontSize: theme.fontSize.secondaryText,
-                  paddingVertical: 15,
-                }}
-              >
-                Proximas Consultas:
-              </Text>
-                {tomorrowQueries?.map((p, i) => 
-                    <View key={i} style={{ paddingVertical: 10 }}>
-                    <CardProfessional navigation={navigation} query={p}/>
-                    </View>)}
-                {tomorrowAfterQueries?.map((p, i) => 
-                    <View key={i} style={{ paddingVertical: 10 }}>
-                    <CardProfessional navigation={navigation} query={p}/>
-                    </View>)}
-            </View>
-            <View
+            Consultas del dia de hoy:
+          </Text>
+          <View>
+            {todayQueries?.map((p, i) =>
+              <View key={i} style={{ paddingVertical: 10 }}>
+                <CardProfessional navigation={navigation} query={p} />
+              </View>)}
+          </View>
+          <View>
+            <Text
               style={{
-                alignItems: "center",
-                padding: 20,
+                fontSize: theme.fontSize.secondaryText,
+                paddingVertical: 15,
               }}
             >
-              <TouchableOpacity
-                style={{
-                  backgroundColor: theme.colors.primaryColor,
-                  justifyContent: "center",
-                  padding: 15,
-                  borderRadius: 10,
-                }}
-                title="Lista de consultas"
-                onPress={() =>
-                  navigation.navigate("PacientsList", {
-                    name: "PacientsList",
-                  })
-                }
-              >
-                <Text style={{ color: theme.colors.secondaryText }}>
-                  Listado de Consultas
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ paddingTop: 15 }}>
-              <Text style={{ fontSize: theme.fontSize.secondaryText }}>
-                Consultas de los Pacientes:
+              Proximas Consultas:
+            </Text>
+            {tomorrowQueries?.map((p, i) =>
+              <View key={i} style={{ paddingVertical: 10 }}>
+                <CardProfessional navigation={navigation} query={p} />
+              </View>)}
+            {tomorrowAfterQueries?.map((p, i) =>
+              <View key={i} style={{ paddingVertical: 10 }}>
+                <CardProfessional navigation={navigation} query={p} />
+              </View>)}
+          </View>
+          <View
+            style={{
+              alignItems: "center",
+              padding: 20,
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                backgroundColor: theme.colors.primaryColor,
+                justifyContent: "center",
+                padding: 15,
+                borderRadius: 10,
+              }}
+              title="Lista de consultas"
+              onPress={() =>
+                navigation.navigate("PacientsList", {
+                  name: "PacientsList",
+                })
+              }
+            >
+              <Text style={{ color: theme.colors.secondaryText }}>
+                Listado de Consultas
               </Text>
-            </View>
-            <View style={styles.containerComments}>
-              <ScrollView>
-                <View style={styles.comments}>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                  <Text>COMENTARIOS</Text>
-                </View>
-              </ScrollView>
-              <View
-                style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
-              >
-                <TextInput
-                  style={styles.input}
-                  placeholder="Responder Reviews"
-                />
-                <View style={{ justifyContent: "space-around" }}>
-                  <TouchableOpacity style={styles.btn}>
-                    <Text style={{ textAlign: "center", color: "white" }}>
-                      Responder
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ paddingTop: 15 }}>
+            <Text style={{ fontSize: theme.fontSize.secondaryText }}>
+              Consultas de los Pacientes:
+            </Text>
+          </View>
+          <View style={styles.containerComments}>
+            <ScrollView>
+              <View style={styles.comments}>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+                <Text>COMENTARIOS</Text>
+              </View>
+            </ScrollView>
+            <View
+              style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
+            >
+              <TextInput
+                style={styles.input}
+                placeholder="Responder Reviews"
+              />
+              <View style={{ justifyContent: "space-around" }}>
+                <TouchableOpacity style={styles.btn}>
+                  <Text style={{ textAlign: "center", color: "white" }}>
+                    Responder
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
-            <View
-              style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
+          </View>
+          <View
+            style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
+          >
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("DatingStatuses", {
+                  name: "DatingStatuses",
+                })
+              }
+              style={styles.btn}
             >
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("DatingStatuses", {
-                    name: "DatingStatuses",
-                  })
-                }
-                style={styles.btn}
-              >
-                <Text style={{ textAlign: "center", color: "white" }}>
-                  Estado de Consultas
-                </Text>
-              </TouchableOpacity>
-            </View>
+              <Text style={{ textAlign: "center", color: "white" }}>
+                Estado de Consultas
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.containerCarousel}>

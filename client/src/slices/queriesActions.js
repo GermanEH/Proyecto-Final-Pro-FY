@@ -41,7 +41,7 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
             }
         })
         return data[0]
-    } catch (error) {
+    })} catch (error) {
         return error.message
     }        
 })

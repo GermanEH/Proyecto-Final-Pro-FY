@@ -3,9 +3,9 @@ import { SafeAreaView, View, Image, StyleSheet } from "react-native";
 import { HomePacient } from "../pacient/HomePacient";
 import { HomeProfessional } from "../professional/HomeProfessional";
 import { HomeProfessionalBasic } from "../professional/HomeProfessionalBasic";
-import { Notificaciones } from "../x-tras/Notificaciones";
-import { Foro } from "../x-tras/Foro";
-import { Ajustes } from "../x-tras/Ajustes";
+import { Notifications } from "../x-tras/Notifications/Notifications";
+import { FrequentQuestions } from "../x-tras/FrequentQuestions/FrequentQuestions";
+import { Settings } from "../x-tras/Settings/Settings";
 
 const Menu = createDrawerNavigator();
 
@@ -20,9 +20,9 @@ export function HamburgerMenu({ route }) {
           ) : (
             <Menu.Screen name="Home" component={HomeProfessional} />
           )}
-          <Menu.Screen name="Notificaciones" component={Notificaciones} />
-          <Menu.Screen name="Foro" component={Foro} />
-          <Menu.Screen name="Ajustes" component={Ajustes} />
+          <Menu.Screen name="Notificaciones" component={Notifications} />
+          <Menu.Screen name="Frequent Questions" component={FrequentQuestions} />
+          <Menu.Screen name="Settings" component={Settings} />
         </Menu.Navigator>
       </View>
     </SafeAreaView>
