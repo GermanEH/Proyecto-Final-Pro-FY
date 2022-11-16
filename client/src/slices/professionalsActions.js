@@ -33,7 +33,7 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
     }        
 })
 
-export const getProfessional = createAsyncThunk('professionals/getProfessionalById', async (id) => {
+export const getProfessionalById = createAsyncThunk('professionals/getProfessionalById', async (id) => {
     try {
         const response = await axios.get(`http://localhost:3001/api/professionals/${id}`)             //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
         return response.data.data

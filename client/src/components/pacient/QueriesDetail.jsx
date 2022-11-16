@@ -11,10 +11,7 @@ import {
 import theme from "../../theme";
 
 import { getQueryById } from "../../slices/queriesActions";
-import { getPacients } from "../../slices/pacientsActions";
-import { getProfessionals } from "../../slices/professionalsActions";
 import { Loading } from "../loading/Loading";
-
 
 export function QueriesDetail({ route }) {
   const [text, onChangeText] = useState("");
@@ -22,16 +19,9 @@ export function QueriesDetail({ route }) {
 
   const query = useSelector((state) => state.queries.queries.find(q => q._id === route.params._id));
   const dispatch = useDispatch();
-
-  // const pacients = useSelector(state => state.pacients.pacients)
-  // const professionals = useSelector(state => state.professionals.professionals)
-
-  // let pacient = {}
-  // let professional = {}
-
-  /* useEffect(() => {
+  
+  useEffect(() => {
     dispatch(getQueryById(route.params.id));
-
     setRender(true);
   }, []);
   useEffect(() => {
@@ -39,36 +29,23 @@ export function QueriesDetail({ route }) {
   }, [query]);
   useEffect(() => {
     if (render) setRender(false);
-
   }, [render]); */
 
   return (
     <View>
       <ScrollView>
         <View>
-
-          {query ? (
-            <View style={styles.container}>
-              <View style={{ paddingBottom: 15 }}>
-                {/*          <Text>Paciente: {pacient.name}</Text> */}
-                <Text style={styles.title}>
-                  Fecha de creación de la consulta:
-                </Text>
-                <Text style={{}}>
-                  {query.createdDate &&
-                    query.createdDate.substring(
-                      0,
-                      query.createdDate.indexOf("T")
-                    )}
-                </Text>
-                <Text style={{ ...styles.title }}>Fecha de la consulta:</Text>
+            {query ? (<View style={styles.container}>
+              <View style={{ padding: 10 }}>
+                <Text>Paciente: {query?.pacientName}</Text>
                 <Text>
-                  {query.queryDate && query.queryDate.replace("T", " ")}{" "}
+                  Fecha de creación de la consulta: {query?.created.slice(0, 10)}
                 </Text>
+                <Text>Fecha de la consulta: {query?.date.slice(0, 10)}</Text>
               </View>
-              <View style={{ paddingVertical: 10 }}>
-                <Text style={styles.title}>Tipo de Consulta:</Text>
-                <Text>{query.motive} </Text>
+              <View style={{ padding: 10 }}>
+                <Text>Tipo de Consulta: {query?.description}</Text>
+                <Text>Profesional: {query?.doctorName}</Text>
               </View>
               <View style={{ flexDirection: "row", padding: 10 }}>
                 <Text>Estado: {query?.state[0]}</Text>

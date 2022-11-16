@@ -87,13 +87,12 @@ export function ProfessionalsList({ navigation }) {
             setSelected={(val) => setCountry(val)}
             data={countries}
             save="value"
-            // onSelect={() => alert(selected)}
-            // label="Categories"
           />
           {filtered.length > 0 && specialties.length > 0 ? (
             filtered.map((p, index) => {
               return (
                 <CardPacient
+                  id={p._id}
                   first_name={p.first_name}
                   last_name={p.last_name}
                   country={p.country}
