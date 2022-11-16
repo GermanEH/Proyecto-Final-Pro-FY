@@ -9,7 +9,12 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { getQueries } from "../../slices/queriesActions";
+
+import { getQueryById } from "../../slices/queriesActions";
+import { getPacients } from "../../slices/pacientsActions";
+import { getProfessionals } from "../../slices/professionalsActions";
+import { Loading } from "../loading/Loading";
+
 
 export function QueriesDetail({ route }) {
   const [text, onChangeText] = useState("");
@@ -18,9 +23,15 @@ export function QueriesDetail({ route }) {
   const query = useSelector((state) => state.queries.queries.find(q => q._id === route.params._id));
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // dispatch(getQueryById(route.params.id));
-    dispatch(getQueries())
+  // const pacients = useSelector(state => state.pacients.pacients)
+  // const professionals = useSelector(state => state.professionals.professionals)
+
+  // let pacient = {}
+  // let professional = {}
+
+  /* useEffect(() => {
+    dispatch(getQueryById(route.params.id));
+
     setRender(true);
   }, []);
   useEffect(() => {
@@ -28,52 +39,54 @@ export function QueriesDetail({ route }) {
   }, [query]);
   useEffect(() => {
     if (render) setRender(false);
-  }, [render]);
+
+  }, [render]); */
 
   return (
     <View>
       <ScrollView>
         <View>
-            {query ? (<View style={styles.container}>
-              <View style={{ padding: 10 }}>
-                <Text>Paciente: {query?.pacientName}</Text>
-                <Text>
-                  Fecha de creación de la consulta: {query?.created.slice(0, 10)}
+
+          {query ? (
+            <View style={styles.container}>
+              <View style={{ paddingBottom: 15 }}>
+                {/*          <Text>Paciente: {pacient.name}</Text> */}
+                <Text style={styles.title}>
+                  Fecha de creación de la consulta:
                 </Text>
-                <Text>Fecha de la consulta: {query?.date.slice(0, 10)}</Text>
+                <Text style={{}}>
+                  {query.createdDate &&
+                    query.createdDate.substring(
+                      0,
+                      query.createdDate.indexOf("T")
+                    )}
+                </Text>
+                <Text style={{ ...styles.title }}>Fecha de la consulta:</Text>
+                <Text>
+                  {query.queryDate && query.queryDate.replace("T", " ")}{" "}
+                </Text>
               </View>
-              <View style={{ padding: 10 }}>
-                <Text>Tipo de Consulta: {query?.description}</Text>
-                <Text>Profesional: {query?.doctorName}</Text>
+              <View style={{ paddingVertical: 10 }}>
+                <Text style={styles.title}>Tipo de Consulta:</Text>
+                <Text>{query.motive} </Text>
               </View>
               <View style={{ flexDirection: "row", padding: 10 }}>
                 <Text>Estado: {query?.state[0]}</Text>
               </View>
               <View style={styles.containerObservations}>
-                <View style={styles.observations}>
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      paddingTop: 30,
-                    }}
-                  >
-                    <TextInput
-                      multiline={true}
-                      numberOfLines={4}
-                      onChangeText={onChangeText}
-                      style={styles.textInput}
-                      placeholder="Anote aquí lo que considere importante recordar"
-                      value={text}
-                    />
-                  </View>
-                </View>
+                <TextInput
+                  multiline={true}
+                  numberOfLines={4}
+                  onChangeText={onChangeText}
+                  style={styles.input}
+                  placeholder="Anote aquí lo que considere importante recordar"
+                  value={text}
+                />
               </View>
             </View>
           ) : (
-            // <View style={styles.containerBtn}>
-            // </View>
             <View>
-              <Text> Loading...</Text>
+              <Loading />
             </View>
           )}
         </View>
@@ -85,13 +98,14 @@ export function QueriesDetail({ route }) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    padding: 20,
   },
-  containerObservations: {},
-  observations: {
-    paddingVertical: 50,
-    paddingHorizontal: 90,
-    marginHorizontal: 20,
+  containerObservations: {
+    paddingVertical: 20,
+    paddingHorizontal: 20,
     backgroundColor: theme.colors.secondaryText,
+    borderRadius: theme.borderRadius.borderRadiusBotton,
+    marginVertical: 40,
     shadowOffset: {
       width: 0,
       height: 8,
@@ -99,37 +113,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
-    borderRadius: theme.borderRadius.borderRadiusBotton,
-    marginVertical: 40,
-  },
-  containerBtn: {
-    width: 300,
-    alignSelf: "flex-end",
-    paddingHorizontal: 50,
-  },
-  btn: {
-    backgroundColor: theme.colors.secondaryColor,
-    paddingVertical: 20,
-    borderRadius: theme.borderRadius.borderRadiusBotton,
-    alignSelf: "flex-end",
-    padding: 20,
-    marginBottom: 20,
-    marginRight: 20,
-  },
-  btnObservation: {
-    backgroundColor: theme.colors.primaryColor,
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    borderRadius: theme.borderRadius.borderRadiusBotton,
   },
   input: {
-    marginBottom: 20,
-    paddingHorizontal: 35,
-    paddingVertical: 10,
-  },
-  textInput: {
-    backgroundColor: "#A8A7A3",
     borderRadius: 10,
-    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#E1E1E2",
+    textAlign: "center",
+    paddingTop: 5,
+  },
+  textInput: { padding: 10, margin: 10 },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingVertical: 10,
   },
 });

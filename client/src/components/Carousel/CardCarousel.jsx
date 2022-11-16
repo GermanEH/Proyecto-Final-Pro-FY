@@ -1,14 +1,22 @@
-import React from 'react'
-import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity } from 'react-native';
-
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  useWindowDimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 export function CardCarousel({ item }) {
-
   const { width } = useWindowDimensions();
 
   return (
     <View style={[styles.container, { width }]}>
-      <Image source={item.image} style={[styles.image, { width, resizeMode: 'contain' }]} />
+      <Image
+        source={item.image}
+        style={[styles.image, { width, resizeMode: "contain" }]}
+      />
       <View>
         <Text style={styles.title}> {item.title} </Text>
         <Text style={styles.description}> {item.characteristic1} </Text>
@@ -21,15 +29,14 @@ export function CardCarousel({ item }) {
         <Text>GO</Text>
       </TouchableOpacity>
     </View>
-
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   btn: {
     paddingVertical: 10,
     paddingHorizontal: 30,
-    backgroundColor: '#ededed',
+    backgroundColor: "#ededed",
     margin: 20,
     borderRadius: 5,
     shadowOffset: {
@@ -41,8 +48,8 @@ const styles = StyleSheet.create({
     elevation: 14,
   },
   container: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     margin: 20,
     height: 600,
     backgroundColor: "white",
@@ -61,21 +68,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontWeight: '900',
+    fontWeight: "900",
     fontSize: 40,
     marginBottom: 10,
-    color: '#000000',
+    color: "#000000",
   },
   description: {
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 20,
     margin: 10,
-    color: '#000000',
+    color: "#000000",
   },
   price: {
-    fontWeight: '800',
+    fontWeight: "800",
     fontSize: 40,
     marginTop: 20,
-    color: '#000000',
-  }
-})
+    color: "#000000",
+  },
+});

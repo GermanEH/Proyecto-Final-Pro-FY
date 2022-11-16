@@ -30,7 +30,7 @@ export function CardProfessional({ navigation, pacient }) {
               }}
               style={styles.btn}
             >
-              <Text>Ver más {">"}</Text>
+              <Text style={{ color: "white" }}>Ver más {">"}</Text>
             </TouchableOpacity>
           </View>
         </View>

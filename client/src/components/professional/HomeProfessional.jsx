@@ -73,12 +73,13 @@ export function HomeProfessional({ navigation }) {
             >
               Consultas del dia de hoy:
             </Text>
-            <View>
-                {todayQueries?.map((p, i) => 
-                  <View key={i} style={{ paddingVertical: 10 }}>
-                      <CardProfessional navigation={navigation} pacient={p}/>
-                  </View>)}
+
+            <View style={{ paddingVertical: 10 }}>
+              <CardProfessional navigation={navigation} />
             </View>
+            <View style={{ paddingVertical: 10 }}>
+              <CardProfessional />
+w>
             <View>
               <Text
                 style={{
@@ -152,15 +153,33 @@ export function HomeProfessional({ navigation }) {
                 />
                 <View style={{ justifyContent: "space-around" }}>
                   <TouchableOpacity style={styles.btn}>
-                    <Text style={{ textAlign: "center" }}>Responder</Text>
+                    <Text style={{ textAlign: "center", color: "white" }}>
+                      Responder
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
             <View
               style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-            ></View>
+
+            >
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("DatingStatuses", {
+                    name: "DatingStatuses",
+                  })
+                }
+                style={styles.btn}
+              >
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Estado de Consultas
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+        </View>
+        <View style={styles.containerCarousel}>
           <Carousel />
         </View>
       </ScrollView>
@@ -203,5 +222,22 @@ const styles = StyleSheet.create({
     width: "70%",
     padding: theme.padding.padding10,
     borderColor: "grey",
+  },
+  containerCarousel: {
+    width: "100%",
+    height: 670,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
+    marginVertical: 40,
+    justifyContent: "center",
+    paddingBottom: 40,
   },
 });
