@@ -73,14 +73,14 @@ export function HomeProfessional({ navigation }) {
               paddingVertical: 15,
             }}
           >
-            Consultas del dia de hoy:
-          </Text>
-
-          <View style={{ paddingVertical: 10 }}>
-            <CardProfessional navigation={navigation} />
-          </View>
-          <View style={{ paddingVertical: 10 }}>
-            <CardProfessional />
+              Consultas del dia de hoy:
+            </Text>
+            <View>
+                {todayQueries?.map((p, i) => 
+                  <View key={i} style={{ paddingVertical: 10 }}>
+                      <CardProfessional navigation={navigation} query={p}/>
+                  </View>)}
+            </View>
             <View>
               <Text
                 style={{
@@ -90,16 +90,14 @@ export function HomeProfessional({ navigation }) {
               >
                 Proximas Consultas:
               </Text>
-              {tomorrowQueries?.map((p, i) => (
-                <View key={i} style={{ paddingVertical: 10 }}>
-                  <CardProfessional navigation={navigation} pacient={p} />
-                </View>
-              ))}
-              {tomorrowAfterQueries?.map((p, i) => (
-                <View key={i} style={{ paddingVertical: 10 }}>
-                  <CardProfessional navigation={navigation} pacient={p} />
-                </View>
-              ))}
+                {tomorrowQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} query={p}/>
+                    </View>)}
+                {tomorrowAfterQueries?.map((p, i) => 
+                    <View key={i} style={{ paddingVertical: 10 }}>
+                    <CardProfessional navigation={navigation} query={p}/>
+                    </View>)}
             </View>
             <View
               style={{

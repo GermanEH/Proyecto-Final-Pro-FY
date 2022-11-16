@@ -28,6 +28,7 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
 export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) => {
     try {
         const response = await axios.get(`http://localhost:3001/api/queries/${id}`)
+        const data = response.data.data.map(q => {
         return data.map(q => {
             return {
                 id:q._id,
@@ -39,6 +40,7 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
                 // isExpanded: false,
             }
         })
+        return data[0]
     } catch (error) {
         return error.message
     }        
