@@ -32,7 +32,11 @@ export function QueriesDetail({ route }) {
   }, [query]);
   useEffect(() => {
     if (render) setRender(false);
-  }, [render]);
+
+  }, [render]); 
+
+
+
 
 
   return (

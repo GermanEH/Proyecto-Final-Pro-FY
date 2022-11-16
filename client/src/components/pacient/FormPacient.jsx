@@ -189,6 +189,7 @@ export function FormPacient() {
         <View>
           <CustomButtom
             text="Ya tienes una cuenta? Ingresa Aquí"
+            color='orange'
             onPress={onSignUpPress}
             type="TERTIARY"
           />
