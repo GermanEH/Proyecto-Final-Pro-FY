@@ -10,14 +10,14 @@ export function ProfessionalDetail({ navigation, route }) {
 
   const [text, onChangeText] = useState("");
 
-  const professional = useSelector((state) => state.professionals.professional);
+  const professional = useSelector((state) => state.professionals.professional)[0];
   const dispatch = useDispatch();
 
   useEffect(() => {dispatch(getProfessionalById(route.params.id))}, [])
 
   console.log(professional)
   
-  return (
+  return ( 
     <ScrollView>
       <View 
       style={styles.container}
