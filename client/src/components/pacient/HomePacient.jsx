@@ -70,12 +70,12 @@ export function HomePacient({ navigation }) {
             </View>
             <Text>Favoritos:</Text>
             {/* <CardPacient first_name={first_name} last_name, country, specialty}/> */}
-            <View style={styles.containerCarousel}>
-              <Carousel />
-            </View>
           </View>
         </ScrollView>
       )}
+            <View style={styles.containerCarousel}>
+              <Carousel />
+            </View>
     </SafeAreaView>
   );
 }
