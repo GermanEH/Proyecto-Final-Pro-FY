@@ -9,16 +9,18 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
+
 import { getQueryById } from "../../slices/queriesActions";
 import { getPacients } from "../../slices/pacientsActions";
 import { getProfessionals } from "../../slices/professionalsActions";
 import { Loading } from "../loading/Loading";
 
+
 export function QueriesDetail({ route }) {
   const [text, onChangeText] = useState("");
   const [render, setRender] = useState(false);
 
-  const query = useSelector((state) => state.queries.query);
+  const query = useSelector((state) => state.queries.queries.find(q => q._id === route.params._id));
   const dispatch = useDispatch();
 
   // const pacients = useSelector(state => state.pacients.pacients)
@@ -29,22 +31,22 @@ export function QueriesDetail({ route }) {
 
   /* useEffect(() => {
     dispatch(getQueryById(route.params.id));
+
     setRender(true);
   }, []);
   useEffect(() => {
     if (query) setRender(true);
   }, [query]);
-  // useEffect(() => {dispatch(getPacients())}, [])
-  // useEffect(() => {dispatch(getProfessionals())}, [])
-  // useEffect(() => {if(pacients && query) pacient = pacients.find(p => p._id === query.userId); setRender(true)}, [pacients])
-  // useEffect(() => {if(professionals && query) professional = professionals.find(p => p.id === query.professionalId); setRender(true)}, [professionals])
   useEffect(() => {
     if (render) setRender(false);
+
   }, [render]); */
+
   return (
     <View>
       <ScrollView>
         <View>
+
           {query ? (
             <View style={styles.container}>
               <View style={{ paddingBottom: 15 }}>
@@ -69,7 +71,7 @@ export function QueriesDetail({ route }) {
                 <Text>{query.motive} </Text>
               </View>
               <View style={{ flexDirection: "row", padding: 10 }}>
-                {/* <Text>Estado: {query.state[0]}</Text> */}
+                <Text>Estado: {query?.state[0]}</Text>
               </View>
               <View style={styles.containerObservations}>
                 <TextInput

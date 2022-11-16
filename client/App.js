@@ -14,6 +14,7 @@ import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
 import { QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
+
 import { Loading } from './src/components/loading/Loading'; 
 import { Queries } from './src/components/pacient/Queries'
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
@@ -70,9 +71,9 @@ export default function App() {
             <Stack.Screen
               name="ProfessionalsList"
               component={ProfessionalsList}/>
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Queries"
-              component={Queries}/>
+              component={Queries}/> */}
               <Stack.Screen
               name="QueriesHistorialPacient"
               component={QueriesHistorialPacient}/>  
@@ -81,7 +82,7 @@ export default function App() {
               component={ProfessionalDetail}/>   
               <Stack.Screen
               name="GenerateQuery"
-            component={GenerateQuery}/>   
+              component={GenerateQuery}/>   
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
@@ -97,6 +98,3 @@ export default function App() {
       // </React.StrictMode>
   );
 }
-
-
-

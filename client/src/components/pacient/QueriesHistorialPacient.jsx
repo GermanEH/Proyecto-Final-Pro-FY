@@ -29,6 +29,7 @@ export function QueriesHistorialPacient({ navigation }) {
               paddingTop: 30,
             }}
           >
+
             <TouchableOpacity
               title="GenerateQuery"
               onPress={() =>

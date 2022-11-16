@@ -1,23 +1,33 @@
 import React from "react";
 import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
+    View,
+    Text,
+    Button,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+    SafeAreaView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
+
 import { Carousel } from "../Carousel/Carousel";
 import { Loading } from "../loading/Loading";
+
+import { CardPacient } from "./CardPacient";
+
+
 import { ButtonHomePacientQueries } from "../shared/Button";
-import { ListaConsultas } from "./ListaConsultas";
 
 export function HomePacient({ navigation }) {
+
   const payments = useSelector((state) => state.queries.payments);
-  const dispatch = useDispatch();
+
+
+
+    const pacients = useSelector((state) => state.pacients);
+
+
 
   return (
     <SafeAreaView>
@@ -69,11 +79,10 @@ export function HomePacient({ navigation }) {
             <View style={styles.containerCarousel}>
               <Carousel />
             </View>
-          </View>
         </ScrollView>
       )}
     </SafeAreaView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
@@ -102,13 +111,6 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 8,
+
     },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-    borderRadius: 10,
-    marginVertical: 40,
-    justifyContent: "center",
-    paddingBottom: 40,
-  },
 });
