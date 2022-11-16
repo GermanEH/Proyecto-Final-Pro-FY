@@ -33,26 +33,20 @@ export function QueriesDetail({ route }) {
     <View>
       <ScrollView>
         <View>
-          {query ? (
-            <View style={styles.container}>
+            {query ? (<View style={styles.container}>
               <View style={{ padding: 10 }}>
-                {/* <Text>Paciente: {pacient.name}</Text> */}
+                <Text>Paciente: {query?.pacientName}</Text>
                 <Text>
-                  Fecha de creación de la consulta:{" "}
-                  {query.createdDate &&
-                    query.createdDate.substring(
-                      0,
-                      query.createdDate.indexOf("T")
-                    )}
+                  Fecha de creación de la consulta: {query?.created.slice(0, 10)}
                 </Text>
-                <Text>Fecha de la consulta: {query.queryDate}</Text>
+                <Text>Fecha de la consulta: {query?.date.slice(0, 10)}</Text>
               </View>
               <View style={{ padding: 10 }}>
-                <Text>Tipo de Consulta: {query.motive}</Text>
-                {/* <Text>Profesional: {professional.last_name}</Text> */}
+                <Text>Tipo de Consulta: {query?.description}</Text>
+                <Text>Profesional: {query?.doctorName}</Text>
               </View>
               <View style={{ flexDirection: "row", padding: 10 }}>
-                {/* <Text>Estado: {query.state[0]}</Text> */}
+                <Text>Estado: {query?.state[0]}</Text>
               </View>
               <View style={styles.containerObservations}>
                 <View style={styles.observations}>
