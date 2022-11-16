@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
 export function ProfessionalDetail({ navigation, route }) {
-  console.log(route)
 
   const [text, onChangeText] = useState("");
 
