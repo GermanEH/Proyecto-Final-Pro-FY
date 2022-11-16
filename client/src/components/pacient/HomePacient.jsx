@@ -1,21 +1,23 @@
 import React from "react";
 import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
+    View,
+    Text,
+    Button,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+    SafeAreaView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
+import { CardPacient } from "./CardPacient";
+import { Carousel } from "../Carousel/Carousel";
 import { ButtonHomePacientQueries } from "../shared/Button";
-import { ListaConsultas } from "./ListaConsultas";
 
 export function HomePacient({ navigation }) {
-  const pacients = useSelector((state) => state.pacients);
-  const dispatch = useDispatch();
+
+    const pacients = useSelector((state) => state.pacients);
+    const dispatch = useDispatch();
 
     return (
         <SafeAreaView>
@@ -59,47 +61,49 @@ export function HomePacient({ navigation }) {
                 {/* <CardPacient first_name={first_name} last_name, country, specialty}/> */}
                 <View style={styles.containerComments}>
                 <Text style={{ textAlign: "center" }}>
-                    CARRUSEL DE LA CONTRATACION
                 </Text>
+                </View>
+                <View>
+                    <Carousel/>
                 </View>
         </ScrollView>
     </SafeAreaView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 25,
-  },
-  containerBtnForm: {
-    alignItems: "center",
-    padding: 25,
-  },
-  containerBtnQueries: {
-    alignItems: "center",
-    padding: 100,
-  },
-  btn: {
-    backgroundColor: theme.colors.primaryColor,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: theme.borderRadius.borderRadiusBotton,
-  },
-  containerComments: {
-    width: "100%",
-    height: 300,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
+    container: {
+        marginHorizontal: 25,
     },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-    borderRadius: 10,
-    marginVertical: 40,
-    justifyContent: "center",
-    paddingBottom: 40,
-  },
+    containerBtnForm: {
+        alignItems: "center",
+        padding: 25
+    },
+    containerBtnQueries: {
+        alignItems: "center",
+        padding: 100,
+    },
+    btn: {
+        backgroundColor: theme.colors.primaryColor,
+        paddingHorizontal: 30,
+        paddingVertical: 10,
+        borderRadius: theme.borderRadius.borderRadiusBotton,
+    },
+    containerComments: {
+        width: "100%",
+        height: 300,
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 8,
+        },
+        shadowOpacity: 0.44,
+        shadowRadius: 10.32,
+        elevation: 16,
+        borderRadius: 10,
+        marginVertical: 40,
+        justifyContent: "center",
+        paddingBottom: 40,
+    },
 });
