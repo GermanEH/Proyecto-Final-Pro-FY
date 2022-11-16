@@ -1,12 +1,12 @@
 import React from "react";
 import {
-    View,
-    Text,
-    Button,
-    StyleSheet,
-    TouchableOpacity,
-    ScrollView,
-    SafeAreaView,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
@@ -16,18 +16,12 @@ import { Loading } from "../loading/Loading";
 
 import { CardPacient } from "./CardPacient";
 
-
 import { ButtonHomePacientQueries } from "../shared/Button";
 
 export function HomePacient({ navigation }) {
-
   const payments = useSelector((state) => state.queries.payments);
 
-
-
-    const pacients = useSelector((state) => state.pacients);
-
-
+  const pacients = useSelector((state) => state.pacients);
 
   return (
     <SafeAreaView>
@@ -79,10 +73,11 @@ export function HomePacient({ navigation }) {
             <View style={styles.containerCarousel}>
               <Carousel />
             </View>
+          </View>
         </ScrollView>
       )}
     </SafeAreaView>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
@@ -111,6 +106,6 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 8,
-
     },
+  },
 });
