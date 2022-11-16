@@ -1,8 +1,8 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import theme from "../../theme";
 
-export function CardProfessional({ navigation, pacient }) {
-  console.log(pacient);
+export function CardProfessional({ navigation, query }) {
+  
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
@@ -19,13 +19,13 @@ export function CardProfessional({ navigation, pacient }) {
               fontSize: theme.fontSize.secondaryText,
             }}
           >
-            {/* {pacient.pacientName} */}
+            {query.pacientName}
           </Text>
           <View>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("QueriesDetail", {
-                  name: "QueriesDetail",
+                  id: query.id,
                 });
               }}
               style={styles.btn}
