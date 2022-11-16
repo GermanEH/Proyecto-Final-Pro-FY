@@ -31,7 +31,7 @@ const getProfessionalById = async (req, res) => {
     req = matchedData(req)
     const { id } = req
     // console.log(id)
-    const data = await professionalsModel.findById(id)
+    const data = await professionalsModel.findById(id).populate("specialities")
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id profesional")

@@ -15,6 +15,7 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
                 doctorName: q.professionals.last_name,
                 pacientName: `${q.users.first_name} ${q.users.last_name}`,
                 description: q.motive,
+                created: q.createdDate,
                 date: q.queryDate, 
                 state: q.state,
                 // isExpanded: false,
@@ -27,8 +28,17 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
 export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) => {
     try {
         const response = await axios.get(`http://localhost:3001/api/queries/${id}`)
-        console.log( response.data.data)
-        return response.data.data
+        return data.map(q => {
+            return {
+                id:q._id,
+                doctorName: q.professionals.last_name,
+                pacientName: `${q.users.first_name} ${q.users.last_name}`,
+                description: q.motive,
+                date: q.queryDate, 
+                state: q.state,
+                // isExpanded: false,
+            }
+        })
     } catch (error) {
         return error.message
     }        

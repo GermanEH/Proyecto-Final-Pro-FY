@@ -14,8 +14,9 @@ import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
 import { QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
-/* import { Loading } from './src/components/loading/Loading'; */
-// import { Queries } from './src/components/pacient/Queries'
+
+import { Loading } from './src/components/loading/Loading'; 
+import { Queries } from './src/components/pacient/Queries'
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
 import { ListaConsultas } from './src/components/pacient/ListaConsultas'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
@@ -34,9 +35,12 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
            <Stack.Navigator>
-           <Stack.Screen
+            <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
+           <Stack.Screen
+              name="Loading"
+              component={Loading}/>
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
@@ -81,19 +85,16 @@ export default function App() {
               component={GenerateQuery}/>   
               <Stack.Screen
               name="QueriesDetail"
-              component={QueriesDetail}/>   
+            component={QueriesDetail}/>   
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   
             <Stack.Screen
               name="ListaConsultas"
-              component={ListaConsultas}/>
+              component={ListaConsultas}/> 
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
       // </React.StrictMode>
   );
 }
-
-
-

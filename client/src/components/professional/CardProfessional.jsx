@@ -24,13 +24,13 @@ export function CardProfessional({ navigation, pacient }) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("DatingStatuses", {
-                  name: "DatingStatuses",
+                navigation.navigate("QueriesDetail", {
+                  name: "QueriesDetail",
                 });
               }}
               style={styles.btn}
             >
-              <Text>Ver más {">"}</Text>
+              <Text style={{ color: "white" }}>Ver más {">"}</Text>
             </TouchableOpacity>
           </View>
         </View>
