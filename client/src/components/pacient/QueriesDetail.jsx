@@ -10,8 +10,6 @@ import {
 } from "react-native";
 import theme from "../../theme";
 import { getQueryById } from "../../slices/queriesActions";
-import { getPacients } from "../../slices/pacientsActions";
-import { getProfessionals } from "../../slices/professionalsActions";
 
 export function QueriesDetail({ route }) {
   const [text, onChangeText] = useState("");
@@ -20,12 +18,6 @@ export function QueriesDetail({ route }) {
   const query = useSelector((state) => state.queries.query);
   const dispatch = useDispatch();
 
-  // const pacients = useSelector(state => state.pacients.pacients)
-  // const professionals = useSelector(state => state.professionals.professionals)
-
-  // let pacient = {}
-  // let professional = {}
-
   useEffect(() => {
     dispatch(getQueryById(route.params.id));
     setRender(true);
@@ -33,15 +25,9 @@ export function QueriesDetail({ route }) {
   useEffect(() => {
     if (query) setRender(true);
   }, [query]);
-  // useEffect(() => {dispatch(getPacients())}, [])
-  // useEffect(() => {dispatch(getProfessionals())}, [])
-  // useEffect(() => {if(pacients && query) pacient = pacients.find(p => p._id === query.userId); setRender(true)}, [pacients])
-  // useEffect(() => {if(professionals && query) professional = professionals.find(p => p.id === query.professionalId); setRender(true)}, [professionals])
   useEffect(() => {
     if (render) setRender(false);
   }, [render]);
-
-  console.log(query);
 
   return (
     <View>
