@@ -9,20 +9,22 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { getQueryById } from "../../slices/queriesActions";
-import { Loading } from "../loading/Loading";
 
+// import { getQueriesById } from "../../slices/queriesActions";
+import { getQueries } from "../../slices/queriesActions";
+import { Loading } from "../loading/Loading";
 
 export function QueriesDetail({ route }) {
   const [text, onChangeText] = useState("");
   const [render, setRender] = useState(false);
 
   const query = useSelector((state) => state.queries.queries.find(q => q._id === route.params._id));
-  //const query = useSelector((state) => state.queries.query)
-  const dispatch = useDispatch()
-  
+
+  // const query = useSelector((state) => state.queries.query);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getQueries);
+    dispatch(getQueries());
     setRender(true);
   }, []);
   useEffect(() => {
@@ -30,7 +32,11 @@ export function QueriesDetail({ route }) {
   }, [query]);
   useEffect(() => {
     if (render) setRender(false);
-  }, [render]);
+
+  }, [render]); 
+
+
+
 
 
   return (

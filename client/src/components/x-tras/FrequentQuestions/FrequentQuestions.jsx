@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import {  View, Text, StyleSheet } from "react-native";
 
-export function Ajustes() {
+export function FrequentQuestions() {
   return (
     <View style={styles.container}>
-      <Text>Ajustes</Text>
+      <Text>Preguntas Frecuentes</Text>
     </View>
   );
 }

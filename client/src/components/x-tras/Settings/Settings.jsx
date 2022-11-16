@@ -1,9 +1,9 @@
-import {  View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-export function Foro() {
+export function Settings() {
   return (
     <View style={styles.container}>
-      <Text>Foro</Text>
+      <Text>Settings</Text>
     </View>
   );
 }
