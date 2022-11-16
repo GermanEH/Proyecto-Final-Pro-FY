@@ -14,14 +14,13 @@ import { DatingStatuses } from './src/components/professional/DatingStatuses'
 import { ProfessionalsList } from './src/components/pacient/ProfessionalsList'
 import { QueriesHistorialPacientBasic } from './src/components/pacient/QueriesHistorialPacientBasic'
 import { DatingStatusesBasic } from './src/components/professional/DatingStatusesBasic'
-
-import { Loading } from './src/components/loading/Loading'; 
-import { Queries } from './src/components/pacient/Queries'
+/* import { Loading } from './src/components/loading/Loading'; */
+/* import { Queries } from './src/components/pacient/Queries' */
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
 import { ListaConsultas } from './src/components/pacient/ListaConsultas'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
-import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic'
-import { ProfessionalDetail } from './src/components/pacient/ProfessionalDetail'
+/* import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic' */
+/* import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail' */
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
 import { PacientsList } from './src/components/professional/PacientsList'
 import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
@@ -35,12 +34,9 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
            <Stack.Navigator>
-            <Stack.Screen
+           <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
-           <Stack.Screen
-              name="Loading"
-              component={Loading}/>
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
@@ -71,30 +67,34 @@ export default function App() {
             <Stack.Screen
               name="ProfessionalsList"
               component={ProfessionalsList}/>
-            {/* <Stack.Screen
+          {/*   <Stack.Screen
               name="Queries"
               component={Queries}/> */}
               <Stack.Screen
               name="QueriesHistorialPacient"
               component={QueriesHistorialPacient}/>  
-              <Stack.Screen
+           {/*    <Stack.Screen
               name="ProfessionalDetail"
-              component={ProfessionalDetail}/>   
+              component={ProfessionalDetail}/>    */}
               <Stack.Screen
               name="GenerateQuery"
-              component={GenerateQuery}/>   
+            component={GenerateQuery}/>   
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
+             {/*  component={GenerateQuery}/>  */}  
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   
             <Stack.Screen
               name="ListaConsultas"
-              component={ListaConsultas}/> 
+              component={ListaConsultas}/>
           </Stack.Navigator>  
         </NavigationContainer>
       </Provider>
       // </React.StrictMode>
   );
 }
+
+
+
