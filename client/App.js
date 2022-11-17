@@ -26,7 +26,7 @@ import { PacientsList } from './src/components/professional/PacientsList'
 import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
 import Toast from 'react-native-toast-message';
 import { toastConfig }from './customNotificationConfig'
-
+import {ConfirmEmailScreen} from './src/components/ConfirmEmailScreen/ConfirmEmailScreen'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -91,6 +91,9 @@ export default function App() {
             <Stack.Screen
               name="ListaConsultas"
               component={ListaConsultas}/>
+          <Stack.Screen
+              name="ConfirmEmailScreen"
+              component={ConfirmEmailScreen}/> 
           </Stack.Navigator>  
           <Toast config={toastConfig} />
         </NavigationContainer>
