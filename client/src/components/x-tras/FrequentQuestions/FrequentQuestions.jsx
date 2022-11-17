@@ -1,20 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import { ContainerFQ } from "./ContainerFQ";
-import { data } from "./data";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { CardFrecuentQuestions } from "./CardFrecuentQuestions";
+import { dataFrecuentQuestions } from "./dataFrecuentQuestions";
 
 export function FrequentQuestions() {
   return (
     <View style={styles.container}>
       <ScrollView>
-      {
-        data.map((dat, index) => (
-          <ContainerFQ
-            key={index}
-            index={index}
-            {...dat}
-          />
-        ))
-      }
+        {
+          dataFrecuentQuestions.map((data, index) => (
+            <CardFrecuentQuestions
+              key={index}
+              index={index}
+              {...data}
+            />
+          ))
+        }
       </ScrollView>
     </View>
   );
@@ -22,8 +22,7 @@ export function FrequentQuestions() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "center",
+    flex: 1,
+    backgroundColor: 'white',
   },
 });
