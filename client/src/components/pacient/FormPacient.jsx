@@ -71,11 +71,7 @@ export function FormPacient() {
   return (
     <View style={styles.container}>
       <View style={styles.root}>
-        <Image
-          source={Logo}
-          style={[styles.logo, { height: height * 0.3 }]}
-          resizeMode="contain"
-        />
+        <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
         <CustomInput
           name="first_name"
           placeholder="Nombre"
@@ -192,7 +188,7 @@ export function FormPacient() {
         <View>
           <CustomButtom
             text="Ya tienes una cuenta? Ingresa Aquí"
-            
+            color="orange"
             onPress={onSignUpPress}
             type="TERTIARY"
           />

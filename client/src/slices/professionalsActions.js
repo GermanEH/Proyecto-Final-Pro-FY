@@ -26,6 +26,7 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
                 schedule: d.schedule,
                 modality: d.modality,
                 specialities: d.specialities.name,
+                image: d.image
             }
         })
     } catch (error) {
