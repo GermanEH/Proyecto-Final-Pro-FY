@@ -40,6 +40,14 @@ const UserScheme = new mongoose.Schema(
       type: String,
       select: false
     },
+    image: {
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
+    },
     role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",

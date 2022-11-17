@@ -1,8 +1,13 @@
 const { matchedData } = require('express-validator');
 const { storageModel } = require('../models')
 const { handleHttpError } = require('../utils/handleError');
-const PUBLIC_URL = process.env.PUBLIC_URL
-
+const { v2 } = require('cloudinary')
+const { CLOUD_NAME, API_KEY, API_SECRET, PUBLIC_URL } = process.env
+v2.config({
+  cloud_name: CLOUD_NAME,
+  cloud_api_key: API_KEY,
+  cloud_api_secret: API_SECRET
+})
 
 
 
@@ -42,14 +47,23 @@ const getItemsById = async (req, res) => {
  * @param {*} res 
  */
 const createItem = async (req, res) => {
-  const { body, file } = req
-  console.log(file);
-  const fileData = {
-    filename: file.filename,
-    url: `${PUBLIC_URL}/${file.filename}`
+  try {
+    const { body, file } = req
+    // console.log(file)
+
+    const fileData = {
+      filename: file.filename,
+      url: `${PUBLIC_URL}/${file.filename}`
+    }
+    const cloud = await v2.uploader.upload(file.path)
+    const data = await storageModel.create(fileData)
+
+    console.log(cloud);
+    res.send({ cloud, data })
+  } catch (error) {
+    handleHttpError(res, "ERROR_UPLOADING_MEDIA")
+
   }
-  const data = await storageModel.create(fileData)
-  res.send({ data })
 };
 /**
  *  crear un registro!

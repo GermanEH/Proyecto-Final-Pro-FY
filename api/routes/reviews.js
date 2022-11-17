@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get("/", getReviews);
 
-router.get("/:id", validatorIdReview, getReviewById);
+router.get("/:id", validatorIdReview, validatorIdReview, getReviewById);
 
-router.delete("/:id", validatorIdReview, deleteReview);
+router.delete("/:id", validatorIdReview, validatorIdReview, deleteReview);
 
-router.put("/:id", validatorPutReview, editReview)
+router.put("/:id", validatorIdReview, validatorPutReview, editReview)
 
 router.post("/", validatorCreateReview, createReview)
 

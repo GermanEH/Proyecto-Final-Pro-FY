@@ -14,13 +14,18 @@ const ReviewsScheme = new mongoose.Schema(
       }
     },
     professional: {
-      professionalId: mongoose.Types.ObjectId,
+      professionalId: {
+        type: mongoose.Types.ObjectId,
+      }
     },
 
     response: {
       reviewId: {
         type: mongoose.Types.ObjectId,
       },
+      message: {
+        typet: String
+      }
 
       //hola
     },
