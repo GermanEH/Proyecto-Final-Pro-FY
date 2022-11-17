@@ -20,7 +20,7 @@ import { SignInScreen } from './src/components/SignIn/SignInScreen'
 import { ListaConsultas } from './src/components/pacient/ListaConsultas'
 import { QueriesDetail} from './src/components/pacient/QueriesDetail'
 /* import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic' */
-/* import { ProfessionalDetail } from './src/components/professional/ProfessionalDetail' */
+import { ProfessionalDetail } from './src/components/pacient/ProfessionalDetail'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
 import { PacientsList } from './src/components/professional/PacientsList'
 import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
@@ -35,8 +35,8 @@ export default function App() {
     // <React.StrictMode>
       <Provider store={store}>
         <NavigationContainer>
-           <Stack.Navigator>
-           <Stack.Screen
+            <Stack.Navigator>
+            <Stack.Screen
               name="OnBoard"
               component={OnBoard}/>
             <Stack.Screen
@@ -75,9 +75,9 @@ export default function App() {
               <Stack.Screen
               name="QueriesHistorialPacient"
               component={QueriesHistorialPacient}/>  
-           {/*    <Stack.Screen
+              <Stack.Screen
               name="ProfessionalDetail"
-              component={ProfessionalDetail}/>    */}
+              component={ProfessionalDetail}/>   
               <Stack.Screen
               name="GenerateQuery"
             component={GenerateQuery}/>   
