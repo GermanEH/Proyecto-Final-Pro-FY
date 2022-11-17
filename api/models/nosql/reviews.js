@@ -21,6 +21,9 @@ const ReviewsScheme = new mongoose.Schema(
       reviewId: {
         type: mongoose.Types.ObjectId,
       },
+      message: {
+        typet: String
+      }
 
       //hola
     },
