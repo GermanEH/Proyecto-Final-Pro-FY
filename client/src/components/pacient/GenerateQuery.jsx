@@ -14,8 +14,8 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 import { TouchableOpacity } from "react-native-gesture-handler";
-/* import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"; */
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 export function GenerateQuery({ navigation }) {
   const [text, onChangeText] = useState("");
   const [modalitie, setModalitie] = useState("");
@@ -51,7 +51,7 @@ export function GenerateQuery({ navigation }) {
     console.log("entramos");
     console.log(data);
 
-    //navigation.navigate('SignInScreen')
+    navigation.navigate('SignInScreen')
   };
 
   const onChange = (arg) => {
@@ -98,14 +98,14 @@ export function GenerateQuery({ navigation }) {
             <Text>Loading...</Text>
           )}
         </View>
-        {/* <DatePicker
+        <DatePicker
           selected={date}
           showTimeSelect
           onChange={(date) => {
             setValue("Fecha", date);
             setDate(date);
           }}
-        /> */}
+        />
         <View style={{ paddingVertical: 15 }}>
           <Text style={styles.text}>Modo de pago:</Text>
           {payments.length > 0 ? (

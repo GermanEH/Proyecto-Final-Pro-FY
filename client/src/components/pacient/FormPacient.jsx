@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
-import { useForm, Controller } from "react-hook-form";
-import Constants from "expo-constants";
+import { useForm} from "react-hook-form";
+/* import Constants from "expo-constants"; */
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
 import { useNavigation } from "@react-navigation/native";
@@ -46,18 +46,18 @@ export function FormPacient() {
   });
   const navigation = useNavigation();
   const onSignUpPress = () => {
-    navigation.navigate("SignInScreen");
+    navigation.navigate("ConfirmEmailScreen");
   };
-  const onSignInPressed = () => {
+ /*  const onSignInPressed = () => {
     // validate user
     navigation.navigate("Home");
-  };
+  }; */
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
     console.log("entramos");
     console.log(data);
     dispatch(postPacient(data));
-    navigation.navigate("SignInScreen");
+    navigation.navigate("ConfirmEmailScreen");
   };
 
   const onChange = (arg) => {
@@ -71,11 +71,7 @@ export function FormPacient() {
   return (
     <View style={styles.container}>
       <View style={styles.root}>
-        <Image
-          source={Logo}
-          style={[styles.logo, { height: height * 0.3 }]}
-          resizeMode="contain"
-        />
+        <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
         <CustomInput
           name="first_name"
           placeholder="Nombre"
@@ -177,25 +173,28 @@ export function FormPacient() {
           }}
         />
 
-        <View style={styles.button}>
-          <Button
-            style={styles.buttonInner}
-            color
-            title="Crear usuario"
-            onPress={handleSubmit(onSubmit)}
-          />
+        <CustomButtom text="Crear Usuario" onPress={handleSubmit(onSubmit)} />
         </View>
-
+        <Text style={styles.text}>
+         Al registrarte confirmas y aceptas nuestros{' '}
+          <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+            Terminos de uso
+          </Text>{' '}
+          y{' '}
+          <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+            Politica de privacidad
+          </Text>
+        </Text>
         <View>
           <CustomButtom
             text="Ya tienes una cuenta? Ingresa Aquí"
-            color='orange'
+            color="orange"
             onPress={onSignUpPress}
             type="TERTIARY"
           />
         </View>
       </View>
-    </View>
+   
   );
 }
 
@@ -215,5 +214,12 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "orange",
     borderRadius: 4,
+  },
+  text: {
+    color: 'gray',
+    marginVertical: 10,
+  },
+  link: {
+    color: '#FDB075',
   },
 });
