@@ -210,7 +210,7 @@ export function FormProfessional() {
               }}
             />
             <View style={{ width: "100%", height: 200, paddingTop: 60 }}>
-              <LoadingImage handleImage={handleImage} setValue={setValue} />
+              <LoadingImage setValue={setValue} />
             </View>
 
             <View style={styles.button}>
