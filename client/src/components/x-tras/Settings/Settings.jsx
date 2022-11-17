@@ -1,9 +1,22 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { CardSettings } from "./CardSetting";
+import { dataSetting } from "./dataSetting";
+
 
 export function Settings() {
   return (
     <View style={styles.container}>
-      <Text>Settings</Text>
+      <ScrollView>
+        {
+          dataSetting.map((datSetting, index) => (
+            <CardSettings
+              key={index}
+              index={index}
+              {...datSetting}
+            />
+          ))
+        }
+      </ScrollView>
     </View>
   );
 }
@@ -11,8 +24,9 @@ export function Settings() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    display: 'flex',
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: 'center',
+    backgroundColor: 'white',
   },
 });
