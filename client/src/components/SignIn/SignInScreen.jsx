@@ -28,6 +28,8 @@ export function SignInScreen  ()  {
 
   const onForgotPasswordPressed = () => {
   /*   navigation.navigate('ForgotPassword'); */
+  console.warn('onForgotPasswordPressed')
+  
   };
 
   const onSignUpPress = () => {
@@ -45,31 +47,31 @@ export function SignInScreen  ()  {
 
         <CustomInput
             name="name"
-            placeholder="Name"
+            placeholder="Nombre"
             control={control}
-            rules={{required: 'Name is required'}}
+            rules={{required: 'El Nombre es requerido'}}
     />
         <CustomInput
             name="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             control={control}
-            rules={{required: 'Password is required'}}
+            rules={{required: 'La Contraseña es requerida'}}
             secureTextEntry
         />
        
 
-        <CustomButtom text="Sign In" onPress={handleSubmit(onSignInPressed)} />
+        <CustomButtom text="Ingresar" onPress={handleSubmit(onSignInPressed)} />
 
         <CustomButtom
-          text="Forgot password?"
+          text="¿Olvidaste tu Contraseña?"
           onPress={onForgotPasswordPressed}
-          type="TERTIARY"
+          type="SECONDARY"
         />
 
      
 
         <CustomButtom
-          text="Don't have an account? Create one"
+          text="No tienes una cuenta? Crea una aqui"
           onPress={onSignUpPress}
           type="TERTIARY"
         />
