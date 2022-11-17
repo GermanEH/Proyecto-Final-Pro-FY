@@ -12,12 +12,17 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
 import { Loading } from "../loading/Loading";
+import { getProfessionals } from '../../slices/professionalsActions'
+import { getQueries } from '../../slices/queriesActions'
 
 export function QueriesHistorialPacient({ navigation }) {
+
   const queries = useSelector((state) => state.queries.queries);
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {dispatch(getQueries())}, [])
+
   return (
     <View>
       <ScrollView>
@@ -58,7 +63,7 @@ export function QueriesHistorialPacient({ navigation }) {
             Historial de Consultas
           </Text>
         </View>
-        {!queries.length && !professionals ? (
+        {(queries.length === 0) ? (
           <Loading />
         ) : (
           <View style={styles.containerHistorial}>

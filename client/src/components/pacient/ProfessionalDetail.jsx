@@ -1,10 +1,12 @@
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import theme from "../../theme";
 import { ButtonQueries, ButtonQueriesDetail } from "../shared/Button";
 import { Carousel } from '../Carousel/Carousel'
 import { getProfessionalById } from "../../slices/professionalsActions";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import { getReviews } from '../../slices/reviewsActions'
+import { Review } from './Review'
 
 export function ProfessionalDetail({ navigation, route }) {
 
@@ -12,11 +14,15 @@ export function ProfessionalDetail({ navigation, route }) {
   const [render, setRender] = useState(false)
 
   const professional = useSelector((state) => state.professionals.professional);
+  const reviews = useSelector((state) => state.reviews.reviews);
   const dispatch = useDispatch();
 
   useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
+  useEffect(() => {dispatch(getReviews()); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
-  
+
+  console.log(professional)
+
   return ( 
     <ScrollView>
       <View 
@@ -39,7 +45,7 @@ export function ProfessionalDetail({ navigation, route }) {
             }}
           >
             <Text>{professional?.first_name} {professional?.last_name}</Text>
-            <Text>Especialidad: {professional?.specialities.name}</Text>
+            <Text>Especialidad: {professional?.specialities}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>Tipos de Consulta: {professional?.modality}</Text>
             </View>
@@ -61,6 +67,9 @@ export function ProfessionalDetail({ navigation, route }) {
           <Text>Comentarios:</Text>
         </View>
 
+        <ScrollView>
+          {reviews?.map((r, i) => <Review review={r} key={i}/>)}
+        </ScrollView>
         <ScrollView>
           <View 
           style={styles.containerComments}
