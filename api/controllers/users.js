@@ -1,6 +1,7 @@
 const { usersModel } = require('../models');
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
+const { uploadImage } = require('../config/cloudinaryconfig');
 
 
 
@@ -47,7 +48,12 @@ const getUserById = async (req, res) => {
 const createUsers = async (req, res) => {
   try {
     const body = matchedData(req)
-    // console.log(body, bodyClean);
+    console.log(req.files);
+    if (req.files?.image) {
+      const result = await uploadImage(req.files.image.tempFilePath)
+      console.log(result);
+    }
+
     const data = await usersModel.create(body)
     res.send({ data })
   } catch (error) {
