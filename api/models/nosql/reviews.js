@@ -14,7 +14,9 @@ const ReviewsScheme = new mongoose.Schema(
       }
     },
     professional: {
-      professionalId: mongoose.Types.ObjectId,
+      professionalId: {
+        type: mongoose.Types.ObjectId,
+      }
     },
 
     response: {

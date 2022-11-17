@@ -14,8 +14,7 @@ const validatorCreateReview = [
     .exists()
     .notEmpty(),
   check("response")
-    .exists()
-    .notEmpty(),
+    .optional(),
 
 
   (req, res, next) => {
