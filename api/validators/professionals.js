@@ -20,7 +20,6 @@ const validatorCreateProfessional = [
     .exists()
     .notEmpty(),
   check("dni")
-    // .optional(),
     .exists()
     .notEmpty(),
   check("professionalId")
