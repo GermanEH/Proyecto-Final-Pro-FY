@@ -16,9 +16,6 @@ export function ProfessionalDetail({ navigation, route }) {
 
   useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
-
-  console.log(route)
-  console.log(typeof professional)
   
   return ( 
     <ScrollView>
