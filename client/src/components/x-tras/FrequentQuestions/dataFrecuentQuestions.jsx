@@ -1,4 +1,4 @@
-export const data = [
+export const dataFrecuentQuestions = [
   {
     title: '¿Quiénes somos?',
     component: 'who'

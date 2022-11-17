@@ -1,11 +1,10 @@
 import { Text, View, FlatList } from "react-native";
-import { CardSlideFQ } from "./CardSlideFQ";
+import { FQCardSlide } from "./FQCardSlide";
 
 const steps = [
   {
     id: '1',
     title: 'step 1',
-
     image: require('../../../../assets/logo.png'),
   },
   {
@@ -39,7 +38,7 @@ export const WhyUs = () => (
 
 export const HowItWorks = () => (
   <View>
-    <FlatList data={steps} renderItem={({ item }) => <CardSlideFQ item={item} />}
+    <FlatList data={steps} renderItem={({ item }) => <FQCardSlide item={item} />}
       horizontal
       showsHorizontalScrollIndicator
       pagingEnabled
