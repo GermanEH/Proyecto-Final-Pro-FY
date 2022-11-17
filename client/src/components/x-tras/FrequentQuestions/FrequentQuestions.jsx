@@ -1,17 +1,28 @@
-import {  View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { ContainerFQ } from "./ContainerFQ";
+import { data } from "./data";
 
 export function FrequentQuestions() {
   return (
     <View style={styles.container}>
-      <Text>Preguntas Frecuentes</Text>
+      <ScrollView>
+      {
+        data.map((dat, index) => (
+          <ContainerFQ
+            key={index}
+            index={index}
+            {...dat}
+          />
+        ))
+      }
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 2,
     alignItems: "center",
     justifyContent: "center",
   },

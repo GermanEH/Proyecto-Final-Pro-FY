@@ -21,8 +21,8 @@ export function HamburgerMenu({ route }) {
             <Menu.Screen name="Home" component={HomeProfessional} />
           )}
           <Menu.Screen name="Notificaciones" component={Notifications} />
-          <Menu.Screen name="Frequent Questions" component={FrequentQuestions} />
-          <Menu.Screen name="Settings" component={Settings} />
+          <Menu.Screen name="Preguntas Frecuentes" component={FrequentQuestions} />
+          <Menu.Screen name="Ajustes" component={Settings} />
         </Menu.Navigator>
       </View>
     </SafeAreaView>
