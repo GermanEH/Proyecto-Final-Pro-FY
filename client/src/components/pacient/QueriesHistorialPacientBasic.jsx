@@ -29,11 +29,7 @@ export function QueriesHistorialPacientBasic({ navigation }) {
   const payments = useSelector (state => state.queries.payments)
 
   useEffect (() => {dispatch(getQueries()).then(() => setRender(true))}, [])
-  useEffect (() => {if (render === true) selectOptions()}, [render])
-  
-  const selectOptions = () => {
-    setRender(false)
-  }
+  useEffect (() => {if (render === true) setRender(false)}, [render])
 
   return (
     <ScrollView>

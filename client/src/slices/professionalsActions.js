@@ -5,8 +5,8 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
     try {
         const response = await axios.get('http://localhost:3001/api/professionals')
         const data = response.data.data.sort(function(a, b) {
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
+            if(a.last_name < b.last_name) return -1;
+            if(a.last_name > b.last_name) return 1;
             return 0
         })
         return data.map(d => {
@@ -36,7 +36,7 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
 
 export const getProfessionalById = createAsyncThunk('professionals/getProfessionalById', async (id) => {
     try {
-        const response = await axios.get(`http://localhost:3001/api/professionals/${id}`)             //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.get(`http://localhost:3001/api/professionals/${id}`) 
         return response.data.data
     } catch (error) {
         return error.message
@@ -45,7 +45,7 @@ export const getProfessionalById = createAsyncThunk('professionals/getProfession
 
 export const getSpecialties = createAsyncThunk('professionals/getSpecialties', async () => {       //hay una i adicional en la ruta
     try {
-        const response = await axios.get('http://localhost:3001/api/specialities')             //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios.get('http://localhost:3001/api/specialities')             
         return response.data.data
     } catch (error) {
         return error.message
@@ -55,8 +55,7 @@ export const getSpecialties = createAsyncThunk('professionals/getSpecialties', a
 
 export const postProfessional = createAsyncThunk('professionals/postProfessional', async (newProfessional) => {
     try {
-        const response = await axios.post('http://localhost:3001/api/professionals', newProfessional)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
-        console.log(response)
+        const response = await axios.post('http://localhost:3001/api/professionals', newProfessional)   
         return response.data.data
     } catch (error) {
         return error.message
@@ -65,7 +64,7 @@ export const postProfessional = createAsyncThunk('professionals/postProfessional
 
 export const putProfessional = createAsyncThunk('professionals/putProfessional', async (id, professional) => {
     try {
-        const response = await axios.put(`http://localhost:3001/api/professionals/${id}`, professional)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = await axios.put(`http://localhost:3001/api/professionals/${id}`, professional) 
         return response.data.data
     } catch (error) {
         return error.message
@@ -74,7 +73,7 @@ export const putProfessional = createAsyncThunk('professionals/putProfessional',
 
 export const deleteProfessional = createAsyncThunk('professionals/deleteProfessional', async (professional) => {
     try {
-        const response = await axios.delete('http://localhost:3001/api/professionals', professional)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = await axios.delete('http://localhost:3001/api/professionals', professional) 
         return response.data.data
     } catch (error) {
         return error.message

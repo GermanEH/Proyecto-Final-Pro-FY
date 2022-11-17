@@ -40,9 +40,9 @@ export const queriesSlice = createSlice({
                 const fullToday = year + '-' + month + '-' + today
                 const fullTomorrow = year + '-' + month + '-' + tomorrow
                 const fullTomorrowAfter = year + '-' + month + '-' + tomorrowAfter
-                state.todayQueries = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
-                state.tomorrowQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
-                state.tomorrowAfterQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
+                // state.todayQueries = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
+                // state.tomorrowQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
+                // state.tomorrowAfterQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
             }
         )
         .addMatcher(
