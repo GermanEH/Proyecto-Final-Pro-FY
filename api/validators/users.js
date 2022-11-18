@@ -42,8 +42,8 @@ const validatorCreateUser = [
   check("postcode")
     .exists()
     .notEmpty(),
-  check("image")
-    .optional(),
+  // check("image")
+  //   .optional(),
 
   (req, res, next) => {
     return validateResults(req, res, next)
@@ -76,8 +76,8 @@ const validatorPutUsers = [
     .optional(),
   check("postcode")
     .optional(),
-  check("image")
-    .optional(),
+  // check("image")
+  //   .optional(),
 
 
   (req, res, next) => {
