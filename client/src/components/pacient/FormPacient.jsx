@@ -11,12 +11,13 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 /* import Constants from "expo-constants"; */
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "../../assets/logo.png";
+import { LoadingImage } from "../professional/LoadingImage";
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -42,13 +43,14 @@ export function FormPacient() {
       state: "",
       postcode: "",
       address: "",
+      image: "",
     },
   });
   const navigation = useNavigation();
   const onSignUpPress = () => {
     navigation.navigate("ConfirmEmailScreen");
   };
- /*  const onSignInPressed = () => {
+  /*  const onSignInPressed = () => {
     // validate user
     navigation.navigate("Home");
   }; */
@@ -172,29 +174,31 @@ export function FormPacient() {
             pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
           }}
         />
+        <View style={{ width: "100%", height: 200, paddingTop: 60 }}>
+          <LoadingImage setValue={setValue} />
+        </View>
 
         <CustomButtom text="Crear Usuario" onPress={handleSubmit(onSubmit)} />
-        </View>
-        <Text style={styles.text}>
-         Al registrarte confirmas y aceptas nuestros{' '}
-          <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
-            Terminos de uso
-          </Text>{' '}
-          y{' '}
-          <Text style={styles.link} /* onPress={onPrivacyPressed} */>
-            Politica de privacidad
-          </Text>
-        </Text>
-        <View>
-          <CustomButtom
-            text="Ya tienes una cuenta? Ingresa Aquí"
-            color="orange"
-            onPress={onSignUpPress}
-            type="TERTIARY"
-          />
-        </View>
       </View>
-   
+      <Text style={styles.text}>
+        Al registrarte confirmas y aceptas nuestros{" "}
+        <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+          Terminos de uso
+        </Text>{" "}
+        y{" "}
+        <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+          Politica de privacidad
+        </Text>
+      </Text>
+      <View>
+        <CustomButtom
+          text="Ya tienes una cuenta? Ingresa Aquí"
+          color="orange"
+          onPress={onSignUpPress}
+          type="TERTIARY"
+        />
+      </View>
+    </View>
   );
 }
 
@@ -216,10 +220,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   text: {
-    color: 'gray',
+    color: "gray",
     marginVertical: 10,
   },
   link: {
-    color: '#FDB075',
+    color: "#FDB075",
   },
 });
