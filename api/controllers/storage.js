@@ -48,15 +48,15 @@ const getItemsById = async (req, res) => {
  */
 const createItem = async (req, res) => {
   try {
-    const { body, file } = req
+    const { body } = req
     // console.log(file)
 
-    const fileData = {
-      filename: file.filename,
-      url: `${PUBLIC_URL}/${file.filename}`
-    }
-    const cloud = await v2.uploader.upload(file.path)
-    const data = await storageModel.create(fileData)
+    // const fileData = {
+    //   filename: file.filename,
+    //   url: `${PUBLIC_URL}/${file.filename}`
+    // }
+    // const cloud = await v2.uploader.upload(file.path)
+    const data = await storageModel.create(body)
 
     console.log(cloud);
     res.send({ cloud, data })

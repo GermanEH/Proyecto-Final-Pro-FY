@@ -54,7 +54,7 @@ const UserScheme = new mongoose.Schema(
     role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",
-    }
+    },
   },
   {
     temestamps: true,
