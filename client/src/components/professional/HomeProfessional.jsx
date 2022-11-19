@@ -25,7 +25,7 @@ export function HomeProfessional({ navigation }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQueries());
+  /*   dispatch(getQueries()); */
   }, []);
 
   return (

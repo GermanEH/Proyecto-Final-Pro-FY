@@ -1,7 +1,7 @@
-import * as React from 'react';
+import  React , {useEffect} from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions, ScrollView,
   SafeAreaView, } from 'react-native';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { postProfessional } from '../../slices/professionalsActions'
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
@@ -9,11 +9,12 @@ import CustomInput from '../CustomInput/CustomInput'
 import CustomButtom from '../CustomButton/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import Logo from '../../assets/logo.png';
-
+import { getSpecialties } from '../../slices/professionalsActions';
+import {SelectList} from 'react-native-dropdown-select-list';
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export function FormProfessional  ()  {
-  const { register, setValue, handleSubmit,watch, control, reset, formState: { errors } } = useForm({
+  const { register, setValue, handleSubmit, watch, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       first_name: '',
       last_name: '',
@@ -32,6 +33,8 @@ export function FormProfessional  ()  {
       modality:[]
     }
   });
+  
+  const [selected, setSelected] = React.useState("")
   const navigation = useNavigation();
   const onSignUpPress = () => {
     navigation.navigate('SignInScreen')
@@ -40,6 +43,7 @@ export function FormProfessional  ()  {
     // validate user
     navigation.navigate('Home');
   };
+  
   const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
     console.log('entramos')
@@ -48,14 +52,11 @@ export function FormProfessional  ()  {
     navigation.navigate('SignInScreen')
   };
 
-  /* const onChange = arg => {
-    return {
-      value: arg.nativeEvent.text,
-    };
-  }; */
+ const speciality = useSelector(state => state.professionals.specialtiesNames)
   const {height} = useWindowDimensions();
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  useEffect(() => {dispatch(getSpecialties())},[]);
+ 
   return (
     <SafeAreaView>
       <ScrollView>
@@ -68,6 +69,7 @@ export function FormProfessional  ()  {
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />
+      
       <CustomInput
         name="first_name"
         placeholder="Nombre"
@@ -110,7 +112,7 @@ export function FormProfessional  ()  {
         minLength:{
           value:8,
           message: 'La contraseña deberia tener 8 letras como minimo'
-        },
+        }
        
       }}
     />
@@ -150,13 +152,7 @@ export function FormProfessional  ()  {
         
       />
 
-<CustomInput
-        name="speciality"
-        placeholder="Especialidad"
-        control={control}
-        
-        
-      />
+        <SelectList data={speciality} placeholder="Especialidad" setSelected={(value)=>setValue('speciality', value)} />
        <CustomInput
           name="professionalId"
           placeholder="Matricula del profesional"
@@ -185,7 +181,7 @@ export function FormProfessional  ()  {
           name="modality"
           placeholder="Modalidad"
           control={control}
-          /* rules={{required: 'Modalidad es requerida'}} */
+          rules={{required: 'Modalidad es requerida'}}
         />
       <CustomInput
           name="email"
