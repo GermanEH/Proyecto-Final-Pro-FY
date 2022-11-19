@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-// router.get("/", autMiddleware, getUsers);
+//router.get("/", autMiddleware, getUsers);
 
 router.get("/", getUsers);
 

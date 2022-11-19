@@ -17,15 +17,13 @@ export function ProfessionalsList({ navigation }) {
 
   const filters = useSelector(filtersSelectors.selectEntities);
   const filtersIds = useSelector(filtersSelectors.selectIds);
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
+  const professionals = useSelector((state) => state.professionals.professionals);
   const filtered = useSelector((state) => state.professionals.filtered);
   const specialties = useSelector((state) => state.professionals.specialties);
   const countries = useSelector((state) => state.professionals.countries);
-  const specialtiesNames = useSelector(
-    (state) => state.professionals.specialtiesNames
-  );
+  const specialtiesNames = useSelector((state) => state.professionals.specialtiesNames);
+
+  console.log(professionals)
 
   const dispatch = useDispatch();
   let s = {};
@@ -87,8 +85,10 @@ export function ProfessionalsList({ navigation }) {
             setSelected={(val) => setCountry(val)}
             data={countries}
             save="value"
+            // onSelect={() => alert(selected)}
+            // label="Categories"
           />
-          {filtered.length > 0 && specialties.length > 0 ? (
+          {(filtered.length > 0 && specialties.length > 0) ? (
             filtered.map((p, index) => {
               return (
                 <CardPacient

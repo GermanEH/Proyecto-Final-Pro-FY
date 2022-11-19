@@ -4,11 +4,10 @@ import {
   Text,
   StyleSheet,
   useWindowDimensions,
-  Image,
-  TouchableOpacity,
+  Image
 } from "react-native";
 
-export function CardSlideFQ({ item }) {
+export function FQCardSlide({ item }) {
   const { width } = useWindowDimensions();
 
   return (

@@ -31,27 +31,6 @@ export function HomeProfessional({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
-        <View style={{ alignItems: "center", paddingTop: 20 }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: theme.colors.primaryColor,
-
-              padding: 15,
-              borderRadius: 10,
-            }}
-            title="Formulario Profesional"
-            onPress={() =>
-              navigation.navigate("FormProfessional", {
-                name: "FormProfessional",
-              })
-            }
-          >
-            <Text style={{ color: theme.colors.secondaryText }}>
-              Formulario Profesional
-            </Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.container}>
           <Text
             style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}

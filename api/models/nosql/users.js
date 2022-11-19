@@ -40,6 +40,9 @@ const UserScheme = new mongoose.Schema(
       type: String,
       select: false
     },
+    // image: {
+    //   type: String,
+    // },
     image: {
       url: {
         type: String,
@@ -51,7 +54,7 @@ const UserScheme = new mongoose.Schema(
     role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",
-    }
+    },
   },
   {
     temestamps: true,

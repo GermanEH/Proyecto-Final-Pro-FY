@@ -30,21 +30,6 @@ export function HomePacient({ navigation }) {
       ) : (
         <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
           <View style={styles.container}>
-            <View style={styles.containerBtnForm}>
-              <TouchableOpacity
-                title="FormularioUsuario"
-                onPress={() =>
-                  navigation.navigate("FormPacient", {
-                    name: "FormPacient",
-                  })
-                }
-                style={styles.btn}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  Formulario de Usuario
-                </Text>
-              </TouchableOpacity>
-            </View>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
             >
@@ -70,12 +55,12 @@ export function HomePacient({ navigation }) {
             </View>
             <Text>Favoritos:</Text>
             {/* <CardPacient first_name={first_name} last_name, country, specialty}/> */}
-            <View style={styles.containerCarousel}>
-              <Carousel />
-            </View>
           </View>
         </ScrollView>
       )}
+            <View style={styles.containerCarousel}>
+              <Carousel />
+            </View>
     </SafeAreaView>
   );
 }

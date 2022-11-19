@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { AboutUs, WhyUs, HowItWorks } from "./FQComponents/FQComponents";
+import { AboutUs, WhyUs, HowItWorks } from "./FQComponents";
 import theme from '../../../theme'
 
 const obj = {
@@ -9,7 +9,7 @@ const obj = {
   how: <HowItWorks />,
 }
 
-export function ContainerFQ({ title, component, index }) {
+export function CardFrecuentQuestions({ title, component, index }) {
 
   const [currentIndex, setCurrentIndex] = useState(null)
 
@@ -51,21 +51,14 @@ const styles = StyleSheet.create({
     shadowRadius: 9.11,
     elevation: 14,
     padding: 10,
-    marginBottom: 30
+    margin: 10
   },
   cardDescription: {
-    width: 400,
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-    elevation: 14,
-    padding: 10,
-    marginBottom: 10
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 20,
   },
-
   title: {
     fontSize: theme.fontSize.primaryText,
     fontWeight: theme.fontWeights.bold,

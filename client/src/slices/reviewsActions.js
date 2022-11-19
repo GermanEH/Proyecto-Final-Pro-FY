@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getReviews = createAsyncThunk('reviews/getReviews', async () => {
     try {
-        const response = await axios.get('http://localhost:3001/api/queries')
+        const response = await axios.get('http://localhost:3001/api/reviews')
         const data = response.data.data.sort(function(a, b) {
             if(a.name < b.name) return -1;
             if(a.name > b.name) return 1;
@@ -17,7 +17,7 @@ export const getReviews = createAsyncThunk('reviews/getReviews', async () => {
 
 export const postReview = createAsyncThunk('reviews/postReview', async (newQuery) => {
     try {
-        const response = axios.post('http://localhost:3001/api/queries', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.post('http://localhost:3001/api/reviews', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
         return response.data.data
     } catch (error) {
         return error.message
