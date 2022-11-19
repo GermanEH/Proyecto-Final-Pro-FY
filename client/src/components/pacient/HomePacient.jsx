@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -10,22 +10,36 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import theme from "../../theme";
-
 import { Carousel } from "../Carousel/Carousel";
 import { Loading } from "../loading/Loading";
-
 import { CardPacient } from "./CardPacient";
-
 import { ButtonHomePacientQueries } from "../shared/Button";
+import { getAuth } from "firebase/auth";
 
 export function HomePacient({ navigation }) {
-  const payments = useSelector((state) => state.queries.payments);
 
+  const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
 
+  const auth = getAuth();
+  const user = auth.currentUser
+  useEffect(() => {
+    if (user !== null) {
+      // The user object has basic properties such as display name, email, etc.
+      // displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+      const uid = user.uid;
+    }
+  }, [])
+  
   return (
     <SafeAreaView>
-      {!payments.length ? (
+      {(user === null) ? (
         <Loading />
       ) : (
         <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
@@ -42,7 +56,7 @@ export function HomePacient({ navigation }) {
                 paddingLeft: 10,
               }}
             >
-              Daniela Gomez
+              {user.displayName}
             </Text>
             <Text>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae

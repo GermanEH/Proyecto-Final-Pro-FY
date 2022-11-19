@@ -10,7 +10,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 
-export function SignIn() {
+export function SignIn({ route }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation()
@@ -24,6 +24,9 @@ export function SignIn() {
             const user = userCredential.user;
             console.log("Logged in whit", user.email)
             // ...
+            if(user && user.emailVerified === false) {alert('Correo electronico no verificado')}
+            if(user && user.emailVerified === true && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && user.emailVerified === true && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })}
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -32,12 +35,15 @@ export function SignIn() {
     }
 
     useEffect(()=>{
-        const unsuscribe = auth.onAuthStateChanged(user =>{
-            if(user)
-            navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        const unsuscribe = auth.onAuthStateChanged( user => {
+            console.log(user.emailVerified)
+            if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
+            if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
+        }
         })
         return unsuscribe
-    },[])
+    },[auth])
 
     const HandleSignInWhitGoogle = () => {
         signInWithPopup(auth, provider)
