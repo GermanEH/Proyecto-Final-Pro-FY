@@ -17,22 +17,6 @@ export function SignIn() {
 
     const {height} = useWindowDimensions();
 
-    const handleSignUp = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential =>{
-            console.log('Account created!')
-            // Signed in 
-            const user = userCredential.user
-            // ...
-            console.log("Register whit", user.email)
-            })
-        .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
-    }
-
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
