@@ -3,6 +3,7 @@ const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 const { encrypt, compare } = require('../utils/handlePassword');
 const { TokenSing } = require('../utils/handleJwt');
+const sendMail = require('../config/nodemailer')
 
 
 /**
@@ -14,6 +15,7 @@ const { TokenSing } = require('../utils/handleJwt');
 const registerCtrl = async (req, res) => {
   try {
     req = matchedData(req)
+    const email = await (req.email)
     const password = await encrypt(req.password)
     const body = { ...req, password }
     const dataUser = await usersModel.create(body)
@@ -22,6 +24,7 @@ const registerCtrl = async (req, res) => {
       token: await TokenSing(dataUser),
       user: dataUser
     }
+    sendMail.sendMail(email)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "ERROR_REGISTER_USER")
