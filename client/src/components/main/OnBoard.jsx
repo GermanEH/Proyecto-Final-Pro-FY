@@ -16,7 +16,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Pacient"
             onPress={() =>
-              navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+              navigation.navigate("SignIn", { usertype: "pacient" })
             }
           >
             <Text style={styles.text}>Pacient</Text>
@@ -25,7 +25,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Professional"
             onPress={() =>
-              navigation.navigate("HamburguerMenu", {
+              navigation.navigate("SignIn", {
                 usertype: "professional",
               })
             }
