@@ -8,7 +8,7 @@ export function SignOut ({navigation}) {
     const handleSignOut = ()=>{
         auth.signOut()
         .then(()=>{
-            navigation.navigate("LogIn")
+            navigation.navigate("OnBoard")
         })
         .catch(error  => alert(error.message))
     }
