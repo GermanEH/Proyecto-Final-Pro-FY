@@ -27,6 +27,10 @@ import { GenerateQuery } from './src/components/pacient/GenerateQuery'
 import Toast from 'react-native-toast-message';
 import { toastConfig }from './customNotificationConfig'
 import {ConfirmEmailScreen} from './src/components/ConfirmEmailScreen/ConfirmEmailScreen'
+import { SignUp } from './src/components/main/SignUp'
+import { SignIn } from './src/components/main/SignIn'
+import { SignOut } from './src/components/main/SignOut'
+
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -94,6 +98,15 @@ export default function App() {
           <Stack.Screen
               name="ConfirmEmailScreen"
               component={ConfirmEmailScreen}/> 
+          <Stack.Screen
+              name="SignUp"
+              component={SignUp}/> 
+          <Stack.Screen
+              name="SignIn"
+              component={SignIn}/> 
+          <Stack.Screen
+              name="SignOut"
+              component={SignOut}/> 
           </Stack.Navigator>  
           <Toast config={toastConfig} />
         </NavigationContainer>

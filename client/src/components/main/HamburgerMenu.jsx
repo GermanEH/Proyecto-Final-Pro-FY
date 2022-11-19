@@ -6,6 +6,7 @@ import { HomeProfessionalBasic } from "../professional/HomeProfessionalBasic";
 import { Notifications } from "../x-tras/Notifications/Notifications";
 import { FrequentQuestions } from "../x-tras/FrequentQuestions/FrequentQuestions";
 import { Settings } from "../x-tras/Settings/Settings";
+import { SignOut } from "./SignOut"
 
 const Menu = createDrawerNavigator();
 
@@ -23,6 +24,7 @@ export function HamburgerMenu({ route }) {
           <Menu.Screen name="Notificaciones" component={Notifications} />
           <Menu.Screen name="Preguntas Frecuentes" component={FrequentQuestions} />
           <Menu.Screen name="Ajustes" component={Settings} />
+          <Menu.Screen name="Cerrar Sesión" component={SignOut} />
         </Menu.Navigator>
       </View>
     </SafeAreaView>
