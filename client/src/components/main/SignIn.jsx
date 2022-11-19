@@ -10,7 +10,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 
-export function SignIn() {
+export function SignIn({ route }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation()
@@ -32,9 +32,10 @@ export function SignIn() {
     }
 
     useEffect(()=>{
-        const unsuscribe = auth.onAuthStateChanged(user =>{
-            if(user)
-            navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        const unsuscribe = auth.onAuthStateChanged( user => {
+            if(user && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
+        }
         })
         return unsuscribe
     },[])
