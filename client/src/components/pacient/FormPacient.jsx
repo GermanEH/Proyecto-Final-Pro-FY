@@ -8,6 +8,8 @@ import {
   Alert,
   Image,
   useWindowDimensions,
+  SafeAreaView,
+ ScrollView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
@@ -71,6 +73,9 @@ export function FormPacient() {
   const dispatch = useDispatch();
 
   return (
+
+    <SafeAreaView>
+      <ScrollView>
     <View style={styles.container}>
       <View style={styles.root}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
@@ -198,7 +203,12 @@ export function FormPacient() {
           type="TERTIARY"
         />
       </View>
+
+      </ScrollView>
+    </SafeAreaView>
+
     </View>
+
   );
 }
 
