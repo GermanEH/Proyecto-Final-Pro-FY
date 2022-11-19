@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Text, StyleSheet, View, Image, TextInput, TouchableOpacity, ScrollView, useWindowDimensions,
     KeyboardAvoidingView } from 'react-native';
 import { useForm} from "react-hook-form";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import Logo from '../../assets/logo.png';
 import CustomButtom from '../CustomButton/CustomButton'
 import { auth } from "../../../firebase-config.js"
@@ -29,13 +29,6 @@ export function SignUp({navigation}) {
             },
         });
 
-    // const onSubmit = (data) => {
-    //     console.log("entramos");
-    //     console.log(data);
-    //     dispatch(postPacient(data));
-    //     navigation.navigate("ConfirmEmailScreen");
-    // }
-
     const dispatch = useDispatch()
     const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -51,10 +44,15 @@ async function onHandleSubmit(data) {
         const user = userCredential.user
         // ...
         console.log("Register whit", user.email)
-        })
-    alert ("User Created Successfully")
+        if(user && user.emailVerified === false){
+            sendEmailVerification(user)
+        }})
+    .then(() => {
+        updateProfile(auth.currentUser, {displayName: `${data.first_name} ${data.last_name}`})
+    })
+    .then(() => {navigation.navigate('SignIn', {usertype:'pacient'})})
+    alert ("User Created Successfully. Email verification sent to user (check spam)")
     } catch (error) {
-    console.log(error)
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
@@ -63,9 +61,9 @@ async function onHandleSubmit(data) {
     }
 }
 
-    const onSignUpPress = () => {
+const onSignUpPress = () => {
     navigation.navigate("SignIn");
-};
+}
 
 return (
         <View style={styles.container}>
