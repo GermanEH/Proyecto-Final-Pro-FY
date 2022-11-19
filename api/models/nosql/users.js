@@ -40,17 +40,17 @@ const UserScheme = new mongoose.Schema(
       type: String,
       select: false
     },
-    image: {
-      type: Object,
-    },
     // image: {
-    //   url: {
-    //     type: String,
-    //   },
-    //   public_id: {
-    //     type: String,
-    //   },
+    //   type: Object,
     // },
+    image: {
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
+    },
     role: {  //opcional para uso nuestro
       type: ["user", "admin", "pro"],
       default: "user",
@@ -63,3 +63,4 @@ const UserScheme = new mongoose.Schema(
 )
 UserScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("users", UserScheme)
+//hans24
