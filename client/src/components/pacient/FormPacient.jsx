@@ -76,7 +76,7 @@ export function FormPacient() {
 
     <SafeAreaView>
       <ScrollView>
-    <View style={styles.container}>
+    
       <View style={styles.root}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
         <CustomInput
@@ -207,7 +207,7 @@ export function FormPacient() {
       </ScrollView>
     </SafeAreaView>
 
-    </View>
+  
 
   );
 }
