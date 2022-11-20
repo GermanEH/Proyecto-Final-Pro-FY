@@ -20,6 +20,7 @@ const registerCtrl = async (req, res) => {
     const body = { ...req, password }
     const dataUser = await usersModel.create(body)
     dataUser.set('password', undefined, { strict: false })
+
     const data = {
       token: await TokenSing(dataUser),
       user: dataUser
@@ -41,7 +42,7 @@ const registerCtrl = async (req, res) => {
 const loginCtrl = async (req, res) => {
   try {
     req = matchedData(req)
-    const user = await usersModel.findOne({ email: req.email }).select('password name role email')
+    const user = await usersModel.findOne({ email: req.email }).select('password first_name last_name role email')
     if (!user) {
       handleHttpError(res, "USER_NOT_EXIST", 404)
       return

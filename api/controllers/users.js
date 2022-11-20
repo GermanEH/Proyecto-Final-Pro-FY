@@ -89,7 +89,7 @@ const createUsers = async (req, res) => {
       res.send(userCreated)
     }
   } catch (error) {
-    handleHttpError(res, "Error creando al usuario")
+    handleHttpError(res, "Error creando al usuario" + error)
   }
 }
 /**

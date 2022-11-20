@@ -44,6 +44,10 @@ const validatorCreateUser = [
   //   .notEmpty(),
   // check("image")
   //   .optional(),
+  // check("image.url")
+  //   .optional(),
+  // check("image.public_id")
+  //   .optional(),
 
   check("first_name")
     .optional(),
@@ -69,8 +73,12 @@ const validatorCreateUser = [
     .optional(),
   check("postcode")
     .optional(),
-  check("image")
+  check("image.url")
     .optional(),
+  check("image.public_id")
+    .optional(),
+
+
   (req, res, next) => {
     return validateResults(req, res, next)
   }
@@ -102,8 +110,10 @@ const validatorPutUsers = [
     .optional(),
   check("postcode")
     .optional(),
-  // check("image")
-  //   .optional(),
+  check("image.url")
+    .optional(),
+  check("image.public_id")
+    .optional(),
 
 
   (req, res, next) => {
