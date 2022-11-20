@@ -35,16 +35,16 @@ export function FormPacient() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
+      first_name: "fgfgf",
+      last_name: "fgfgf",
+      email: "cosa@gocj.com",
+      password: "12344444544",
       /*   passswordRepeat:'', */
-      DNI: "",
-      country: "",
-      state: "",
-      postcode: "",
-      address: "",
+      DNI: "111111111",
+      country: "xddfdf",
+      state: "dfdfdf",
+      postcode: "dfdfdf",
+      address: "dfdfdfd",
       image: "",
     },
   });
@@ -58,13 +58,14 @@ export function FormPacient() {
   }; */
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((keyObject) => {
-      formData.append(keyObject, data[keyObject]);
-    });
+    console.log("data", data);
+    //const formData = new FormData();
+    // Object.keys(data).forEach((keyObject) => {
+    //   formData.append(keyObject, data[keyObject]);
+    // });
 
-    dispatch(postPacient(formData));
-    navigation.navigate("ConfirmEmailScreen");
+    dispatch(postPacient(data));
+    // navigation.navigate("ConfirmEmailScreen");
   };
 
   const onChange = (arg) => {

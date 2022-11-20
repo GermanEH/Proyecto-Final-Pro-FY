@@ -44,6 +44,7 @@ const getUserById = async (req, res) => {
  */
 
 const createUsers = async (req, res) => {
+  console.log('req.body', req.body);
   try {
     const {
       first_name,
@@ -125,7 +126,7 @@ const createUsers = async (req, res) => {
       res.send(userCreated);
     }
   } catch (error) {
-    handleHttpError(res, "Error creando al usuario" + error);
+    handleHttpError(res, "Error creando al usuario" + error, 500);
   }
 };
 /**
