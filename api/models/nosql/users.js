@@ -31,7 +31,7 @@ const UserScheme = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
+      //unique: true,
     },
     favorites: {  //opcional para uso nuestro
       type: String,
@@ -52,7 +52,7 @@ const UserScheme = new mongoose.Schema(
       },
     },
     role: {  //opcional para uso nuestro
-      type: ["user", "admin", "pro"],
+      type: ["user", "admin"],
       default: "user",
     },
   },
