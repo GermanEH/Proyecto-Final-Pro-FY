@@ -26,7 +26,12 @@ export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => 
 
 export const postPacient = createAsyncThunk('pacients/postPacient', async (newPacient) => {
     try {
-        const response = await axios.post('http://localhost:3001/api/users', newPacient)      //NO SE PORQUÉ SI PONGO AWAIT NO ANDA (EN PROF, ACÁ NO SE)
+        const response = await axios({
+            method: "post",
+            url: "http://localhost:3001/api/users",
+            data: newPacient,
+            headers: { "Content-Type": "multipart/form-data" },
+        });
         return response.data.data
     } catch (error) {
         return error.message

@@ -3,7 +3,6 @@ const validateResults = require("../utils/handleValidator");
 
 
 const validatorCreateUser = [
-
   // check("first_name")
   //   .exists()
   //   .notEmpty()
@@ -48,40 +47,26 @@ const validatorCreateUser = [
   //   .optional(),
   // check("image.public_id")
   //   .optional(),
+  check("first_name").optional(),
+  check("last_name").optional(),
+  check("email").optional(),
+  check("favorites").optional(),
+  check("state").optional(),
+  check("city").optional(),
+  check("password").optional(),
+  check("role").optional(),
+  check("address").optional(),
+  check("DNI").optional(),
+  check("country").optional(),
+  check("postcode").optional(),
+  check("image.url").optional(),
+  check("image.public_id").optional(),
 
-  check("first_name")
-    .optional(),
-  check("last_name")
-    .optional(),
-  check("email")
-    .optional(),
-  check("favorites")
-    .optional(),
-  check("state")
-    .optional(),
-  check("city")
-    .optional(),
-  check("password")
-    .optional(),
-  check("role")
-    .optional(),
-  check("address")
-    .optional(),
-  check("DNI")
-    .optional(),
-  check("country")
-    .optional(),
-  check("postcode")
-    .optional(),
-  check("image.url")
-    .optional(),
-  check("image.public_id")
-    .optional(),
 
 
   (req, res, next) => {
-    return validateResults(req, res, next)
-  }
+    return validateResults(req, res, next);
+  },
 ];
 
 const validatorPutUsers = [

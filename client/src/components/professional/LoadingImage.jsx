@@ -1,64 +1,96 @@
-import React, { useState, useEffect } from "react";
-import { Image, View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import theme from "../../theme";
 
-export function LoadingImage({ setValue }) {
-  const [image, setImage] = useState(null);
+export const LoadingImage = (props) => {
+  const [profileImage, setProfileImage] = useState("");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setValue("image", image);
-  }, [image]);
+    props.setValue("image", profileImage);
+  }, [profileImage]);
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  const openImageLibrary = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    console.log(result.uri);
+    if (status !== "granted") {
+      alert("Sorry, we need camera roll permissions to make this work!");
+    }
 
-    if (!result.canceled) {
-      setImage(result.uri);
+    if (status === "granted") {
+      const response = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+      });
+
+      if (!response.cancelled) {
+        setProfileImage(response.uri);
+      }
     }
   };
 
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-      }}
-    >
-      <View style={{ justifyContent: "center" }}>
-        <TouchableOpacity style={styles.btn} onPress={pickImage}>
-          <Text style={{ fontSize: 10, color: theme.colors.secondaryText }}>
-            Selecciona una Imagen de Perfil
-          </Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
       <View>
-        {image && (
-          <Image
-            source={{ uri: image }}
-            style={{ width: 100, height: 100, borderRadius: 10 }}
-          />
-        )}
+        <TouchableOpacity
+          onPress={openImageLibrary}
+          style={styles.uploadBtnContainer}
+        >
+          {profileImage ? (
+            <Image
+              source={{ uri: profileImage }}
+              style={{ width: "100%", height: "100%" }}
+            />
+          ) : (
+            <Text style={styles.uploadBtn}>Upload Profile Image</Text>
+          )}
+        </TouchableOpacity>
+        <Text style={styles.skip}>Skip</Text>
+        {profileImage ? (
+          <Text
+            style={[
+              styles.skip,
+              { backgroundColor: "green", color: "white", borderRadius: 8 },
+            ]}
+          >
+            Upload
+          </Text>
+        ) : null}
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  btn: {
-    padding: 15,
-    backgroundColor: theme.colors.primaryColor,
-    borderRadius: 10,
+  container: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 30,
+  },
+  uploadBtnContainer: {
+    height: 125,
+    width: 125,
+    borderRadius: 125 / 2,
+    justifyContent: "center",
+    alignItems: "center",
+    borderStyle: "dashed",
+    borderWidth: 1,
+    overflow: "hidden",
+  },
+  uploadBtn: {
+    textAlign: "center",
+    fontSize: 16,
+    opacity: 0.3,
+    fontWeight: "bold",
+  },
+  skip: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 16,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    letterSpacing: 2,
+    opacity: 0.5,
   },
 });

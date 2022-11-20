@@ -9,7 +9,7 @@ import {
   Image,
   useWindowDimensions,
   SafeAreaView,
- ScrollView,
+  ScrollView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
@@ -58,9 +58,12 @@ export function FormPacient() {
   }; */
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
-    console.log("entramos");
-    console.log(data);
-    dispatch(postPacient(data));
+    const formData = new FormData();
+    Object.keys(data).forEach((keyObject) => {
+      formData.append(keyObject, data[keyObject]);
+    });
+
+    dispatch(postPacient(formData));
     navigation.navigate("ConfirmEmailScreen");
   };
 
@@ -73,58 +76,59 @@ export function FormPacient() {
   const dispatch = useDispatch();
 
   return (
-
     <SafeAreaView>
       <ScrollView>
-    
-      <View style={styles.root}>
-        <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
-        <CustomInput
-          name="first_name"
-          placeholder="Nombre"
-          control={control}
-          rules={{
-            required: "Nombre es requerido",
-            minLength: {
-              value: 4,
-              message: "El nombre deberia tener 4 letras como minimo",
-            },
-            maxLength: {
-              value: 20,
-              message: "El nombre debe tener como maximo 20 letras",
-            },
-          }}
-        />
-        <CustomInput
-          name="last_name"
-          placeholder="Apellido"
-          control={control}
-          rules={{
-            required: "Apellido es requerido",
-            minLength: {
-              value: 4,
-              message: "El Apellido deberia tener 4 letras como minimo",
-            },
-            maxLength: {
-              value: 20,
-              message: "El apellido debe tener como maximo 20 letras",
-            },
-          }}
-        />
-        <CustomInput
-          name="password"
-          placeholder="Contraseña"
-          control={control}
-          secureTextEntry
-          rules={{
-            required: "Contraseña requerida",
-            minLength: {
-              value: 8,
-              message: "La contraseña deberia tener 8 letras como minimo",
-            },
-          }}
-        />
-        {/*  <CustomInput
+        <View style={styles.root}>
+          <Image
+            source={Logo}
+            style={[styles.logo, { height: height * 0.3 }]}
+          />
+          <CustomInput
+            name="first_name"
+            placeholder="Nombre"
+            control={control}
+            rules={{
+              required: "Nombre es requerido",
+              minLength: {
+                value: 4,
+                message: "El nombre deberia tener 4 letras como minimo",
+              },
+              maxLength: {
+                value: 20,
+                message: "El nombre debe tener como maximo 20 letras",
+              },
+            }}
+          />
+          <CustomInput
+            name="last_name"
+            placeholder="Apellido"
+            control={control}
+            rules={{
+              required: "Apellido es requerido",
+              minLength: {
+                value: 4,
+                message: "El Apellido deberia tener 4 letras como minimo",
+              },
+              maxLength: {
+                value: 20,
+                message: "El apellido debe tener como maximo 20 letras",
+              },
+            }}
+          />
+          <CustomInput
+            name="password"
+            placeholder="Contraseña"
+            control={control}
+            secureTextEntry
+            rules={{
+              required: "Contraseña requerida",
+              minLength: {
+                value: 8,
+                message: "La contraseña deberia tener 8 letras como minimo",
+              },
+            }}
+          />
+          {/*  <CustomInput
       name="passwordRepeat"
       placeholder="Repetir Contraseña"
       control={control}
@@ -135,80 +139,82 @@ export function FormPacient() {
     }}
     /> */}
 
-        <CustomInput
-          name="country"
-          placeholder="Pais"
-          control={control}
-          rules={{ required: "Pais es requerido" }}
-        />
-        <CustomInput
-          name="state"
-          placeholder="Provincia"
-          control={control}
-          rules={{ required: "Provincia es requerida" }}
-        />
-        <CustomInput
-          name="city"
-          placeholder="Ciudad"
-          control={control}
-          rules={{ required: "Ciudad es requerida" }}
-        />
-        <CustomInput
-          name="address"
-          placeholder="Direccion"
-          control={control}
-          rules={{ required: "Direccion es requerida" }}
-        />
-        <CustomInput
-          name="postcode"
-          placeholder="P.C"
-          control={control}
-          rules={{ required: "Codigo Postal es requerido" }}
-        />
-        <CustomInput
-          name="DNI"
-          placeholder="D.N.I"
-          control={control}
-          rules={{ required: "DNI es requerido" }}
-        />
-        <CustomInput
-          name="email"
-          placeholder="E-mail"
-          control={control}
-          rules={{
-            pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
-          }}
-        />
-        <View style={{ width: "100%", height: 200, paddingTop: 60 }}>
-          <LoadingImage setValue={setValue} />
+          <CustomInput
+            name="country"
+            placeholder="Pais"
+            control={control}
+            rules={{ required: "Pais es requerido" }}
+          />
+          <CustomInput
+            name="state"
+            placeholder="Provincia"
+            control={control}
+            rules={{ required: "Provincia es requerida" }}
+          />
+          <CustomInput
+            name="city"
+            placeholder="Ciudad"
+            control={control}
+            rules={{ required: "Ciudad es requerida" }}
+          />
+          <CustomInput
+            name="address"
+            placeholder="Direccion"
+            control={control}
+            rules={{ required: "Direccion es requerida" }}
+          />
+          <CustomInput
+            name="postcode"
+            placeholder="P.C"
+            control={control}
+            rules={{ required: "Codigo Postal es requerido" }}
+          />
+          <CustomInput
+            name="DNI"
+            placeholder="D.N.I"
+            control={control}
+            rules={{ required: "DNI es requerido" }}
+          />
+          <CustomInput
+            name="email"
+            placeholder="E-mail"
+            control={control}
+            rules={{
+              pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
+            }}
+          />
+          <View style={{ width: "100%", height: 300, paddingVertical: 60 }}>
+            <LoadingImage setValue={setValue} />
+          </View>
+
+          <CustomButtom
+            style={{ paddingTop: 60 }}
+            text="Crear Usuario"
+            onPress={handleSubmit(onSubmit)}
+          />
         </View>
-
-        <CustomButtom text="Crear Usuario" onPress={handleSubmit(onSubmit)} />
-      </View>
-      <Text style={styles.text}>
-        Al registrarte confirmas y aceptas nuestros{" "}
-        <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
-          Terminos de uso
-        </Text>{" "}
-        y{" "}
-        <Text style={styles.link} /* onPress={onPrivacyPressed} */>
-          Politica de privacidad
-        </Text>
-      </Text>
-      <View>
-        <CustomButtom
-          text="Ya tienes una cuenta? Ingresa Aquí"
-          color="orange"
-          onPress={onSignUpPress}
-          type="TERTIARY"
-        />
-      </View>
-
+        <View>
+          <Text style={styles.text}>
+            Al registrarte confirmas y aceptas nuestros{" "}
+            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+              Terminos de uso
+            </Text>{" "}
+            y{" "}
+            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+              Politica de privacidad
+            </Text>
+          </Text>
+          <View>
+            <CustomButtom
+              text="Ya tienes una cuenta? Ingresa Aquí"
+              color="orange"
+              onPress={onSignUpPress}
+              type="TERTIARY"
+            />
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
-
-  
-
   );
 }
 
