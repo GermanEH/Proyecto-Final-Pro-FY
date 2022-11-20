@@ -30,7 +30,8 @@ import {ConfirmEmailScreen} from './src/components/ConfirmEmailScreen/ConfirmEma
 import { SignUp } from './src/components/main/SignUp'
 import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
-
+import { SignUpProfessional } from './src/components/main/SignUpProfessional'
+import { SignInPro } from './src/components/main/SignInPro'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -107,6 +108,13 @@ export default function App() {
           <Stack.Screen
               name="SignOut"
               component={SignOut}/> 
+           <Stack.Screen
+              name="SignUpProfessional"
+              component={SignUpProfessional}/> 
+           <Stack.Screen
+              name="SignInPro"
+              component={SignInPro}/> 
+
           </Stack.Navigator>  
           <Toast config={toastConfig} />
         </NavigationContainer>
