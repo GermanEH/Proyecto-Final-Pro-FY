@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
 import { getQueries } from "../../slices/queriesActions";
+import { getAuth } from "firebase/auth";
 
 export function HomeProfessional({ navigation }) {
   const todayQueries = useSelector((state) => state.queries.todayQueries);
@@ -22,7 +23,27 @@ export function HomeProfessional({ navigation }) {
   const tomorrowAfterQueries = useSelector(
     (state) => state.queries.tomorrowAfterQueries
   );
+
   const dispatch = useDispatch();
+  
+  const payments = useSelector((state) => state.queries.payments);
+  const pacients = useSelector((state) => state.pacients);
+
+  const auth = getAuth();
+  const user = auth.currentUser
+  useEffect(() => {
+    if (user !== null) {
+      // The user object has basic properties such as display name, email, etc.
+      // displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+      const uid = user.uid;
+    }
+  }, [])
 
   useEffect(() => {
   /*   dispatch(getQueries()); */
@@ -44,7 +65,7 @@ export function HomeProfessional({ navigation }) {
               paddingLeft: 10,
             }}
           >
-            Juan Dominguéz
+             {user.displayName}
           </Text>
           <Text
             style={{

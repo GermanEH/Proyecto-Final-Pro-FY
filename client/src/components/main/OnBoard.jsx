@@ -25,7 +25,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Professional"
             onPress={() =>
-              navigation.navigate("SignIn", {
+              navigation.navigate("SignInPro", {
                 usertype: "professional",
               })
             }

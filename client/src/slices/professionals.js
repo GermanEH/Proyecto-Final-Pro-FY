@@ -55,6 +55,7 @@ const professionalsSlice = createSlice({
             state.status = 'succeeded'
             state.specialties = action.payload
             state.specialtiesNames = action.payload.map(s => s.name)
+            
           }
         )
         .addMatcher(
