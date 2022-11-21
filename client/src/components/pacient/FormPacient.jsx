@@ -11,7 +11,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
 import { useForm } from "react-hook-form";
 /* import Constants from "expo-constants"; */
@@ -35,37 +35,46 @@ export function FormPacient() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      first_name: "fgfgf",
-      last_name: "fgfgf",
-      email: "cosa@gocj.com",
+      first_name: "Pedro",
+      last_name: "Perez",
+      email: "pedrito@gmail.com",
       password: "12344444544",
       /*   passswordRepeat:'', */
       DNI: "111111111",
-      country: "xddfdf",
-      state: "dfdfdf",
-      postcode: "dfdfdf",
-      address: "dfdfdfd",
+      country: "test",
+      state: "test",
+      postcode: "12244",
+      address: "test",
       image: "",
+      city: "Test",
     },
   });
+
+  const pacientsStateStatus = useSelector((state) => state.pacients.status);
+  const [isUserStored, setIsUserStored] = React.useState(false);
   const navigation = useNavigation();
   const onSignUpPress = () => {
     navigation.navigate("ConfirmEmailScreen");
   };
+  // console.log("pacientsStateStatus", pacientsStateStatus);
+  React.useEffect(() => {
+    if (isUserStored && pacientsStateStatus === "succeeded") {
+      navigation.navigate("ConfirmEmailScreen");
+    }
+  }, [pacientsStateStatus]);
   /*  const onSignInPressed = () => {
     // validate user
     navigation.navigate("Home");
   }; */
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
-    console.log("data", data);
     //const formData = new FormData();
     // Object.keys(data).forEach((keyObject) => {
     //   formData.append(keyObject, data[keyObject]);
     // });
 
     dispatch(postPacient(data));
-    // navigation.navigate("ConfirmEmailScreen");
+    setIsUserStored(true);
   };
 
   const onChange = (arg) => {

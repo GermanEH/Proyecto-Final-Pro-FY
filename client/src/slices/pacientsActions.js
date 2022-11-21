@@ -25,12 +25,11 @@ export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => 
 })
 
 export const postPacient = createAsyncThunk('pacients/postPacient', async (newPacient) => {
-    console.log('testing', newPacient);
     try {
-        console.log('try');
+        // para probar en mobile, cambiar localhost:3001 por ip_computador:3001
         const response = await axios({
             method: "post",
-            url: "http://localhost:3001/api/users",
+            url: "http://192.168.168.117:3001/api/users",
             data: newPacient,
         });
         return response.data.data

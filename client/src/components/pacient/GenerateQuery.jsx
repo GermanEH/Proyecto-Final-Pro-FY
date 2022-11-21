@@ -14,7 +14,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 import { TouchableOpacity } from "react-native-gesture-handler";
-// import DatePicker from "react-datepicker"; // Impide renderizar en mobile
+import DatePicker from "react-datepicker"; // Impide renderizar en mobile
 // import "react-datepicker/dist/react-datepicker.css"; // Impide renderizar en mobile
 export function GenerateQuery({ navigation }) {
   const [text, onChangeText] = useState("");

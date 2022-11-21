@@ -3,12 +3,13 @@ import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 export const LoadingImage = (props) => {
+  const [profileImageBase64, setProfileImageBase64] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    props.setValue("image", profileImage);
-  }, [profileImage]);
+    props.setValue("image", profileImageBase64);
+  }, [profileImageBase64]);
 
   const openImageLibrary = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -20,11 +21,13 @@ export const LoadingImage = (props) => {
     if (status === "granted") {
       const response = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        base64: true,
         allowsEditing: true,
       });
 
       if (!response.cancelled) {
         setProfileImage(response.uri);
+        setProfileImageBase64(response.base64);
       }
     }
   };
