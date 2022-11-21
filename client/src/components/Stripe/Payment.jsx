@@ -1,52 +1,149 @@
-// import { View, Text, Button } from 'react-native'
-// import React from 'react'
-// import { useState } from 'react'
-// import { useStripe } from '@stripe/stripe-react-native'
+ import { View, Text, Button, StyleSheet,Alert  } from 'react-native'
+ import axios from 'axios'
+ import React  from 'react'
+ import { useState } from 'react'
+ import { CardField,useStripe, useConfirmPayment } from '@stripe/stripe-react-native'
+import { TextInput } from 'react-native-gesture-handler'
 
-// const Payment = () => {
-//     const [name, setName] = useState("")
-//     const stripe = useStripe();
-//     const suscribe = async () => {
-//         try {
-//             const response = await fetch("http://localhost:3001/api/users/pay",
-//                 {
-//                     method: "POST",
-//                     body: JSON.stringify({name}),
-//                     headres: {
-//                         "Content-type": "aplication/json"
-//                     }
-//                 }
+ const Payment = ({ navigation }) => {
+     const [name, setName] = useState("")
+     const stripe = useStripe();
+     const[email,setEmail]=useState();
+     const{confirmPayment, loading}= useConfirmPayment();
+     const [CardDetails,setCardDetails]=useState();
 
-//             )
-//             const data = await response.json()
-//             if (!response.ok)
-//                 return Alert.alert(data.message);
-//             const clientSecret = data.clientSecret;
-//             const initSheet = await stripe.initPaymentSheet({
-//                 paymentIntentClientSecret: clientSecret
-//             })
-//             if (initSheet.error) return Alert.alert(initSheet.error.message)
-//             const presentSheet = await stripe.presentPaymentSheet({
-//                 clientSecret
-//             })
-//             if (presentSheet.error) return Alert.alert(presentSheet.error.message)
-//             Alert.alert("payment succesfull")
+    
 
-//         } catch (error) {
-//             console.log(error)
-//             Alert.alert("Something went wrong, please try later")
+     const suscribe = async () => {
+         
+           
+              try {
+                 
+                
+                const response = await axios.post(`http://192.168.0.12:3001/api/users/pay`,"email")  
+                
+                const clientSecret =response.data.clientSecret;
+                const message=response.data.message;
+                console.log(clientSecret,message)
+                return {clientSecret,message}
 
-//         }
-//     }
+                
+               
+                   
+              }
+               catch (error) {
+                  console.log(error.message) 
+             }        
+              
+            // return {clientSecret,error} ;
 
-//     return (
-//         <View>
-//             <Text>Payment</Text>
-//             <Button title="Pay" onPress={suscribe}></Button>
+            }
+          
+            
+       const handlePayPress=async()=>{
+
+        //  if(!CardDetails?.complete || !email ){
+        //         Alert.alert("Por favor ingrese datos de la tarjeta completos")
+        //         return;
+        // }
+         const billingDetails={
+            email:email
+         }
+
+        try {
+            
+             const {clientSecret,message}= await suscribe();
+             
+          
+                    const{paymentIntent,error}=await confirmPayment(clientSecret , {
+
+                        paymentMethodType:"Card",
+                        billingDetails:billingDetails,
+
+                    });
+                    
+                    if(error){
+                        Alert.alert(`error en el pago ${error.message}`)
+                    }else if(paymentIntent){
+
+                        Alert.alert(`Pago completado su consulta ha sido agendada`)
+                       // navigation.navigate('QueriesHistorialPacient')
+
+                        
+                    }
+
+             
+            }
+            catch (error) {
+              console.log(error)
+             // Alert.alert("Something went wrong, please try later")
+
+          }
+     
 
 
-//         </View>
-//     )
-// }
+     }
 
-// export default Payment
+     
+     return (
+         <View style={styles.container}>
+
+            <TextInput
+                autoCapitalize='none'
+                placeholder='E-mail'
+                keyboardType='email-address'
+                onChange={ value=>setEmail(value.nativeEvent.text)}
+                style={styles.input}
+            
+            
+            />
+         <CardField
+           postalCodeEnabled={true}
+           placeholders={{number: "4242 4242 4242",}}
+           CardStyle={styles.Card}
+           style={styles.cardContainer}
+           onCardChange={ value=>setCardDetails(CardDetails)}
+         />
+
+        <Button
+            onPress={handlePayPress} 
+            title="Pay"
+            disabled={loading}
+        />
+
+
+         </View>
+     )
+ }
+
+ export default Payment
+
+ const styles = StyleSheet.create({
+   Card:{
+        backgroundColor:"#efefefef",
+   },
+   cardContainer:{
+        height:50,
+        marginVertical:30,
+        
+
+   },
+   container:{
+        
+        justifyContent:"center",
+        margin:20
+
+   },
+   input:{
+        backgroundColor:"#efefefef",
+        borderRadius:8,
+        fontSize:20,
+        height:50,
+        padding:10,
+
+
+   },
+
+
+
+ });

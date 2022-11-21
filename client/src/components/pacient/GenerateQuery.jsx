@@ -6,28 +6,49 @@ import {
   TextInput,
   ScrollView,
   Button,
+  SafeAreaView ,
+  Alert,
+  
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
-import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
+//import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import DatePicker from "react-datepicker"; // Impide renderizar en mobile
-// import "react-datepicker/dist/react-datepicker.css"; // Impide renderizar en mobile
-export function GenerateQuery({ navigation }) {
-  const [text, onChangeText] = useState("");
-  const [modalitie, setModalitie] = useState("");
-  const [payment, setPayment] = useState("");
-  const [render, setRender] = useState(false);
+//import { TouchableOpacity } from "react-native-gesture-handler";
+ import DateTimePicker from '@react-native-community/datetimepicker'
+ import {
+  getProfessionals,
+  getSpecialties,
+} from "../../slices/professionalsActions";
 
+export function GenerateQuery({ navigation }) {
+ 
   const dispatch = useDispatch();
   const queries = useSelector((state) => state.queries.queries);
   const modalities = useSelector((state) => state.queries.modalities);
   const payments = useSelector((state) => state.queries.payments);
-  const fechaActual = new Date();
 
+  const [isDisplayDate, setShow] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [text, setText] = useState("");
+  const fechaActual = new Date();
+  const [isDisplayTime, setDisplayTime] = useState(false);
+  const [time, setTime] = useState(new Date());
+  const [textTime, setTextTime] = useState("");
+ 
+  const professionals = useSelector(
+    (state) => state.professionals.professionals
+  );
+  
+    useEffect(() => {
+    dispatch(getProfessionals());
+  }, []);
+
+  let names = professionals.map((o) => o.first_name + " " + o.last_name );
+ 
+  
   const {
     getValues,
     register,
@@ -43,15 +64,29 @@ export function GenerateQuery({ navigation }) {
       ModalidadConsulta: "",
       Fecha: fechaActual,
       Pago: "",
+      Professional:"",
+      Hora:"",
     },
   });
-  const [date, setDate] = useState(fechaActual);
-  console.log(getValues(["Fecha"])[0]);
-  const onSubmit = (data) => {
-    console.log("entramos");
+  
+  //console.log(getValues(["Fecha"])[0]);
+  
+   const onSubmit = (data) => {
+   let campoUno="",campoDos="",campotres="",campoCinco="",campoSeis="";
     console.log(data);
+    
 
-    navigation.navigate("SignInScreen");
+    if(data.tipoConsulta==="" || data.ModalidadConsulta==="" || data.Fecha===""|| data.Pago==="" || data.Professional==="" )
+     {
+
+        Alert.alert("Hay Campos sin llenar")
+        return;
+       
+     }
+  
+   if(data.Pago==="Tarjeta de crédito")
+      navigation.navigate('Pagos')
+    
   };
 
   const onChange = (arg) => {
@@ -59,6 +94,47 @@ export function GenerateQuery({ navigation }) {
       value: arg.nativeEvent.text,
     };
   };
+
+  const displayDatepicker = () => {
+   setShow(true);
+};
+//   const displayTimepicker = () => {
+//    setDisplayTime(true);
+// };
+
+const changeSelectedDate = (event, selectedDate) => {
+   
+   const currentDate=selectedDate||date;
+   setValue("Fecha", selectedDate);
+    setDate(selectedDate);
+    setShow(false);
+    setDisplayTime(true);
+    let tempDate= new Date(currentDate);
+    let fDate= tempDate.getDate()+ '/'+tempDate.getMonth()+'/'+tempDate.getFullYear();
+    setText(fDate)
+    
+};
+
+const changeSelectedTime = (event, selectedDate) => {
+   
+   const currentDate=selectedDate||time;
+    setValue("Hora", selectedDate);
+    setTime(selectedDate);
+    setDisplayTime(false);
+    let tempDate= new Date(currentDate);
+    let hora=tempDate.getHours();
+    let minutos=tempDate.getMinutes();
+    if(minutos===0)
+     minutos= "0"+ minutos;
+    
+ console.log(text)
+
+    let fTime=  hora +':'+ minutos
+    
+    setTextTime(fTime)
+    
+};
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
       <View style={styles.container}>
@@ -79,15 +155,20 @@ export function GenerateQuery({ navigation }) {
                   onChangeText={onChange}
                   style={styles.textInput}
                   placeholder="Describa su problema"
+                  
+                  
                 />
               </View>
             </>
           )}
         />
+           
+
         <View style={{ paddingVertical: 10 }}>
           <Text style={styles.text}>Modalidad de consulta:</Text>
           {modalities.length > 0 ? (
-            <SelectList
+            <SelectList 
+              
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               setSelected={(val) => setValue("ModalidadConsulta", val)}
               data={modalities}
@@ -98,18 +179,15 @@ export function GenerateQuery({ navigation }) {
             <Text>Loading...</Text>
           )}
         </View>
-        <DatePicker
-          selected={date}
-          showTimeSelect
-          onChange={(date) => {
-            setValue("Fecha", date);
-            setDate(date);
-          }}
-        />
+     
+              
         <View style={{ paddingVertical: 15 }}>
+
           <Text style={styles.text}>Modo de pago:</Text>
+
           {payments.length > 0 ? (
             <SelectList
+              
               name=""
               ModalidadConsulta
               boxStyles={{ backgroundColor: "#A8A7A3" }}
@@ -123,20 +201,64 @@ export function GenerateQuery({ navigation }) {
             <Text>Loading...</Text>
           )}
         </View>
-        <View style={{ alignItems: "center" }}>
+        {/* <View style={{ alignItems: "center" }}>
           <ButtonGenerateQuery
             navigation={navigation}
             text={"Elegir Profesional"}
             color={theme.colors.secondaryText}
             backgroundColor={theme.colors.primaryColor}
           />
+        </View> */}
+      <Text style={styles.text}>Seleccione Professional:</Text>
+       <SelectList
+           
+           boxStyles={{ backgroundColor: "#A8A7A3" }}
+           inputStyles={{ fontSize: 12 }}
+           setSelected={(val) => setValue("Professional", val)}
+           data={names}
+           save="value"
+          />
+           <View style={styles.boton}>
+
+         <Button style={styles.boton} onPress={displayDatepicker} title="Seleccionar fecha" />
+        
+            </View>
+               {isDisplayDate && (
+                  <DateTimePicker
+                     testID="dateTimePicker"
+                     value={date}
+                     mode={"date"}
+                     is24Hour={true}
+                     display="calendar"
+                     showTimeSelect
+                     onChange={changeSelectedDate}
+                     maximumDate={new Date(2023,2)}
+                     minimumDate={new Date()}
+                     
+                     
+            />
+         )}
+                  {isDisplayTime && (
+                    <DateTimePicker
+                      value={time}
+                      mode="time"
+                      is24Hour={true}
+                      display="clock"
+                      onChange={changeSelectedTime}
+                      minuteInterval={15}
+                    />
+                )}
+
+        <View style={styles.lista}>
+              <Text style={styles.text} > {text} - {textTime} </Text >
+             
         </View>
-        <View style={styles.button}>
-          <TouchableOpacity onPress={handleSubmit(onSubmit)} />
-          <Text style={{ color: theme.colors.secondaryText }}>
-            Generar Consulta
-          </Text>
-          <TouchableOpacity />
+        
+        <View style={styles.boton}>
+
+          <Button    onPress={handleSubmit(onSubmit)} title="Generar Consulta" />
+        
+          
         </View>
       </View>
     </ScrollView>
@@ -162,4 +284,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
   },
+  datePicker: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: 320,
+    height: 260,
+    display: 'flex',
+  },
+  lista:{
+
+    padding:5,
+    flexDirection: 'row',
+     justifyContent: 'space-between',
+  },
+  boton:{
+    flexDirection: 'row',
+     justifyContent: 'space-between',
+     padding:20
+  }
 });
