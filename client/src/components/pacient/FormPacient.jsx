@@ -11,7 +11,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postPacient } from "../../slices/pacientsActions";
 import { useForm } from "react-hook-form";
 /* import Constants from "expo-constants"; */
@@ -35,36 +35,46 @@ export function FormPacient() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
+      first_name: "Pedro",
+      last_name: "Perez",
+      email: "pedrito@gmail.com",
+      password: "12344444544",
       /*   passswordRepeat:'', */
-      DNI: "",
-      country: "",
-      state: "",
-      postcode: "",
-      address: "",
+      DNI: "111111111",
+      country: "test",
+      state: "test",
+      postcode: "12244",
+      address: "test",
       image: "",
+      city: "Test",
     },
   });
+
+  const pacientsStateStatus = useSelector((state) => state.pacients.status);
+  const [isUserStored, setIsUserStored] = React.useState(false);
   const navigation = useNavigation();
   const onSignUpPress = () => {
     navigation.navigate("ConfirmEmailScreen");
   };
+  // console.log("pacientsStateStatus", pacientsStateStatus);
+  React.useEffect(() => {
+    if (isUserStored && pacientsStateStatus === "succeeded") {
+      navigation.navigate("ConfirmEmailScreen");
+    }
+  }, [pacientsStateStatus]);
   /*  const onSignInPressed = () => {
     // validate user
     navigation.navigate("Home");
   }; */
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const onSubmit = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((keyObject) => {
-      formData.append(keyObject, data[keyObject]);
-    });
+    //const formData = new FormData();
+    // Object.keys(data).forEach((keyObject) => {
+    //   formData.append(keyObject, data[keyObject]);
+    // });
 
-    dispatch(postPacient(formData));
-    navigation.navigate("ConfirmEmailScreen");
+    dispatch(postPacient(data));
+    setIsUserStored(true);
   };
 
   const onChange = (arg) => {

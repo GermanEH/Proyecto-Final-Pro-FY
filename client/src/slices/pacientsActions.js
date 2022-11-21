@@ -26,14 +26,15 @@ export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => 
 
 export const postPacient = createAsyncThunk('pacients/postPacient', async (newPacient) => {
     try {
+        // para probar en mobile, cambiar localhost:3001 por ip_computador:3001
         const response = await axios({
             method: "post",
-            url: "http://localhost:3001/api/users",
+            url: "http://192.168.168.117:3001/api/users",
             data: newPacient,
-            headers: { "Content-Type": "multipart/form-data" },
         });
         return response.data.data
     } catch (error) {
+        console.log('error', error);
         return error.message
     }        
 })
