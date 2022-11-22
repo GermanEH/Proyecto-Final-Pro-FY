@@ -60,12 +60,12 @@ export function SignUpProfessional  ({navigation})  {
         updateProfile(auth.currentUser, {displayName: `${data.first_name} ${data.last_name}`})
     })
     .then(() => {navigation.navigate('SignInPro', {usertype:'professional'})})
-    alert ("User Professional Created Successfully. Email verification sent to user (check spam)")
+    alert ("El Usuario Professional ha sido registrado correctamente, Por favor verifique su correo electronico (checkea spam)")
     } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
-    alert ("User Professional created failed")
+    alert ("La creacion de User Professional ha fallado, Por favor verifique que todo este correcto.")
     alert(error);
     }
 }
@@ -109,10 +109,10 @@ export function SignUpProfessional  ({navigation})  {
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />
-      
+     <Text>Nombre</Text>
       <CustomInput
         name="first_name"
-        placeholder="Nombre"
+       /*  placeholder="Nombre" */
         control={control}
         rules={{
           required: 'Nombre es requerido',
@@ -126,9 +126,10 @@ export function SignUpProfessional  ({navigation})  {
           }
         }}
       />
+       <Text>Apellido</Text>
       <CustomInput
         name="last_name"
-        placeholder="Apellido"
+   
         control={control}
         rules={{
           required: 'Apellido es requerido',
@@ -142,9 +143,10 @@ export function SignUpProfessional  ({navigation})  {
           }
         }}
       />
+       <Text>Contraseña</Text>
      <CustomInput
       name="password"
-      placeholder="Contraseña"
+     
       control={control}
       secureTextEntry
       rules={{
@@ -166,69 +168,81 @@ export function SignUpProfessional  ({navigation})  {
       value === pwd   || 'Las contraseñas no son iguales'
     }}
     /> */}
+     <Text>Pais</Text>
        <CustomInput
           name="country"
-          placeholder="Pais"
           control={control}
           rules={{required: 'Pais es requerido'}}
         />
+         <Text>Provincia</Text>
       <CustomInput
         name="state"
-        placeholder="Provincia"
         control={control}
         rules={{required: 'Provincia es requerida'}}
       />
+       <Text>Ciudad</Text>
         <CustomInput
           name="city"
-          placeholder="Ciudad"
           control={control}
           rules={{required: 'Ciudad es requerida'}}
       />
+       <Text>Codigo Postal</Text>
       <CustomInput
         name="zip"
-        placeholder="P.C"
         control={control}
         rules={{required: 'Codigo Postal es requerido'}}
-        
+
       />
 
-        <SelectList data={specialties.map(m => m.name )} placeholder="Especialidades" setSelected={(value)=>setValue('specialities', value)} />
+        <Text>Matricula del profesiona</Text>
        <CustomInput
           name="professionalId"
-          placeholder="Matricula del profesional"
+          
           control={control}
           rules={{required: 'Matricula del profesional es requerida'}}
         />
+       <Text>D.N.I</Text>
+
       <CustomInput
           name="dni"
-          placeholder="D.N.I"
+          
           control={control}
           rules={{required: 'DNI es requerido'}}
         />
+         <Text>Direccion del profesional</Text>
          <CustomInput
           name="professionalAdress"
-          placeholder="Direccion del profesional"
+        
           control={control}
           rules={{required: 'Direccion del profesional es requerida'}}
         />
+         <Text>Turnos</Text>
          <CustomInput
           name="schedule"
-          placeholder="Turnos"
+        
           control={control}
           rules={{required: 'Turnos son requeridos'}}
         />
+         <Text>Modalidad</Text>
          <CustomInput
           name="modality"
-          placeholder="Modalidad"
+          
           control={control}
           rules={{required: 'Modalidad es requerida'}}
         />
+         <Text>E-mail</Text>
       <CustomInput
           name="email"
-          placeholder="E-mail"
+          
           control={control}
           rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
       />
+      <SelectList
+       data={specialties.map(m => m.name )} 
+       placeholder="Especialidad" 
+       setSelected={(value)=>setValue('specialities', value)} 
+      /*  rules={{required: 'Especialidad es requerida'}} */
+       />
 
 
       <View style={styles.button}>
@@ -238,6 +252,18 @@ export function SignUpProfessional  ({navigation})  {
           title="Crear usuario"
           onPress={handleSubmit(onHandleSubmit)}
         />
+           </View>
+            <Text style={styles.text}>
+            Al registrarte confirmas y aceptas nuestros{' '}
+            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+                Terminos de uso
+            </Text>{' '}
+            y{' '}
+            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+                Politica de privacidad
+            </Text>
+            </Text>
+            <View>
       </View>
       
       <View>
@@ -270,6 +296,13 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'orange',
     borderRadius: 4,
+  },
+  text: {
+    color: 'gray',
+    marginVertical: 10,
+  },
+  link: {
+    color: '#FDB075',
   },
 });
 

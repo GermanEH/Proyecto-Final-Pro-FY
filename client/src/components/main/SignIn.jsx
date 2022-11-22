@@ -36,7 +36,7 @@ export function SignIn({ route }) {
 
     useEffect(()=>{
         const unsuscribe = auth.onAuthStateChanged( user => {
-            console.log(user.emailVerified)
+           /*  console.log(user.emailVerified) */
             if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
             if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
         } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
@@ -75,18 +75,22 @@ export function SignIn({ route }) {
                     style={[styles.logo, {height: height * 0.3}]}
                     resizeMode="contain"
                 />
-
+                
                 <View styles={styles.container}>
-                    
+                    <Text>
+                        Correo Electronico
+                    </Text>
                     <TextInput
                         onChangeText={(text) => setEmail(text)}
-                        placeholder="correo electrónico"
+                        /* placeholder="correo electrónico" */
                         styles={styles.input}>
                     </TextInput>
-
+                    <Text>
+                        Contraseña
+                    </Text>
                     <TextInput
                         onChangeText={(text) => setPassword(text)}
-                        placeholder="contraseña"
+                        /* placeholder="contraseña" */
                         style={styles.input}
                         secureTextEntry>
                     </TextInput>
@@ -116,9 +120,17 @@ export function SignIn({ route }) {
                         </TouchableOpacity> */}
                     </View>
                     <View>
-                        <Text>
-                            ¿No tienes una cuenta?
+                            
+                        <Text style={styles.text}>
+                            ¿No tienes una cuenta?{" "}
+                            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+                            Presiona en el boton
+                            </Text>{" "}
+                            Registrarse{" "}
+                            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+                            para crear una nueva
                         </Text>
+                    </Text>
                     </View>
                     <View
                         style={styles.container}>
@@ -146,6 +158,25 @@ const styles = StyleSheet.create({
         maxWidth: 300,
         maxHeight: 200,
     },
+    container: {
+        backgroundColor: 'white',
+        width: '100%',
+    
+        borderColor: '#e8e8e8',
+        borderWidth: 1,
+        borderRadius: 5,
+    
+        paddingHorizontal: 10,
+        marginVertical: 5,
+      },
+      text: {
+        color: "gray",
+        marginVertical: 10,
+      },
+    link: {
+        color: "#303030",
+      },
+   
     input: {
 
     },
