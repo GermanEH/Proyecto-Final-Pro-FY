@@ -33,6 +33,7 @@ import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
 import {Pagos} from './src/components/Stripe/Pagos'
+import { EditProfile } from './src/components/pacient/EditProfile'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -57,6 +58,9 @@ export default function App() {
             <Stack.Screen
               name="HomePacient"
               component={HomePacient}/>
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfile}/>
             <Stack.Screen
               name="FormProfessional"
               component={FormProfessional}/>

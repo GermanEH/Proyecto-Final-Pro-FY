@@ -4,12 +4,14 @@ const theme = {
     secondaryColor: '#f24f0a',
     primaryText: '#000000',
     secondaryText: '#ffffff',
-    terciaryText: '#ededed',
+    terciaryText: '#212121',
   },
   fontSize: {
-    primaryText: 24,
-    secondaryText: 18,
-    terciaryText: 14,
+    titleText: 30,
+    subtitleText: 28,
+    primaryText: 22,
+    secondaryText: 20,
+    terciaryText: 18,
   },
   fonts: {
     main: 'System',

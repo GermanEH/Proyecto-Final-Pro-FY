@@ -8,11 +8,11 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
 import { Loading } from "../loading/Loading";
-import { CardPacient } from "./CardPacient";
+import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
 
@@ -36,13 +36,12 @@ export function HomePacient({ navigation }) {
       const uid = user.uid;
     }
   }, [])
-  
   return (
     <SafeAreaView>
       {(user === null) ? (
         <Loading />
       ) : (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}>
           <View style={styles.container}>
             <Text
               style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
@@ -58,53 +57,61 @@ export function HomePacient({ navigation }) {
             >
               {user.displayName}
             </Text>
-            <Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-              similique, illo expedita et dicta ullam, voluptate animi quasi
-              voluptatem, voluptates repellat deserunt dolore atque voluptatibus
-              id totam sapiente a incidunt!
-            </Text>
-            <View style={{ alignItems: "center", padding: 100 }}>
+            <View style={{ alignItems: "center", paddingVertical: 20 }}>
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
-            <Text>Favoritos:</Text>
-            {/* <CardPacient first_name={first_name} last_name, country, specialty}/> */}
+            <Text style={styles.textFavorite}>
+              Tus profesionales favoritos:
+            </Text>
+            <View style={{ paddingBottom: 20 }}>
+              <CarouselFavorite />
+            </View>
+            <View style={{ paddingBottom: 20 }}>
+              <Carousel />
+            </View>
           </View>
         </ScrollView>
       )}
-            <View style={styles.containerCarousel}>
-              <Carousel />
-            </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 25,
+    marginHorizontal: 25
   },
-  containerBtnForm: {
-    alignItems: "center",
-    padding: 25,
+  holaPencil: {
+    paddingTop: 15,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
-  containerBtnQueries: {
-    alignItems: "center",
-    padding: 100,
+  containerIcon: {
+    borderWidth: 1,
+    borderColor: '#aaa',
+    borderRadius: 5,
+    height: 40,
+    width: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  btn: {
-    backgroundColor: theme.colors.primaryColor,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: theme.borderRadius.borderRadiusBotton,
+  textHola: {
+    fontSize: theme.fontSize.subtitleText
   },
-  containerCarousel: {
-    width: "100%",
-    height: 670,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
+  textName: {
+    fontSize: theme.fontSize.titleText,
+    fontWeight: theme.fontWeights.bold
   },
+  text: {
+    fontSize: theme.fontSize.terciaryText,
+    color: theme.colors.terciaryText,
+    paddingVertical: 20
+  },
+  textFavorite: {
+    fontSize: theme.fontSize.terciaryText,
+    color: theme.colors.terciaryText,
+    paddingVertical: 20
+  }
 });
