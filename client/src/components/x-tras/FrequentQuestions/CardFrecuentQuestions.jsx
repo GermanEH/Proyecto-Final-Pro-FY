@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AboutUs, WhyUs, HowItWorks } from "./FQComponents";
+import Icon from 'react-native-vector-icons/FontAwesome'
 import theme from '../../../theme'
 
 const obj = {
@@ -20,7 +21,7 @@ export function CardFrecuentQuestions({ title, component, index }) {
           setCurrentIndex(index === currentIndex ? null : index)
         }} >
         <Text style={styles.title}> {title} </Text>
-        <Text> v </Text>
+        <Icon name="angle-down" size={30} color="black" />
       </TouchableOpacity>
       {
         index === currentIndex && (
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    width: 400,
+    width: 350,
     height: 60,
     backgroundColor: "white",
     borderRadius: 10,

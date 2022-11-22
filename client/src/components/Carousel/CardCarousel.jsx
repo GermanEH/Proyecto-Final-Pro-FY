@@ -7,82 +7,82 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import theme from "../../theme";
 
 export function CardCarousel({ item }) {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={[styles.container, { width }]}>
+    <View style={[styles.container, { width: width*0.75 }]}>
       <Image
         source={item.image}
         style={[styles.image, { width, resizeMode: "contain" }]}
       />
       <View>
-        <Text style={styles.title}> {item.title} </Text>
-        <Text style={styles.description}> {item.characteristic1} </Text>
-        <Text style={styles.description}> {item.characteristic2} </Text>
-        <Text style={styles.description}> {item.characteristic3} </Text>
-        <Text style={styles.description}> {item.characteristic4} </Text>
+        <Text style={[styles.title, {textAlign: 'center'}]}> {item.title} </Text>
+        <Text style={styles.description}> ✔︎ {item.characteristic1} </Text>
+        <Text style={styles.description}> ✔︎ {item.characteristic2} </Text>
+        <Text style={styles.description}> ✔︎ {item.characteristic3} </Text>
+        <Text style={styles.description}> ✔︎ {item.characteristic4} </Text>
         <Text style={styles.price}> {item.price} </Text>
       </View>
       <TouchableOpacity style={styles.btn}>
-        <Text>GO</Text>
+        <Text> Ir </Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  btn: {
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    backgroundColor: "#ededed",
-    margin: 20,
-    borderRadius: 5,
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-    elevation: 14,
-  },
   container: {
-    display: "flex",
+    display: 'flex',
+    justifyContent: "center",
     alignItems: "center",
-    margin: 20,
-    height: 600,
+    margin: 10,
     backgroundColor: "white",
     borderRadius: 10,
     shadowOffset: {
       width: 0,
       height: 7,
     },
-    shadowOpacity: 0.41,
+    shadowOpacity: .2,
     shadowRadius: 9.11,
-    elevation: 50,
+    paddingHorizontal: 25,
+    paddingVertical: 25
   },
   image: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    width: 90,
+    height: 90,
   },
   title: {
-    fontWeight: "900",
-    fontSize: 40,
-    marginBottom: 10,
-    color: "#000000",
+    alignItems: 'center',
+    fontSize: theme.fontSize.titleText,
+    fontWeight: theme.fontWeights.bold,
+    marginBottom: 25,
   },
   description: {
-    fontWeight: "400",
-    fontSize: 20,
-    margin: 10,
-    color: "#000000",
+    fontSize: theme.fontSize.terciaryText,
+    fontWeight: theme.fontWeights.normal,
+    marginBottom: 10,
   },
   price: {
-    fontWeight: "800",
-    fontSize: 40,
-    marginTop: 20,
-    color: "#000000",
+    fontSize: theme.fontSize.titleText,
+    fontWeight: theme.fontWeights.bold,
+  },
+  btn: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: theme.colors.primaryColor,
+    height: 50,
+    width: 90,
+    borderRadius: 5,
+    marginTop: 25,
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: .2,
+    shadowRadius: 9.11,
   },
 });

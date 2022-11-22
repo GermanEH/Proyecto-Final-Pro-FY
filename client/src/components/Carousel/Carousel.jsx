@@ -11,7 +11,6 @@ export function Carousel() {
       <FlatList data={slides} renderItem={({ item }) => <CardCarousel item={item} />}
         horizontal
         showsHorizontalScrollIndicator
-        pagingEnabled
         bounces={false}
         keyExtractor={(item) => item.id}
       />

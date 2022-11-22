@@ -1,8 +1,8 @@
 export const slides = [
   {
     id: '1',
-    title: 'Standard',
-    characteristic1: 'characteristic 1',
+    title: 'Basico',
+    characteristic1: 'Generar consultas segun su tipo y modalidad.',
     characteristic2: 'characteristic 2',
     characteristic3: 'characteristic 3',
     characteristic4: 'characteristic 4',
@@ -11,7 +11,7 @@ export const slides = [
   },
   {
     id: '2',
-    title: 'Pro',
+    title: 'Premium',
     characteristic1: 'characteristic 1',
     characteristic2: 'characteristic 2',
     characteristic3: 'characteristic 3',
