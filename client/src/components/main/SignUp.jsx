@@ -69,9 +69,10 @@ return (
         <View style={styles.container}>
         <View style={styles.root}>
             <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
+            <Text>Nombre</Text>
             <CustomInput
             name="first_name"
-            placeholder="Nombre"
+           
             control={control}
             rules={{
                 required: "Nombre es requerido",
@@ -85,9 +86,9 @@ return (
                 },
             }}
             />
+            <Text>Apellido</Text>
             <CustomInput
             name="last_name"
-            placeholder="Apellido"
             control={control}
             rules={{
                 required: "Apellido es requerido",
@@ -101,9 +102,10 @@ return (
                 },
             }}
             />
+            <Text>Contraseña</Text>
             <CustomInput
             name="password"
-            placeholder="Contraseña"
+
             control={control}
             secureTextEntry
             rules={{
@@ -124,46 +126,51 @@ return (
         value === pwd   || 'Las contraseñas no son iguales'
         }}
         /> */}
-
+            <Text>Pais</Text>
             <CustomInput
             name="country"
-            placeholder="Pais"
+            
             control={control}
             rules={{ required: "Pais es requerido" }}
             />
+            <Text>Provincia</Text>
             <CustomInput
             name="state"
-            placeholder="Provincia"
             control={control}
             rules={{ required: "Provincia es requerida" }}
             />
+            <Text>Ciudad</Text>
             <CustomInput
             name="city"
-            placeholder="Ciudad"
+
             control={control}
             rules={{ required: "Ciudad es requerida" }}
             />
+            <Text>Direccion</Text>
             <CustomInput
             name="address"
-            placeholder="Direccion"
+
             control={control}
             rules={{ required: "Direccion es requerida" }}
             />
+            <Text>Codigo Postal</Text>
             <CustomInput
             name="postcode"
-            placeholder="P.C"
+
             control={control}
             rules={{ required: "Codigo Postal es requerido" }}
             />
+            <Text>D.N.I</Text>
             <CustomInput
             name="DNI"
-            placeholder="D.N.I"
+           
             control={control}
             rules={{ required: "DNI es requerido" }}
             />
+            <Text>Correo electronico</Text>
             <CustomInput
             name="email"
-            placeholder="E-mail"
+       
             control={control}
             rules={{
                 pattern: { value: EMAIL_REGEX, message: "Email es invalido" },

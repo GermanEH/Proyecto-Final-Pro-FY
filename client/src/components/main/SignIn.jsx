@@ -29,58 +29,33 @@ export function SignIn({ route }) {
 
   const { height } = useWindowDimensions();
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("Logged in whit", user.email);
-        // ...
-        if (user && user.emailVerified === false) {
-          alert("Correo electronico no verificado");
-        }
-        if (
-          user &&
-          user.emailVerified === true &&
-          route.params.usertype === "pacient"
-        ) {
-          navigation.navigate("HamburguerMenu", { usertype: "pacient" });
-        } else if (
-          user &&
-          user.emailVerified === true &&
-          route.params.usertype === "professional"
-        ) {
-          navigation.navigate("HamburguerMenu", { usertype: "professional" });
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  };
+    const handleSignIn = () => {
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("Logged in whit", user.email)
+            // ...
+            if(user && user.emailVerified === false) {alert('Correo electronico no verificado')}
+            if(user && user.emailVerified === true && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && user.emailVerified === true && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })}
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        })
+    }
 
-  useEffect(() => {
-    const unsuscribe = auth.onAuthStateChanged((user) => {
-      // console.log(user.emailVerified)
-      if (user && user.emailVerified === "false") {
-        alert("Correo electronico no verificado");
-      }
-      if (
-        user &&
-        user.emailVerified === "true" &&
-        route.params.usertype === "pacient"
-      ) {
-        navigation.navigate("HamburguerMenu", { usertype: "pacient" });
-      } else if (
-        user &&
-        user.emailVerified === "true" &&
-        route.params.usertype === "professional"
-      ) {
-        navigation.navigate("HamburguerMenu", { usertype: "professional" });
-      }
-    });
-    return unsuscribe;
-  }, [auth]);
+    useEffect(()=>{
+        const unsuscribe = auth.onAuthStateChanged( user => {
+            console.log(user.emailVerified)
+            if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
+            if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
+        }
+        })
+        return unsuscribe
+    },[auth])
 
   const HandleSignInWhitGoogle = () => {
     signInWithPopup(auth, provider)
@@ -105,28 +80,29 @@ export function SignIn({ route }) {
       });
   };
 
-  return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.root}>
-        <Image
-          source={Logo}
-          style={[styles.logo, { height: height * 0.3 }]}
-          resizeMode="contain"
-        />
+    return (
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.root}>
+                <Image
+                    source={Logo}
+                    style={[styles.logo, {height: height * 0.3}]}
+                    resizeMode="contain"
+                />
 
-        <View styles={styles.container}>
-          <TextInput
-            onChangeText={(text) => setEmail(text)}
-            placeholder="correo electrónico"
-            styles={styles.input}
-          ></TextInput>
+                <View styles={styles.container}>
+                    
+                    <TextInput
+                        onChangeText={(text) => setEmail(text)}
+                        placeholder="correo electrónico"
+                        styles={styles.input}>
+                    </TextInput>
 
-          <TextInput
-            onChangeText={(text) => setPassword(text)}
-            placeholder="contraseña"
-            style={styles.input}
-            secureTextEntry
-          ></TextInput>
+                    <TextInput
+                        onChangeText={(text) => setPassword(text)}
+                        placeholder="contraseña"
+                        style={styles.input}
+                        secureTextEntry>
+                    </TextInput>
 
           <View styles={styles.container}>
             <CustomButtom text="Ingresar" onPress={handleSignIn} />
@@ -150,35 +126,36 @@ export function SignIn({ route }) {
                         > */}
             {/* <Text style={styles.text}>Registrate</Text>
                         </TouchableOpacity> */}
-          </View>
-          <View>
-            <Text>¿No tienes una cuenta?</Text>
-          </View>
-          <View style={styles.container}>
-            <CustomButtom
-              text="Registrarse"
-              onPress={() => navigation.navigate("FormPacient")}
-            />
-          </View>
-        </View>
-      </View>
-    </ScrollView>
-    // <KeyboardAvoidingView
-    //     styles={styles.container}
-    //     behavior="padding">
-    // </KeyboardAvoidingView>
-  );
+                    </View>
+                    <View>
+                        <Text>
+                            ¿No tienes una cuenta?
+                        </Text>
+                    </View>
+                    <View
+                        style={styles.container}>
+                            <CustomButtom 
+                                text="Registrarse" 
+                                onPress={() => navigation.navigate('SignUp')} />
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
+        // <KeyboardAvoidingView
+        //     styles={styles.container}
+        //     behavior="padding">
+        // </KeyboardAvoidingView>
+    )
 }
 
 const styles = StyleSheet.create({
-  root: {
-    alignItems: "center",
-    padding: 20,
-  },
-  logo: {
-    width: "70%",
-    maxWidth: 300,
-    maxHeight: 200,
-  },
-  input: {},
-});
+    root: {
+        alignItems: 'center',
+        padding: 20,
+        },
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+    },
+    input: {}, })

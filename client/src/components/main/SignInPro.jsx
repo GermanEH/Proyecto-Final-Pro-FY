@@ -39,6 +39,7 @@ export function SignInPro({ route }) {
 
     useEffect(()=>{
         const unsuscribe = auth.onAuthStateChanged( user => {
+            console.log("user",user)
             console.log(user.emailVerified)
             if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
             if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
@@ -80,16 +81,20 @@ export function SignInPro({ route }) {
                 />
 
                 <View styles={styles.container}>
-                    
+                <Text>
+                        Correo electrónico
+                    </Text>
                 <TextInput
                         onChangeText={(text) => setEmail(text)}
-                        placeholder="correo electrónico"
+                       /*  placeholder="correo " */
                         styles={styles.input}>
                     </TextInput>
-
+                    <Text>
+                        Contraseña
+                    </Text>
                     <TextInput
                         onChangeText={(text) => setPassword(text)}
-                        placeholder="contraseña"
+                     /*    placeholder="contraseña" */
                         style={styles.input}
                         secureTextEntry>
                     </TextInput>
@@ -105,12 +110,10 @@ export function SignInPro({ route }) {
                             <Text style={styles.textBtn}>Iniciar Sesión</Text>
                         </TouchableOpacity> */}
 
-                        <TouchableOpacity
-                            style={styles.btnGoogle}
-                            onPress={HandleSignInWhitGoogle}>
-                                <Text>Inicia sesión con Google</Text>
-                        </TouchableOpacity>
 
+                        <CustomButtom 
+                        text="Ingresar con Google" 
+                        onPress={HandleSignInWhitGoogle} />
                         {/* <TouchableOpacity
                             onPress={handleSignUp}
                             style={styles.button}
@@ -118,10 +121,18 @@ export function SignInPro({ route }) {
                             {/* <Text style={styles.text}>Registrate</Text>
                         </TouchableOpacity> */}
                     </View>
-                    <View>
-                        <Text>
-                            ¿No tienes una cuenta?
+                        <View>
+                            
+                        <Text style={styles.text}>
+                            ¿No tienes una cuenta?{" "}
+                            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+                            Presiona en el boton
+                            </Text>{" "}
+                            Registrarse{" "}
+                            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+                            para crear una nueva
                         </Text>
+                    </Text>
                     </View>
                     <View
                         style={styles.container}>
@@ -149,7 +160,23 @@ const styles = StyleSheet.create({
         maxWidth: 300,
         maxHeight: 200,
     },
-    input: {
-
-    },
+    container: {
+        backgroundColor: 'white',
+        width: '100%',
+    
+        borderColor: '#e8e8e8',
+        borderWidth: 1,
+        borderRadius: 5,
+    
+        paddingHorizontal: 10,
+        marginVertical: 5,
+      },
+    input: {},
+    text: {
+        color: "gray",
+        marginVertical: 10,
+      },
+    link: {
+        color: "#303030",
+      },
 })
