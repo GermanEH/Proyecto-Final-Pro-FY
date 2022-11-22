@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Text, StyleSheet, View, Image, TextInput, TouchableOpacity, ScrollView, useWindowDimensions,
-    KeyboardAvoidingView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import Logo from '../../assets/logo.png';
-import CustomButtom from '../CustomButton/CustomButton'
-import { auth } from "../../../firebase-config.js"
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  useWindowDimensions,
+  KeyboardAvoidingView,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import Logo from "../../assets/logo.png";
+import CustomButtom from "../CustomButton/CustomButton";
+import { auth } from "../../../firebase-config.js";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 
 export function SignIn({ route }) {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const navigation = useNavigation()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
-    const {height} = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, email, password)
@@ -36,7 +48,7 @@ export function SignIn({ route }) {
 
     useEffect(()=>{
         const unsuscribe = auth.onAuthStateChanged( user => {
-           /*  console.log(user.emailVerified) */
+            console.log(user.emailVerified)
             if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
             if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
         } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
@@ -45,27 +57,28 @@ export function SignIn({ route }) {
         return unsuscribe
     },[auth])
 
-    const HandleSignInWhitGoogle = () => {
-        signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // ...
-            alert(result.user.displayName)
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
-    }
+  const HandleSignInWhitGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+        alert(result.user.displayName);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -75,62 +88,49 @@ export function SignIn({ route }) {
                     style={[styles.logo, {height: height * 0.3}]}
                     resizeMode="contain"
                 />
-                
+
                 <View styles={styles.container}>
-                    <Text>
-                        Correo Electronico
-                    </Text>
+                    
                     <TextInput
                         onChangeText={(text) => setEmail(text)}
-                        /* placeholder="correo electrónico" */
+                        placeholder="correo electrónico"
                         styles={styles.input}>
                     </TextInput>
-                    <Text>
-                        Contraseña
-                    </Text>
+
                     <TextInput
                         onChangeText={(text) => setPassword(text)}
-                        /* placeholder="contraseña" */
+                        placeholder="contraseña"
                         style={styles.input}
                         secureTextEntry>
                     </TextInput>
 
-                    <View styles={styles.container}>
-                        <CustomButtom 
-                        text="Ingresar" 
-                        onPress={handleSignIn} />
+          <View styles={styles.container}>
+            <CustomButtom text="Ingresar" onPress={handleSignIn} />
 
-                        {/* <TouchableOpacity
+            {/* <TouchableOpacity
                             onPress={handleSignIn}
                             style={styles.btn}>
                             <Text style={styles.textBtn}>Iniciar Sesión</Text>
                         </TouchableOpacity> */}
 
-                        <TouchableOpacity
-                            style={styles.btnGoogle}
-                            onPress={HandleSignInWhitGoogle}>
-                                <Text>Inicia sesión con Google</Text>
-                        </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btnGoogle}
+              onPress={HandleSignInWhitGoogle}
+            >
+              <Text>Inicia sesión con Google</Text>
+            </TouchableOpacity>
 
-                        {/* <TouchableOpacity
+            {/* <TouchableOpacity
                             onPress={handleSignUp}
                             style={styles.button}
                         > */}
-                            {/* <Text style={styles.text}>Registrate</Text>
+            {/* <Text style={styles.text}>Registrate</Text>
                         </TouchableOpacity> */}
                     </View>
                     <View>
-                            
-                        <Text style={styles.text}>
-                            ¿No tienes una cuenta?{" "}
-                            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
-                            Presiona en el boton
-                            </Text>{" "}
-                            Registrarse{" "}
-                            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
-                            para crear una nueva
+                        <Text>
+                            ¿No tienes una cuenta?
                         </Text>
-                    </Text>
                     </View>
                     <View
                         style={styles.container}>
@@ -158,26 +158,4 @@ const styles = StyleSheet.create({
         maxWidth: 300,
         maxHeight: 200,
     },
-    container: {
-        backgroundColor: 'white',
-        width: '100%',
-    
-        borderColor: '#e8e8e8',
-        borderWidth: 1,
-        borderRadius: 5,
-    
-        paddingHorizontal: 10,
-        marginVertical: 5,
-      },
-      text: {
-        color: "gray",
-        marginVertical: 10,
-      },
-    link: {
-        color: "#303030",
-      },
-   
-    input: {
-
-    },
-})
+    input: {}, })
