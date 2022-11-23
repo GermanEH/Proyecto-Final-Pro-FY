@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
 } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { useSelector } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
@@ -43,19 +43,23 @@ export function HomePacient({ navigation }) {
       ) : (
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}>
           <View style={styles.container}>
-            <Text
-              style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
-            >
-              Hola,
-            </Text>
-            <Text
-              style={{
-                fontSize: theme.fontSize.primaryText,
-                paddingBottom: 10,
-                paddingLeft: 10,
-              }}
-            >
+            <View style={styles.holaPencil}>
+              <Text style={styles.textHola}>
+                Hola,
+              </Text>
+              <TouchableOpacity onPress={() => {
+                  navigation.navigate("EditProfile", {
+                  });
+                }} style={styles.containerIcon} >
+                <Icon name="pencil" size={20} color="" />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.textName}>
               {user.displayName}
+            </Text>
+            <Text style={styles.text}>
+              Ya eres parte de la comunidad PRO-FY, estás listo para conectarte con profesionales de la medicina.
             </Text>
             <View style={{ alignItems: "center", paddingVertical: 20 }}>
               <ButtonHomePacientQueries navigation={navigation} />
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   containerIcon: {
     borderWidth: 1,
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textHola: {
-    fontSize: theme.fontSize.subtitleText
+    fontSize: theme.fontSize.secondaryText
   },
   textName: {
     fontSize: theme.fontSize.titleText,

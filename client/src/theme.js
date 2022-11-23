@@ -11,7 +11,7 @@ const theme = {
     subtitleText: 28,
     primaryText: 22,
     secondaryText: 20,
-    terciaryText: 18,
+    terciaryText: 16,
   },
   fonts: {
     main: 'System',
