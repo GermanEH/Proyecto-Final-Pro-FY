@@ -14,7 +14,7 @@ import React, { useState , useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
-//import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
+import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 //import { TouchableOpacity } from "react-native-gesture-handler";
  import DateTimePicker from '@react-native-community/datetimepicker'
@@ -23,7 +23,7 @@ import { useForm, Controller } from "react-hook-form";
   getSpecialties,
 } from "../../slices/professionalsActions";
 
-export function GenerateQuery({ navigation }) {
+export function GenerateQuery({ navigation , route }) {
  
   const dispatch = useDispatch();
   const queries = useSelector((state) => state.queries.queries);
@@ -46,7 +46,7 @@ export function GenerateQuery({ navigation }) {
     dispatch(getProfessionals());
   }, []);
 
-  let names = professionals.map((o) => o.first_name + " " + o.last_name );
+  //let names = professionals.map((o) => o.first_name + " " + o.last_name );
  
   
   const {
@@ -69,10 +69,12 @@ export function GenerateQuery({ navigation }) {
     },
   });
   
+  const {nombre}= route.params;
+  setValue("Professional", nombre)
   //console.log(getValues(["Fecha"])[0]);
-  
+  //console.log(nombre);
    const onSubmit = (data) => {
-   let campoUno="",campoDos="",campotres="",campoCinco="",campoSeis="";
+    
     console.log(data);
     
 
@@ -127,7 +129,7 @@ const changeSelectedTime = (event, selectedDate) => {
     if(minutos===0)
      minutos= "0"+ minutos;
     
- console.log(text)
+ 
 
     let fTime=  hora +':'+ minutos
     
@@ -201,15 +203,24 @@ const changeSelectedTime = (event, selectedDate) => {
             <Text>Loading...</Text>
           )}
         </View>
-        {/* <View style={{ alignItems: "center" }}>
-          <ButtonGenerateQuery
+
+         <View style={{ alignItems: "center" }}>
+          {/* <ButtonGenerateQuery
             navigation={navigation}
             text={"Elegir Profesional"}
             color={theme.colors.secondaryText}
             backgroundColor={theme.colors.primaryColor}
-          />
-        </View> */}
-      <Text style={styles.text}>Seleccione Professional:</Text>
+          /> */}
+       <Button
+             onPress={() =>
+             navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
+         }
+       title="Elegir Profesional" 
+       />
+        <Text style={styles.text} > {nombre}  </Text >
+
+        </View> 
+      {/* <Text style={styles.text}>Seleccione Professional:</Text>
        <SelectList
            
            boxStyles={{ backgroundColor: "#A8A7A3" }}
@@ -217,7 +228,7 @@ const changeSelectedTime = (event, selectedDate) => {
            setSelected={(val) => setValue("Professional", val)}
            data={names}
            save="value"
-          />
+          /> */}
            <View style={styles.boton}>
 
          <Button style={styles.boton} onPress={displayDatepicker} title="Seleccionar fecha" />
