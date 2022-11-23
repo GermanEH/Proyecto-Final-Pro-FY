@@ -40,7 +40,10 @@ const ProfessionalScheme = new mongoose.Schema(
     professionalAdress: {
       type: String,
     },
-    schedule: {
+    scheduleDays: {
+      type: String,
+    },
+    scheduleHours: {
       type: String,
 
     },
