@@ -82,7 +82,7 @@ export function ProfessionalsList({ navigation }) {
             <Text>Loading...</Text>
           )}
           <SelectList
-            setSelected={(val) => setCountry(val)}
+            setSelected={(val) => {setCountry(val)}}
             data={countries}
             save="value"
             // onSelect={() => alert(selected)}

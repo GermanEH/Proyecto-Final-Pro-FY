@@ -24,6 +24,9 @@ export function CardPacient({
 }) {
   return (
     <SafeAreaView>
+      <TouchableOpacity   onPress={() => {      
+          navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name })
+      }}>
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
           <View>
@@ -86,18 +89,22 @@ export function CardPacient({
                 <Text style={{ color: theme.colors.secondaryText }}>
                   Ver más {">"}
                 </Text>
+                
               </TouchableOpacity>
+            {/* <ButtonDating
+                color={theme.colors.secondaryText}
+                text={"Select"}
+                backgroundColor={theme.colors.primaryColor}
+              /> */}
             </View>
           </View>
+     
         </View>
         <View style={{ marginLeft: 10, justifyContent: "center" }}>
-          <ButtonDating
-            color={theme.colors.secondaryText}
-            text={"Seleccionar"}
-            backgroundColor={theme.colors.primaryColor}
-          />
+         
         </View>
       </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
