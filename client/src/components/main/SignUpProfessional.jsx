@@ -1,164 +1,193 @@
-import  React , {useEffect} from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image,useWindowDimensions, ScrollView,
-  SafeAreaView, } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux'
-import { postProfessional } from '../../slices/professionalsActions'
-import { useForm, Controller } from 'react-hook-form';
-import Constants from 'expo-constants';
-import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
-import CustomInput from '../CustomInput/CustomInput'
-import CustomButtom from '../CustomButton/CustomButton';
-import {useNavigation} from '@react-navigation/native';
-import Logo from '../../assets/logo.png';
-import { getSpecialties } from '../../slices/professionalsActions';
-import {SelectList} from 'react-native-dropdown-select-list';
+import React, { useEffect } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  Image,
+  useWindowDimensions,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { postProfessional } from "../../slices/professionalsActions";
+import { useForm, Controller } from "react-hook-form";
+import Constants from "expo-constants";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
+import CustomInput from "../CustomInput/CustomInput";
+import CustomButtom from "../CustomButton/CustomButton";
+import { useNavigation } from "@react-navigation/native";
+import Logo from "../../assets/logo.png";
+import { getSpecialties } from "../../slices/professionalsActions";
+import { SelectList } from "react-native-dropdown-select-list";
 import { auth } from "../../../firebase-config.js";
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+import { LoadingImage } from "../professional/LoadingImage";
+const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-export function SignUpProfessional  ({navigation})  {
-  const { register, setValue, handleSubmit, watch, control, reset, formState: { errors } } = useForm({
+export function SignUpProfessional({ navigation }) {
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    watch,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      email:'',
-      password:'',
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
       /* passswordRepeat:'', */
-      dni: '',
-      professionalId:'',
-      specialities:"",
-      country:'',
-      state:'',
-      city:'',
-      zip:'',
-      professionalAdress:'',
-      schedule:'',
-      modality:"",
-    }
+      dni: "",
+      professionalId: "",
+      specialities: "",
+      country: "",
+      state: "",
+      city: "",
+      zip: "",
+      professionalAdress: "",
+      schedule: "",
+      modality: "",
+    },
   });
   async function onHandleSubmit(data) {
-    console.log(data)
+    console.log(data);
     try {
+      const selectedSpecialty = specialties.filter(
+        (i) => i.name === data.specialities
+      );
+      data.specialities = selectedSpecialty[0]._id;
+      console.log(selectedSpecialty[0]._id);
 
-        const selectedSpecialty = specialties.filter (i =>i.name=== data.specialities)
-        data.specialities = selectedSpecialty[0]._id
-        console.log(selectedSpecialty[0]._id)
-   
-    
-    dispatch(postProfessional(data))
-    await createUserWithEmailAndPassword(
-    auth, data.email, data.password)
-    .then(userCredential =>{
-        console.log('Account created!')
-        // Signed in 
-        const user = userCredential.user
-        // ...
-        console.log("Register whit", user.email)
-        if(user && user.emailVerified === false){
-            sendEmailVerification(user)
-        }})
-    .then(() => {
-        updateProfile(auth.currentUser, {displayName: `${data.first_name} ${data.last_name}`})
-    })
-    .then(() => {navigation.navigate('SignInPro', {usertype:'professional'})})
-    alert ("El Usuario Professional ha sido registrado correctamente, Por favor verifique su correo electronico (checkea spam)")
+      dispatch(postProfessional(data));
+      await createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredential) => {
+          console.log("Account created!");
+          // Signed in
+          const user = userCredential.user;
+          // ...
+          console.log("Register whit", user.email);
+          if (user && user.emailVerified === false) {
+            sendEmailVerification(user);
+          }
+        })
+        .then(() => {
+          updateProfile(auth.currentUser, {
+            displayName: `${data.first_name} ${data.last_name}`,
+          });
+        })
+        .then(() => {
+          navigation.navigate("SignInPro", { usertype: "professional" });
+        });
+      alert(
+        "El Usuario Professional ha sido registrado correctamente, Por favor verifique su correo electronico (checkea spam)"
+      );
     } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    alert ("La creacion de User Professional ha fallado, Por favor verifique que todo este correcto.")
-    alert(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      alert(
+        "La creacion de User Professional ha fallado, Por favor verifique que todo este correcto."
+      );
+      alert(error);
     }
-}
-  const [selected, setSelected] = React.useState("")
+  }
+  const [selected, setSelected] = React.useState("");
   /* const navigation = useNavigation(); */
-  const speciality = useSelector(state => state.professionals.specialtiesNames)
-  const specialties = useSelector (state => state.professionals.specialties)
+  const speciality = useSelector(
+    (state) => state.professionals.specialtiesNames
+  );
+  const specialties = useSelector((state) => state.professionals.specialties);
 
   const onSignUpPress = () => {
-    navigation.navigate('SignInPro')
-  }
+    navigation.navigate("SignInPro");
+  };
   const onSignInPressed = () => {
     // validate user
-    navigation.navigate('Home');
+    navigation.navigate("Home");
   };
-  
-  const pwd = watch('password') // desde aca se accede para ver las coincidencias de las password !
-  
 
- 
-  const {height} = useWindowDimensions();
+  const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
+
+  const { height } = useWindowDimensions();
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(getSpecialties())},[]);
+  useEffect(() => {
+    dispatch(getSpecialties());
+  }, []);
   const onSubmit = (data) => {
-  /*   const selectedSpecialty = specialties.filter (i =>i.name=== data.speciality)
-    data.speciality = selectedSpecialty._id */  ///esto no funciona o no entendí
-    console.log('entramos')
-    console.log(data)
-    dispatch(postProfessional(data))
-    navigation.navigate('SignInPro')
+    /*   const selectedSpecialty = specialties.filter (i =>i.name=== data.speciality)
+    data.speciality = selectedSpecialty._id */ ///esto no funciona o no entendí
+    console.log("entramos");
+    console.log(data);
+    dispatch(postProfessional(data));
+    navigation.navigate("SignInPro");
   };
   return (
     <SafeAreaView>
       <ScrollView>
-
-    
-    <View style={styles.container}>
-      <View style={styles.root}>   
-        <Image
-          source={Logo}
-          style={[styles.logo, {height: height * 0.3}]}
-          resizeMode="contain"
-        />
-     <Text>Nombre</Text>
-      <CustomInput
-        name="first_name"
-       /*  placeholder="Nombre" */
-        control={control}
-        rules={{
-          required: 'Nombre es requerido',
-          minLength:{
-            value:4,
-            message: 'El nombre deberia tener 4 letras como minimo'
-          },
-          maxLength:{
-            value:20,
-            message: 'El nombre debe tener como maximo 20 letras'
-          }
-        }}
-      />
-       <Text>Apellido</Text>
-      <CustomInput
-        name="last_name"
-   
-        control={control}
-        rules={{
-          required: 'Apellido es requerido',
-          minLength:{
-            value:4,
-            message: 'El Apellido deberia tener 4 letras como minimo'
-          },
-          maxLength:{
-            value:20,
-            message: 'El apellido debe tener como maximo 20 letras'
-          }
-        }}
-      />
-       <Text>Contraseña</Text>
-     <CustomInput
-      name="password"
-     
-      control={control}
-      secureTextEntry
-      rules={{
-        required: 'Contraseña requerida',
-        minLength:{
-          value:8,
-          message: 'La contraseña deberia tener 8 letras como minimo'
-        }
-       
-      }}
-    />
-     {/* <CustomInput
+        <View style={styles.container}>
+          <View style={styles.root}>
+            <Image
+              source={Logo}
+              style={[styles.logo, { height: height * 0.3 }]}
+              resizeMode="contain"
+            />
+            <Text>Nombre</Text>
+            <CustomInput
+              name="first_name"
+              /*  placeholder="Nombre" */
+              control={control}
+              rules={{
+                required: "Nombre es requerido",
+                minLength: {
+                  value: 4,
+                  message: "El nombre deberia tener 4 letras como minimo",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "El nombre debe tener como maximo 20 letras",
+                },
+              }}
+            />
+            <Text>Apellido</Text>
+            <CustomInput
+              name="last_name"
+              control={control}
+              rules={{
+                required: "Apellido es requerido",
+                minLength: {
+                  value: 4,
+                  message: "El Apellido deberia tener 4 letras como minimo",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "El apellido debe tener como maximo 20 letras",
+                },
+              }}
+            />
+            <Text>Contraseña</Text>
+            <CustomInput
+              name="password"
+              control={control}
+              secureTextEntry
+              rules={{
+                required: "Contraseña requerida",
+                minLength: {
+                  value: 8,
+                  message: "La contraseña deberia tener 8 letras como minimo",
+                },
+              }}
+            />
+            {/* <CustomInput
       name="passwordRepeat"
       placeholder="Repetir Contraseña"
       control={control}
@@ -168,141 +197,136 @@ export function SignUpProfessional  ({navigation})  {
       value === pwd   || 'Las contraseñas no son iguales'
     }}
     /> */}
-     <Text>Pais</Text>
-       <CustomInput
-          name="country"
-          control={control}
-          rules={{required: 'Pais es requerido'}}
-        />
-         <Text>Provincia</Text>
-      <CustomInput
-        name="state"
-        control={control}
-        rules={{required: 'Provincia es requerida'}}
-      />
-       <Text>Ciudad</Text>
-        <CustomInput
-          name="city"
-          control={control}
-          rules={{required: 'Ciudad es requerida'}}
-      />
-       <Text>Codigo Postal</Text>
-      <CustomInput
-        name="zip"
-        control={control}
-        rules={{required: 'Codigo Postal es requerido'}}
+            <Text>Pais</Text>
+            <CustomInput
+              name="country"
+              control={control}
+              rules={{ required: "Pais es requerido" }}
+            />
+            <Text>Provincia</Text>
+            <CustomInput
+              name="state"
+              control={control}
+              rules={{ required: "Provincia es requerida" }}
+            />
+            <Text>Ciudad</Text>
+            <CustomInput
+              name="city"
+              control={control}
+              rules={{ required: "Ciudad es requerida" }}
+            />
+            <Text>Codigo Postal</Text>
+            <CustomInput
+              name="zip"
+              control={control}
+              rules={{ required: "Codigo Postal es requerido" }}
+            />
 
-      />
+            <Text>Matricula del profesiona</Text>
+            <CustomInput
+              name="professionalId"
+              control={control}
+              rules={{ required: "Matricula del profesional es requerida" }}
+            />
+            <Text>D.N.I</Text>
 
-        <Text>Matricula del profesiona</Text>
-       <CustomInput
-          name="professionalId"
-          
-          control={control}
-          rules={{required: 'Matricula del profesional es requerida'}}
-        />
-       <Text>D.N.I</Text>
+            <CustomInput
+              name="dni"
+              control={control}
+              rules={{ required: "DNI es requerido" }}
+            />
+            <Text>Direccion del profesional</Text>
+            <CustomInput
+              name="professionalAdress"
+              control={control}
+              rules={{ required: "Direccion del profesional es requerida" }}
+            />
+            <Text>Turnos</Text>
+            <CustomInput
+              name="schedule"
+              control={control}
+              rules={{ required: "Turnos son requeridos" }}
+            />
+            <Text>Modalidad</Text>
+            <CustomInput
+              name="modality"
+              control={control}
+              rules={{ required: "Modalidad es requerida" }}
+            />
+            <Text>E-mail</Text>
+            <CustomInput
+              name="email"
+              control={control}
+              rules={{
+                pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+              }}
+            />
+            <SelectList
+              data={specialties.map((m) => m.name)}
+              placeholder="Especialidad"
+              setSelected={(value) => setValue("specialities", value)}
+              /*  rules={{required: 'Especialidad es requerida'}} */
+            />
+            <View style={{ width: "100%", height: 300, paddingVertical: 60 }}>
+              <LoadingImage setValue={setValue} />
+            </View>
 
-      <CustomInput
-          name="dni"
-          
-          control={control}
-          rules={{required: 'DNI es requerido'}}
-        />
-         <Text>Direccion del profesional</Text>
-         <CustomInput
-          name="professionalAdress"
-        
-          control={control}
-          rules={{required: 'Direccion del profesional es requerida'}}
-        />
-         <Text>Turnos</Text>
-         <CustomInput
-          name="schedule"
-        
-          control={control}
-          rules={{required: 'Turnos son requeridos'}}
-        />
-         <Text>Modalidad</Text>
-         <CustomInput
-          name="modality"
-          
-          control={control}
-          rules={{required: 'Modalidad es requerida'}}
-        />
-         <Text>E-mail</Text>
-      <CustomInput
-          name="email"
-          
-          control={control}
-          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}}}
-      />
-      <SelectList
-       data={specialties.map(m => m.name )} 
-       placeholder="Especialidad" 
-       setSelected={(value)=>setValue('specialities', value)} 
-      /*  rules={{required: 'Especialidad es requerida'}} */
-       />
-
-
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Crear usuario"
-          onPress={handleSubmit(onHandleSubmit)}
-        />
-           </View>
+            <View style={styles.button}>
+              <Button
+                style={styles.buttonInner}
+                color
+                title="Crear usuario"
+                onPress={handleSubmit(onHandleSubmit)}
+              />
+            </View>
             <Text style={styles.text}>
-            Al registrarte confirmas y aceptas nuestros{' '}
-            <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+              Al registrarte confirmas y aceptas nuestros{" "}
+              <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
                 Terminos de uso
-            </Text>{' '}
-            y{' '}
-            <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+              </Text>{" "}
+              y{" "}
+              <Text style={styles.link} /* onPress={onPrivacyPressed} */>
                 Politica de privacidad
+              </Text>
             </Text>
-            </Text>
+            <View></View>
+
             <View>
-      </View>
-      
-      <View>
-      <CustomButtom
-          text="Ya tienes una cuenta? Ingresa Aquí"
-          onPress={onSignUpPress}
-          type="TERTIARY"
-        />
-      </View>
-      </View>
-    </View>
-    </ScrollView>
+              <CustomButtom
+                text="Ya tienes una cuenta? Ingresa Aquí"
+                onPress={onSignUpPress}
+                type="TERTIARY"
+              />
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   root: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   logo: {
-    width: '70%',
+    width: "70%",
     maxWidth: 300,
     maxHeight: 200,
   },
   button: {
     marginTop: 40,
-    color: 'white',
+    color: "white",
     height: 40,
-    backgroundColor: 'orange',
+    backgroundColor: "orange",
     borderRadius: 4,
   },
   text: {
-    color: 'gray',
+    color: "gray",
     marginVertical: 10,
   },
   link: {
-    color: '#FDB075',
+    color: "#FDB075",
   },
 });
-
