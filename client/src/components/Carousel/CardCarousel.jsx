@@ -9,24 +9,25 @@ import {
 } from "react-native";
 import theme from "../../theme";
 
-export function CardCarousel({ item }) {
+export function CardCarousel({ item, navigation }) {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={[styles.container, { width: width*0.75 }]}>
+    <View style={[styles.container, { width: width * 0.75 }]}>
       <Image
         source={item.image}
         style={[styles.image, { width, resizeMode: "contain" }]}
       />
       <View>
-        <Text style={[styles.title, {textAlign: 'center'}]}> {item.title} </Text>
-        <Text style={styles.description}> ✔︎ {item.characteristic1} </Text>
-        <Text style={styles.description}> ✔︎ {item.characteristic2} </Text>
-        <Text style={styles.description}> ✔︎ {item.characteristic3} </Text>
-        <Text style={styles.description}> ✔︎ {item.characteristic4} </Text>
-        <Text style={styles.price}> {item.price} </Text>
+        <Text style={[styles.title, { textAlign: 'center' }]}> {item.title} </Text>
+        {
+          item.characteristics.map((characteristic, index) => (
+            <Text key={index} style={styles.description}> ✔︎ {characteristic} </Text>)
+          )
+        }
+        <Text style={[styles.price, { textAlign: 'center' }]}> {item.price} </Text>
       </View>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity onPress={() => navigation.navigate("Pagos")} style={styles.btn}>
         <Text> Ir </Text>
       </TouchableOpacity>
     </View>

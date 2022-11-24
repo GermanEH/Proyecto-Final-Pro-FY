@@ -71,7 +71,7 @@ export function HomePacient({ navigation }) {
               <CarouselFavorite />
             </View>
             <View style={{ paddingBottom: 20 }}>
-              <Carousel />
+              <Carousel role='pacient' navigation={navigation}/>
             </View>
           </View>
         </ScrollView>
