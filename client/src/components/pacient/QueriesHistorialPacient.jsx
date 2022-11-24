@@ -64,7 +64,9 @@ export function QueriesHistorialPacient({ navigation }) {
           </Text>
         </View>
         {(queries.length === 0) ? (
-          <Loading />
+          <Text>
+            Loading...
+          </Text> 
         ) : (
           <View style={styles.containerHistorial}>
             <ScrollView>
