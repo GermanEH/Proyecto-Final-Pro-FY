@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getQueries = createAsyncThunk('queries/getQueries', async (professionals) => {
+export const getQueries = createAsyncThunk('queries/getQueries', async () => {
     try {
-        const response = await axios.get('http://192.168.0.215:3001/api/queries')
+        const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/queries')
+        console.log(response)
         const data = response.data.data.sort(function(a, b) {
             if(a.queryDate < b.queryDate) return -1;
             if(a.queryDate > b.queryDate) return 1;
@@ -27,7 +28,7 @@ export const getQueries = createAsyncThunk('queries/getQueries', async (professi
 })
 export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) => {
     try {
-        const response = await axios.get(`http://192.168.0.215:3001/api/queries/${id}`)
+        const response = await axios.get(`http://api-pro-fy-production.up.railway.app/api/queries/${id}`)
         const data = response.data.data.map(q => {
                     return {
                         id:q._id,
@@ -49,7 +50,7 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
 
 export const postQuery = createAsyncThunk('queries/postQuery', async (newQuery) => {
     try {
-        const response = await axios.post('http://192.168.0.215:3001/api/queries', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = await axios.post('http://api-pro-fy-production.up.railway.app/api/queries', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
         return response.data.data
     } catch (error) {
         return error.message
@@ -60,7 +61,7 @@ export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...que
     try {
         console.log(_id)
         console.log(query)
-        const response = await axios.put(`http://192.168.0.215:3001/api/queries/${_id}`, query)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = await axios.put(`http://api-pro-fy-production.up.railway.app/api/queries/${_id}`, query)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
         console.log(response)
         return response.data.data
     } catch (error) {
@@ -70,7 +71,7 @@ export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...que
 
 export const deleteQuery = createAsyncThunk('queries/deleteQuery', async (id) => {
     try {
-        const response = axios.delete(`http://192.168.0.215:3001/api/queries/${id}`)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.delete(`http://api-pro-fy-production.up.railway.app/api/queries/${id}`)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
         return response.data.data
     } catch (error) {
         return error.message

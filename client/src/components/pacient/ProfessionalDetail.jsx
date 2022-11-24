@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import theme from "../../theme";
 import { ButtonQueries, ButtonQueriesDetail } from "../shared/Button";
 import { Carousel } from '../Carousel/Carousel'
+import { handleFavourite } from '../../slices/professionals'
 import { getProfessionalById } from "../../slices/professionalsActions";
 import { getReviews } from '../../slices/reviewsActions'
 import { Review } from './Review'
+import { FontAwesome } from "@expo/vector-icons"; 
 
 export function ProfessionalDetail({ navigation, route }) {
 
@@ -20,8 +22,6 @@ export function ProfessionalDetail({ navigation, route }) {
   useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
   useEffect(() => {dispatch(getReviews()); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
-
-  console.log(professional)
 
   return ( 
     <ScrollView>
@@ -45,13 +45,24 @@ export function ProfessionalDetail({ navigation, route }) {
             }}
           >
             <Text>{professional?.first_name} {professional?.last_name}</Text>
-            <Text>Especialidad: {professional?.specialities}</Text>
+            <Text>Especialidad: {professional?.specialities.name}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>Tipos de Consulta: {professional?.modality}</Text>
             </View>
+            <TouchableOpacity
+        onPress={() => {dispatch(handleFavourite(professional))}}
+        >
+          <FontAwesome
+          style={{ paddingLeft: 5 }}
+          name="star-o"
+          size={15}
+          color="black"
+          />
+          </TouchableOpacity>
             {/* <Text>Numero de contacto:</Text> */}
             {/* <Text></Text> */}
         </View>
+        
         <View 
         style={{ marginTop: 40 }}
         >

@@ -18,6 +18,7 @@
     "@react-navigation/stack": "^6.3.4",
     "@reduxjs/toolkit": "^1.9.0",
     "@stripe/stripe-react-native": "0.13.1",
+    "adb": "^0.2.0",
     "axios": "^1.1.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "cloudinary-core": "^2.13.0",
@@ -44,7 +45,8 @@
     "react-native-toast-message": "^2.1.5",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "xdl": "^59.2.55"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
