@@ -28,6 +28,7 @@ import { getSpecialties } from "../../slices/professionalsActions";
 import { SelectList } from "react-native-dropdown-select-list";
 import { auth } from "../../../firebase-config.js";
 import { LoadingImage } from "../professional/LoadingImage";
+import { Value } from "react-native-reanimated";
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -56,9 +57,13 @@ export function SignUpProfessional({ navigation }) {
       zip: "",
       professionalAdress: "",
       schedule: "",
+      day:'',
       modality: "",
     },
   });
+  const dias = ['Lunes a Viernes','Martes a Sabado','Miercoles a lunes', 'Jueves a Martes', 'Viernes a jueves']
+  const modalidad = ['presential','remote']
+  const turnos = ['8:00 a 18:00', '10:00 a 20:00', '12:00 a 22:00']
   async function onHandleSubmit(data) {
     console.log(data);
     try {
@@ -241,7 +246,7 @@ export function SignUpProfessional({ navigation }) {
               control={control}
               rules={{ required: "Direccion del profesional es requerida" }}
             />
-            <Text>Turnos</Text>
+           {/*  <Text>Turnos</Text>
             <CustomInput
               name="schedule"
               control={control}
@@ -252,7 +257,7 @@ export function SignUpProfessional({ navigation }) {
               name="modality"
               control={control}
               rules={{ required: "Modalidad es requerida" }}
-            />
+            /> */}
             <Text>E-mail</Text>
             <CustomInput
               name="email"
@@ -260,6 +265,21 @@ export function SignUpProfessional({ navigation }) {
               rules={{
                 pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
               }}
+            />
+            <SelectList
+            data={dias}
+            placeholder='Dias'
+            setSelected={(value)=> setValue ('day', value)}
+            />
+            <SelectList
+            data={modalidad}
+            placeholder="Modalidad"
+            setSelected= {(value)=> setValue('modality', value)}
+            />
+            <SelectList
+            data={turnos}
+            placeholder='Turnos'
+            setSelected= {(value)=> setValue ('schedule', value)}
             />
             <SelectList
               data={specialties.map((m) => m.name)}
