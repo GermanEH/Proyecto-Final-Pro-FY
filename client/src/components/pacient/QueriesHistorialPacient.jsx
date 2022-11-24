@@ -20,7 +20,7 @@ export function QueriesHistorialPacient({ navigation }) {
   const queries = useSelector((state) => state.queries.queries);
 
   const dispatch = useDispatch();
-
+  
   useEffect(() => {dispatch(getQueries())}, [])
 
   return (

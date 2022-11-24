@@ -23,7 +23,7 @@ const autMiddleware = async (req, res, next) => {
     req.user = user
     next()    //token exitoso
   } catch (error) {
-    handleHttpError(res, "NOT_SESSION", 401)
+    // handleHttpError(res, "NOT_SESSION", 401)
   }
 }
 

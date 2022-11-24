@@ -11,7 +11,7 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
         })
         return data.map(d => {
             return {
-                _id: d._id,
+                id: d._id,
                 first_name: d.first_name,
                 last_name: d.last_name,
                 email: d.email,

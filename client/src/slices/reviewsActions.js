@@ -17,7 +17,7 @@ export const getReviews = createAsyncThunk('reviews/getReviews', async () => {
 
 export const postReview = createAsyncThunk('reviews/postReview', async (newQuery) => {
     try {
-        const response = axios.post('https://api-pro-fy-production.up.railway.app/api/reviews', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.post('https://api-pro-fy-production.up.railway.app/api/reviews', newQuery)
         return response.data.data
     } catch (error) {
         return error.message
@@ -26,7 +26,7 @@ export const postReview = createAsyncThunk('reviews/postReview', async (newQuery
 
 export const putReview = createAsyncThunk('reviews/putReview', async (id, query) => {
     try {
-        const response = axios.put(`https://api-pro-fy-production.up.railway.app/api/reviews/${id}`, query)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.put(`https://api-pro-fy-production.up.railway.app/api/reviews/${id}`, query)
         return response.data.data
     } catch (error) {
         return error.message
@@ -35,7 +35,7 @@ export const putReview = createAsyncThunk('reviews/putReview', async (id, query)
 
 export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
     try {
-        const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/reviews/${id}`)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/reviews/${id}`)
         return response.data.data
     } catch (error) {
         return error.message

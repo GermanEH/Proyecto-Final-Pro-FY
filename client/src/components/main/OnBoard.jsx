@@ -16,7 +16,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Pacient"
             onPress={() =>
-              navigation.navigate("GenerateQuery", { usertype: "GenerateQuery" })
+              navigation.navigate("SignIn", { usertype: "pacient" })
             }
           >
             <Text style={styles.text}>Pacient</Text>

@@ -67,9 +67,9 @@ export function HomePacient({ navigation }) {
             <Text style={styles.textFavorite}>
               Tus profesionales favoritos:
             </Text>
-            <View style={{ paddingBottom: 20 }}>
+            {/* <View style={{ paddingBottom: 20 }}>
               <CarouselFavorite />
-            </View>
+            </View> */}
             <View style={{ paddingBottom: 20 }}>
               <Carousel role='pacient' navigation={navigation}/>
             </View>

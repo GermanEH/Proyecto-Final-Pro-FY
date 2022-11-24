@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getQueries = createAsyncThunk('queries/getQueries', async (professionals) => {
+export const getQueries = createAsyncThunk('queries/getQueries', async () => {
     try {
         const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/queries')
         const data = response.data.data.sort(function(a, b) {
@@ -49,7 +49,7 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
 
 export const postQuery = createAsyncThunk('queries/postQuery', async (newQuery) => {
     try {
-        const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/queries', newQuery)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/queries', newQuery)
         return response.data.data
     } catch (error) {
         return error.message
@@ -58,10 +58,7 @@ export const postQuery = createAsyncThunk('queries/postQuery', async (newQuery) 
 
 export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...query}) => {
     try {
-        console.log(_id)
-        console.log(query)
-        const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/queries/${_id}`, query)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
-        console.log(response)
+        const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/queries/${_id}`, query)
         return response.data.data
     } catch (error) {
         return error.message
@@ -70,7 +67,7 @@ export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...que
 
 export const deleteQuery = createAsyncThunk('queries/deleteQuery', async (id) => {
     try {
-        const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`)   //NO SE PORQUÉ SI PONGO AWAIT NO ANDA
+        const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`) 
         return response.data.data
     } catch (error) {
         return error.message

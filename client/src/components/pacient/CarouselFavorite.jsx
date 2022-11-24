@@ -1,32 +1,20 @@
 import React from 'react'
 import { FlatList, View } from 'react-native';
 import { CardPacient } from './CardPacient';
-
-const arrayFavoritos = [
-  {
-    first_name: 'Pepito',
-    last_name: 'Perez',
-    country: 'De allá',
-    specialty: 'Doctor',
-  },
-  {
-    first_name: 'Pepito2',
-    last_name: 'Perez2',
-    country: 'De allá',
-    specialty: 'Doctor',
-  },
-]
-
+import { useSelector } from 'react-redux'
 
 export function CarouselFavorite() {
 
+  const favourites = useSelector(state => state.professionals.favourites)
+
   return (
     <View>
-      <FlatList data={arrayFavoritos} renderItem={({ item }) => <CardPacient {...item} />}
+      <FlatList data={favourites} renderItem={({ item }, i) => <CardPacient {...item} key={i} />}
         horizontal
         showsHorizontalScrollIndicator
         pagingEnabled
         bounces={false}
+        // key={item => item.id}
         keyExtractor={(item) => item.id}
       />
     </View>

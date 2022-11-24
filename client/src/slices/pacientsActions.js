@@ -26,7 +26,6 @@ export const getPacient = createAsyncThunk('pacients/getPacient', async (id) => 
 
 export const postPacient = createAsyncThunk('pacients/postPacient', async (newPacient) => {
     try {
-        // para probar en mobile, cambiar localhost:3001 por ip_computador:3001
         const response = await axios({
             method: "post",
             url: "https://api-pro-fy-production.up.railway.app/api/users",

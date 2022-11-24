@@ -6,6 +6,7 @@ const initialState = {
   specialties: [],
   specialtiesNames: [],
   countries: [],
+  favourites: [],
   filtered: [],
   status: "",
   error: ""
@@ -32,7 +33,22 @@ const professionalsSlice = createSlice({
     },
     filterProfessionals: (state, {payload}) => {
       state.filtered = state.professionals.filter(p => payload.every(f => p[Object.keys(f)[0]] === Object.values(f)[0]))
-    }  
+    },
+    handleFavourite: (state, {payload}) => {
+      console.log(payload)
+      console.log(state.favourites.length)
+      console.log(state.favourites)
+      if(state.favourites.length === 0) {
+        state.favourites.push(payload)
+      } else {
+        for (const favourite of state.favourites) {
+        if(favourite._id === payload._id) {
+          state.favourites = state.favourites.filter(f => f._id !== payload._id)
+        } else {
+          state.favourites = state.favourites.push(payload)
+        }
+      }}
+    }
   },
   extraReducers(builder) {
     builder 
@@ -105,6 +121,6 @@ export const professional = (state) => state.professional
 export const professionalStatus = (state) => state.status
 export const professionalError = (state) => state.error
 
-export const { equalFilters, replaceFilters, setFiltered, filterProfessionals } = professionalsSlice.actions
+export const { equalFilters, replaceFilters, setFiltered, filterProfessionals, handleFavourite } = professionalsSlice.actions
 
 export default professionalsSlice.reducer
