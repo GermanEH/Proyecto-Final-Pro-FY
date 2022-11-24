@@ -45,7 +45,7 @@ export const getProfessionalById = createAsyncThunk('professionals/getProfession
 
 export const getSpecialties = createAsyncThunk('professionals/getSpecialties', async () => {       //hay una i adicional en la ruta
     try {
-        const response = await axios.get('http://api-pro-fy-production.up.railway.app/api/specialities')             
+        const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/specialities')             
         return response.data.data
     } catch (error) {
         return error.message
@@ -55,7 +55,7 @@ export const getSpecialties = createAsyncThunk('professionals/getSpecialties', a
 
 export const postProfessional = createAsyncThunk('professionals/postProfessional', async (newProfessional) => {
     try {
-        const response = await axios.post('http://api-pro-fy-production.up.railway.app/api/professionals', newProfessional)   
+        const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/professionals', newProfessional)   
         return response.data.data
     } catch (error) {
         return error.message
@@ -64,7 +64,7 @@ export const postProfessional = createAsyncThunk('professionals/postProfessional
 
 export const putProfessional = createAsyncThunk('professionals/putProfessional', async (id, professional) => {
     try {
-        const response = await axios.put(`http://api-pro-fy-production.up.railway.app/api/professionals/${id}`, professional) 
+        const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`, professional) 
         return response.data.data
     } catch (error) {
         return error.message
@@ -73,7 +73,7 @@ export const putProfessional = createAsyncThunk('professionals/putProfessional',
 
 export const deleteProfessional = createAsyncThunk('professionals/deleteProfessional', async (professional) => {
     try {
-        const response = await axios.delete('http://api-pro-fy-production.up.railway.app/api/professionals', professional) 
+        const response = await axios.delete('https://api-pro-fy-production.up.railway.app/api/professionals', professional) 
         return response.data.data
     } catch (error) {
         return error.message
