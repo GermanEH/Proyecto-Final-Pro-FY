@@ -6,19 +6,22 @@
   }
   )
 
-  const useStripe = async (req, res) => {
-    const { name } = req.body
-   console.log(name)
+  const useStripeUsersBasic = async (req, res) => {
+    const { email, id } = req.body
+   console.log(email)
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: 500,
+        amount: 50,
         currency: "usd",
-        
         payment_method_types: ["card"]
       })
       
       const clientSecret = paymentIntent.client_secret
-      res.json({ message: "Payment initiated", clientSecret })
+      res.json({ message: "Bienvenido al plan básico", clientSecret, "email" : email})
+  
+
+      
+
     } catch (error) {
       console.log(error)
       res.status(500).json({ messate: "Internal server error" })
@@ -27,4 +30,75 @@
 
 
   }
-  module.exports = { useStripe }
+  const useStripeUsersPremium = async (req, res) => {
+    const { email } = req.body
+   console.log(email)
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 100,
+        currency: "usd",
+        payment_method_types: ["card"]
+      })
+      
+      const clientSecret = paymentIntent.client_secret
+      res.json({ message: "Bienvenido al plan Premium", clientSecret, "email" : email})
+      
+
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ messate: "Internal server error" })
+    }
+  }
+
+  
+  const useStripeProfessionalsBasic = async (req, res) => {
+    const { email } = req.body
+   console.log(email)
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 50,
+        currency: "usd",
+        payment_method_types: ["card"]
+      })
+      
+      const clientSecret = paymentIntent.client_secret
+      res.json({ message: "Bienvenido al plan Básico", clientSecret, "email" : email})
+      
+
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ messate: "Internal server error" })
+
+    }
+
+
+  }
+
+  const useStripeProfessionalsPremium = async (req, res) => {
+    const { email } = req.body
+   console.log(email)
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 100,
+        currency: "usd",
+        payment_method_types: ["card"]
+      })
+      
+      const clientSecret = paymentIntent.client_secret
+      res.json({ message: "Bienvenido al plan Premium", clientSecret, "email" : email})
+      
+
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ messate: "Internal server error" })
+
+    }
+
+
+  }
+
+
+
+
+  module.exports = { useStripeUsersBasic,useStripeUsersPremium, useStripeProfessionalsBasic,
+    useStripeProfessionalsPremium}
