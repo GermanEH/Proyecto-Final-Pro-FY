@@ -2,6 +2,7 @@
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { Splash } from './src/components/Splash/Splash'
 import { Loading } from './src/components/loading/Loading'
 import { HamburgerMenu } from './src/components/main/HamburgerMenu'
 import { OnBoard } from './src/components/main/OnBoard'
@@ -34,6 +35,7 @@ import { SignInPro } from './src/components/main/SignInPro'
 import { EditProfile } from './src/components/pacient/EditProfile'
 import { PagosUserPremium } from './src/components/Stripe/Pagos/PagosUserPremium'
 
+
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -43,6 +45,12 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
             <Stack.Navigator>
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={{
+                headerShown: false
+              }}/>
             <Stack.Screen
               name="Loading"
               component={Loading}
@@ -112,13 +120,28 @@ export default function App() {
               component={SignUp}/> 
           <Stack.Screen
               name="SignIn"
-              component={SignIn}/> 
+              component={SignIn}
+              options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  paddingLeft: 10
+                }
+              }}/> 
           <Stack.Screen
               name="SignOut"
               component={SignOut}/> 
            <Stack.Screen
               name="SignUpProfessional"
-              component={SignUpProfessional}/> 
+              component={SignUpProfessional}
+               options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  paddingLeft: 10
+                }
+              }} />
+              
            <Stack.Screen
               name="SignInPro"
               component={SignInPro}/> 

@@ -19,6 +19,7 @@ import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
 import { auth } from "../../../firebase-config.js";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import theme from "../../theme";
 
 const provider = new GoogleAuthProvider();
 
@@ -29,32 +30,33 @@ export function SignIn({ route }) {
 
   const { height } = useWindowDimensions();
 
-    const handleSignIn = () => {
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log("Logged in whit", user.email)
-            // ...
-            if(user && user.emailVerified === false) {alert('Correo electronico no verificado')}
-            if(user && user.emailVerified === true && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
-        } else if (user && user.emailVerified === true && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })}
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        })
-    }
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("Logged in whit", user.email)
+        // ...
+        if (user && user.emailVerified === false) { alert('Correo electronico no verificado') }
+        if (user && user.emailVerified === true && route.params.usertype === 'pacient') {
+          navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+        } else if (user && user.emailVerified === true && route.params.usertype === 'professional') { navigation.navigate("HamburguerMenu", { usertype: "professional" }) }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      })
+  }
 
-    // useEffect(()=>{
-    //     const unsuscribe = auth.onAuthStateChanged( user => {
-    //         if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
-    //         if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
-    //     } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
-    //     }
-    //     })
-    //     return unsuscribe
-    // },[auth])
+  // useEffect(()=>{
+  //     const unsuscribe = auth.onAuthStateChanged( user => {
+  //         if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
+  //         if(user && user.emailVerified === 'true' && route.params.usertype === 'pacient') {navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+  //     } else if (user && user.emailVerified === 'true' && route.params.usertype === 'professional') {navigation.navigate("HamburguerMenu", { usertype: "professional" })
+  //     }
+  //     })
+  //     return unsuscribe
+  // },[auth])
 
   const HandleSignInWhitGoogle = () => {
     signInWithPopup(auth, provider)
@@ -79,87 +81,82 @@ export function SignIn({ route }) {
       });
   };
 
-    return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.root}>
-                <Image
-                    source={Logo}
-                    style={[styles.logo, {height: height * 0.3}]}
-                    resizeMode="contain"
-                />
+  return (
+    <View style={styles.signInContainer}>
+      <Image source={Logo} style={styles.logo} />
+      <View style={styles.inputsButtomsContainer}>
+        <TextInput onChangeText={(text) => setEmail(text)} placeholder="Correo electrónico" style={styles.input}>
+        </TextInput>
 
-                <View styles={styles.container}>
-                    
-                    <TextInput
-                        onChangeText={(text) => setEmail(text)}
-                        placeholder="correo electrónico"
-                        styles={styles.input}>
-                    </TextInput>
+        <TextInput onChangeText={(text) => setPassword(text)} placeholder="Contraseña" style={styles.input} secureTextEntry>
+        </TextInput>
 
-                    <TextInput
-                        onChangeText={(text) => setPassword(text)}
-                        placeholder="contraseña"
-                        style={styles.input}
-                        secureTextEntry>
-                    </TextInput>
+        <View style={{ width: '85%', paddingTop: 10 }}>
+          <CustomButtom text="Ingresar" onPress={handleSignIn} />
+        </View>
 
-          <View styles={styles.container}>
-            <CustomButtom text="Ingresar" onPress={handleSignIn} />
 
-            {/* <TouchableOpacity
-                            onPress={handleSignIn}
-                            style={styles.btn}>
-                            <Text style={styles.textBtn}>Iniciar Sesión</Text>
-                        </TouchableOpacity> */}
-
-            <TouchableOpacity
-              style={styles.btnGoogle}
-              onPress={HandleSignInWhitGoogle}
-            >
-              <Text>Inicia sesión con Google</Text>
-            </TouchableOpacity>
-
-            {/* <TouchableOpacity
-                            onPress={handleSignUp}
-                            style={styles.button}
-                        > */}
-            {/* <Text style={styles.text}>Registrate</Text>
-                        </TouchableOpacity> */}
-                    </View>
-                    <View>
-                        <Text>
-                            ¿No tienes una cuenta?
-                        </Text>
-                    </View>
-                    <View
-                        style={styles.container}>
-                            {route.params.usertype === 'pacient' ? 
-                            <CustomButtom 
-                                text="Registrarse" 
-                                onPress={() => navigation.navigate('SignUp')} /> :
-                            <CustomButtom 
-                            text="Registrarse" 
-                            onPress={() => navigation.navigate('FormProfessional')} />}
-                            
-                    </View>
-                </View>
+        <View style={styles.btnGoogle}>
+          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
+          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
+            <View style={styles.iconGoogle} >
+              <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
             </View>
-        </ScrollView>
-        // <KeyboardAvoidingView
-        //     styles={styles.container}
-        //     behavior="padding">
-        // </KeyboardAvoidingView>
-    )
+          </TouchableOpacity>
+        </View>
+
+      </View>
+
+      <View style={{ paddingTop: 150, alignItems: 'center'}}>
+          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
+            ¿No tienes una cuenta?
+          </Text>
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'FormProfessional')} >
+            <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor }}>
+              Registrate
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    root: {
-        alignItems: 'center',
-        padding: 20,
-        },
-    logo: {
-        width: '70%',
-        maxWidth: 300,
-        maxHeight: 200,
-    },
-    input: {}, })
+  signInContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 40,
+    backgroundColor: 'white',
+  },
+  logo: {
+    height: 150,
+    width: 150
+  },
+  inputsButtomsContainer: {
+    alignItems: 'center',
+    width: '100%',
+  },
+  input: {
+    ...theme.input
+  },
+  btn: {
+    ...theme.button
+  },
+  btnGoogle: {
+    paddingTop: 15,
+    flexDirection: 'colum',
+    alignItems: 'center',
+  },
+  iconGoogle: {
+    borderWidth: 2,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    height: 50,
+    width: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }
+})

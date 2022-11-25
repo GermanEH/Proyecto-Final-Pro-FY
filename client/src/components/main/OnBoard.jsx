@@ -6,11 +6,11 @@ import { Loading } from "../loading/Loading";
 export function OnBoard({ navigation }) {
   const payments = useSelector((state) => state.queries.payments);
   return (
-    <View style={styles.container}>
+    <View style={styles.onBoardContainer}>
       {!payments.length ? (
         <Loading />
       ) : (
-        <View style={styles.container}>
+        <View style={styles.internalContainer}>
           <Image style={styles.img} source={require("../../assets/logo.png")} />
           <TouchableOpacity
             style={styles.btn}
@@ -19,7 +19,7 @@ export function OnBoard({ navigation }) {
               navigation.navigate("SignIn", { usertype: "pacient" })
             }
           >
-            <Text style={styles.text}>Pacient</Text>
+            <Text style={styles.text}>Paciente</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btn}
@@ -30,7 +30,7 @@ export function OnBoard({ navigation }) {
               })
             }
           >
-            <Text style={styles.text}>Professional</Text>
+            <Text style={styles.text}>Profesional</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -39,32 +39,26 @@ export function OnBoard({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  onBoardContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
+  internalContainer: {
+    alignItems: 'center',
+    width: '100%'
+  },
   img: {
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
   },
   btn: {
-    paddingVertical: 20,
-    paddingHorizontal: 50,
-    backgroundColor: theme.colors.primaryColor,
-    margin: 20,
-    borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.41,
-    shadowRadius: 9.11,
-    elevation: 14,
+    ...theme.button,
   },
   text: {
-    color: "white",
-    fontFamily: theme.fonts.main,
+    color: 'white',
+    fontSize: theme.fontSize.terciaryText,
+    fontWeight: theme.fontWeights.bold
   },
 });

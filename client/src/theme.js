@@ -1,10 +1,7 @@
 const theme = {
   colors: {
     primaryColor: '#f0c325',
-    secondaryColor: '#f24f0a',
-    primaryText: '#000000',
-    secondaryText: '#ffffff',
-    terciaryText: '#212121',
+    textColor: '#212121',
   },
   fontSize: {
     titleText: 30,
@@ -28,6 +25,28 @@ const theme = {
   borderRadius: {
     borderRadiusBotton: 10,
   },
+  button: {
+    alignItems: 'center',
+    paddingVertical: 15,
+    width: '70%',
+    margin: 10,
+    backgroundColor: '#f0c325',
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: .2,
+    shadowRadius: 9.11,
+  },
+  input:{
+    backgroundColor: '#eee',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 8,
+    marginBottom: 10,
+    width: '85%'
+  }
 };
 
 export default theme;
