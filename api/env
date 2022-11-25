@@ -1,0 +1,31 @@
+DB_URI=mongodb+srv://vontrauwitz:dJEvycY4RGzdBN8i@cluster0.dit0ih9.mongodb.net/apiProFY?retryWrites=true&w=majority
+PORT = 3001
+PUBLIC_URL=https://localhost:3001
+STRIPE_KEY = sk_test_51M1JrQAukWARZaFZJRuP2oYizilGNxYNFg5P2o3eiTukDNggxUQ7wuIJciy13HmTVhBMAbMsu6LKsrdMmKcDA5Dj008W5ghqm9
+JWT_SECRET=LlaveMaestra
+  CLOUDINARY_API_KEY=377972853256792
+  CLOUDINARY_CLOUD_NAME=dk4xeyuh6
+  CLOUDINARY_API_SECRET=_QXpXSRJmmYmMHwB6T62eV8vk9k
+
+# ****************PRUEBAS***************************
+
+# DB_URI=mongodb+srv://vontrauwitz:Fb7FTwFlPADYnlli@cluster0.llzeccr.mongodb.net/apiProFYpruebas?retryWrites=true&w=majority
+# PORT = 3001
+# PUBLIC_URL=https://localhost:3001
+# STRIPE_KEY = sk_test_51M1JrQAukWARZaFZJRuP2oYizilGNxYNFg5P2o3eiTukDNggxUQ7wuIJciy13HmTVhBMAbMsu6LKsrdMmKcDA5Dj008W5ghqm9
+#  JWT_SECRET=LlaveMaestra
+#   CLOUDINARY_API_KEY=377972853256792
+#   CLOUDINARY_CLOUD_NAME=dk4xeyuh6
+#   CLOUDINARY_API_SECRET=_QXpXSRJmmYmMHwB6T62eV8vk9k
+
+
+# ****************PRUEBAS 2***************************
+
+  # DB_URI=mongodb+srv://vontrauwitz:hZuzIzUEDs2PQROI@cluster0.2ks4irx.mongodb.net/pruebas2?retryWrites=true&w=majority
+  # PORT = 3001
+  # PUBLIC_URL=https://localhost:3001
+  # STRIPE_KEY = sk_test_51M1JrQAukWARZaFZJRuP2oYizilGNxYNFg5P2o3eiTukDNggxUQ7wuIJciy13HmTVhBMAbMsu6LKsrdMmKcDA5Dj008W5ghqm9
+  # JWT_SECRET=LlaveMaestra
+  # CLOUDINARY_API_KEY=377972853256792
+  # CLOUDINARY_CLOUD_NAME=dk4xeyuh6
+  # CLOUDINARY_API_SECRET=_QXpXSRJmmYmMHwB6T62eV8vk9k
