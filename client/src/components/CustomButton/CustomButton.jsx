@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
+import theme from '../../theme';
 
 const CustomButton = ({onPress, text, type = 'PRIMARY', bgColor, fgColor}) => {
   return (
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
 
   container_PRIMARY: {
-    backgroundColor: '#3B71F3',
+    backgroundColor: theme.colors.primaryColor,
   },
 
   container_SECONDARY: {
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   container_TERTIARY: {},
 
   text: {
-    fontWeight: 'bold',
+    fontWeight: theme.fontWeights.bold,
     color: 'white',
   },
 

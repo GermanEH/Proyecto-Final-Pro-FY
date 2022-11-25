@@ -32,8 +32,9 @@ import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
-import {Pagos} from './src/components/Stripe/Pagos'
+// import {Pagos} from './src/components//Stripe/Pagos/'
 import { EditProfile } from './src/components/pacient/EditProfile'
+import theme from './src/theme'
 
 const Stack = createStackNavigator()
 
@@ -75,9 +76,9 @@ export default function App() {
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}/>
-              <Stack.Screen
+              {/* <Stack.Screen
               name="Pagos"
-              component={Pagos}/>
+              component={Pagos}/> */}
             <Stack.Screen
               name="HomeProfessional"
               component={HomeProfessional}/> 
@@ -122,7 +123,14 @@ export default function App() {
               component={SignUp}/> 
           <Stack.Screen
               name="SignIn"
-              component={SignIn}/> 
+              component={SignIn}
+              options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  paddingLeft: 10
+                }
+              }}/> 
           <Stack.Screen
               name="SignOut"
               component={SignOut}/> 
