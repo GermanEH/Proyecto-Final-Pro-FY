@@ -96,14 +96,14 @@ export function SignIn({ route }) {
         </View>
 
 
-        <View style={styles.btnGoogle}>
+        {/* <View style={styles.btnGoogle}>
           <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
           <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
             <View style={styles.iconGoogle} >
               <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
       </View>
 
@@ -112,7 +112,7 @@ export function SignIn({ route }) {
             ¿No tienes una cuenta?
           </Text>
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'FormProfessional')} >
+          <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'SignUpProfessional')} >
             <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor }}>
               Registrate
             </Text>
