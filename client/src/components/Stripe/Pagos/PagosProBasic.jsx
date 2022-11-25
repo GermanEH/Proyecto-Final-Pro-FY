@@ -9,8 +9,7 @@ import PaymentProBasic from "../Payments/PaymentProBasic"
        <StripeProvider publishableKey="pk_test_51M1JrQAukWARZaFZB3mVR3FTNZlaqEyE519RHwDrP9t4lE57yZQenxQHHendlzKyy7pklrR9xMV1CbAeoqkrX0JJ00vZtb6WEP">
          <PaymentProBasic/>
        </StripeProvider> 
-        
-     </View>
+        </View>
 
  )
  }
