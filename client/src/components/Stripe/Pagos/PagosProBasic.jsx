@@ -1,7 +1,7 @@
-import React from 'react'
-import {StripeProvider} from "@stripe/stripe-react-native"
- import { View, StyleSheet} from 'react-native'
-import PaymentProBasic from "../Payments/PaymentProBasic"
+import React from "react";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { View, StyleSheet } from "react-native";
+import PaymentProBasic from "../Payments/PaymentProBasic";
 
  export  function PagosProBasic() {
    return (
@@ -26,3 +26,4 @@ import PaymentProBasic from "../Payments/PaymentProBasic"
   
    }
  });
+

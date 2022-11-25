@@ -2,10 +2,9 @@
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { Loading } from './src/components/loading/Loading'
 import { HamburgerMenu } from './src/components/main/HamburgerMenu'
 import { OnBoard } from './src/components/main/OnBoard'
-import { FormPacient } from './src/components/pacient/FormPacient'
-import { FormProfessional } from './src/components/professional/FormProfessional'
 import { HomePacient } from './src/components/pacient/HomePacient'
 import { HomeProfessional } from './src/components/professional/HomeProfessional'
 import { Provider } from 'react-redux'
@@ -32,8 +31,9 @@ import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
-import {Pagos} from './src/components/stripe/Pagos'
+import {Pagos} from './src/components/Stripe/Pagos'
 import { EditProfile } from './src/components/pacient/EditProfile'
+
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -44,8 +44,18 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
             <Stack.Screen
+              name="Loading"
+              component={Loading}
+              options={{
+                headerShown: false
+              }}/>
+            <Stack.Screen
               name="OnBoard"
-              component={OnBoard}/>
+              component={OnBoard}
+              options={{
+                headerShown: false
+              }}
+              />
             <Stack.Screen
               name="HamburguerMenu"
               component={HamburgerMenu}/>
@@ -53,17 +63,11 @@ export default function App() {
               name="SignInScreen"
               component={SignInScreen}/>
             <Stack.Screen
-              name="FormPacient"
-              component={FormPacient}/>
-            <Stack.Screen
               name="HomePacient"
               component={HomePacient}/>
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}/>
-            <Stack.Screen
-              name="FormProfessional"
-              component={FormProfessional}/>
               <Stack.Screen
               name="Pagos"
               component={Pagos}/>
@@ -97,7 +101,6 @@ export default function App() {
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
-             {/*  component={GenerateQuery}/>  */}  
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   

@@ -7,7 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from "react-native-vector-icons/FontAwesome";
 import { useSelector } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
@@ -17,12 +17,11 @@ import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
 
 export function HomePacient({ navigation }) {
-
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
-
+  console.log(pacients.id);
   const auth = getAuth();
-  const user = auth.currentUser
+  const user = auth.currentUser;
   useEffect(() => {
     if (user !== null) {
       // The user object has basic properties such as display name, email, etc.
@@ -35,31 +34,32 @@ export function HomePacient({ navigation }) {
       // you have one. Use User.getToken() instead.
       const uid = user.uid;
     }
-  }, [])
+  }, []);
   return (
     <SafeAreaView>
-      {(user === null) ? (
+      {user === null ? (
         <Loading />
       ) : (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}
+        >
           <View style={styles.container}>
             <View style={styles.holaPencil}>
-              <Text style={styles.textHola}>
-                Hola,
-              </Text>
-              <TouchableOpacity onPress={() => {
-                  navigation.navigate("EditProfile", {
-                  });
-                }} style={styles.containerIcon} >
+              <Text style={styles.textHola}>Hola,</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("EditProfile", {});
+                }}
+                style={styles.containerIcon}
+              >
                 <Icon name="pencil" size={20} color="" />
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.textName}>
-              {user.displayName}
-            </Text>
+            <Text style={styles.textName}>{user.displayName}</Text>
             <Text style={styles.text}>
-              Ya eres parte de la comunidad PRO-FY, estás listo para conectarte con profesionales de la medicina.
+              Ya eres parte de la comunidad PRO-FY, estás listo para conectarte
+              con profesionales de la medicina.
             </Text>
             <View style={{ alignItems: "center", paddingVertical: 20 }}>
               <ButtonHomePacientQueries navigation={navigation} />
@@ -67,11 +67,11 @@ export function HomePacient({ navigation }) {
             <Text style={styles.textFavorite}>
               Tus profesionales favoritos:
             </Text>
-            {/* <View style={{ paddingBottom: 20 }}>
-              <CarouselFavorite />
-            </View> */}
             <View style={{ paddingBottom: 20 }}>
-              <Carousel role='pacient' navigation={navigation}/>
+              <CarouselFavorite />
+            </View>
+            <View style={{ paddingBottom: 20 }}>
+              <Carousel role="pacient" navigation={navigation} />
             </View>
           </View>
         </ScrollView>
@@ -82,40 +82,40 @@ export function HomePacient({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 25
+    marginHorizontal: 25,
   },
   holaPencil: {
     paddingTop: 15,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   containerIcon: {
     borderWidth: 1,
-    borderColor: '#aaa',
+    borderColor: "#aaa",
     borderRadius: 5,
     height: 40,
     width: 40,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   textHola: {
-    fontSize: theme.fontSize.secondaryText
+    fontSize: theme.fontSize.secondaryText,
   },
   textName: {
     fontSize: theme.fontSize.titleText,
-    fontWeight: theme.fontWeights.bold
+    fontWeight: theme.fontWeights.bold,
   },
   text: {
     fontSize: theme.fontSize.terciaryText,
     color: theme.colors.terciaryText,
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   textFavorite: {
     fontSize: theme.fontSize.terciaryText,
     color: theme.colors.terciaryText,
-    paddingVertical: 20
-  }
+    paddingVertical: 20,
+  },
 });
