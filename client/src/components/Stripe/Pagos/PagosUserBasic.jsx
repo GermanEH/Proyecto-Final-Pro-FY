@@ -1,14 +1,14 @@
 import React from 'react'
 import {StripeProvider} from "@stripe/stripe-react-native"
  import { View, StyleSheet} from 'react-native'
-import PayentUserBasic from "../Payments/PaymentUserBasic"
+import PaymentUserBasic from "../Payments/PaymentUserBasic"
 
 
  export  function PagosUserBasic() {
    return (
      <View styles={styles.container}>
        <StripeProvider publishableKey="pk_test_51M1JrQAukWARZaFZB3mVR3FTNZlaqEyE519RHwDrP9t4lE57yZQenxQHHendlzKyy7pklrR9xMV1CbAeoqkrX0JJ00vZtb6WEP">
-         <PayentUserBasic/>
+         <PaymentUserBasic/>
        </StripeProvider> 
         
      </View>
