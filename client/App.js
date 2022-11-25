@@ -32,9 +32,8 @@ import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
-// import {Pagos} from './src/components//Stripe/Pagos/'
 import { EditProfile } from './src/components/pacient/EditProfile'
-import theme from './src/theme'
+import { PagosUserPremium } from './src/components/Stripe/Pagos/PagosUserPremium'
 
 const Stack = createStackNavigator()
 
@@ -42,112 +41,112 @@ export default function App() {
 
   return (
     // <React.StrictMode>
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Splash"
-            component={Splash}
-            options={{
-              headerShown: false
-            }} />
-          <Stack.Screen
-            name="Loading"
-            component={Loading}
-            options={{
-              headerShown: false
-            }} />
-          <Stack.Screen
-            name="OnBoard"
-            component={OnBoard}
-            options={{
-              headerShown: false
-            }}
-          />
-          <Stack.Screen
-            name="HamburguerMenu"
-            component={HamburgerMenu}
-            options={{
-              headerShown: false
-            }} />
-          <Stack.Screen
-            name="SignInScreen"
-            component={SignInScreen} />
-          <Stack.Screen
-            name="HomePacient"
-            component={HomePacient}
-            options={{
-              headerShown: false
-            }}
-          />
-          <Stack.Screen
-            name="EditProfile"
-            component={EditProfile} />
-          {/* <Stack.Screen
-              name="Pagos"
-              component={Pagos}/> */}
-          <Stack.Screen
-            name="HomeProfessional"
-            component={HomeProfessional} />
-          <Stack.Screen
-            name="DatingStatuses"
-            component={DatingStatuses} />
-          <Stack.Screen
-            name="QueriesHistorialPacientBasic"
-            component={QueriesHistorialPacientBasic} />
-          <Stack.Screen
-            name="DatingStatusesBasic"
-            component={DatingStatusesBasic} />
-          <Stack.Screen
-            name="ProfessionalsList"
-            component={ProfessionalsList} />
+      <Provider store={store}>
+        <NavigationContainer>
+            <Stack.Navigator>
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={{
+                headerShown: false
+              }}/>
+            <Stack.Screen
+              name="Loading"
+              component={Loading}
+              options={{
+                headerShown: false
+              }}/>
+            <Stack.Screen
+              name="OnBoard"
+              component={OnBoard}
+              options={{
+                headerShown: false
+              }}
+              />
+            <Stack.Screen
+              name="HamburguerMenu"
+              component={HamburgerMenu}/>
+              <Stack.Screen
+              name="SignInScreen"
+              component={SignInScreen}/>
+            <Stack.Screen
+              name="HomePacient"
+              component={HomePacient}/>
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfile}/>
+            <Stack.Screen
+              name="HomeProfessional"
+              component={HomeProfessional}/> 
+            <Stack.Screen
+              name="DatingStatuses"
+              component={DatingStatuses}/>
+            <Stack.Screen
+              name="QueriesHistorialPacientBasic"
+              component={QueriesHistorialPacientBasic}/>
+            <Stack.Screen 
+              name="DatingStatusesBasic"
+              component={DatingStatusesBasic}/>
+            <Stack.Screen
+              name="ProfessionalsList"
+              component={ProfessionalsList}/>
           {/*   <Stack.Screen
               name="Queries"
               component={Queries}/> */}
+              <Stack.Screen
+              name="QueriesHistorialPacient"
+              component={QueriesHistorialPacient}/>  
+              <Stack.Screen
+              name="ProfessionalDetail"
+              component={ProfessionalDetail}/>   
+              <Stack.Screen
+              name="GenerateQuery"
+            component={GenerateQuery}/>   
+              <Stack.Screen
+              name="QueriesDetail"
+            component={QueriesDetail}/>   
+            <Stack.Screen
+              name="PacientsList"
+              component={PacientsList}/>   
+            <Stack.Screen
+              name="ListaConsultas"
+              component={ListaConsultas}/>
           <Stack.Screen
-            name="QueriesHistorialPacient"
-            component={QueriesHistorialPacient} />
+              name="ConfirmEmailScreen"
+              component={ConfirmEmailScreen}/> 
           <Stack.Screen
-            name="ProfessionalDetail"
-            component={ProfessionalDetail} />
+              name="SignUp"
+              component={SignUp}/> 
           <Stack.Screen
-            name="GenerateQuery"
-            component={GenerateQuery} />
+              name="SignIn"
+              component={SignIn}
+              options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  paddingLeft: 10
+                }
+              }}/> 
           <Stack.Screen
-            name="QueriesDetail"
-            component={QueriesDetail} />
-          <Stack.Screen
-            name="PacientsList"
-            component={PacientsList} />
-          <Stack.Screen
-            name="ListaConsultas"
-            component={ListaConsultas} />
-          <Stack.Screen
-            name="ConfirmEmailScreen"
-            component={ConfirmEmailScreen} />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp} />
-          <Stack.Screen
-            name="SignIn"
-            component={SignIn}
-            options={{
-              title: '',
-              headerBackTitleVisible: false,
-              headerLeftContainerStyle: {
-                paddingLeft: 10
-              }
-            }} />
-          <Stack.Screen
-            name="SignOut"
-            component={SignOut} />
-          <Stack.Screen
-            name="SignUpProfessional"
-            component={SignUpProfessional} />
-          <Stack.Screen
-            name="SignInPro"
-            component={SignInPro} />
-
+              name="SignOut"
+              component={SignOut}/> 
+           <Stack.Screen
+              name="SignUpProfessional"
+              component={SignUpProfessional}
+               options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  paddingLeft: 10
+                }
+              }} />
+              
+           <Stack.Screen
+              name="SignInPro"
+              component={SignInPro}/> 
+           <Stack.Screen
+              name="PagosUserPremium"
+              component={PagosUserPremium}/> 
         </Stack.Navigator>
         <Toast config={toastConfig} />
       </NavigationContainer>

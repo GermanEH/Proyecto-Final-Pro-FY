@@ -98,7 +98,7 @@ export function SignIn({ route }) {
 
         <View style={styles.btnGoogle}>
           <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
-          <TouchableOpacity style={{ padding: 20 }} onPress={HandleSignInWhitGoogle}>
+          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
             <View style={styles.iconGoogle} >
               <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
             </View>
@@ -106,7 +106,6 @@ export function SignIn({ route }) {
         </View>
 
       </View>
-
       <View style={{ position: 'absolute', alignItems: 'center', bottom: '8%'}}>
           <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
             ¿No tienes una cuenta?

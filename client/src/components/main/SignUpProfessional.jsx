@@ -10,6 +10,7 @@ import {
   useWindowDimensions,
   ScrollView,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { postProfessional } from "../../slices/professionalsActions";
@@ -57,13 +58,19 @@ export function SignUpProfessional({ navigation }) {
       zip: "",
       professionalAdress: "",
       schedule: "",
-      day:'',
+      day: "",
       modality: "",
     },
   });
-  const dias = ['Lunes a Viernes','Martes a Sabado','Miercoles a lunes', 'Jueves a Martes', 'Viernes a jueves']
-  const modalidad = ['presential','remote']
-  const turnos = ['8:00 a 18:00', '10:00 a 20:00', '12:00 a 22:00']
+  const dias = [
+    "Lunes a Viernes",
+    "Martes a Sabado",
+    "Miercoles a lunes",
+    "Jueves a Martes",
+    "Viernes a jueves",
+  ];
+  const modalidad = ["presential", "remote"];
+  const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];
   async function onHandleSubmit(data) {
     console.log(data);
     try {
@@ -139,14 +146,16 @@ export function SignUpProfessional({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.container}>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            source={Logo}
+            style={[styles.logo, { height: height * 0.2 }]}
+            resizeMode="contain"
+          />
+        </View>
+        <View>
           <View style={styles.root}>
-            <Image
-              source={Logo}
-              style={[styles.logo, { height: height * 0.3 }]}
-              resizeMode="contain"
-            />
-            <Text>Nombre</Text>
+            <Text style={styles.text}>Nombre</Text>
             <CustomInput
               name="first_name"
               /*  placeholder="Nombre" */
@@ -163,7 +172,7 @@ export function SignUpProfessional({ navigation }) {
                 },
               }}
             />
-            <Text>Apellido</Text>
+            <Text style={styles.text}>Apellido</Text>
             <CustomInput
               name="last_name"
               control={control}
@@ -179,7 +188,7 @@ export function SignUpProfessional({ navigation }) {
                 },
               }}
             />
-            <Text>Contraseña</Text>
+            <Text style={styles.text}>Contraseña</Text>
             <CustomInput
               name="password"
               control={control}
@@ -192,73 +201,51 @@ export function SignUpProfessional({ navigation }) {
                 },
               }}
             />
-            {/* <CustomInput
-      name="passwordRepeat"
-      placeholder="Repetir Contraseña"
-      control={control}
-      secureTextEntry
-    rules={{
-      validate: value =>
-      value === pwd   || 'Las contraseñas no son iguales'
-    }}
-    /> */}
-            <Text>Pais</Text>
+            <Text style={styles.text}>Pais</Text>
             <CustomInput
               name="country"
               control={control}
               rules={{ required: "Pais es requerido" }}
             />
-            <Text>Provincia</Text>
+            <Text style={styles.text}>Provincia</Text>
             <CustomInput
               name="state"
               control={control}
               rules={{ required: "Provincia es requerida" }}
             />
-            <Text>Ciudad</Text>
+            <Text style={styles.text}>Ciudad</Text>
             <CustomInput
               name="city"
               control={control}
               rules={{ required: "Ciudad es requerida" }}
             />
-            <Text>Codigo Postal</Text>
+            <Text style={styles.text}>Codigo Postal</Text>
             <CustomInput
               name="zip"
               control={control}
               rules={{ required: "Codigo Postal es requerido" }}
             />
 
-            <Text>Matricula del profesiona</Text>
+            <Text style={styles.text}>Matricula del profesiona</Text>
             <CustomInput
               name="professionalId"
               control={control}
               rules={{ required: "Matricula del profesional es requerida" }}
             />
-            <Text>D.N.I</Text>
+            <Text style={styles.text}>D.N.I</Text>
 
             <CustomInput
               name="dni"
               control={control}
               rules={{ required: "DNI es requerido" }}
             />
-            <Text>Direccion del profesional</Text>
+            <Text style={styles.text}>Direccion del profesional</Text>
             <CustomInput
               name="professionalAdress"
               control={control}
               rules={{ required: "Direccion del profesional es requerida" }}
             />
-           {/*  <Text>Turnos</Text>
-            <CustomInput
-              name="schedule"
-              control={control}
-              rules={{ required: "Turnos son requeridos" }}
-            />
-            <Text>Modalidad</Text>
-            <CustomInput
-              name="modality"
-              control={control}
-              rules={{ required: "Modalidad es requerida" }}
-            /> */}
-            <Text>E-mail</Text>
+            <Text style={styles.text}>E-mail</Text>
             <CustomInput
               name="email"
               control={control}
@@ -266,38 +253,47 @@ export function SignUpProfessional({ navigation }) {
                 pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
               }}
             />
-            <SelectList
-            data={dias}
-            placeholder='Dias'
-            setSelected={(value)=> setValue ('day', value)}
-            />
-            <SelectList
-            data={modalidad}
-            placeholder="Modalidad"
-            setSelected= {(value)=> setValue('modality', value)}
-            />
-            <SelectList
-            data={turnos}
-            placeholder='Turnos'
-            setSelected= {(value)=> setValue ('schedule', value)}
-            />
-            <SelectList
-              data={specialties.map((m) => m.name)}
-              placeholder="Especialidad"
-              setSelected={(value) => setValue("specialities", value)}
-              /*  rules={{required: 'Especialidad es requerida'}} */
-            />
-            <View style={{ width: "100%", height: 300, paddingVertical: 60 }}>
+            <View style={{ padding: 30, width: "90%" }}>
+              <SelectList
+                data={dias}
+                placeholder="Dias"
+                setSelected={(value) => setValue("day", value)}
+              />
+              <View style={{ paddingTop: 10 }}>
+                <SelectList
+                  data={modalidad}
+                  placeholder="Modalidad"
+                  setSelected={(value) => setValue("modality", value)}
+                />
+              </View>
+              <View style={{ paddingVertical: 10 }}>
+                <SelectList
+                  data={turnos}
+                  placeholder="Turnos"
+                  setSelected={(value) => setValue("schedule", value)}
+                />
+              </View>
+
+              <SelectList
+                data={specialties.map((m) => m.name)}
+                placeholder="Especialidad"
+                setSelected={(value) => setValue("specialities", value)}
+                /*  rules={{required: 'Especialidad es requerida'}} */
+              />
+            </View>
+            <View style={{ width: "100%", height: 150, paddingVertical: 30 }}>
               <LoadingImage setValue={setValue} />
             </View>
 
             <View style={styles.button}>
-              <Button
+              <TouchableOpacity
                 style={styles.buttonInner}
                 color
                 title="Crear usuario"
                 onPress={handleSubmit(onHandleSubmit)}
-              />
+              >
+                <Text style={{}}>Crear Usuario</Text>
+              </TouchableOpacity>
             </View>
             <Text style={styles.text}>
               Al registrarte confirmas y aceptas nuestros{" "}
@@ -327,24 +323,26 @@ export function SignUpProfessional({ navigation }) {
 
 const styles = StyleSheet.create({
   root: {
-    alignItems: "center",
-    padding: 20,
+    alignItems: "flex-start",
+    paddingHorizontal: 10,
   },
   logo: {
     width: "70%",
     maxWidth: 300,
     maxHeight: 200,
+    alignItems: "center",
   },
   button: {
-    marginTop: 40,
+    marginTop: 10,
     color: "white",
     height: 40,
     backgroundColor: "orange",
     borderRadius: 4,
   },
   text: {
-    color: "gray",
-    marginVertical: 10,
+    color: "#989898",
+    fontWeight: "700",
+    paddingTop: 8,
   },
   link: {
     color: "#FDB075",
