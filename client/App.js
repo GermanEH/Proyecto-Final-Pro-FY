@@ -5,8 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Loading } from './src/components/loading/Loading'
 import { HamburgerMenu } from './src/components/main/HamburgerMenu'
 import { OnBoard } from './src/components/main/OnBoard'
-import { FormPacient } from './src/components/pacient/FormPacient'
-import { FormProfessional } from './src/components/professional/FormProfessional'
 import { HomePacient } from './src/components/pacient/HomePacient'
 import { HomeProfessional } from './src/components/professional/HomeProfessional'
 import { Provider } from 'react-redux'
@@ -65,17 +63,11 @@ export default function App() {
               name="SignInScreen"
               component={SignInScreen}/>
             <Stack.Screen
-              name="FormPacient"
-              component={FormPacient}/>
-            <Stack.Screen
               name="HomePacient"
               component={HomePacient}/>
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}/>
-            <Stack.Screen
-              name="FormProfessional"
-              component={FormProfessional}/>
               <Stack.Screen
               name="Pagos"
               component={Pagos}/>
@@ -109,7 +101,6 @@ export default function App() {
               <Stack.Screen
               name="QueriesDetail"
             component={QueriesDetail}/>   
-             {/*  component={GenerateQuery}/>  */}  
             <Stack.Screen
               name="PacientsList"
               component={PacientsList}/>   
