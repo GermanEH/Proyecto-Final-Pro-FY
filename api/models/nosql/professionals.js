@@ -65,9 +65,13 @@ const ProfessionalScheme = new mongoose.Schema(
       ref: "specialities"
 
     },
+    plan : {
+      type : ["noSubscription","Regular","Premium"],
+      default : "noSubscription",
+    },
 
-
-  },
+    },
+    
 
   {
     temestamps: true,

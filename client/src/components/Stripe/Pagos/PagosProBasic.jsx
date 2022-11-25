@@ -1,13 +1,13 @@
 import React from "react";
 import { StripeProvider } from "@stripe/stripe-react-native";
 import { View, StyleSheet } from "react-native";
-import Payment from "./Payment";
+import PaymentProBasic from "../Payments/PaymentProBasic";
 
-export function Pagos() {
+export function PagosProBasic() {
   return (
     <View styles={styles.container}>
       <StripeProvider publishableKey="pk_test_51M1JrQAukWARZaFZB3mVR3FTNZlaqEyE519RHwDrP9t4lE57yZQenxQHHendlzKyy7pklrR9xMV1CbAeoqkrX0JJ00vZtb6WEP">
-        <Payment />
+        <PaymentProBasic />
       </StripeProvider>
     </View>
   );

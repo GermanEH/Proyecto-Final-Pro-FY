@@ -1,6 +1,7 @@
 const express = require("express");
 const { getAllProfessionals, getProfessionalById, deleteProfessional, editProfessional, createProfessional, } = require("../controllers/professionals");
 const { validatorCreateProfessional, validatorIdProfessional, validatorPutProfessional } = require("../validators/professionals");
+const { useStripeProfessionalsBasic, useStripeProfessionalsPremium } = require("../controllers/stripe")
 
 
 //! no entiendo pregunbtar rod
@@ -20,6 +21,9 @@ router.put("/:id", validatorIdProfessional, validatorPutProfessional, editProfes
 
 router.post("/", validatorCreateProfessional, createProfessional)
 
+router.post("/payProfessionalsBasic", useStripeProfessionalsBasic)
+
+router.post("/payProfessionalsPremium", useStripeProfessionalsPremium)
 
 
 // validatorCreateProfessional
