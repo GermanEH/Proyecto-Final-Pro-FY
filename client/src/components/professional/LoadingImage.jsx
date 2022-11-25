@@ -45,20 +45,9 @@ export const LoadingImage = (props) => {
               style={{ width: "100%", height: "100%" }}
             />
           ) : (
-            <Text style={styles.uploadBtn}>Upload Profile Image</Text>
+            <Text style={styles.uploadBtn}>Imagen opcional</Text>
           )}
         </TouchableOpacity>
-        <Text style={styles.skip}>Skip</Text>
-        {profileImage ? (
-          <Text
-            style={[
-              styles.skip,
-              { backgroundColor: "green", color: "white", borderRadius: 8 },
-            ]}
-          >
-            Upload
-          </Text>
-        ) : null}
       </View>
     </View>
   );

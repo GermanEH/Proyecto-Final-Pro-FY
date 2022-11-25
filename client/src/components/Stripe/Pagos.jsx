@@ -1,31 +1,26 @@
- import React from 'react'
-import {StripeProvider} from "@stripe/stripe-react-native"
- import { View, StyleSheet} from 'react-native'
- import Payment from './Payment'
+import React from "react";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { View, StyleSheet } from "react-native";
+import Payment from "./Payment";
 
-
-
- export  function Pagos() {
-   return (
-     <View styles={styles.container}>
-       <StripeProvider publishableKey="pk_test_51M1JrQAukWARZaFZB3mVR3FTNZlaqEyE519RHwDrP9t4lE57yZQenxQHHendlzKyy7pklrR9xMV1CbAeoqkrX0JJ00vZtb6WEP">
-         <Payment/>
-       </StripeProvider> 
-        
-     </View>
-
- )
- }
- const styles = StyleSheet.create({
-   img: {
-     width: 80,
-     height: 80,
-     marginBottom: 30
-   }, container: {
-       flexDirection: 'row-reverse',
-       padding: 20,
-       height: 400,
-
-  
-   }
- });
+export function Pagos() {
+  return (
+    <View styles={styles.container}>
+      <StripeProvider publishableKey="pk_test_51M1JrQAukWARZaFZB3mVR3FTNZlaqEyE519RHwDrP9t4lE57yZQenxQHHendlzKyy7pklrR9xMV1CbAeoqkrX0JJ00vZtb6WEP">
+        <Payment />
+      </StripeProvider>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  img: {
+    width: 80,
+    height: 80,
+    marginBottom: 30,
+  },
+  container: {
+    flexDirection: "row-reverse",
+    padding: 20,
+    height: 400,
+  },
+});
