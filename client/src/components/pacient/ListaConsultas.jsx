@@ -11,37 +11,10 @@ import {
   UIManager,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { getProfessionals } from "../../slices/professionalsActions";
+// import { getProfessionals } from "../../slices/professionalsActions";
 import { getQueries, deleteQuery } from "../../slices/queriesActions";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import theme from "../../theme";
-
-// const Consultas=[
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 1",
-//                     SubCAtegory:[
-//                             {id:1, val:'datos 1 Consulta 1'},
-//                             {id:2, val:'datos 2 Consulta 1'}
-//                     ]
-//                 },
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 2",
-//                     SubCAtegory:[
-//                             {id:3, val:'datos 1 Consulta 2'},
-//                             {id:4, val:'datos 2 Consulta 2'}
-//                     ]
-//                 },
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 3",
-//                     SubCAtegory:[
-//                             {id:5, val:'datos 1 Consulta 3'},
-//                             {id:6, val:'datos 2 Consulta 3'}
-//                     ]
-//                 }
-//     ];
 
 export function ListaConsultas({ navigation }) {
   const [multiSelect, setMultiSelect] = useState(false);
@@ -50,18 +23,16 @@ export function ListaConsultas({ navigation }) {
   // const [LIstaConsulta,setLIstaConsulta]=useState(Consultas);
 
   const queries = useSelector((state) => state.queries.queries);
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
-  console.log(queries);
+  // const professionals = useSelector((state) => state.professionals.professionals);
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (professionals.length > 0) dispatch(getQueries(professionals));
-  }, [professionals]);
-  useEffect(() => {
-    dispatch(getProfessionals());
-  }, []);
+  // useEffect(() => {
+  //   if (professionals.length > 0) dispatch(getQueries(professionals));
+  // }, [professionals]);
+  // useEffect(() => {
+  //   dispatch(getProfessionals());
+  // }, []);
   useEffect(() => {
     if (queries) setRender(true);
   }, [queries]);

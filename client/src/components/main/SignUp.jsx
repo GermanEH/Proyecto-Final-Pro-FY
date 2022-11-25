@@ -66,7 +66,7 @@ const onSignUpPress = () => {
 }
 
 return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, backgroundColor:"white"}} style={styles.container}>
         <View style={styles.root}>
             <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
             <Text>Nombre</Text>
@@ -197,8 +197,7 @@ return (
                 type="TERTIARY"
             />
             </View>
-        </View>
-    
+        </ScrollView>
     );
 }
 

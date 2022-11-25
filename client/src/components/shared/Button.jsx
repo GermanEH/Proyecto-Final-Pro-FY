@@ -77,7 +77,7 @@ export function ButtonHomePacientQueries(props) {
       title="QueriesHistorialPacient"
       onPress={() =>
         props.navigation.navigate("QueriesHistorialPacient", {
-          name: "QueriesHistorialPacien",
+          name: "QueriesHistorialPacient",
         })
       }
       style={styles.btnCenter}

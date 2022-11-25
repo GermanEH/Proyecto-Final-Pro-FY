@@ -39,11 +39,15 @@ const professionalsSlice = createSlice({
       console.log(state.favourites.length)
       console.log(state.favourites)
       if(state.favourites.length === 0) {
-        state.favourites.push(payload)
+        console.log('entramos')
+        state.favourites = [payload]
       } else {
         for (const favourite of state.favourites) {
         if(favourite._id === payload._id) {
-          state.favourites = state.favourites.filter(f => f._id !== payload._id)
+          return {
+            ...state,
+            favourites: state.favourites.filter(f => f._id!== payload._id)
+          }
         } else {
           state.favourites = state.favourites.push(payload)
         }

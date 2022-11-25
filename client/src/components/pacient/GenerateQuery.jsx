@@ -18,18 +18,18 @@ import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 //import { TouchableOpacity } from "react-native-gesture-handler";
  import DateTimePicker from '@react-native-community/datetimepicker'
- import {
-  getProfessionals,
-  getSpecialties,
-} from "../../slices/professionalsActions";
+//  import {
+//   getProfessionals,
+//   getSpecialties,
+// } from "../../slices/professionalsActions";
 
 export function GenerateQuery({ navigation , route }) {
  
   const dispatch = useDispatch();
-  const queries = useSelector((state) => state.queries.queries);
   const modalities = useSelector((state) => state.queries.modalities);
   const payments = useSelector((state) => state.queries.payments);
-
+  const professionals = useSelector((state) => state.professionals.professionals);
+  
   const [isDisplayDate, setShow] = useState(false);
   const [date, setDate] = useState(new Date());
   const [text, setText] = useState("");
@@ -38,16 +38,13 @@ export function GenerateQuery({ navigation , route }) {
   const [time, setTime] = useState(new Date());
   const [textTime, setTextTime] = useState("");
  
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
+
   
-    useEffect(() => {
-    dispatch(getProfessionals());
-  }, []);
+  //   useEffect(() => {
+  //   dispatch(getProfessionals());
+  // }, []);
 
   //let names = professionals.map((o) => o.first_name + " " + o.last_name );
- 
   
   const {
     getValues,
@@ -71,9 +68,7 @@ export function GenerateQuery({ navigation , route }) {
   
   const {nombre}= route.params;
   setValue("Professional", nombre)
-  //console.log(getValues(["Fecha"])[0]);
-  //console.log(nombre);
-   const onSubmit = (data) => {
+  const onSubmit = (data) => {
     
     console.log(data);
     

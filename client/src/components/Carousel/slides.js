@@ -30,20 +30,22 @@ export const slidesProfessional = [
   {
     id: '1',
     title: 'Basico',
-    characteristic1: 'wsdgdfdfdf',
-    characteristic2: 'Filtrar profesionales segun su especialidad medica.',
-    characteristic3: 'Elegir profesionales segun tus favoritos.',
+    characteristics: [
+      'Caracteristica profesional basico 1',
+      'Caracteristica profesional basico 2',
+      'Caracteristica profesional basico 3'
+    ],
     price: '$1',
     image: require('../../assets/logo.png'),
   },
   {
     id: '2',
     title: 'Premium',
-    characteristic1: 'Generar consultas segun su tipo y modalidad.',
-    characteristic2: 'Filtrar profesionales segun su especialidad medica.',
-    characteristic2: 'Elegir profesionales segun tus favoritos.',
-    characteristic3: 'Confirmar/cancelar consultas.',
-    characteristic4: 'Dar reseñas del profesional.',
+    characteristics: [
+      'Caracteristica profesional premium 1',
+      'Caracteristica profesional premium 2',
+      'Caracteristica profesional premium 3'
+    ],
     price: '$2',
     image: require('../../assets/logo.png'),
   },

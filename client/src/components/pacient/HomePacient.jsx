@@ -18,9 +18,6 @@ import { getAuth } from "firebase/auth";
 
 export function HomePacient({ navigation }) {
 
-  const payments = useSelector((state) => state.queries.payments);
-  const pacients = useSelector((state) => state.pacients);
-
   const auth = getAuth();
   const user = auth.currentUser
   useEffect(() => {

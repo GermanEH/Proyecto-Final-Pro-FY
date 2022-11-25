@@ -27,7 +27,8 @@ export const getQueries = createAsyncThunk('queries/getQueries', async () => {
 })
 export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) => {
     try {
-        const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`)
+        // const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`)
+        const response = await axios.get(`http://localhost:3001/api/queries/${id}`)
         const data = response.data.data.map(q => {
                     return {
                         id:q._id,
@@ -49,7 +50,8 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
 
 export const postQuery = createAsyncThunk('queries/postQuery', async (newQuery) => {
     try {
-        const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/queries', newQuery)
+        // const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/queries', newQuery)
+        const response = await axios.post('http://localhost:3001/api/queries', newQuery)
         return response.data.data
     } catch (error) {
         return error.message
@@ -58,7 +60,8 @@ export const postQuery = createAsyncThunk('queries/postQuery', async (newQuery) 
 
 export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...query}) => {
     try {
-        const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/queries/${_id}`, query)
+        // const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/queries/${_id}`, query)
+        const response = await axios.put(`http://localhost:3001/api/queries/${_id}`, query)
         return response.data.data
     } catch (error) {
         return error.message
@@ -67,7 +70,8 @@ export const putQuery = createAsyncThunk('queries/putQuery', async ({_id, ...que
 
 export const deleteQuery = createAsyncThunk('queries/deleteQuery', async (id) => {
     try {
-        const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`) 
+        // const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`) 
+        const response = axios.delete(`http://localhost:3001/api/queries/${id}`) 
         return response.data.data
     } catch (error) {
         return error.message
