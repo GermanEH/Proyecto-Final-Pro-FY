@@ -57,13 +57,19 @@ export function SignUpProfessional({ navigation }) {
       zip: "",
       professionalAdress: "",
       schedule: "",
-      day:'',
+      day: "",
       modality: "",
     },
   });
-  const dias = ['Lunes a Viernes','Martes a Sabado','Miercoles a lunes', 'Jueves a Martes', 'Viernes a jueves']
-  const modalidad = ['presential','remote']
-  const turnos = ['8:00 a 18:00', '10:00 a 20:00', '12:00 a 22:00']
+  const dias = [
+    "Lunes a Viernes",
+    "Martes a Sabado",
+    "Miercoles a lunes",
+    "Jueves a Martes",
+    "Viernes a jueves",
+  ];
+  const modalidad = ["presential", "remote"];
+  const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];
   async function onHandleSubmit(data) {
     console.log(data);
     try {
@@ -140,13 +146,13 @@ export function SignUpProfessional({ navigation }) {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
+          <Image
+            source={Logo}
+            style={[styles.logo, { height: height * 0.3 }]}
+            resizeMode="contain"
+          />
           <View style={styles.root}>
-            <Image
-              source={Logo}
-              style={[styles.logo, { height: height * 0.3 }]}
-              resizeMode="contain"
-            />
-            <Text>Nombre</Text>
+            <Text style={styles.text}>Nombre</Text>
             <CustomInput
               name="first_name"
               /*  placeholder="Nombre" */
@@ -246,7 +252,7 @@ export function SignUpProfessional({ navigation }) {
               control={control}
               rules={{ required: "Direccion del profesional es requerida" }}
             />
-           {/*  <Text>Turnos</Text>
+            {/*  <Text>Turnos</Text>
             <CustomInput
               name="schedule"
               control={control}
@@ -267,19 +273,19 @@ export function SignUpProfessional({ navigation }) {
               }}
             />
             <SelectList
-            data={dias}
-            placeholder='Dias'
-            setSelected={(value)=> setValue ('day', value)}
+              data={dias}
+              placeholder="Dias"
+              setSelected={(value) => setValue("day", value)}
             />
             <SelectList
-            data={modalidad}
-            placeholder="Modalidad"
-            setSelected= {(value)=> setValue('modality', value)}
+              data={modalidad}
+              placeholder="Modalidad"
+              setSelected={(value) => setValue("modality", value)}
             />
             <SelectList
-            data={turnos}
-            placeholder='Turnos'
-            setSelected= {(value)=> setValue ('schedule', value)}
+              data={turnos}
+              placeholder="Turnos"
+              setSelected={(value) => setValue("schedule", value)}
             />
             <SelectList
               data={specialties.map((m) => m.name)}
@@ -343,8 +349,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   text: {
-    color: "gray",
-    marginVertical: 10,
+    color: "#989898",
+    fontWeight: "700",
   },
   link: {
     color: "#FDB075",

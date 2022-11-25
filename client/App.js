@@ -31,8 +31,8 @@ import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
-import {Pagos} from './src/components/Stripe/Pagos'
 import { EditProfile } from './src/components/pacient/EditProfile'
+import { PagosUserPremium } from './src/components/Stripe/Pagos/PagosUserPremium'
 
 const Stack = createStackNavigator()
 
@@ -68,9 +68,6 @@ export default function App() {
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}/>
-              <Stack.Screen
-              name="Pagos"
-              component={Pagos}/>
             <Stack.Screen
               name="HomeProfessional"
               component={HomeProfessional}/> 
@@ -125,6 +122,9 @@ export default function App() {
            <Stack.Screen
               name="SignInPro"
               component={SignInPro}/> 
+           <Stack.Screen
+              name="PagosUserPremium"
+              component={PagosUserPremium}/> 
 
           </Stack.Navigator>  
           <Toast config={toastConfig} />
