@@ -1,36 +1,12 @@
-import { useRef } from 'react';
-import { SafeAreaView, Animated, StyleSheet, View, Image, Button, Text } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
+import theme from '../../theme';
 
-export function Loading({ navigation }) {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  const fadeIn = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 3000,
-      useNativeDriver: true
-    }).start();
-  };
-
-  setTimeout(function () {
-    fadeIn()
-  }, 0);
-
-  setTimeout(function () {
-    navigation.navigate('OnBoard');
-  }, 3500);
+export function Loading() {
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Animated.View
-        style={[
-          styles.fadingContainer,
-          { opacity: fadeAnim }
-        ]}
-      >
-        <Image style={styles.img} source={require('../../assets/logo-white.png')} />
-      </Animated.View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Image style={styles.img} source={require('../../assets/loading-gif.gif')} />
+    </View>
   );
 }
 
@@ -39,10 +15,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "#F0C325"
+    backgroundColor: 'white',
   },
   img: {
-    width: 300,
-    height: 300,
+    width: '100%',
+    height: '100%',
   }
 })
