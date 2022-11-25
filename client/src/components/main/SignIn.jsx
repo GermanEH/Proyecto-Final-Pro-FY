@@ -106,8 +106,7 @@ export function SignIn({ route }) {
         </View>
 
       </View>
-
-      <View style={{ paddingTop: 150, alignItems: 'center'}}>
+      <View style={{ position: 'absolute', alignItems: 'center', bottom: '8%'}}>
           <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
             ¿No tienes una cuenta?
           </Text>

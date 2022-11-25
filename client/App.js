@@ -18,15 +18,15 @@ import { DatingStatusesBasic } from './src/components/professional/DatingStatuse
 /* import { Queries } from './src/components/pacient/Queries' */
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
 import { ListaConsultas } from './src/components/pacient/ListaConsultas'
-import { QueriesDetail} from './src/components/pacient/QueriesDetail'
+import { QueriesDetail } from './src/components/pacient/QueriesDetail'
 /* import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic' */
 import { ProfessionalDetail } from './src/components/pacient/ProfessionalDetail'
 import { QueriesHistorialPacient } from './src/components/pacient/QueriesHistorialPacient'
 import { PacientsList } from './src/components/professional/PacientsList'
-import { GenerateQuery } from './src/components/pacient/GenerateQuery' 
+import { GenerateQuery } from './src/components/pacient/GenerateQuery'
 import Toast from 'react-native-toast-message';
-import { toastConfig }from './customNotificationConfig'
-import {ConfirmEmailScreen} from './src/components/ConfirmEmailScreen/ConfirmEmailScreen'
+import { toastConfig } from './customNotificationConfig'
+import { ConfirmEmailScreen } from './src/components/ConfirmEmailScreen/ConfirmEmailScreen'
 import { SignUp } from './src/components/main/SignUp'
 import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
@@ -34,7 +34,6 @@ import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
 import { EditProfile } from './src/components/pacient/EditProfile'
 import { PagosUserPremium } from './src/components/Stripe/Pagos/PagosUserPremium'
-
 
 const Stack = createStackNavigator()
 
@@ -148,12 +147,11 @@ export default function App() {
            <Stack.Screen
               name="PagosUserPremium"
               component={PagosUserPremium}/> 
-
-          </Stack.Navigator>  
-          <Toast config={toastConfig} />
-        </NavigationContainer>
-      </Provider>
-      // </React.StrictMode>
+        </Stack.Navigator>
+        <Toast config={toastConfig} />
+      </NavigationContainer>
+    </Provider>
+    // </React.StrictMode>
   );
 }
 
