@@ -85,87 +85,78 @@ export function SignIn({ route }) {
     <View style={styles.signInContainer}>
       <Image source={Logo} style={styles.logo} />
       <View style={styles.inputsButtomsContainer}>
-        <TextInput
-          onChangeText={(text) => setEmail(text)}
-          placeholder="Correo electrónico"
-          style={styles.input}>
+        <TextInput onChangeText={(text) => setEmail(text)} placeholder="Correo electrónico" style={styles.input}>
         </TextInput>
 
-        <TextInput
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Contraseña"
-          style={styles.input}
-          secureTextEntry>
+        <TextInput onChangeText={(text) => setPassword(text)} placeholder="Contraseña" style={styles.input} secureTextEntry>
         </TextInput>
 
-        <View styles={styles.container}>
+        <View style={{ width: '85%', paddingTop: 10 }}>
           <CustomButtom text="Ingresar" onPress={handleSignIn} />
-
-          {/* <TouchableOpacity
-                            onPress={handleSignIn}
-                            style={styles.btn}>
-                            <Text style={styles.textBtn}>Iniciar Sesión</Text>
-                        </TouchableOpacity> */}
-
-          <TouchableOpacity
-            style={styles.btnGoogle}
-            onPress={HandleSignInWhitGoogle}
-          >
-            <Text>Inicia sesión con Google</Text>
-          </TouchableOpacity>
-
-          {/* <TouchableOpacity
-                            onPress={handleSignUp}
-                            style={styles.button}
-                        > */}
-          {/* <Text style={styles.text}>Registrate</Text>
-                        </TouchableOpacity> */}
         </View>
-        <View>
-          <Text>
+
+
+        <View style={styles.btnGoogle}>
+          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
+          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
+            <View style={styles.iconGoogle} >
+              <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+
+      <View style={{ paddingTop: 150, alignItems: 'center'}}>
+          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
             ¿No tienes una cuenta?
           </Text>
-        </View>
-        <View
-          style={styles.container}>
-          {route.params.usertype === 'pacient' ?
-            <CustomButtom
-              text="Registrarse"
-              onPress={() => navigation.navigate('SignUp')} /> :
-            <CustomButtom
-              text="Registrarse"
-              onPress={() => navigation.navigate('FormProfessional')} />}
-
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'FormProfessional')} >
+            <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor }}>
+              Registrate
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
-    // <KeyboardAvoidingView
-    //     styles={styles.container}
-    //     behavior="padding">
-    // </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
   signInContainer: {
-    backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
-    paddingTop: 40
+    paddingTop: 40,
+    backgroundColor: 'white',
   },
   logo: {
     height: 150,
     width: 150
   },
   inputsButtomsContainer: {
-    width: '85%',
+    alignItems: 'center',
+    width: '100%',
   },
   input: {
-    backgroundColor: theme.colors.inputBackground,
+    ...theme.input
+  },
+  btn: {
+    ...theme.button
+  },
+  btnGoogle: {
+    paddingTop: 15,
+    flexDirection: 'colum',
+    alignItems: 'center',
+  },
+  iconGoogle: {
+    borderWidth: 2,
+    borderColor: '#ddd',
     borderRadius: 5,
-    paddingVertical: 15,
-    paddingHorizontal: 8,
-    marginBottom: 10,
-    width: '100%'
+    height: 50,
+    width: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }
 })

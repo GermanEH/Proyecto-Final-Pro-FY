@@ -1,11 +1,7 @@
 const theme = {
   colors: {
     primaryColor: '#f0c325',
-    secondaryColor: '#',
-    primaryText: '#000000',
-    secondaryText: '#ffffff',
-    terciaryText: '#212121',
-    inputBackground: '#eee'
+    textColor: '#212121',
   },
   fontSize: {
     titleText: 30,
@@ -42,6 +38,14 @@ const theme = {
     },
     shadowOpacity: .2,
     shadowRadius: 9.11,
+  },
+  input:{
+    backgroundColor: '#eee',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 8,
+    marginBottom: 10,
+    width: '85%'
   }
 };
 
