@@ -41,7 +41,7 @@ const theme = {
   },
   input:{
     backgroundColor: '#eee',
-    borderRadius: 5,
+    borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 8,
     marginBottom: 10,
