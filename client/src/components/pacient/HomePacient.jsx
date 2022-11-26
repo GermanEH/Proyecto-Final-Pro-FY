@@ -5,21 +5,25 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView,
+  SafeAreaView
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
 import { Loading } from "../loading/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
+import { getProfessionalById } from '../../slices/professionalsActions'
+import { handleFavourite } from '../../slices/professionals'
 
-export function HomePacient({ navigation }) {
+export function HomePacient({ navigation, route }) {
 
   const auth = getAuth();
   const user = auth.currentUser;
+  const dispatch = useDispatch()
+
   useEffect(() => {
     if (user !== null) {
       // The user object has basic properties such as display name, email, etc.
@@ -33,6 +37,12 @@ export function HomePacient({ navigation }) {
       const uid = user.uid;
     }
   }, []);
+
+  useEffect(() => {
+    if(route.params !== undefined) {dispatch(getProfessionalById(route.params.id)).then((professional) => dispatch(handleFavourite(professional.payload)))}
+    }, 
+    [])
+
   return (
     <SafeAreaView>
       {user === null ? (
@@ -63,10 +73,10 @@ export function HomePacient({ navigation }) {
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
             <Text style={styles.textFavorite}>
-              Tus profesionales favoritos:
+              Tus profesionales de confianza:
             </Text>
             <View style={{ paddingBottom: 20 }}>
-              <CarouselFavorite />
+              <CarouselFavorite navigation={navigation} />
             </View>
             <View style={{ paddingBottom: 20 }}>
               <Carousel role="pacient" navigation={navigation} />

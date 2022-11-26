@@ -200,11 +200,8 @@ export function GenerateQuery({ navigation, route }) {
           /> */}
           <Button
             onPress={() =>
-              navigation.navigate("ProfessionalsList", {
-                name: "ProfessionalsList",
-              })
-            }
-            title="Elegir Profesional"
+              navigation.navigate("ProfessionalsList", {parent: "GenerateQuery"})}
+            title="Elegir profesional"
           />
           <Text style={styles.text}> {nombre} </Text>
         </View>

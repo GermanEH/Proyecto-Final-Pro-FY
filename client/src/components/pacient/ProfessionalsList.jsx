@@ -10,7 +10,7 @@ import {
 import { setFiltered, filterProfessionals } from "../../slices/professionals";
 import { addFilter, filtersSelectors } from "../../slices/filters";
 
-export function ProfessionalsList({ navigation }) {
+export function ProfessionalsList({ navigation, route }) {
   const [speciality, setSpeciality] = useState("");
   const [country, setCountry] = useState("");
   const [render, setRender] = useState(false);
@@ -88,7 +88,6 @@ export function ProfessionalsList({ navigation }) {
           />
           {(filtered.length > 0 && specialties.length > 0) ? (
             filtered.map((p, index) => {
-              console.log(p)
               return (
                 <CardPacient
                   id={p.id}
@@ -97,6 +96,7 @@ export function ProfessionalsList({ navigation }) {
                   country={p.country}
                   specialty={p.specialities}
                   key={index}
+                  parent={route.params.parent}
                   navigation={navigation}
                 />
               );

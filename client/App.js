@@ -34,6 +34,7 @@ import { SignUpProfessional } from './src/components/main/SignUpProfessional'
 import { SignInPro } from './src/components/main/SignInPro'
 // import {Pagos} from './src/components//Stripe/Pagos/'
 import { EditProfile } from './src/components/pacient/EditProfile'
+import { CarouselFavorite } from './src/components/pacient/CarouselFavorite' 
 import theme from './src/theme'
 
 const Stack = createStackNavigator()
@@ -134,13 +135,15 @@ export default function App() {
           <Stack.Screen
               name="SignOut"
               component={SignOut}/> 
-           <Stack.Screen
+          <Stack.Screen
               name="SignUpProfessional"
               component={SignUpProfessional}/> 
-           <Stack.Screen
+          <Stack.Screen
               name="SignInPro"
               component={SignInPro}/> 
-
+          <Stack.Screen
+              name="CarouselFavorite"
+              component={CarouselFavorite}/> 
           </Stack.Navigator>  
           <Toast config={toastConfig} />
         </NavigationContainer>
