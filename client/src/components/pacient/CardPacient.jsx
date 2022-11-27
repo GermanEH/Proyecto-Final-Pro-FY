@@ -19,13 +19,15 @@ export function CardPacient({
   first_name,
   last_name,
   country,
+   scheduleDays,
+  scheduleHours,
   specialty,
   navigation,
 }) {
   return (
     <SafeAreaView>
       <TouchableOpacity   onPress={() => {      
-          navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name })
+          navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays})
       }}>
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>

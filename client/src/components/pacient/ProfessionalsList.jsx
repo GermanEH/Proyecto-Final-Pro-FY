@@ -23,6 +23,8 @@ export function ProfessionalsList({ navigation }) {
   const countries = useSelector((state) => state.professionals.countries);
   const specialtiesNames = useSelector((state) => state.professionals.specialtiesNames);
 
+ console.log(professionals)
+
   const dispatch = useDispatch();
   let s = {};
 
@@ -88,14 +90,15 @@ export function ProfessionalsList({ navigation }) {
           />
           {(filtered.length > 0 && specialties.length > 0) ? (
             filtered.map((p, index) => {
-              console.log(p)
               return (
                 <CardPacient
-                  id={p.id}
+                  id={p._id}
                   first_name={p.first_name}
                   last_name={p.last_name}
                   country={p.country}
                   specialty={p.specialities}
+                  scheduleDays={p.scheduleDays}
+                  scheduleHours={p.scheduleHours}
                   key={index}
                   navigation={navigation}
                 />
