@@ -3,9 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput,
-  Button,
-  Alert,
   Image,
   useWindowDimensions,
   ScrollView,
@@ -15,7 +12,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { postProfessional } from "../../slices/professionalsActions";
 import { useForm, Controller } from "react-hook-form";
-import Constants from "expo-constants";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -23,24 +19,21 @@ import {
 } from "firebase/auth";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
-import { useNavigation } from "@react-navigation/native";
 import Logo from "../../assets/logo.png";
 import { getSpecialties } from "../../slices/professionalsActions";
 import { SelectList } from "react-native-dropdown-select-list";
 import { auth } from "../../../firebase-config.js";
 import { LoadingImage } from "../professional/LoadingImage";
-import { Value } from "react-native-reanimated";
+import theme from "../../theme";
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 export function SignUpProfessional({ navigation }) {
   const {
-    register,
     setValue,
     handleSubmit,
     watch,
     control,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -225,7 +218,6 @@ export function SignUpProfessional({ navigation }) {
               control={control}
               rules={{ required: "Codigo Postal es requerido" }}
             />
-
             <Text style={styles.text}>Matricula del profesiona</Text>
             <CustomInput
               name="professionalId"
@@ -273,46 +265,45 @@ export function SignUpProfessional({ navigation }) {
                   setSelected={(value) => setValue("schedule", value)}
                 />
               </View>
-
               <SelectList
                 data={specialties.map((m) => m.name)}
                 placeholder="Especialidad"
                 setSelected={(value) => setValue("specialities", value)}
-                /*  rules={{required: 'Especialidad es requerida'}} */
               />
             </View>
             <View style={{ width: "100%", height: 150, paddingVertical: 30 }}>
-              <LoadingImage setValue={setValue} />
+              <LoadingImage setValue={setValue} image={"Imagen"} />
             </View>
-
-            <View style={styles.button}>
-              <TouchableOpacity
-                style={styles.buttonInner}
-                color
-                title="Crear usuario"
-                onPress={handleSubmit(onHandleSubmit)}
-              >
-                <Text style={{}}>Crear Usuario</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.text}>
-              Al registrarte confirmas y aceptas nuestros{" "}
-              <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
-                Terminos de uso
-              </Text>{" "}
-              y{" "}
-              <Text style={styles.link} /* onPress={onPrivacyPressed} */>
-                Politica de privacidad
+            <View style={{ alignItems: "center", padding: 30, width: "100%" }}>
+              <View style={{ width: "100%", paddingBottom: 30 }}>
+                <TouchableOpacity
+                  style={styles.buttonInner}
+                  color
+                  title="Crear usuario"
+                  onPress={handleSubmit(onHandleSubmit)}
+                >
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    Crear Usuario
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.text}>
+                Al registrarte confirmas y aceptas nuestros{" "}
+                <Text style={styles.link} /* onPress={onTermsOfUsePressed} */>
+                  Terminos de uso
+                </Text>{" "}
+                y{" "}
+                <Text style={styles.link} /* onPress={onPrivacyPressed} */>
+                  Politica de privacidad
+                </Text>
               </Text>
-            </Text>
-            <View></View>
-
-            <View>
-              <CustomButtom
-                text="Ya tienes una cuenta? Ingresa Aquí"
-                onPress={onSignUpPress}
-                type="TERTIARY"
-              />
+              <View>
+                <CustomButtom
+                  text="Ya tienes una cuenta? Ingresa Aquí"
+                  onPress={onSignUpPress}
+                  type="TERTIARY"
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -338,6 +329,12 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "orange",
     borderRadius: 4,
+  },
+  buttonInner: {
+    paddingVertical: 15,
+
+    backgroundColor: theme.colors.primaryColor,
+    borderRadius: 10,
   },
   text: {
     color: "#989898",
