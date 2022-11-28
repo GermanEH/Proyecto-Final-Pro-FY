@@ -23,12 +23,28 @@ export function CardPacient({
   scheduleHours,
   specialty,
   navigation,
-}) {
+  parent
+}) 
+    {
+      const handlePress = (parent === "HomePacient") ? ["HomePacient", { id: id}] : ["GenerateQuery", { nombre: first_name + "  " + last_name }]
+      // const handlePress = () => {
+      //   (parent === "CarouselFavorite") ? 
+      //   () => {navigation.navigate("CarouselFavorite", { id: id})}
+      //   :
+      //   () => {      
+      //     navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name })
+      //   }
+      //   }
+
   return (
     <SafeAreaView>
+<<<<<<< HEAD
+      <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}>
+=======
       <TouchableOpacity   onPress={() => {      
           navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays})
       }}>
+>>>>>>> develop
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
           <View>
@@ -100,10 +116,8 @@ export function CardPacient({
               /> */}
             </View>
           </View>
-     
         </View>
         <View style={{ marginLeft: 10, justifyContent: "center" }}>
-         
         </View>
       </View>
       </TouchableOpacity>

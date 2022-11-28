@@ -10,7 +10,7 @@ import {
 import { setFiltered, filterProfessionals } from "../../slices/professionals";
 import { addFilter, filtersSelectors } from "../../slices/filters";
 
-export function ProfessionalsList({ navigation }) {
+export function ProfessionalsList({ navigation, route }) {
   const [speciality, setSpeciality] = useState("");
   const [country, setCountry] = useState("");
   const [render, setRender] = useState(false);
@@ -100,6 +100,7 @@ export function ProfessionalsList({ navigation }) {
                   scheduleDays={p.scheduleDays}
                   scheduleHours={p.scheduleHours}
                   key={index}
+                  parent={route.params.parent}
                   navigation={navigation}
                 />
               );

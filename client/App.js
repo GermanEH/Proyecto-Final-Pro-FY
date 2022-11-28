@@ -8,18 +8,13 @@ import { HamburgerMenu } from './src/components/main/HamburgerMenu/HamburgerMenu
 import { OnBoard } from './src/components/main/OnBoard'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
-/* import { Loading } from './src/components/loading/Loading'; */
-/* import { Queries } from './src/components/pacient/Queries' */
 import { SignInScreen } from './src/components/SignIn/SignInScreen'
-/* import { HomeProfessionalBasic } from './src/components/professional/HomeProfessionalBasic' */
 import Toast from 'react-native-toast-message';
 import { toastConfig } from './customNotificationConfig'
 import { ConfirmEmailScreen } from './src/components/ConfirmEmailScreen/ConfirmEmailScreen'
 import { SignUp } from './src/components/main/SignUp'
 import { SignIn } from './src/components/main/SignIn'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
-import { SignInPro } from './src/components/main/SignInPro'
-
 
 const Stack = createStackNavigator()
 
@@ -34,7 +29,6 @@ const headerOptions = {
 export default function App() {
 
   return (
-    // <React.StrictMode>
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
@@ -45,14 +39,12 @@ export default function App() {
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="SignIn" component={SignIn} options={headerOptions} />
           <Stack.Screen name="SignUpProfessional" component={SignUpProfessional} options={headerOptions} />
-          <Stack.Screen name="SignInPro" component={SignInPro} />
           <Stack.Screen name="ConfirmEmailScreen" component={ConfirmEmailScreen} />
           <Stack.Screen name="HamburguerMenu" component={HamburgerMenu} options={{ headerShown: false }} />
         </Stack.Navigator>
         <Toast config={toastConfig} />
       </NavigationContainer>
     </Provider>
-    // </React.StrictMode>
   );
 }
 

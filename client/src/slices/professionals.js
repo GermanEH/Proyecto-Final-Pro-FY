@@ -15,6 +15,16 @@ const initialState = {
 const filtersAdapter = createEntityAdapter()
 const filtersSelectors = filtersAdapter.getSelectors(state => state.filters)
 
+const handleFavourites = (state, payload) => {
+  for (const favourite of state.favourites) {
+    if(favourite._id === payload._id) {
+      state.favourites = state.favourites.filter((f) => f._id !== payload._id)
+      return state.favourites
+    }}
+    state.favourites.push(payload)
+    return state.favourites
+}
+
 const professionalsSlice = createSlice({
   name: 'professionalsSlice',
   initialState: initialState,
@@ -35,19 +45,13 @@ const professionalsSlice = createSlice({
       state.filtered = state.professionals.filter(p => payload.every(f => p[Object.keys(f)[0]] === Object.values(f)[0]))
     },
     handleFavourite: (state, {payload}) => {
-      console.log(payload)
-      console.log(state.favourites.length)
-      console.log(state.favourites)
       if(state.favourites.length === 0) {
-        state.favourites.push(payload)
+        state.favourites = [payload]
+      } else if(state.favourites.length === 1 && state.favourites[0]._id === payload._id) {
+        state.favourites = []
       } else {
-        for (const favourite of state.favourites) {
-        if(favourite._id === payload._id) {
-          state.favourites = state.favourites.filter(f => f._id !== payload._id)
-        } else {
-          state.favourites = state.favourites.push(payload)
-        }
-      }}
+        handleFavourites(state, payload)
+      }
     }
   },
   extraReducers(builder) {
@@ -60,6 +64,7 @@ const professionalsSlice = createSlice({
           (action) => action.type.startsWith("professionals/getProfessionals") && action.type.endsWith("/fulfilled"),
           (state, action) => {
             state.status = 'succeeded'
+            console.log(action.payload)
             state.professionals = action.payload
             const totalBdCountries = action.payload.map(p => p.country)
             state.countries = [...new Set(totalBdCountries)]
