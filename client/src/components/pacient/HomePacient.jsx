@@ -19,7 +19,6 @@ import { getAuth } from "firebase/auth";
 export function HomePacient({ navigation }) {
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
-  console.log(pacients.id);
   const auth = getAuth();
   const user = auth.currentUser;
   useEffect(() => {
@@ -36,7 +35,7 @@ export function HomePacient({ navigation }) {
     }
   }, []);
   return (
-    <SafeAreaView>
+    <View>
       {user === null ? (
         <Loading />
       ) : (
@@ -76,7 +75,7 @@ export function HomePacient({ navigation }) {
           </View>
         </ScrollView>
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
