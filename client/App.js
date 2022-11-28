@@ -31,7 +31,6 @@ import { SignUp } from './src/components/main/SignUp'
 import { SignIn } from './src/components/main/SignIn'
 import { SignOut } from './src/components/main/SignOut'
 import { SignUpProfessional } from './src/components/main/SignUpProfessional'
-import { SignInPro } from './src/components/main/SignInPro'
 // import {Pagos} from './src/components//Stripe/Pagos/'
 import { EditProfile } from './src/components/pacient/EditProfile'
 import { CarouselFavorite } from './src/components/pacient/CarouselFavorite' 
@@ -138,9 +137,6 @@ export default function App() {
           <Stack.Screen
               name="SignUpProfessional"
               component={SignUpProfessional}/> 
-          <Stack.Screen
-              name="SignInPro"
-              component={SignInPro}/> 
           <Stack.Screen
               name="CarouselFavorite"
               component={CarouselFavorite}/> 

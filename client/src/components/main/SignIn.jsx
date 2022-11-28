@@ -17,21 +17,33 @@ import {
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
-import { auth } from "../../../firebase-config.js";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { auth } from "../../../firebase-config.js";
+// import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {useSelector, useDispatch} from 'react-redux'
+import { loggedUser } from '../../slices/pacients';
+import "expo-dev-client"
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
+import auth from '@react-native-firebase/auth'
 import theme from "../../theme";
 
-const provider = new GoogleAuthProvider();
+// const provider = new GoogleAuthProvider();
 
 export function SignIn({ route }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [initializing, setInitializing] = useState(true)
+  const [userLogged, setUserLogged] = useState(null)
   const navigation = useNavigation();
+
+  const loggedU = useSelector((state) => state.pacients.logged)
 
   const { height } = useWindowDimensions();
 
+  const dispatch = useDispatch()
+
   const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
@@ -47,6 +59,42 @@ export function SignIn({ route }) {
         const errorMessage = error.message;
       })
   }
+
+  GoogleSignin.configure({
+    webClientId:'882289933965-m2vb8le0tsfhbib51bq33tmu02otvscr.apps.googleusercontent.com',
+})
+
+    const onAuthStateChanged = (userL) =>{
+        setUserLogged(userL);
+        if(userL){
+            console.log(userL)
+            const loggedUs = {displayName: userL["displayName"], email: userL["email"], emailVerified: userL["emailVerified"]}
+            console.log(loggedU)
+            dispatch(loggedUser(loggedUs))
+            console.log(loggedU)}
+        if (initializing) setInitializing(false);
+    }
+
+    useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    // return subscriber; // unsubscribe on unmount
+    }, []);
+
+    if (initializing) return null;
+
+
+    const onGoogleButtonPress = async () =>  {
+        // Check if your device supports Google Play
+        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+        // Get the users ID token
+        const { idToken } = await GoogleSignin.signIn();
+
+        // Create a Google credential with the token
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+        // Sign-in the user with the credential
+        return auth().signInWithCredential(googleCredential);
+    }
 
   // useEffect(()=>{
   //     const unsuscribe = auth.onAuthStateChanged( user => {
@@ -82,50 +130,47 @@ export function SignIn({ route }) {
   // };
 
   return (
+    <ScrollView showsVerticalScrollIndicator={false}>
+    {(!userLogged) ?
     <View style={styles.signInContainer}>
       <Image source={Logo} style={styles.logo} />
+
       <View style={styles.inputsButtomsContainer}>
         <TextInput onChangeText={(text) => setEmail(text)} placeholder="Correo electrónico" style={styles.input}>
         </TextInput>
-
         <TextInput onChangeText={(text) => setPassword(text)} placeholder="Contraseña" style={styles.input} secureTextEntry>
         </TextInput>
-
         <View style={{ width: '85%', paddingTop: 10 }}>
           <CustomButtom text="Ingresar" onPress={handleSignIn} />
         </View>
-
-
-        {/* <View style={styles.btnGoogle}>
-          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
-          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
-            <View style={styles.iconGoogle} >
-              <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
-            </View>
-          </TouchableOpacity>
-        </View> */}
-
       </View>
-
-      <View style={{ paddingTop: 150, alignItems: 'center'}}>
-          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
-            ¿No tienes una cuenta?
-          </Text>
-        <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'SignUpProfessional')} >
-            <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor }}>
-              Registrate
+          <GoogleSigninButton
+              text="Ingresar con Google" 
+              onPress={onGoogleButtonPress}
+              style={{width:'87%', marginTop:20}} /> 
+        <View style={{ paddingTop: 150, alignItems: 'center'}}>
+            <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
+              ¿No tienes una cuenta?
             </Text>
-          </TouchableOpacity>
+          <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'SignUpProfessional')} >
+              <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor, marginBottom:70 }}>
+                Registrate
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
     </View>
+      :
+      navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+      }
+      </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   signInContainer: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
     paddingTop: 40,
     backgroundColor: 'white',
@@ -144,19 +189,19 @@ const styles = StyleSheet.create({
   btn: {
     ...theme.button
   },
-  btnGoogle: {
-    paddingTop: 15,
-    flexDirection: 'colum',
-    alignItems: 'center',
-  },
-  iconGoogle: {
-    borderWidth: 2,
-    borderColor: '#ddd',
-    borderRadius: 5,
-    height: 50,
-    width: 50,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }
+  // btnGoogle: {
+  //   paddingTop: 15,
+  //   flexDirection: 'colum',
+  //   alignItems: 'center',
+  // },
+  // iconGoogle: {
+  //   borderWidth: 2,
+  //   borderColor: '#ddd',
+  //   borderRadius: 5,
+  //   height: 50,
+  //   width: 50,
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // }
 })
