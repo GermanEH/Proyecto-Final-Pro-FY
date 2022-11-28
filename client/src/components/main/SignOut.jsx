@@ -4,10 +4,6 @@ import auth from '@react-native-firebase/auth';
 // import { auth } from "../../../firebase-config.js"
 import { View, Text } from "react-native"
 
-
-auth()
-    .signOut()
-
 export function SignOut ({navigation}) {
 
     const handleSignOut = ()=>{

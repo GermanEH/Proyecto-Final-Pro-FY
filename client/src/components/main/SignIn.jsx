@@ -18,7 +18,6 @@ import {
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
 // import { auth } from "../../../firebase-config.js";
-// import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {useSelector, useDispatch} from 'react-redux'
 import { loggedUser } from '../../slices/pacients';
 import "expo-dev-client"
@@ -205,7 +204,7 @@ export function SignIn({ route }) {
         </View>
     </View>
       :
-      navigation.navigate("HamburguerMenu", { usertype: "pacient" })
+      navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" })
       }
     </ScrollView>
   )

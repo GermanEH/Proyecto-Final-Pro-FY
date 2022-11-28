@@ -39,7 +39,6 @@ export default function App() {
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="SignIn" component={SignIn} options={headerOptions} />
           <Stack.Screen name="SignUpProfessional" component={SignUpProfessional} options={headerOptions} />
-          <Stack.Screen name="SignInPro" component={SignInPro} />
           <Stack.Screen name="ConfirmEmailScreen" component={ConfirmEmailScreen} />
           <Stack.Screen name="HamburguerMenu" component={HamburgerMenu} options={{ headerShown: false }} />
         </Stack.Navigator>
