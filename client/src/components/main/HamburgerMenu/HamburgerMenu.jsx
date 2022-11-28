@@ -3,9 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { MenuComponent } from "./MenuComponent";
 import { HomePacient } from "../../pacient/HomePacient";
 import { HomeProfessional } from "../../professional/HomeProfessional";
-import { Notifications } from "../../x-tras/Notifications/Notifications";
-import { FrequentQuestions } from "../../x-tras/FrequentQuestions/FrequentQuestions";
-import { Settings } from "../../x-tras/Settings/Settings";
+import { Notifications } from "./Notifications/Notifications";
+import { FrequentQuestions } from "./FrequentQuestions/FrequentQuestions";
+import { Settings } from "./Settings/Settings";
 import { SignOut } from "../SignOut"
 import { Loading } from "../../loading/Loading";
 import { EditProfile } from "../../pacient/EditProfile";
