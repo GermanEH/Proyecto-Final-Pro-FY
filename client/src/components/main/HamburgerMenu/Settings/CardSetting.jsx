@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Name, Location, EmailPhone, Password, Image } from "./InputsSetting";
-import theme from '../../../theme'
+import theme from '../../../../theme'
 
 const obj = {
   name: <Name />,
