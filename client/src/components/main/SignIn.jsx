@@ -45,20 +45,32 @@ export function SignIn({ route }) {
   const handleSignIn = () => {
     signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed in 
+        // Signed in
         const user = userCredential.user;
-        console.log("Logged in whit", user.email)
+        console.log("Logged in whit", user.email);
         // ...
-        if (user && user.emailVerified === false) { alert('Correo electronico no verificado') }
-        if (user && user.emailVerified === true && route.params.usertype === 'pacient') {
-          navigation.navigate("HamburguerMenu", { usertype: "pacient" })
-        } else if (user && user.emailVerified === true && route.params.usertype === 'professional') { navigation.navigate("HamburguerMenu", { usertype: "professional" }) }
+        if (user && user.emailVerified === false) {
+          alert("Correo electronico no verificado");
+        }
+        if (
+          user &&
+          user.emailVerified === true &&
+          route.params.usertype === "pacient"
+        ) {
+          navigation.navigate("HamburguerMenu", { usertype: "pacient" });
+        } else if (
+          user &&
+          user.emailVerified === true &&
+          route.params.usertype === "professional"
+        ) {
+          navigation.navigate("HamburguerMenu", { usertype: "professional" });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-      })
-  }
+      });
+  };
 
   GoogleSignin.configure({
     webClientId:'882289933965-m2vb8le0tsfhbib51bq33tmu02otvscr.apps.googleusercontent.com',
@@ -95,7 +107,7 @@ export function SignIn({ route }) {
         // Sign-in the user with the credential
         return auth().signInWithCredential(googleCredential);
     }
-
+  
   // useEffect(()=>{
   //     const unsuscribe = auth.onAuthStateChanged( user => {
   //         if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
@@ -136,27 +148,58 @@ export function SignIn({ route }) {
       <Image source={Logo} style={styles.logo} />
 
       <View style={styles.inputsButtomsContainer}>
-        <TextInput onChangeText={(text) => setEmail(text)} placeholder="Correo electrónico" style={styles.input}>
-        </TextInput>
-        <TextInput onChangeText={(text) => setPassword(text)} placeholder="Contraseña" style={styles.input} secureTextEntry>
-        </TextInput>
-        <View style={{ width: '85%', paddingTop: 10 }}>
+
+        <TextInput
+          onChangeText={(text) => setEmail(text)}
+          placeholder="Correo electrónico"
+          style={styles.input}
+        ></TextInput>
+
+        <TextInput
+          onChangeText={(text) => setPassword(text)}
+          placeholder="Contraseña"
+          style={styles.input}
+          secureTextEntry
+        ></TextInput>
+
+        <View style={{ width: "85%", paddingTop: 10 }}>
           <CustomButtom text="Ingresar" onPress={handleSignIn} />
         </View>
+
+        {/*  <View style={styles.btnGoogle}>
+          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
+          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
+            <View style={styles.iconGoogle} >
+              <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
+            </View>
+          </TouchableOpacity>
+        </View> */}
       </View>
-          <GoogleSigninButton
+        <GoogleSigninButton
               text="Ingresar con Google" 
               onPress={onGoogleButtonPress}
               style={{width:'87%', marginTop:20}} /> 
         <View style={{ paddingTop: 150, alignItems: 'center'}}>
             <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
               ¿No tienes una cuenta?
+        </Text>
+        <View style={styles.container}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(
+                route.params.usertype === "pacient" ? "SignUp" : "SignInPro"
+              )
+            }
+          >
+            <Text
+              style={{
+                fontSize: theme.fontSize.secondaryText,
+                fontWeight: theme.fontWeights.bold,
+                color: theme.colors.primaryColor,
+              }}
+            >
+              Registrate
             </Text>
-          <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate(route.params.usertype === 'pacient' ? 'SignUp' : 'SignUpProfessional')} >
-              <Text style={{ fontSize: theme.fontSize.secondaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.primaryColor, marginBottom:70 }}>
-                Registrate
-              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -164,7 +207,7 @@ export function SignIn({ route }) {
       :
       navigation.navigate("HamburguerMenu", { usertype: "pacient" })
       }
-      </ScrollView>
+    </ScrollView>
   )
 }
 
@@ -173,35 +216,20 @@ const styles = StyleSheet.create({
     // flex: 1,
     alignItems: 'center',
     paddingTop: 40,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   logo: {
     height: 150,
-    width: 150
+    width: 150,
   },
   inputsButtomsContainer: {
-    alignItems: 'center',
-    width: '100%',
+    alignItems: "center",
+    width: "100%",
   },
   input: {
-    ...theme.input
+    ...theme.input,
   },
   btn: {
-    ...theme.button
+    ...theme.button,
   },
-  // btnGoogle: {
-  //   paddingTop: 15,
-  //   flexDirection: 'colum',
-  //   alignItems: 'center',
-  // },
-  // iconGoogle: {
-  //   borderWidth: 2,
-  //   borderColor: '#ddd',
-  //   borderRadius: 5,
-  //   height: 50,
-  //   width: 50,
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // }
-})
+});

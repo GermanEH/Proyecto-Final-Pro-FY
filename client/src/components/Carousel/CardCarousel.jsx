@@ -19,15 +19,25 @@ export function CardCarousel({ item, navigation }) {
         style={[styles.image, { width, resizeMode: "contain" }]}
       />
       <View>
-        <Text style={[styles.title, { textAlign: 'center' }]}> {item.title} </Text>
-        {
-          item.characteristics.map((characteristic, index) => (
-            <Text key={index} style={styles.description}> ✔︎ {characteristic} </Text>)
-          )
-        }
-        <Text style={[styles.price, { textAlign: 'center' }]}> {item.price} </Text>
+        <Text style={[styles.title, { textAlign: "center" }]}>
+          {" "}
+          {item.title}{" "}
+        </Text>
+        {item.characteristics.map((characteristic, index) => (
+          <Text key={index} style={styles.description}>
+            {" "}
+            ✔︎ {characteristic}{" "}
+          </Text>
+        ))}
+        <Text style={[styles.price, { textAlign: "center" }]}>
+          {" "}
+          {item.price}{" "}
+        </Text>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("Pagos")} style={styles.btn}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("PagosUserPremium")}
+        style={styles.btn}
+      >
         <Text> Ir </Text>
       </TouchableOpacity>
     </View>
@@ -36,7 +46,7 @@ export function CardCarousel({ item, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     margin: 10,
@@ -46,17 +56,17 @@ const styles = StyleSheet.create({
       width: 0,
       height: 7,
     },
-    shadowOpacity: .2,
+    shadowOpacity: 0.2,
     shadowRadius: 9.11,
     paddingHorizontal: 25,
-    paddingVertical: 25
+    paddingVertical: 25,
   },
   image: {
     width: 90,
     height: 90,
   },
   title: {
-    alignItems: 'center',
+    alignItems: "center",
     fontSize: theme.fontSize.titleText,
     fontWeight: theme.fontWeights.bold,
     marginBottom: 25,
@@ -83,7 +93,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 7,
     },
-    shadowOpacity: .2,
+    shadowOpacity: 0.2,
     shadowRadius: 9.11,
   },
 });

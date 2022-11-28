@@ -45,7 +45,7 @@ export const LoadingImage = (props) => {
               style={{ width: "100%", height: "100%" }}
             />
           ) : (
-            <Text style={styles.uploadBtn}>Imagen opcional</Text>
+            <Text style={styles.uploadBtn}>{props.image}</Text>
           )}
         </TouchableOpacity>
       </View>

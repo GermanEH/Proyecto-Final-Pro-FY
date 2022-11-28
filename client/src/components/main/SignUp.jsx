@@ -197,7 +197,7 @@ export function SignUp({ navigation }) {
             }}
           />
           <View style={{ width: "100%", height: 220, paddingVertical: 50 }}>
-            <LoadingImage setValue={setValue} />
+            <LoadingImage setValue={setValue} image={"Imagen Opcional"} />
           </View>
 
           <CustomButtom

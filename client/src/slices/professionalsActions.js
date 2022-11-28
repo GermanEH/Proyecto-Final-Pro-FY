@@ -23,8 +23,14 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
                 state: d.state,
                 city: d.city,
                 zip: d.zip,
+<<<<<<< HEAD
                 // professionalAdress: d.professionalAdress,
                 // schedule: d.schedule,
+=======
+                professionalAdress: d.professionalAdress,
+                scheduleDays: d.scheduleDays,
+                scheduleHours:d.scheduleHours,
+>>>>>>> develop
                 modality: d.modality,
                 specialities: d.specialities.name,
                 image: d.image
