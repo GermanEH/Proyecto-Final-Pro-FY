@@ -24,14 +24,17 @@ import { useForm, Controller } from "react-hook-form";
 } from "../../slices/professionalsActions";
  import {
   postQuery,
-  
+  getQueries
 } from "../../slices/queriesActions";
+import { querie } from "../../slices/queries";
 
 export function GenerateQuery({ navigation , route }) {
- 
+
+
+
   const dispatch = useDispatch();
  
-  const queries = useSelector((state) => state.queries.queries);
+  let consultas = useSelector((state) => state.queries.queries);
   const modalities = useSelector((state) => state.queries.modalities);
   const payments = useSelector((state) => state.queries.payments);
   const horarioUno=["08:00","09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00","18:00"], 
@@ -40,24 +43,27 @@ export function GenerateQuery({ navigation , route }) {
   const [isDisplayDate, setShow] = useState(false);
   const [date, setDate] = useState(new Date());
   const [text, setText] = useState("");
+  const [horaConsulta, setHoraConsulta] = useState([]);
   const fechaActual = new Date();
+  
  // const [isDisplayTime, setDisplayTime] = useState(false);
   const [time, setTime] = useState("");
   const [textTime, setTextTime] = useState("");
   //const [Horarios, setHorarios] = useState("");
   let horarios=[];
   let fechaInicial=new Date(), fechaFinal=new Date();
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
+  
   
     useEffect(() => {
     dispatch(getProfessionals());
+    dispatch(getQueries());
+
   }, []);
 
-  //let names = professionals.map((o) => o.first_name + " " + o.last_name );
-  //console.log(professionals)
-  
+
+
+
+
   const {
     getValues,
     register,
@@ -82,12 +88,17 @@ export function GenerateQuery({ navigation , route }) {
   });
   
   const {nombre,scheduleDays,scheduleHours,id}= route.params;
+//   let nombre="ivan"
+// let scheduleHours="12:00 - 22:00";
+// let scheduleDays="Martes - Sabado";
+// let id="1213";
 
   if(id)
    setValue("id", id)
+
 if(scheduleHours){
   let horActual=fechaActual.getHours();
-  console.log(horActual)
+  
  if(scheduleHours==="08:00 - 18:00")
       horarios=(horarioUno)
     if(scheduleHours==="10:00 - 20:00")
@@ -97,6 +108,7 @@ if(scheduleHours){
 
 }
    
+
 
     if(scheduleDays){
 
@@ -122,17 +134,19 @@ if(scheduleHours){
       
       if(diaSemana>limiteSuperior || diaSemana<limiteInferior){
           
-          // if(limiteInferior===4)
-          // {
+          if( diaSemana<limiteInferior )
+          {
 
-          //      let fechaPrueb= fechaActual.getDate()+(5)
-          //       fechaFinal.setDate(fechaPrueb)
+               let fechaPrueb= fechaActual.getDate()+(limiteSuperior-diaSemana)
+                fechaFinal.setDate(fechaPrueb)
+                fechaPrueb= fechaActual.getDate()+(limiteInferior-diaSemana)
+                fechaInicial.setDate(fechaPrueb)
 
-          // }
-          // else{
+          }
+          else{
             Alert.alert("Este Profesional no esta Disponible esta Semana")
             navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
-         // }
+          }
 
       }
       else{
@@ -141,7 +155,7 @@ if(scheduleHours){
         
       }
 
-
+      
        
     }
    
@@ -156,7 +170,7 @@ if(scheduleHours){
     console.log(data);
     
 
-   if(data.motive==="" || data.ModalidadConsulta==="" || data.queryDate==="" || data.queryHour===""|| data.state==="" || data.professionals==="" )
+   if(data.motive==="" || data.ModalidadConsulta==="" || data.queryDate==="" || data.queryHour===""|| data.professionals==="" )
       {
 
        Alert.alert("Hay Campos sin llenar")
@@ -184,42 +198,87 @@ if(scheduleHours){
   const displayDatepicker = () => {
    setShow(true);
 };
-//   const displayTimepicker = () => {
-//    setDisplayTime(true);
-// };
+
 
 const changeSelectedDate = (event, selectedDate) => {
    
+
    const currentDate=selectedDate||date;
+   let fechaHoy=new Date();
+   let tDate= fechaHoy.getDate()+ '/'+(fechaHoy.getMonth()+1)+'/'+fechaHoy.getFullYear();
    
     setDate(selectedDate);
     setShow(false);
-    //setDisplayTime(true);
+   
     let tempDate= new Date(currentDate);
     let fDate= tempDate.getDate()+ '/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
-    setText(fDate)
+    
+    if(fDate===tDate)
+    {
+      setText("hoy")
+      let horarioAjustado;
+    ///vaidacion de hora
+    let horaActual=fechaHoy.getHours();
+    let horaMinima;
+    if(horarios[0]==="08:00") horaMinima=8;
+    if(horarios[0]==="10:00") horaMinima=10;
+    if(horarios[0]==="12:00") horaMinima=12;
+
+    if(horaActual>horaMinima || horaActual===horaMinima)
+    { 
+      
+    horarioAjustado= horarios.slice((horaActual-horaMinima+1),9);
+     setHoraConsulta(horarioAjustado)
+    
+    }
+    else
+    setHoraConsulta(horarios)
+     
+    }
+    else
+{    setText(fDate)
+    setHoraConsulta(horarios)
+  
+  }
+
     setValue("queryDate", fDate);
+
+let queriesList;
+let horariosOcupados=[],fechaCita=fDate;
+
+if(consultas)
+  {  queriesList = consultas.map( p => {
+
+   const resultado={};
+   resultado ["Doctor"]=p.doctorName ;
+   resultado  ["fecha"]=p.date;
+   resultado ["hora"]=p.hour;
+   if(p.date===fechaCita)
+    horariosOcupados.push(p.hour);
+      return resultado; })
+
+  }
+      
+
+let hoarioFinal=[],horarioN=horaConsulta;
+ for(let a=0 ; a<horariosOcupados.length;a++)
+ {
+
+     for(let b=0 ; b<horaConsulta.length;b++)
+     {
+       
+        if(horariosOcupados[a]===horaConsulta[b])
+           {
+            horarioN[b]="Hora Ocupada"
+           }
+
+     }
+ }
+
+setHoraConsulta(horarioN)
+
+  
 };
-
-// const changeSelectedTime = (event, selectedDate) => {
-   
-//    const currentDate=selectedDate||time;
-//     setValue("Hora", selectedDate);
-//     setTime(selectedDate);
-//     setDisplayTime(false);
-//     let tempDate= new Date(currentDate);
-//     let hora=tempDate.getHours();
-//     let minutos=tempDate.getMinutes();
-//     if(minutos===0)
-//      minutos= "0"+ minutos;
-    
- 
-
-//     let fTime=  hora +':'+ minutos
-    
-//     setTextTime(fTime)
-    
-// };
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
@@ -291,12 +350,7 @@ const changeSelectedDate = (event, selectedDate) => {
         </View>
 
          <View style={{ alignItems: "center" }}>
-          {/* <ButtonGenerateQuery
-            navigation={navigation}
-            text={"Elegir Profesional"}
-            color={theme.colors.secondaryText}
-            backgroundColor={theme.colors.primaryColor}
-          /> */}
+       
        <Button
              onPress={() =>
              navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
@@ -309,17 +363,6 @@ const changeSelectedDate = (event, selectedDate) => {
         </View> 
     
 
-        
-      {/* <Text style={styles.text}>Seleccione Professional:</Text>
-       <SelectList
-           
-           boxStyles={{ backgroundColor: "#A8A7A3" }}
-           inputStyles={{ fontSize: 12 }}
-           setSelected={(val) => setValue("Professional", val)}
-           data={names}
-           save="value"
-          /> */}
-
     {scheduleDays &&(      
       <View>
       <View style={styles.boton}>
@@ -328,7 +371,7 @@ const changeSelectedDate = (event, selectedDate) => {
       </View>
       
                   <SelectList
-                    data={horarios}
+                    data={horaConsulta}
                     placeholder="Horario"
                     setSelected={(value)=>{setTime(value)
                       setValue("queryHour", value)
@@ -350,28 +393,17 @@ const changeSelectedDate = (event, selectedDate) => {
                      mode={"date"}
                      is24Hour={true}
                      display="calendar"
-                     showTimeSelect
                      onChange={changeSelectedDate}
                      maximumDate={fechaFinal}
                      minimumDate={fechaInicial}
-                     />
+                                    />
 
                 
         </View>
          )}
 
 
-                  {/* {isDisplayTime && (
-                    <DateTimePicker
-                      value={time}
-                      mode="time"
-                      is24Hour={true}
-                      display="clock"
-                      onChange={changeSelectedTime}
-                      minuteInterval={15}
-                    />
-                )} */}
-       
+                   
         
         <View style={styles.boton}>
 
