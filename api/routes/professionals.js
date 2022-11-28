@@ -1,11 +1,10 @@
 const express = require("express");
 const { getAllProfessionals, getProfessionalById, deleteProfessional, editProfessional, createProfessional, } = require("../controllers/professionals");
 const { validatorCreateProfessional, validatorIdProfessional, validatorPutProfessional } = require("../validators/professionals");
-const { useStripeProfessionalsBasic, useStripeProfessionalsPremium } = require("../controllers/stripe")
 
 
 //! no entiendo pregunbtar rod
-// const { useStripe } = require("../controllers/stripe")
+const { useStripeProfessionalsBasic, useStripeProfessionalsPremium  } = require("../controllers/stripe")
 // const { validatorCreateUser, validatorIdUser } = require("../validators/users");
 const router = express.Router();
 

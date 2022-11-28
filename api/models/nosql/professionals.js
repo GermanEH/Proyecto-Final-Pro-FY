@@ -45,7 +45,6 @@ const ProfessionalScheme = new mongoose.Schema(
     },
     scheduleHours: {
       type: String,
-
     },
     image: {
       url: {
@@ -59,19 +58,22 @@ const ProfessionalScheme = new mongoose.Schema(
       type: ["presential", "remote"],
       default: 'presential',
     },
+    rating: {
+      type: Number,
+      min: 0, max: 5
+    },
+    plan: {
+      type: ["noSuscription", "basic", "premium"],
+      default: "noSuscription",
+    },
 
     specialities: {
       type: Schema.Types.ObjectId,
       ref: "specialities"
 
     },
-    plan : {
-      type : ["noSubscription","Regular","Premium"],
-      default : "noSubscription",
-    },
 
-    },
-    
+  },
 
   {
     temestamps: true,
