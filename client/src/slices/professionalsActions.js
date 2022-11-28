@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getProfessionals = createAsyncThunk('professionals/getProfessionals', async () => {
     try {
-        // const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/professionals')
-        const response = await axios.get('http://192.168.0.215:3001/api/professionals')
+        const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/professionals')
+        // const response = await axios.get('http://192.168.0.215:3001/api/professionals')
         const data = response.data.data.sort(function(a, b) {
             if(a.last_name < b.last_name) return -1;
             if(a.last_name > b.last_name) return 1;
@@ -23,14 +23,9 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
                 state: d.state,
                 city: d.city,
                 zip: d.zip,
-<<<<<<< HEAD
-                // professionalAdress: d.professionalAdress,
-                // schedule: d.schedule,
-=======
                 professionalAdress: d.professionalAdress,
                 scheduleDays: d.scheduleDays,
                 scheduleHours:d.scheduleHours,
->>>>>>> develop
                 modality: d.modality,
                 specialities: d.specialities.name,
                 image: d.image
@@ -43,8 +38,8 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
 
 export const getProfessionalById = createAsyncThunk('professionals/getProfessionalById', async (id) => {
     try {
-        // const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`) 
-        const response = await axios.get(`http://192.168.0.215:3001/api/professionals/${id}`) 
+        const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`) 
+        // const response = await axios.get(`http://192.168.0.215:3001/api/professionals/${id}`) 
         return response.data.data
     } catch (error) {
         return error.message
@@ -53,8 +48,8 @@ export const getProfessionalById = createAsyncThunk('professionals/getProfession
 
 export const getSpecialties = createAsyncThunk('professionals/getSpecialties', async () => {       //hay una i adicional en la ruta
     try {
-        // const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/specialities')             
-        const response = await axios.get('http://192.168.0.215:3001/api/specialities')             
+        const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/specialities')             
+        // const response = await axios.get('http://192.168.0.215:3001/api/specialities')             
         return response.data.data
     } catch (error) {
         return error.message
