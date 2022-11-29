@@ -190,7 +190,7 @@ export function SignIn({ navigation, route }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-                route.params.usertype === "pacient" ? "SignUp" : "SignInPro"
+                route.params.usertype === "pacient" ? "SignUp" : "SignIn"
               )
             }
           >
@@ -209,9 +209,13 @@ export function SignIn({ navigation, route }) {
     </View>
       {/* // : */}
        {/* navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" }) */}
+
     </ScrollView>
   )
 }
+/*  :
+ navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" })
+  */
 
 const styles = StyleSheet.create({
   signInContainer: {
