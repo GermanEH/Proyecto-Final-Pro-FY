@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getSpecialties } from "../../slices/professionalsActions";
+import React from "react";
+
+
 import {
   View,
   SafeAreaView,
@@ -19,7 +18,7 @@ export function CardProfessional({
   first_name,
   last_name,
   country,
-   scheduleDays,
+  scheduleDays,
   scheduleHours,
   specialty,
   navigation,

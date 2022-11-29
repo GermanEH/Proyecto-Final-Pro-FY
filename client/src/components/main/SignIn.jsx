@@ -12,7 +12,6 @@ import {
 } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
