@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView, View, StyleSheet, ScrollView, Text } from "react-native";
-import { CardPacient } from "./CardPacient";
+import { CardProfessional } from "./CardProfessional";
 import { SelectList } from "react-native-dropdown-select-list";
 import {
   getProfessionals,
@@ -91,7 +91,7 @@ export function ProfessionalsList({ navigation, route }) {
           {(filtered.length > 0 && specialties.length > 0) ? (
             filtered.map((p, index) => {
               return (
-                <CardPacient
+                <CardProfessional
                   id={p._id}
                   first_name={p.first_name}
                   last_name={p.last_name}
