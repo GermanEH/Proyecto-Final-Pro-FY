@@ -142,7 +142,7 @@ export function SignIn({ route }) {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-    {(!userLogged) ?
+  {/*   {(!userLogged) ? */}
     <View style={styles.signInContainer}>
       <Image source={Logo} style={styles.logo} />
 
@@ -186,7 +186,7 @@ export function SignIn({ route }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-                route.params.usertype === "pacient" ? "SignUp" : "SignInPro"
+                route.params.usertype === "pacient" ? "SignUp" : "SignIn"
               )
             }
           >
@@ -203,12 +203,12 @@ export function SignIn({ route }) {
           </View>
         </View>
     </View>
-      :
-      navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" })
-      }
     </ScrollView>
   )
 }
+/*  :
+ navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" })
+  */
 
 const styles = StyleSheet.create({
   signInContainer: {

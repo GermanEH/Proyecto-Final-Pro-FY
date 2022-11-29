@@ -308,6 +308,23 @@ export function GenerateQuery({ navigation, route }) {
 
 
         {/* <Text style={styles.text}>Seleccione Professional:</Text>
+
+
+       <Button
+             onPress={() =>
+             navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
+         }
+       title="Elegir Profesional" 
+       />
+        <Text style={styles.text} > {nombre} </Text >
+         <Text style={styles.text} >  {scheduleDays} - {scheduleHours}  </Text >
+
+        </View> 
+    
+
+        
+   
+
        <SelectList
            
            boxStyles={{ backgroundColor: "#A8A7A3" }}
