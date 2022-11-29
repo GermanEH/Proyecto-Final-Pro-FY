@@ -16,7 +16,7 @@ export function MenuComponent(props) {
         {
           menuLinks.map((link, index) => {
             return (
-              <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 5, alignItems: 'center' }}
+              <TouchableOpacity key={index} style={{ flexDirection: 'row', paddingVertical: 5, alignItems: 'center' }}
                 onPress={
                   () => props.navigation.navigate(link.screen)
                 }

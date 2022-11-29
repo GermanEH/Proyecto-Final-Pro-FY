@@ -297,7 +297,6 @@ const changeSelectedDate = (event, selectedDate) => {
             color={theme.colors.secondaryText}
             backgroundColor={theme.colors.primaryColor}
           /> */}
-<<<<<<< HEAD
           <Button
             onPress={() =>
               navigation.navigate("ProfessionalsList", {parent: "GenerateQuery"})}
@@ -305,37 +304,18 @@ const changeSelectedDate = (event, selectedDate) => {
           />
           <Text style={styles.text}> {nombre} </Text>
         </View>
-        {/* <Text style={styles.text}>Seleccione Professional:</Text>
-=======
-       <Button
-             onPress={() =>
-             navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
-         }
-       title="Elegir Profesional" 
-       />
-        <Text style={styles.text} > {nombre} </Text >
-         <Text style={styles.text} >  {scheduleDays} - {scheduleHours}  </Text >
-
-        </View> 
-    
-
-        
-      {/* <Text style={styles.text}>Seleccione Professional:</Text>
->>>>>>> develop
-       <SelectList
-           
-           boxStyles={{ backgroundColor: "#A8A7A3" }}
-           inputStyles={{ fontSize: 12 }}
-           setSelected={(val) => setValue("Professional", val)}
-           data={names}
-           save="value"
-          /> */}
-
+      <SelectList
+            boxStyles={{ backgroundColor: "#A8A7A3" }}
+            inputStyles={{ fontSize: 12 }}
+            setSelected={(val) => setValue("Professional", val)}
+            data={names}
+            save="value"
+          /> 
     {scheduleDays &&(      
       <View>
       <View style={styles.boton}>
 
-         <Button style={styles.boton} onPress={displayDatepicker} title="Seleccionar fecha" />
+        <Button style={styles.boton} onPress={displayDatepicker} title="Seleccionar fecha" />
       </View>
       
                   <SelectList
@@ -353,23 +333,23 @@ const changeSelectedDate = (event, selectedDate) => {
             )}
 
 
-               {isDisplayDate && (
-                <View>
-                  <DateTimePicker
-                     testID="dateTimePicker"
-                     value={date}
-                     mode={"date"}
-                     is24Hour={true}
-                     display="calendar"
-                     showTimeSelect
-                     onChange={changeSelectedDate}
-                     maximumDate={fechaFinal}
-                     minimumDate={fechaInicial}
-                     />
+                {isDisplayDate && (
+                  <View>
+                    <DateTimePicker
+                      testID="dateTimePicker"
+                      value={date}
+                      mode={"date"}
+                      is24Hour={true}
+                      display="calendar"
+                      showTimeSelect
+                      onChange={changeSelectedDate}
+                      maximumDate={fechaFinal}
+                      minimumDate={fechaInicial}
+                      />
 
                 
         </View>
-         )}
+        )}
 
 
                   {/* {isDisplayTime && (

@@ -48,7 +48,51 @@ export function HomePacient({ navigation, route }) {
       }
     }, 
     [])
-}
+
+    return (
+      <SafeAreaView>
+        {logged === null ? (
+          <Loading />
+        ) : (
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}
+          >
+            <View style={styles.container}>
+              <View style={styles.holaPencil}>
+                <Text style={styles.textHola}>Hola,</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("EditProfile", {});
+                  }}
+                  style={styles.containerIcon}
+                >
+                  <Icon name="pencil" size={20} color="" />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.textName}>{logged?.displayName}</Text>
+              <Text style={styles.text}>
+                Ya eres parte de la comunidad PRO-FY, estás listo para conectarte
+                con profesionales de la medicina.
+              </Text>
+              <View style={{ alignItems: "center", paddingVertical: 20 }}>
+                <ButtonHomePacientQueries navigation={navigation} />
+              </View>
+              <Text style={styles.textFavorite}>
+                Tus profesionales de confianza:
+              </Text>
+              <View style={{ paddingBottom: 20 }}>
+                <CarouselFavorite navigation={navigation} />
+              </View>
+              <View style={{ paddingBottom: 20 }}>
+                <Carousel role="pacient" navigation={navigation} />
+              </View>
+            </View>
+          </ScrollView>
+        )}
+      </SafeAreaView>
+    );
+  }
 
   const styles = StyleSheet.create({
     container: {
@@ -88,4 +132,4 @@ export function HomePacient({ navigation, route }) {
       color: theme.colors.terciaryText,
       paddingVertical: 20,
     },
-  })
+  });
