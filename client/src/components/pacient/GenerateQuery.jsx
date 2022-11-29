@@ -297,7 +297,6 @@ const changeSelectedDate = (event, selectedDate) => {
             color={theme.colors.secondaryText}
             backgroundColor={theme.colors.primaryColor}
           /> */}
-<<<<<<< HEAD
           <Button
             onPress={() =>
               navigation.navigate("ProfessionalsList", {parent: "GenerateQuery"})}
@@ -306,7 +305,7 @@ const changeSelectedDate = (event, selectedDate) => {
           <Text style={styles.text}> {nombre} </Text>
         </View>
         {/* <Text style={styles.text}>Seleccione Professional:</Text>
-=======
+
        <Button
              onPress={() =>
              navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})

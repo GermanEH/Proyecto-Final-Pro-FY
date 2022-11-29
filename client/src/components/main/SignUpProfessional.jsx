@@ -91,7 +91,7 @@ export function SignUpProfessional({ navigation }) {
           });
         })
         .then(() => {
-          navigation.navigate("SignInPro", { usertype: "professional" });
+          navigation.navigate("SignIn", { usertype: "professional" });
         });
       alert(
         "El Usuario Professional ha sido registrado correctamente, Por favor verifique su correo electronico (checkea spam)"
@@ -114,12 +114,9 @@ export function SignUpProfessional({ navigation }) {
   const specialties = useSelector((state) => state.professionals.specialties);
 
   const onSignUpPress = () => {
-    navigation.navigate("SignInPro");
+    navigation.navigate("SignIn", {usertype:"professional"});
   };
-  const onSignInPressed = () => {
-    // validate user
-    navigation.navigate("Home");
-  };
+  
 
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
 
@@ -134,7 +131,7 @@ export function SignUpProfessional({ navigation }) {
     console.log("entramos");
     console.log(data);
     dispatch(postProfessional(data));
-    navigation.navigate("SignInPro");
+    navigation.navigate("SignIn", {usertype:"professional"});
   };
   return (
     <SafeAreaView>
