@@ -25,7 +25,7 @@ import { postPacient } from "../../slices/pacientsActions";
 import CustomInput from "../CustomInput/CustomInput";
 import { LoadingImage } from "../professional/LoadingImage";
 
-export function SignUp({ navigation }) {
+export function SignUpPacient({ navigation }) {
   const { height } = useWindowDimensions();
 
   const {

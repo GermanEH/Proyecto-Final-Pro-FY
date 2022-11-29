@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AboutUs, WhyUs, HowItWorks } from "./FQComponents";
 import Icon from 'react-native-vector-icons/FontAwesome'
-import theme from '../../../theme'
+import theme from '../../../../theme'
 
 const obj = {
   who: <AboutUs />,

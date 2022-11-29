@@ -14,7 +14,7 @@ import theme from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
 import { ButtonDating, ButtonQueries } from "../shared/Button";
 
-export function CardPacient({
+export function CardProfessional({
   id,
   first_name,
   last_name,

@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, TextInput, } from "react-native";
-import theme from "../../../theme";
+import theme from "../../../../theme";
 
 export const Name = () => (
   <View style={styles.container}>
