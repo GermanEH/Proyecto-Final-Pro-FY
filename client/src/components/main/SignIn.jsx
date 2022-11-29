@@ -10,7 +10,6 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
 import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
@@ -178,7 +177,7 @@ export function SignIn({ navigation, route }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-                route.params.usertype === "pacient" ? "SignUpPacient" : "SignUpProfessional"
+                route.params.usertype === "pacient" ? "SignUpPacient" : "SignUpfessional"
               )
             }
           >

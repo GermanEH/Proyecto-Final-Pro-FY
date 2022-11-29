@@ -115,7 +115,9 @@ export function SignUpProfessional({ navigation }) {
 
   const onSignUpPress = () => {
     navigation.navigate("SignIn", {usertype: "professional"});
+
   };
+  
 
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
   const { height } = useWindowDimensions();
@@ -129,7 +131,7 @@ export function SignUpProfessional({ navigation }) {
     console.log("entramos");
     console.log(data);
     dispatch(postProfessional(data));
-    navigation.navigate("SignInPro");
+    navigation.navigate("SignIn", {usertype:"professional"});
   };
   return (
     <SafeAreaView>

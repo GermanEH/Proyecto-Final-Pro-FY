@@ -63,9 +63,11 @@ const createProfessional = async (req, res) => {
       professionaladress,
       professionalId,
       country,
-      schedule,
+      scheduleDays,
+      scheduleHours,
       specialities,
       modality,
+      rating
     } = matchedData(req);
 
     let storedImageData = { url: "", public_id: "" };
@@ -129,9 +131,11 @@ const createProfessional = async (req, res) => {
       professionaladress,
       professionalId,
       country,
-      schedule,
+      scheduleDays,
+      scheduleHours,
       specialities,
       modality,
+      rating,
       image: storedImageData,
     });
     console.log('userCreated', userCreated);

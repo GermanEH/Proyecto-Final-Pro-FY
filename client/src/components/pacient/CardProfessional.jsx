@@ -36,6 +36,7 @@ export function CardProfessional({
   return (
     <SafeAreaView>
       <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}>
+
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
           <View>
