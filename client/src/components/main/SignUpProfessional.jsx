@@ -58,9 +58,8 @@ export function SignUpProfessional({ navigation }) {
   const dias = [
     "Lunes a Viernes",
     "Martes a Sabado",
-    "Miercoles a lunes",
-    "Jueves a Martes",
-    "Viernes a jueves",
+    "Miercoles a Domingo",
+    
   ];
   const modalidad = ["presential", "remote"];
   const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];

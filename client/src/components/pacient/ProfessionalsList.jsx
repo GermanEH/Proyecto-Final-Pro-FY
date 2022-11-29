@@ -7,6 +7,7 @@ import {
   getProfessionals,
   getSpecialties,
 } from "../../slices/professionalsActions";
+
 import { setFiltered, filterProfessionals } from "../../slices/professionals";
 import { addFilter, filtersSelectors } from "../../slices/filters";
 
@@ -23,7 +24,7 @@ export function ProfessionalsList({ navigation, route }) {
   const countries = useSelector((state) => state.professionals.countries);
   const specialtiesNames = useSelector((state) => state.professionals.specialtiesNames);
 
- console.log(professionals)
+ //console.log(professionals)
 
   const dispatch = useDispatch();
   let s = {};
