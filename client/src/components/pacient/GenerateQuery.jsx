@@ -17,20 +17,20 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 //import { TouchableOpacity } from "react-native-gesture-handler";
- import DateTimePicker from '@react-native-community/datetimepicker'
- import {
+import DateTimePicker from '@react-native-community/datetimepicker'
+import {
   getProfessionals,
   getSpecialties,
 } from "../../slices/professionalsActions";
- import {
+import {
   postQuery,
   
 } from "../../slices/queriesActions";
 
 export function GenerateQuery({ navigation , route }) {
- 
+
   const dispatch = useDispatch();
- 
+
   const queries = useSelector((state) => state.queries.queries);
   const modalities = useSelector((state) => state.queries.modalities);
   const payments = useSelector((state) => state.queries.payments);
