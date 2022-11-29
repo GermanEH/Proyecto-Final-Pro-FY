@@ -17,23 +17,24 @@ import {
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
-// import { auth } from "../../../firebase-config.js";
+import { auth1 } from "../../../firebase-config.js";
 import {useSelector, useDispatch} from 'react-redux'
 import { loggedUser } from '../../slices/pacients';
 import "expo-dev-client"
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
-import auth from '@react-native-firebase/auth'
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
 import theme from "../../theme";
+import {useForm, Controller } from 'react-hook-form';
 
 // const provider = new GoogleAuthProvider();
 
-export function SignIn({ route }) {
+export function SignIn({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const {control, handleSubmit} = useForm()
   const [initializing, setInitializing] = useState(true)
   const [userLogged, setUserLogged] = useState(null)
-  const navigation = useNavigation();
+  
 
   const loggedU = useSelector((state) => state.pacients.logged)
 
@@ -42,7 +43,7 @@ export function SignIn({ route }) {
   const dispatch = useDispatch()
 
   const handleSignIn = () => {
-    signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth1, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -139,7 +140,7 @@ export function SignIn({ route }) {
   //       // ...
   //     });
   // };
-
+console.log(route)
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
   {/*   {(!userLogged) ? */}
@@ -162,7 +163,7 @@ export function SignIn({ route }) {
         ></TextInput>
 
         <View style={{ width: "85%", paddingTop: 10 }}>
-          <CustomButtom text="Ingresar" onPress={handleSignIn} />
+          <CustomButtom text="Ingresar" onPress={handleSubmit(handleSignIn)} />
         </View>
 
         {/*  <View style={styles.btnGoogle}>
@@ -186,7 +187,7 @@ export function SignIn({ route }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-                route.params.usertype === "pacient" ? "SignUp" : "SignIn"
+               ( route.params.usertype === "pacient") ? "SignUp" : "SignUpProfessional"
               )
             }
           >

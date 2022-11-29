@@ -100,12 +100,12 @@ export function CardPacient({
                   });
                 }}
                 style={styles.btn}
-              >
+              />
                 <Text style={{ color: theme.colors.secondaryText }}>
                   Ver más {">"}
                 </Text>
                 
-              </TouchableOpacity>
+             
             {/* <ButtonDating
                 color={theme.colors.secondaryText}
                 text={"Select"}
@@ -117,7 +117,7 @@ export function CardPacient({
         <View style={{ marginLeft: 10, justifyContent: "center" }}>
         </View>
       </View>
-      </TouchableOpacity>
+     
     </SafeAreaView>
   );
 }
