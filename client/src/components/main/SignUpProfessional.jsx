@@ -16,6 +16,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   updateProfile,
+  getAuth
 } from "firebase/auth";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
@@ -114,12 +115,13 @@ export function SignUpProfessional({ navigation }) {
   const specialties = useSelector((state) => state.professionals.specialties);
 
   const onSignUpPress = () => {
-    navigation.navigate("SignIn", {usertype:"professional"});
+    navigation.navigate("SignIn", {usertype: "professional"});
+
   };
   
 
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
-
+  const auth = getAuth();
   const { height } = useWindowDimensions();
   const dispatch = useDispatch();
   useEffect(() => {

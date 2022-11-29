@@ -305,35 +305,6 @@ export function GenerateQuery({ navigation, route }) {
 
         </View>
 
-
-
-        {/* <Text style={styles.text}>Seleccione Professional:</Text>
-
-
-       <Button
-             onPress={() =>
-             navigation.navigate("ProfessionalsList", {name: "ProfessionalsList",})
-         }
-       title="Elegir Profesional" 
-       />
-        <Text style={styles.text} > {nombre} </Text >
-         <Text style={styles.text} >  {scheduleDays} - {scheduleHours}  </Text >
-
-        </View> 
-    
-
-        
-   
-
-       <SelectList
-           
-           boxStyles={{ backgroundColor: "#A8A7A3" }}
-           inputStyles={{ fontSize: 12 }}
-           setSelected={(val) => setValue("Professional", val)}
-           data={names}
-           save="value"
-          /> */}
-
         {scheduleDays && (
           <View>
             <View style={styles.boton}>
@@ -370,7 +341,6 @@ export function GenerateQuery({ navigation, route }) {
               maximumDate={fechaFinal}
               minimumDate={fechaInicial}
             />
-
 
           </View>
         )}

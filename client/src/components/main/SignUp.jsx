@@ -16,10 +16,11 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   updateProfile,
+  getAuth
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
-import { auth } from "../../../firebase-config.js";
+// import { auth } from "../../../firebase-config.js";
 import { postPacient } from "../../slices/pacientsActions";
 import CustomInput from "../CustomInput/CustomInput";
 import { LoadingImage } from "../professional/LoadingImage";
@@ -54,6 +55,7 @@ export function SignUp({ navigation }) {
   const EMAIL_REGEX =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+  const auth = getAuth();
   async function onHandleSubmit(data) {
     //console.log(data)
     try {
@@ -90,7 +92,7 @@ export function SignUp({ navigation }) {
   }
 
   const onSignUpPress = () => {
-    navigation.navigate("SignIn");
+    navigation.navigate("SignIn", {usertype: "pacient"});
   };
 
   return (

@@ -36,7 +36,7 @@ export default function App() {
           <Stack.Screen name="OnBoard" component={OnBoard} options={{ headerShown: false }} />
           <Stack.Screen name="SignInScreen" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="SignIn" component={SignIn} options={headerOptions} />
+          <Stack.Screen name="SignIn" component={SignIn}  />
           <Stack.Screen name="SignUpProfessional" component={SignUpProfessional} options={headerOptions} />
           <Stack.Screen name="HamburguerMenu" component={HamburgerMenu} options={{ headerShown: false }} />
         </Stack.Navigator>
