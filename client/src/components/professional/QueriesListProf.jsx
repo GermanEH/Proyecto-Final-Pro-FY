@@ -4,11 +4,11 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { getPacients } from '../../slices/pacientsActions'
 // import { theme } from '../../../theme'
 
-export function PacientsList({navigation}) {
+export function QueriesListProfessional() {
 
   const [render, setRender ] = useState(false)
 
-  const pacients = useSelector(state => state.pacients.pacients)
+  const queires = useSelector(state => state.queries.queries)
 
   const dispatch = useDispatch()
 
@@ -17,9 +17,9 @@ export function PacientsList({navigation}) {
 
   return (
     <View>
-      <Text style={{alignText:"center", fontSize:"30", color:"grey"}}>Listado de pacientes</Text>
+      <Text style={{alignText:"center", fontSize:"30", color:"grey"}}>Listado de consultas</Text>
       <View>
-        {pacients?.map((p, i) => <TouchableOpacity key={i} style={{margin:"20", backgroundColor:"grey", borderRadius:"10", width:"30", height:"20", }}>
+        {queires?.map((p, i) => <TouchableOpacity key={i} style={{margin:"20", backgroundColor:"grey", borderRadius:"10", width:"30", height:"20", }}>
           <Text>{p.first_name} {p.last_name}</Text>
           <Text>{p.email}</Text>
         </TouchableOpacity>)}

@@ -27,8 +27,8 @@ import {
 
 } from "../../slices/queriesActions";
 
-export function GenerateQuery({ navigation, route }) {
-
+export function GenerateQuery({ navigation , route }) {
+  
   const dispatch = useDispatch();
 
   const queries = useSelector((state) => state.queries.queries);

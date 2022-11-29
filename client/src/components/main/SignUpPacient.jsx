@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import {
   Text,
@@ -25,7 +25,7 @@ import { postPacient } from "../../slices/pacientsActions";
 import CustomInput from "../CustomInput/CustomInput";
 import { LoadingImage } from "../professional/LoadingImage";
 
-export function SignUp({ navigation }) {
+export function SignUpPacient({ navigation }) {
   const { height } = useWindowDimensions();
 
   const {

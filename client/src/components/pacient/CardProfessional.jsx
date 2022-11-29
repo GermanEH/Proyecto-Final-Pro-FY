@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getSpecialties } from "../../slices/professionalsActions";
+import React from "react";
 import {
   View,
   SafeAreaView,
@@ -14,12 +11,12 @@ import theme from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
 import { ButtonDating, ButtonQueries } from "../shared/Button";
 
-export function CardPacient({
+export function CardProfessional({
   id,
   first_name,
   last_name,
   country,
-   scheduleDays,
+  scheduleDays,
   scheduleHours,
   specialty,
   navigation,

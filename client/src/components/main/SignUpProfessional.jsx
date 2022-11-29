@@ -23,7 +23,6 @@ import CustomButtom from "../CustomButton/CustomButton";
 import Logo from "../../assets/logo.png";
 import { getSpecialties } from "../../slices/professionalsActions";
 import { SelectList } from "react-native-dropdown-select-list";
-import { auth } from "../../../firebase-config.js";
 import { LoadingImage } from "../professional/LoadingImage";
 import theme from "../../theme";
 const EMAIL_REGEX =
@@ -65,15 +64,15 @@ export function SignUpProfessional({ navigation }) {
   ];
   const modalidad = ["presential", "remote"];
   const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];
+
+  const auth = getAuth()
+
   async function onHandleSubmit(data) {
-    console.log(data);
     try {
       const selectedSpecialty = specialties.filter(
         (i) => i.name === data.specialities
       );
       data.specialities = selectedSpecialty[0]._id;
-      console.log(selectedSpecialty[0]._id);
-
       dispatch(postProfessional(data));
       await createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
@@ -121,7 +120,6 @@ export function SignUpProfessional({ navigation }) {
   
 
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
-  const auth = getAuth();
   const { height } = useWindowDimensions();
   const dispatch = useDispatch();
   useEffect(() => {

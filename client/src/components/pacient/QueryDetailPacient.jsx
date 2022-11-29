@@ -14,7 +14,7 @@ import theme from "../../theme";
 import { getQueries } from "../../slices/queriesActions";
 import { Loading } from "../loading/Loading";
 
-export function QueriesDetail({ route }) {
+export function QueryDetailPacient({ route }) {
   const [text, onChangeText] = useState("");
   const [render, setRender] = useState(false);
 
@@ -34,10 +34,6 @@ export function QueriesDetail({ route }) {
     if (render) setRender(false);
 
   }, [render]); 
-
-
-
-
 
   return (
     <View>
