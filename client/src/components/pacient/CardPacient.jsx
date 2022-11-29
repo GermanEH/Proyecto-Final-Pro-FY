@@ -39,11 +39,8 @@ export function CardPacient({
   return (
     <SafeAreaView>
 
-      <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}/>
 
-      <TouchableOpacity   onPress={() => {      
-          navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays})
-      }}>
+      <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}/>
 
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
