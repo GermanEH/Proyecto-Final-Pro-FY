@@ -6,23 +6,23 @@ import {
   TextInput,
   ScrollView,
   Button,
-  SafeAreaView ,
+  SafeAreaView,
   Alert,
-  
+
 } from "react-native";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonDating, ButtonGenerateQuery } from "../shared/Button";
 import { useForm, Controller } from "react-hook-form";
 //import { TouchableOpacity } from "react-native-gesture-handler";
- import DateTimePicker from '@react-native-community/datetimepicker'
- import {
+import DateTimePicker from '@react-native-community/datetimepicker'
+import {
   getProfessionals,
   getSpecialties,
 } from "../../slices/professionalsActions";
- import {
+import {
   postQuery,
   getQueries
 } from "../../slices/queriesActions";
@@ -30,21 +30,21 @@ import { querie } from "../../slices/queries";
 
 export function GenerateQuery({ navigation , route }) {
 
-
-
   const dispatch = useDispatch();
  
   let consultas = useSelector((state) => state.queries.queries);
+
   const modalities = useSelector((state) => state.queries.modalities);
   const payments = useSelector((state) => state.queries.payments);
-  const horarioUno=["08:00","09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00","18:00"], 
-  horarioDos=["10:00","11:00",'12:00',"13:00","14:00","16:00",'17:00',"18:00","19:00",'20:00'], 
-  horarioTres=["12:00","13:00","14:00","15:00","16:00","17:00","19:00","20:00","21:00","22:00"];
+  const horarioUno = ["08:00", "09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+    horarioDos = ["10:00", "11:00", '12:00', "13:00", "14:00", "16:00", '17:00', "18:00", "19:00", '20:00'],
+    horarioTres = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "19:00", "20:00", "21:00", "22:00"];
   const [isDisplayDate, setShow] = useState(false);
   const [date, setDate] = useState(new Date());
   const [text, setText] = useState("");
   const [horaConsulta, setHoraConsulta] = useState([]);
   const fechaActual = new Date();
+
   
  // const [isDisplayTime, setDisplayTime] = useState(false);
   const [time, setTime] = useState("");
@@ -62,8 +62,6 @@ export function GenerateQuery({ navigation , route }) {
 
 
 
-
-
   const {
     getValues,
     register,
@@ -75,17 +73,18 @@ export function GenerateQuery({ navigation , route }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      users:"",
+      users: "",
       motive: "",
       ModalidadConsulta: "",
       createdDate: fechaActual,
       Pago: "",
       queryDate: fechaActual,
-      professionals:"",
-      queryHour:"",
-      state:"",
+      professionals: "",
+      queryHour: "",
+      state: "",
     },
   });
+
   
   const {nombre,scheduleDays,scheduleHours,id}= route.params;
 //   let nombre="ivan"
@@ -157,36 +156,72 @@ if(scheduleHours){
 
       
        
+
     }
-   
-    
-   
+    if (scheduleDays === "Martes - Sabado") {
+      limiteInferior = 2;
+      limiteSuperior = 6;
+    }
+    if (scheduleDays === "jueves- lunes") {
+      limiteInferior = 3;
+      limiteSuperior = 7;
+    }
 
-  if(nombre)
-  setValue("professionals", nombre)
+    if (diaSemana > limiteSuperior || diaSemana < limiteInferior) {
 
-   const onSubmit = (data) => {
-    
+      // if(limiteInferior===4)
+      // {
+
+      //      let fechaPrueb= fechaActual.getDate()+(5)
+      //       fechaFinal.setDate(fechaPrueb)
+
+      // }
+      // else{
+      Alert.alert("Este Profesional no esta Disponible esta Semana")
+      navigation.navigate("ProfessionalsList", { name: "ProfessionalsList", })
+      // }
+
+    }
+    else {
+      let fechaPrueb = fechaActual.getDate() + (limiteSuperior - diaSemana)
+      fechaFinal.setDate(fechaPrueb)
+
+    }
+
+
+
+  }
+
+
+
+
+  if (nombre)
+    setValue("professionals", nombre)
+
+  const onSubmit = (data) => {
+
     console.log(data);
-    
+
 
    if(data.motive==="" || data.ModalidadConsulta==="" || data.queryDate==="" || data.queryHour===""|| data.professionals==="" )
       {
 
-       Alert.alert("Hay Campos sin llenar")
-        return;
-       
-     }
 
-  
-   if(data.Pago==="Tarjeta de crédito")
-   {   navigation.navigate('PagosUserPremium')
-     setValue("state", 'resolved')}
+      Alert.alert("Hay Campos sin llenar")
+      return;
+
+    }
 
 
-  
+    if (data.Pago === "Tarjeta de crédito") {
+      navigation.navigate('PagosUserPremium')
+      setValue("state", 'resolved')
+    }
+
+
+
     // dispatch(postQuery(data));   pasar consulta al back
-    
+
   };
 
   const onChange = (arg) => {
@@ -196,6 +231,7 @@ if(scheduleHours){
   };
 
   const displayDatepicker = () => {
+
    setShow(true);
 };
 
@@ -300,21 +336,21 @@ setHoraConsulta(horarioN)
                   onChangeText={onChange}
                   style={styles.textInput}
                   placeholder="Describa su problema"
-                  
-                  
+
+
                 />
               </View>
             </>
           )}
         />
-           
+
 
         <View style={{ paddingVertical: 10 }}>
           {/* <Text style={styles.text}>Modalidad de consulta:</Text> */}
 
           {modalities.length > 0 ? (
-            <SelectList 
-              
+            <SelectList
+
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               setSelected={(val) => setValue("ModalidadConsulta", val)}
               data={modalities}
@@ -326,15 +362,15 @@ setHoraConsulta(horarioN)
             <Text>Loading...</Text>
           )}
         </View>
-     
-              
+
+
         <View style={{ paddingVertical: 15 }}>
 
           {/* <Text style={styles.text}>Modo de pago:</Text> */}
 
           {payments.length > 0 ? (
             <SelectList
-              
+
               name=""
               boxStyles={{ backgroundColor: "#A8A7A3" }}
               data={payments}
@@ -348,6 +384,7 @@ setHoraConsulta(horarioN)
             <Text>Loading...</Text>
           )}
         </View>
+
 
          <View style={{ alignItems: "center" }}>
        
@@ -403,13 +440,23 @@ setHoraConsulta(horarioN)
          )}
 
 
-                   
-        
+            <SelectList
+              data={horarios}
+              placeholder="Horario"
+              setSelected={(value) => {
+                setTime(value)
+                setValue("queryHour", value)
+              }}
+            />
+            <View style={styles.lista}>
+              <Text style={styles.text} >   {text} -- {time} </Text >
+
+
         <View style={styles.boton}>
 
-          <Button    onPress={handleSubmit(onSubmit)} title="Generar Consulta" />
-        
-          
+          <Button onPress={handleSubmit(onSubmit)} title="Generar Consulta" />
+
+
         </View>
       </View>
     </ScrollView>
@@ -442,20 +489,20 @@ const styles = StyleSheet.create({
     height: 260,
     display: 'flex',
   },
-  lista:{
+  lista: {
 
-    padding:5,
+    padding: 5,
     flexDirection: 'row',
-     justifyContent: 'space-between',
+    justifyContent: 'space-between',
   },
-  boton:{
+  boton: {
     flexDirection: 'row',
-     justifyContent: 'space-between',
-     padding:20
+    justifyContent: 'space-between',
+    padding: 20
   },
-  text:{
+  text: {
 
-    alignItems:"center",
-    padding:5
+    alignItems: "center",
+    padding: 5
   }
 });

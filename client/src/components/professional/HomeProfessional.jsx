@@ -9,15 +9,18 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { CardProfessional } from "./CardProfessional";
+import { CardPacient } from "./CardPacient";
 import theme from "../../theme";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
 import { getQueries } from "../../slices/queriesActions";
 import { getAuth } from "firebase/auth";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 export function HomeProfessional({ navigation }) {
+  const [user, setUser] = useState();
+
   const todayQueries = useSelector((state) => state.queries.todayQueries);
   const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
   const tomorrowAfterQueries = useSelector(
@@ -25,29 +28,47 @@ export function HomeProfessional({ navigation }) {
   );
 
   const dispatch = useDispatch();
-  
+
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
+  const logged = useSelector((state) => state.pacients.logged);
 
-  const auth = getAuth();
-  const user = auth.currentUser
-  useEffect(() => {
-    if (user !== null) {
-      // The user object has basic properties such as display name, email, etc.
-      // displayName = user.displayName;
-      const email = user.email;
-      const photoURL = user.photoURL;
-      const emailVerified = user.emailVerified;
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
-      const uid = user.uid;
-    }
-  }, [])
+  const getCurrent = async () => {
+    await GoogleSignin.getCurrentUser();
+  };
 
-  useEffect(() => {
-  /*   dispatch(getQueries()); */
-  }, []);
+  // useEffect(() => {
+  //     const currentUser = getCurrent()
+  //     console.log('hola', currentUser)
+  //     setUser({currentUser})
+  //   }, []);
+
+  // // useEffect(() => {
+  // //   if (user !== null) {
+  // //     // The user object has basic properties such as display name, email, etc.
+  // //     // displayName = user.displayName;
+  // //     const email = user.email;
+  // //     const photoURL = user.photoURL;
+  // //     const emailVerified = user.emailVerified;
+  // //     // The user's ID, unique to the Firebase project. Do NOT use
+  // //     // this value to authenticate with your backend server, if
+  // //     // you have one. Use User.getToken() instead.
+  // //     const uid = user.uid;
+  // //   }
+  // // }, [])
+
+  // function onAuthStateChanged(userLog) {
+  //   setUser(user);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  //   }, []);
+
+  // // useEffect(() => {
+  // // /*   dispatch(getQueries()); */
+  // // }, []);
 
   return (
     <SafeAreaView>
@@ -65,7 +86,8 @@ export function HomeProfessional({ navigation }) {
               paddingLeft: 10,
             }}
           >
-             {user.displayName}
+            {user?.displayName}
+            {logged?.displayName}
           </Text>
           <Text
             style={{
@@ -76,10 +98,11 @@ export function HomeProfessional({ navigation }) {
             Consultas del dia de hoy:
           </Text>
           <View>
-            {todayQueries?.map((p, i) =>
+            {todayQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
           </View>
           <View>
             <Text
@@ -90,14 +113,16 @@ export function HomeProfessional({ navigation }) {
             >
               Proximas Consultas:
             </Text>
-            {tomorrowQueries?.map((p, i) =>
+            {tomorrowQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
-            {tomorrowAfterQueries?.map((p, i) =>
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
+            {tomorrowAfterQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
           </View>
           <View
             style={{
@@ -145,13 +170,8 @@ export function HomeProfessional({ navigation }) {
                 <Text>COMENTARIOS</Text>
               </View>
             </ScrollView>
-            <View
-              style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
-            >
-              <TextInput
-                style={styles.input}
-                placeholder="Responder Reviews"
-              />
+            <View style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}>
+              <TextInput style={styles.input} placeholder="Responder Reviews" />
               <View style={{ justifyContent: "space-around" }}>
                 <TouchableOpacity style={styles.btn}>
                   <Text style={{ textAlign: "center", color: "white" }}>
@@ -161,9 +181,7 @@ export function HomeProfessional({ navigation }) {
               </View>
             </View>
           </View>
-          <View
-            style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-          >
+          <View style={{ textAlign: "center", width: 200, paddingBottom: 50 }}>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("DatingStatuses", {

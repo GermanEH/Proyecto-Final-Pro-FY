@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   pacients: [],
   pacient: {},
+  logged: {},
   status: "",
   error: ""
 }
@@ -11,7 +12,11 @@ const initialState = {
 export const pacientsSlice = createSlice({
   name: 'pacientsSlice',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    loggedUser: (state, {payload}) => {
+      state.logged = payload
+    }
+  },
   extraReducers(builder) {
     builder 
         .addMatcher(
@@ -61,5 +66,7 @@ export const pacientsError = (state) => state.error
 export const pacient = (state) => state.pacient
 export const pacientStatus = (state) => state.status
 export const pacientError = (state) => state.error
+
+export const { loggedUser } = pacientsSlice.actions
 
 export default pacientsSlice.reducer

@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getSpecialties } from "../../slices/professionalsActions";
+import React from "react";
 import {
   View,
   SafeAreaView,
@@ -14,21 +11,32 @@ import theme from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
 import { ButtonDating, ButtonQueries } from "../shared/Button";
 
-export function CardPacient({
+export function CardProfessional({
   id,
   first_name,
   last_name,
   country,
-   scheduleDays,
+  scheduleDays,
   scheduleHours,
   specialty,
   navigation,
-}) {
+  parent
+}) 
+    {
+      const handlePress = (parent === "HomePacient") ? ["HomePacient", { id: id}] : ["GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays }]
+      // const handlePress = () => {
+      //   (parent === "CarouselFavorite") ? 
+      //   () => {navigation.navigate("CarouselFavorite", { id: id})}
+      //   :
+      //   () => {      
+      //     navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name })
+      //   }
+      //   }
+
   return (
     <SafeAreaView>
-      <TouchableOpacity   onPress={() => {      
-          navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays})
-      }}>
+      <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}>
+
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
           <View>
@@ -100,10 +108,8 @@ export function CardPacient({
               /> */}
             </View>
           </View>
-     
         </View>
         <View style={{ marginLeft: 10, justifyContent: "center" }}>
-         
         </View>
       </View>
       </TouchableOpacity>

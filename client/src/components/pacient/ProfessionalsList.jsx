@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView, View, StyleSheet, ScrollView, Text } from "react-native";
-import { CardPacient } from "./CardPacient";
+import { CardProfessional } from "./CardProfessional";
 import { SelectList } from "react-native-dropdown-select-list";
 import {
   getProfessionals,
@@ -11,7 +11,7 @@ import {
 import { setFiltered, filterProfessionals } from "../../slices/professionals";
 import { addFilter, filtersSelectors } from "../../slices/filters";
 
-export function ProfessionalsList({ navigation }) {
+export function ProfessionalsList({ navigation, route }) {
   const [speciality, setSpeciality] = useState("");
   const [country, setCountry] = useState("");
   const [render, setRender] = useState(false);
@@ -92,7 +92,7 @@ export function ProfessionalsList({ navigation }) {
           {(filtered.length > 0 && specialties.length > 0) ? (
             filtered.map((p, index) => {
               return (
-                <CardPacient
+                <CardProfessional
                   id={p._id}
                   first_name={p.first_name}
                   last_name={p.last_name}
@@ -101,6 +101,7 @@ export function ProfessionalsList({ navigation }) {
                   scheduleDays={p.scheduleDays}
                   scheduleHours={p.scheduleHours}
                   key={index}
+                  parent={route.params.parent}
                   navigation={navigation}
                 />
               );

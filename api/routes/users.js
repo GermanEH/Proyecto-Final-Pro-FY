@@ -9,8 +9,10 @@ const router = express.Router();
 
 //el checkRol: en el array significa que solo esos usuarios pueden acceder a esa ruta, pensar admin pro y user como armar el esquema?
 
-// router.get("/", validatorCreateUser, autMiddleware, getUsers); //poner validador personalizado para la revision de datos
+//router.get("/", validatorCreateUser, autMiddleware, getUsers); //poner validador personalizado para la revision de datos
 
+
+//no mover
 router.get("/", getUsers);
 
 router.get("/:id", validatorIdUser, getUserById);
@@ -25,10 +27,7 @@ router.post("/payUserBasic", useStripeUsersBasic)
 
 router.post("/payUserPremium", useStripeUsersPremium)
 
-
 // checkRol(["admin"])
-
-
 
 
 

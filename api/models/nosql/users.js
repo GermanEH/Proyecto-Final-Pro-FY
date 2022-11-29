@@ -51,14 +51,14 @@ const UserScheme = new mongoose.Schema(
         type: String,
       },
     },
-
-    plan : {
-      type : ["noSubscription","Regular","Premium"],
-      default : "noSubscription",
-    },
     role: {  //opcional para uso nuestro
       type: ["user", "admin"],
       default: "user",
+    },
+
+    plan: {
+      type: ["noSuscription", "basic", "premium"],
+      default: "noSuscription",
     },
   },
   {

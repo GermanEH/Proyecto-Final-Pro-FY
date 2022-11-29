@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import theme from "../../theme";
-import { Loading } from "../loading/Loading";
+import { Loading } from "../main/Loading";
 
 export function OnBoard({ navigation }) {
   const payments = useSelector((state) => state.queries.payments);
@@ -15,8 +15,8 @@ export function OnBoard({ navigation }) {
           <TouchableOpacity
             style={styles.btn}
             title="Pacient"
-            onPress={() =>
-              navigation.navigate("SignIn", { usertype: "pacient" })
+            onPress={
+              () => navigation.navigate("SignIn", { usertype: "pacient" })
               //navigation.navigate("GenerateQuery", { id: "123456" })
             }
           >
@@ -26,7 +26,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Professional"
             onPress={() =>
-              navigation.navigate("SignInPro", {
+              navigation.navigate("SignIn", {
                 usertype: "professional",
               })
             }
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   internalContainer: {
-    alignItems: 'center',
-    width: '100%'
+    alignItems: "center",
+    width: "100%",
   },
   img: {
     width: 200,
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     ...theme.button,
   },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: theme.fontSize.terciaryText,
-    fontWeight: theme.fontWeights.bold
+    fontWeight: theme.fontWeights.bold,
   },
 });

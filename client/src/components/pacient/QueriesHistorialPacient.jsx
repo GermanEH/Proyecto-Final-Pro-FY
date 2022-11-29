@@ -10,18 +10,18 @@ import { useSelector, useDispatch } from "react-redux";
 import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
-import { ListaConsultas } from "./ListaConsultas";
-import { Loading } from "../loading/Loading";
-import { getProfessionals } from '../../slices/professionalsActions'
-import { getQueries } from '../../slices/queriesActions'
+import { QueriesListPacient } from "./QueriesListPacient";
+import { Loading } from "../main/Loading";
+import { getQueries } from "../../slices/queriesActions";
 
 export function QueriesHistorialPacient({ navigation }) {
-
   const queries = useSelector((state) => state.queries.queries);
 
   const dispatch = useDispatch();
-  
-  useEffect(() => {dispatch(getQueries())}, [])
+
+  useEffect(() => {
+    dispatch(getQueries());
+  }, []);
 
   return (
     <View>
@@ -34,7 +34,6 @@ export function QueriesHistorialPacient({ navigation }) {
               paddingTop: 30,
             }}
           >
-
             <TouchableOpacity
               title="GenerateQuery"
               onPress={() =>
@@ -63,10 +62,8 @@ export function QueriesHistorialPacient({ navigation }) {
             Historial de Consultas
           </Text>
         </View>
-        {(queries.length === 0) ? (
-          <Text>
-            Loading...
-          </Text> 
+        {queries.length === 0 ? (
+          <Text>Loading...</Text>
         ) : (
           <View style={styles.containerHistorial}>
             <ScrollView>
@@ -78,7 +75,7 @@ export function QueriesHistorialPacient({ navigation }) {
                   }}
                 ></View>
                 <View>
-                  <ListaConsultas navigation={navigation} />
+                  <QueriesListPacient navigation={navigation} />
                 </View>
               </View>
             </ScrollView>
