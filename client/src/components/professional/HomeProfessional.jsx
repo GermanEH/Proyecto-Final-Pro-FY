@@ -9,18 +9,17 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { CardProfessional } from "./CardProfessional";
+import { CardPacient } from "./CardPacient";
 import theme from "../../theme";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
 import { getQueries } from "../../slices/queriesActions";
 import { getAuth } from "firebase/auth";
-import { GoogleSignin } from "@react-native-google-signin/google-signin"
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 export function HomeProfessional({ navigation }) {
-
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
 
   const todayQueries = useSelector((state) => state.queries.todayQueries);
   const tomorrowQueries = useSelector((state) => state.queries.tomorrowQueries);
@@ -29,12 +28,14 @@ export function HomeProfessional({ navigation }) {
   );
 
   const dispatch = useDispatch();
-  
+
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
-  const logged = useSelector((state) => state.pacients.logged)
+  const logged = useSelector((state) => state.pacients.logged);
 
-  const getCurrent = async () => {await GoogleSignin.getCurrentUser()}
+  const getCurrent = async () => {
+    await GoogleSignin.getCurrentUser();
+  };
 
   // useEffect(() => {
   //     const currentUser = getCurrent()
@@ -97,10 +98,11 @@ export function HomeProfessional({ navigation }) {
             Consultas del dia de hoy:
           </Text>
           <View>
-            {todayQueries?.map((p, i) =>
+            {todayQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
           </View>
           <View>
             <Text
@@ -111,14 +113,16 @@ export function HomeProfessional({ navigation }) {
             >
               Proximas Consultas:
             </Text>
-            {tomorrowQueries?.map((p, i) =>
+            {tomorrowQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
-            {tomorrowAfterQueries?.map((p, i) =>
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
+            {tomorrowAfterQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
-              </View>)}
+                <CardPacient navigation={navigation} query={p} />
+              </View>
+            ))}
           </View>
           <View
             style={{
@@ -166,13 +170,8 @@ export function HomeProfessional({ navigation }) {
                 <Text>COMENTARIOS</Text>
               </View>
             </ScrollView>
-            <View
-              style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
-            >
-              <TextInput
-                style={styles.input}
-                placeholder="Responder Reviews"
-              />
+            <View style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}>
+              <TextInput style={styles.input} placeholder="Responder Reviews" />
               <View style={{ justifyContent: "space-around" }}>
                 <TouchableOpacity style={styles.btn}>
                   <Text style={{ textAlign: "center", color: "white" }}>
@@ -182,9 +181,7 @@ export function HomeProfessional({ navigation }) {
               </View>
             </View>
           </View>
-          <View
-            style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-          >
+          <View style={{ textAlign: "center", width: 200, paddingBottom: 50 }}>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("DatingStatuses", {

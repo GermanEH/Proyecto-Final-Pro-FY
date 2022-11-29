@@ -12,13 +12,15 @@ import theme from "../../theme";
 
 // import { getQueriesById } from "../../slices/queriesActions";
 import { getQueries } from "../../slices/queriesActions";
-import { Loading } from "../loading/Loading";
+import { Loading } from "../main/Loading";
 
 export function QueryDetailPacient({ route }) {
   const [text, onChangeText] = useState("");
   const [render, setRender] = useState(false);
 
-  const query = useSelector((state) => state.queries.queries.find(q => q._id === route.params._id));
+  const query = useSelector((state) =>
+    state.queries.queries.find((q) => q._id === route.params._id)
+  );
 
   // const query = useSelector((state) => state.queries.query);
   const dispatch = useDispatch();
@@ -32,18 +34,19 @@ export function QueryDetailPacient({ route }) {
   }, [query]);
   useEffect(() => {
     if (render) setRender(false);
-
-  }, [render]); 
+  }, [render]);
 
   return (
     <View>
       <ScrollView>
         <View>
-            {query ? (<View style={styles.container}>
+          {query ? (
+            <View style={styles.container}>
               <View style={{ padding: 10 }}>
                 <Text>Paciente: {query?.pacientName}</Text>
                 <Text>
-                  Fecha de creación de la consulta: {query?.created.slice(0, 10)}
+                  Fecha de creación de la consulta:{" "}
+                  {query?.created.slice(0, 10)}
                 </Text>
                 <Text>Fecha de la consulta: {query?.date.slice(0, 10)}</Text>
               </View>
