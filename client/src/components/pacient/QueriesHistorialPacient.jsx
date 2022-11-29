@@ -11,8 +11,7 @@ import theme from "../../theme";
 import { SelectList } from "react-native-dropdown-select-list";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { ListaConsultas } from "./ListaConsultas";
-import { Loading } from "../loading/Loading";
-import { getProfessionals } from '../../slices/professionalsActions'
+import { Loading } from "../main/Loading";
 import { getQueries } from '../../slices/queriesActions'
 
 export function QueriesHistorialPacient({ navigation }) {

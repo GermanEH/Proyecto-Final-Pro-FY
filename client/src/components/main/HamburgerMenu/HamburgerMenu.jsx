@@ -9,17 +9,15 @@ import { Settings } from "./Settings/Settings";
 import { SignOut } from "../SignOut"
 import { Loading } from "../../loading/Loading";
 import { EditProfile } from "../../pacient/EditProfile";
-import { DatingStatuses } from "../../professional/DatingStatuses";
-import { QueriesHistorialPacientBasic } from "../../pacient/QueriesHistorialPacientBasic";
-import { DatingStatusesBasic } from "../../professional/DatingStatusesBasic";
 import { ProfessionalsList } from "../../pacient/ProfessionalsList";
 import { QueriesHistorialPacient } from "../../pacient/QueriesHistorialPacient";
 import { ProfessionalDetail } from "../../pacient/ProfessionalDetail";
 import { GenerateQuery } from "../../pacient/GenerateQuery";
-import { QueriesDetail } from "../../pacient/QueriesDetail";
-import { PacientsList } from "../../professional/PacientsList";
-import ListaConsultas from "../../pacient/ListaConsultas";
-import { PagosUserPremium } from "../../Stripe/Pagos/PagosUserPremium";
+import { QueriesListPacient } from "../../pacient/QueriesListPacient";
+import { QueryDetailPacient } from "../../pacient/QueryDetailPacient";
+import { QueriesListProfessional } from "../../professional/QueriesListProf";
+import { QueryDetailProfessional } from "../../professional/QueryDetailProf";
+import { PagosUserPremium } from "../../stripe/Pagos/PagosUserPremium";
 
 const Menu = createDrawerNavigator();
 
@@ -37,17 +35,14 @@ export function HamburgerMenu({ route }) {
         <Menu.Screen name="Settings" component={Settings} />
         <Menu.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
         <Menu.Screen name="EditProfile" component={EditProfile} />
-        <Menu.Screen name="DatingStatuses" component={DatingStatuses} />
-        <Menu.Screen name="QueriesHistorialPacientBasic" component={QueriesHistorialPacientBasic} />
-        <Menu.Screen name="DatingStatusesBasic" component={DatingStatusesBasic} />
-        <Menu.Screen name="ProfessionalsList" component={ProfessionalsList} />
-        {/* <Menu.Screen  name="Queries" component={Queries}/> */}
         <Menu.Screen name="QueriesHistorialPacient" component={QueriesHistorialPacient} />
-        <Menu.Screen name="ProfessionalDetail" component={ProfessionalDetail} />
         <Menu.Screen name="GenerateQuery" component={GenerateQuery} />
-        <Menu.Screen name="QueriesDetail" component={QueriesDetail} />
-        <Menu.Screen name="PacientsList" component={PacientsList} />
-        <Menu.Screen name="ListaConsultas" component={ListaConsultas} />
+        <Menu.Screen name="ProfessionalsList" component={ProfessionalsList} />
+        <Menu.Screen name="ProfessionalDetail" component={ProfessionalDetail} />
+        <Menu.Screen name="QueriesListPacient" component={QueriesListPacient} />
+        <Menu.Screen name="QueryDetailPacient" component={QueryDetailPacient} />
+        <Menu.Screen name="QueriesListProfessional" component={QueriesListProfessional} />
+        <Menu.Screen name="QueryDetailProfessional" component={QueryDetailProfessional} />
         <Menu.Screen name="PagosUserPremium" component={PagosUserPremium} />
         <Menu.Screen name="SignOut" component={SignOut} />
       </Menu.Navigator>

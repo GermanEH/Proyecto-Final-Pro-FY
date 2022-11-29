@@ -10,14 +10,11 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
-import CustomButtom from "../CustomButton/CustomButton";
-// import { auth } from "../../../firebase-config.js";
+import { auth1 } from "../../../firebase-config.js";
 import {useSelector, useDispatch} from 'react-redux'
 import { loggedUser } from '../../slices/pacients';
 import "expo-dev-client"
@@ -27,13 +24,12 @@ import theme from "../../theme";
 
 // const provider = new GoogleAuthProvider();
 
-export function SignIn({ route }) {
+export function SignIn({ navigation, route }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [initializing, setInitializing] = useState(true)
   const [userLogged, setUserLogged] = useState(null)
-  const navigation = useNavigation();
 
   const loggedU = useSelector((state) => state.pacients.logged)
 
@@ -42,7 +38,7 @@ export function SignIn({ route }) {
   const dispatch = useDispatch()
 
   const handleSignIn = () => {
-    signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth1, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -104,7 +100,11 @@ export function SignIn({ route }) {
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
         // Sign-in the user with the credential
-        return auth().signInWithCredential(googleCredential);
+        auth().signInWithCredential(googleCredential);
+        
+        route.params.usertype === "pacient" 
+            ? navigation.navigate("HamburguerMenu", { usertype: "pacient" }) 
+            : navigation.navigate("HamburguerMenu", { usertype: "professional" })
     }
   
   // useEffect(()=>{
@@ -142,7 +142,7 @@ export function SignIn({ route }) {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-  {/*   {(!userLogged) ? */}
+    {/* {(!userLogged) ? */}
     <View style={styles.signInContainer}>
       <Image source={Logo} style={styles.logo} />
 
@@ -162,17 +162,8 @@ export function SignIn({ route }) {
         ></TextInput>
 
         <View style={{ width: "85%", paddingTop: 10 }}>
-          <CustomButtom text="Ingresar" onPress={handleSignIn} />
+          <TouchableOpacity text="Ingresar" onPress={handleSignIn} />
         </View>
-
-        {/*  <View style={styles.btnGoogle}>
-          <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }} >Inicia sesión con Google</Text>
-          <TouchableOpacity style={{ padding: 5 }} onPress={HandleSignInWhitGoogle}>
-            <View style={styles.iconGoogle} >
-              <Image style={{width: 30, height: 30}} source={require("../../assets/googleLogo.png")} />
-            </View>
-          </TouchableOpacity>
-        </View> */}
       </View>
         <GoogleSigninButton
               text="Ingresar con Google" 
@@ -186,7 +177,7 @@ export function SignIn({ route }) {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-                route.params.usertype === "pacient" ? "SignUp" : "SignIn"
+                route.params.usertype === "pacient" ? "SignUpPacient" : "SignUpfessional"
               )
             }
           >
@@ -203,12 +194,11 @@ export function SignIn({ route }) {
           </View>
         </View>
     </View>
+      {/* // : */}
+       {/* navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" }) */}
     </ScrollView>
   )
 }
-/*  :
- navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" })
-  */
 
 const styles = StyleSheet.create({
   signInContainer: {
