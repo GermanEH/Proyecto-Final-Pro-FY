@@ -34,21 +34,21 @@ export function CardCarousel({ item, navigation }) {
           {item.price}{" "}
         </Text>
       </View>
-            {(item.title === "Basico" && item.user === "pacient") ? 
+            {(item.title === "Basico" && item.user === "Pacient") ? 
             <TouchableOpacity
               onPress={() => navigation.navigate("PagosUserBasic")}
               style={styles.btn}
             >
               <Text> Ir </Text>
             </TouchableOpacity>
-            : (item.title === "Premium" && item.user === "pacient") ?
+            : (item.title === "Premium" && item.user === "Pacient") ?
             <TouchableOpacity
               onPress={() => navigation.navigate("PagosUserPremium")}
               style={styles.btn}
             >
               <Text> Ir </Text>
             </TouchableOpacity>
-            : (item.title === "Basico" && item.user === "professional") ? 
+            : (item.title === "Basico" && item.user === "Professional") ? 
             <TouchableOpacity
             onPress={() => navigation.navigate("PagosProBasic")}
             style={styles.btn}

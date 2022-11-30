@@ -16,7 +16,7 @@ export function OnBoard({ navigation }) {
             style={styles.btn}
             title="Pacient"
             onPress={
-              () => navigation.navigate("SignIn", { usertype: "pacient" })
+              () => navigation.navigate("SignIn", { usertype: "Pacient" })
               //navigation.navigate("GenerateQuery", { id: "123456" })
             }
           >
@@ -27,7 +27,7 @@ export function OnBoard({ navigation }) {
             title="Professional"
             onPress={() =>
               navigation.navigate("SignIn", {
-                usertype: "professional",
+                usertype: "Professional",
               })
             }
           >
