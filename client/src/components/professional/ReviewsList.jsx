@@ -31,7 +31,7 @@ const Respuesta=()=> {
          <ScrollView horizontal={true}>
 
              {
-                reviews.reviews.map( (p,i)=> <CardReviews id={i+1 } review={p.review} CambioRespuesta={Respuesta} /> )
+                reviews.reviews.map( (p,i)=> <CardReviews id={i+1 } review={p.review} CambioRespuesta={Respuesta} key={i} /> )
         }
          </ScrollView>
         <TextInput
