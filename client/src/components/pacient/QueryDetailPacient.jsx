@@ -15,6 +15,7 @@ import { getQueries } from "../../slices/queriesActions";
 import { Loading } from "../main/Loading";
 
 export function QueryDetailPacient({ route }) {
+
   const [text, onChangeText] = useState("");
   const [render, setRender] = useState(false);
 
@@ -43,7 +44,7 @@ export function QueryDetailPacient({ route }) {
           {query ? (
             <View style={styles.container}>
               <View style={{ padding: 10 }}>
-                <Text>Paciente: {query?.pacientName}</Text>
+                {/* <Text>Paciente: {query?.doctorName.last_name}</Text> */}
                 <Text>
                   Fecha de creación de la consulta:{" "}
                   {query?.created.slice(0, 10)}
@@ -52,7 +53,7 @@ export function QueryDetailPacient({ route }) {
               </View>
               <View style={{ padding: 10 }}>
                 <Text>Tipo de Consulta: {query?.description}</Text>
-                <Text>Profesional: {query?.doctorName}</Text>
+                <Text>Profesional: {query?.doctorName.last_name}</Text>
               </View>
               <View style={{ flexDirection: "row", padding: 10 }}>
                 <Text>Estado: {query?.state[0]}</Text>

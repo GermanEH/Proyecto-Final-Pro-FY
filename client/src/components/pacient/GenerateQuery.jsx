@@ -31,7 +31,7 @@ import { querie } from "../../slices/queries";
 export function GenerateQuery({ navigation , route }) {
 
   const dispatch = useDispatch();
- 
+
   let consultas = useSelector((state) => state.queries.queries);
 
   const modalities = useSelector((state) => state.queries.modalities);
@@ -45,7 +45,6 @@ export function GenerateQuery({ navigation , route }) {
   const [horaConsulta, setHoraConsulta] = useState([]);
   const fechaActual = new Date();
 
-  
  // const [isDisplayTime, setDisplayTime] = useState(false);
   const [time, setTime] = useState("");
   const [textTime, setTextTime] = useState("");
@@ -53,14 +52,11 @@ export function GenerateQuery({ navigation , route }) {
   let horarios=[];
   let fechaInicial=new Date(), fechaFinal=new Date();
   
-  
     useEffect(() => {
     dispatch(getProfessionals());
     dispatch(getQueries());
 
   }, []);
-
-
 
   const {
     getValues,
@@ -85,8 +81,7 @@ export function GenerateQuery({ navigation , route }) {
     },
   });
 
-  
-  const {nombre,scheduleDays,scheduleHours,id}= route.params;
+  const { nombre, scheduleDays, scheduleHours, id } = route.params;
 //   let nombre="ivan"
 // let scheduleHours="12:00 - 22:00";
 // let scheduleDays="Martes - Sabado";
@@ -106,12 +101,12 @@ if(scheduleHours){
        horarios=(horarioTres)
 
 }
-   
+
 if(scheduleDays){
 
-     let diaSemana=fechaActual.getDay()
-     let limiteInferior,limiteSuperior,sumaDias;
-       
+      let diaSemana=fechaActual.getDay()
+      let limiteInferior,limiteSuperior,sumaDias;
+        
       if(scheduleDays==="Lunes - Viernes")
       {
         limiteInferior=1;
@@ -134,10 +129,10 @@ if(scheduleDays){
           if( diaSemana<limiteInferior )
           {
 
-               let fechaPrueb= fechaActual.getDate()+(limiteSuperior-diaSemana)
-                fechaFinal.setDate(fechaPrueb)
-                fechaPrueb= fechaActual.getDate()+(limiteInferior-diaSemana)
-                fechaInicial.setDate(fechaPrueb)
+                let fechaPrueb= fechaActual.getDate()+(limiteSuperior-diaSemana)
+                  fechaFinal.setDate(fechaPrueb)
+                  fechaPrueb= fechaActual.getDate()+(limiteInferior-diaSemana)
+                  fechaInicial.setDate(fechaPrueb)
 
           }
           else{
@@ -159,30 +154,17 @@ if(scheduleDays){
 
 
 
-  const onSubmit = (data) => {
-
-    console.log(data);
-
-
-   if(data.motive==="" || data.ModalidadConsulta==="" || data.queryDate==="" || data.queryHour===""|| data.professionals==="" )
-      {
-
-
-      Alert.alert("Hay Campos sin llenar")
-      return;
-
-    }
-
-
-    if (data.Pago === "Tarjeta de crédito") {
-      navigation.navigate('PagosUserPremium')
-      setValue("state", 'resolved')
-    }
-
-
-
+      const onSubmit = (data) => {
+        if(data.motive==="" || data.ModalidadConsulta==="" || data.queryDate==="" || data.queryHour===""|| data.professionals==="" )
+          {
+          Alert.alert("Hay Campos sin llenar")
+          return;
+        }
+        if (data.Pago === "Tarjeta de crédito") {
+          navigation.navigate('PagosUserPremium')
+          setValue("state", 'resolved')
+        }
     // dispatch(postQuery(data));   pasar consulta al back
-
   };
 
   const onChange = (arg) => {
@@ -193,49 +175,49 @@ if(scheduleDays){
 
   const displayDatepicker = () => {
 
-   setShow(true);
+  setShow(true);
 };
 
 
 const changeSelectedDate = (event, selectedDate) => {
-   
 
-   const currentDate=selectedDate||date;
-   let fechaHoy=new Date();
-   let tDate= fechaHoy.getDate()+ '/'+(fechaHoy.getMonth()+1)+'/'+fechaHoy.getFullYear();
-   
-    setDate(selectedDate);
-    setShow(false);
-   
-    let tempDate= new Date(currentDate);
-    let fDate= tempDate.getDate()+ '/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
+
+    const currentDate=selectedDate||date;
+    let fechaHoy=new Date();
+    let tDate= fechaHoy.getDate()+ '/'+(fechaHoy.getMonth()+1)+'/'+fechaHoy.getFullYear();
     
-    if(fDate===tDate)
-    {
-      setText("hoy")
-      let horarioAjustado;
-    ///vaidacion de hora
-    let horaActual=fechaHoy.getHours();
-    let horaMinima;
-    if(horarios[0]==="08:00") horaMinima=8;
-    if(horarios[0]==="10:00") horaMinima=10;
-    if(horarios[0]==="12:00") horaMinima=12;
-
-    if(horaActual>horaMinima || horaActual===horaMinima)
-    { 
+      setDate(selectedDate);
+      setShow(false);
+    
+      let tempDate= new Date(currentDate);
+      let fDate= tempDate.getDate()+ '/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
       
-    horarioAjustado= horarios.slice((horaActual-horaMinima+1),9);
-     setHoraConsulta(horarioAjustado)
+      if(fDate===tDate)
+      {
+        setText("hoy")
+        let horarioAjustado;
+      ///vaidacion de hora
+      let horaActual=fechaHoy.getHours();
+      let horaMinima;
+      if(horarios[0]==="08:00") horaMinima=8;
+      if(horarios[0]==="10:00") horaMinima=10;
+      if(horarios[0]==="12:00") horaMinima=12;
+
+      if(horaActual>horaMinima || horaActual===horaMinima)
+      { 
+        
+      horarioAjustado= horarios.slice((horaActual-horaMinima+1),9);
+      setHoraConsulta(horarioAjustado)
+      
+      }
+      else
+      setHoraConsulta(horarios)
+      
+      }
+      else
+  {    setText(fDate)
+      setHoraConsulta(horarios)
     
-    }
-    else
-    setHoraConsulta(horarios)
-     
-    }
-    else
-{    setText(fDate)
-    setHoraConsulta(horarios)
-  
   }
 
     setValue("queryDate", fDate);
@@ -246,13 +228,13 @@ let horariosOcupados=[],fechaCita=fDate;
 if(consultas)
   {  queriesList = consultas.map( p => {
 
-   const resultado={};
-   resultado ["Doctor"]=p.doctorName ;
-   resultado  ["fecha"]=p.date;
-   resultado ["hora"]=p.hour;
-   if(p.date===fechaCita)
-    horariosOcupados.push(p.hour);
-      return resultado; })
+    const resultado={};
+    resultado ["Doctor"]=p.doctorName ;
+    resultado  ["fecha"]=p.date;
+    resultado ["hora"]=p.hour;
+    if(p.date===fechaCita)
+      horariosOcupados.push(p.hour);
+        return resultado; })
 
   }
       

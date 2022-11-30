@@ -23,7 +23,7 @@ export function CardProfessional({
   parent
 }) 
     {
-      const handlePress = (parent === "HomePacient") ? ["HomePacient", { id: id}] : ["GenerateQuery", { nombre: first_name+ "  " + last_name , scheduleHours:scheduleHours, scheduleDays:scheduleDays }]
+      const handlePress = (parent === "HomePacient") ? ["HomePacient", { id: id}] : ["GenerateQuery", { id: id, nombre: first_name+ "  " + last_name , scheduleHours: scheduleHours, scheduleDays: scheduleDays }]
       // const handlePress = () => {
       //   (parent === "CarouselFavorite") ? 
       //   () => {navigation.navigate("CarouselFavorite", { id: id})}
