@@ -17,7 +17,10 @@ import { QueriesListPacient } from "../../pacient/QueriesListPacient";
 import { QueryDetailPacient } from "../../pacient/QueryDetailPacient";
 import { QueriesListProf } from "../../professional/QueriesListProf";
 import { QueryDetailProf } from "../../professional/QueryDetailProf";
+import { PagosUserBasic } from "../../Stripe/Pagos/PagosUserBasic";
 import { PagosUserPremium } from "../../Stripe/Pagos/PagosUserPremium";
+import { PagosProBasic } from "../../Stripe/Pagos/PagosProBasic";
+import { PagosProPremium } from "../../Stripe/Pagos/PagosProPremium";
 
 const Menu = createDrawerNavigator();
 
@@ -67,7 +70,10 @@ export function HamburgerMenu({ route }) {
           name="QueryDetailProf"
           component={QueryDetailProf}
         />
+        <Menu.Screen name="PagosUserBasic" component={PagosUserBasic} />
         <Menu.Screen name="PagosUserPremium" component={PagosUserPremium} />
+        <Menu.Screen name="PagosProBasic" component={PagosProBasic} />
+        <Menu.Screen name="PagosProPremium" component={PagosProPremium} />
         <Menu.Screen name="SignOut" component={SignOut} />
       </Menu.Navigator>
     </View>

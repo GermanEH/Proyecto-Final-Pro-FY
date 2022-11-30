@@ -1,6 +1,7 @@
 export const slidesPacient = [
   {
     id: '1',
+    user: 'pacient',
     title: 'Basico',
     characteristics: [
       'Generar consultas segun su tipo y modalidad.',
@@ -12,6 +13,7 @@ export const slidesPacient = [
   },
   {
     id: '2',
+    user: 'pacient',
     title: 'Premium',
     characteristics: [
       'Generar consultas segun su tipo y modalidad.',
@@ -30,6 +32,7 @@ export const slidesProfessional = [
   {
     id: '1',
     title: 'Basico',
+    user: 'professional',
     characteristics: [
       'Caracteristica profesional basico 1.',
       'Caracteristica profesional basico 2.',
@@ -41,6 +44,7 @@ export const slidesProfessional = [
   {
     id: '2',
     title: 'Premium',
+    user: 'professional',
     characteristics: [
       'Caracteristica profesional Premium 1.',
       'Caracteristica profesional Premium 2.',

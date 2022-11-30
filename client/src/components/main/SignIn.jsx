@@ -78,11 +78,9 @@ export function SignIn({ route, navigation }) {
     const onAuthStateChanged = (userL) =>{
         setUserLogged(userL);
         if(userL){
-            console.log(userL)
             const loggedUs = {displayName: userL["displayName"], email: userL["email"], emailVerified: userL["emailVerified"]}
-            console.log(loggedU)
             dispatch(loggedUser(loggedUs))
-            console.log(loggedU)}
+            }
         if (initializing) setInitializing(false);
     }
 
