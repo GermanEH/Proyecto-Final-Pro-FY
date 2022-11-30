@@ -45,7 +45,7 @@ export const getProfessionalById = createAsyncThunk('professionals/getProfession
         // return data.map(d => {
             return {
                 id: data._id,
-                image: d.image.url,
+                image: data.image.url,
                 first_name: data.first_name,
                 last_name: data.last_name,
                 email: data.email,

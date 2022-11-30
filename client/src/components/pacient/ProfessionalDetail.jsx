@@ -33,10 +33,10 @@ export function ProfessionalDetail({ navigation, route }) {
         <View 
         style={styles.imgContainer}
         >
-          {/* <Image
+          <Image
             style={styles.imageStyle}
-            source={`${professional?.image}`}
-          /> */}
+            source={{uri:professional.image}}
+          />
           <View
             style={{
               justifyContent: "center",
