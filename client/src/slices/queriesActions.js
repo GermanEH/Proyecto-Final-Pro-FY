@@ -10,12 +10,11 @@ export const getQueries = createAsyncThunk('queries/getQueries', async () => {
             if(a.queryDate > b.queryDate) return 1;
             return 0
         })
-       
         return data.map(q => {
             return {
                 id:q._id,
                 doctorName: q.professionals,
-               // pacientName: `${q.users.first_name} ${q.users.last_name}`,
+                pacientName: `${q.users.first_name} ${q.users.last_name}`,
                 description: q.motive,
                 created: q.createdDate,
                 date: q.queryDate, 
@@ -32,21 +31,18 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
     try {
         const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/queries/${id}`)
         // const response = await axios.get(`http://localhost:3001/api/queries/${id}`)
-        const data = response.data.data.map(q => {
+        const data = response.data.data
                     return {
-                        id:q._id,
-                        doctorName: q.professionals,
-                        // pacientName: `${q.users.first_name} ${q.users.last_name}`,
-                        description: q.motive,
-                        created: q.createdDate,
-                        date: q.queryDate, 
-                        hour: queryHour,
-                        state: q.state,
+                        id:data._id,
+                        doctorName: data.professionals,
+                        pacientName: `${data.users.first_name} ${data.users.last_name}`,
+                        description: data.motive,
+                        created: data.createdDate,
+                        date: data.queryDate, 
+                        hour: data.queryHour,
+                        state: data.state,
                         // isExpanded: false,
                     }
-            }
-        )
-        return data[0]
     } catch (error) {
         return error.message
     }        
