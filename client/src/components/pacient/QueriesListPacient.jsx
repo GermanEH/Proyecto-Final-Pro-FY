@@ -26,7 +26,6 @@ export function QueriesListPacient({ navigation }) {
   // const professionals = useSelector(
   //   (state) => state.professionals.professionals
   // );
-  console.log(queries);
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -74,7 +73,14 @@ export function QueriesListPacient({ navigation }) {
     // },[item.item.isExpanded])
     return (
       <View style={{}}>
-        <View style={{ padding: 10, flexDirection: "row" }}>
+        <View style={{ padding: 10, flexDirection: "row", backgroundColor:
+                    (item.item.state[0] === "rejected")
+                    ? "red"
+                    : (item.item.state[0] === "resolved")
+                    ? "blue"
+                    : (item.item.state[0] === "unresolved")
+                    ? "yellow"
+                    : "green"}}>         
           <TouchableOpacity
             style={[styles.item, styles.btnQueries, styles.textQueries]}
             onPress={item.onPress}
@@ -147,15 +153,6 @@ export function QueriesListPacient({ navigation }) {
                 onPress={() =>
                   navigation.navigate("QueryDetailPacient", { id: `${item.id}` })
                 }
-                style={[
-                  item.state[0] === "rejected"
-                    ? styles.rejected
-                    : item.state[0] === "resolved"
-                    ? styles.resolved
-                    : item.state[0] === "unresolved"
-                    ? styles.unresolved
-                    : styles.confirmed,
-                ]}
                 // onClickFunction={()=>{
                 //     upDateLayout(key)
                 //     }
@@ -193,35 +190,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
   },
-  content: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    // backgroundColor:'#fff'
-  },
+  // content: {
+  //   paddingLeft: 10,
+  //   paddingRight: 10,
+  //   // backgroundColor:'#fff'
+  // },
   text: {
     fontSize: 16,
     padding: 10,
   },
-  separator: {
-    height: 0.5,
-    backgroundColor: "#c8c8c8",
-    width: "100%",
-  },
-  rejected: {
-    backgroundColor: "red",
-  },
-  resolved: {
-    backgroundColor: "blue",
-  },
-  unresolved: {
-    backgroundColor: "yellow",
-  },
-  confirmed: {
-    backgroundColor: "green",
-  },
+  // separator: {
+  //   height: 0.5,
+  //   backgroundColor: "#c8c8c8",
+  //   width: "100%",
+  // },
   btnQueries: {
-    width: 200,
-    height: 50,
+    width: "100%",
+    height: 100,
     justifyContent: "center",
     borderRadius: theme.borderRadius.borderRadiusBotton,
   },
