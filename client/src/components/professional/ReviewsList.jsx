@@ -25,8 +25,7 @@ const Respuesta=()=> {
 }
 
   return (
-    <View style={{ width: 350,height: 430}}>
-      <Text >        Listado de Reviews</Text>
+    <View style={{ width: 350,height: 430, marginTop: 20}}>
       <View>
          <ScrollView horizontal={true}>
 
@@ -41,7 +40,7 @@ const Respuesta=()=> {
                 height:20,
                 borderColor: "grey",
                  }}
-                placeholder="Responder Reviews"
+                placeholder="Responder"
                 onChangeText={value=>setRespuestaReview(value)}
               />
       </View>
