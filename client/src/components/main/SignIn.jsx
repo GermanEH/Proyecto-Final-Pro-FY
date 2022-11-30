@@ -54,13 +54,13 @@ export function SignIn({ route, navigation }) {
         if (
           user &&
           user.emailVerified === true &&
-          route.params.usertype === "pacient"
+          route.params.usertype === "Pacient"
         ) {
           navigation.navigate("HamburguerMenu", { usertype: "Pacient" });
         } else if (
           user &&
           user.emailVerified === true &&
-          route.params.usertype === "professional"
+          route.params.usertype === "Professional"
         ) {
           navigation.navigate("HamburguerMenu", { usertype: "Professional" });
         }
