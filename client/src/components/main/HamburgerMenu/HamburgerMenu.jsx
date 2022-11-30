@@ -15,8 +15,8 @@ import { ProfessionalDetail } from "../../pacient/ProfessionalDetail";
 import { GenerateQuery } from "../../pacient/GenerateQuery";
 import { QueriesListPacient } from "../../pacient/QueriesListPacient";
 import { QueryDetailPacient } from "../../pacient/QueryDetailPacient";
-import { QueriesListProfessional } from "../../professional/QueriesListProf";
-import { QueryDetailProfessional } from "../../professional/QueryDetailProf";
+import { QueriesListProf } from "../../professional/QueriesListProf";
+import { QueryDetailProf } from "../../professional/QueryDetailProf";
 import { PagosUserPremium } from "../../Stripe/Pagos/PagosUserPremium";
 
 const Menu = createDrawerNavigator();
@@ -42,6 +42,7 @@ export function HamburgerMenu({ route }) {
         <Menu.Screen name="HomeProfessional" component={HomeProfessional} />
         <Menu.Screen name="Notifications" component={Notifications} />
         <Menu.Screen name="FrequentQuestions" component={FrequentQuestions} />
+       
         <Menu.Screen name="Settings" component={Settings} />
         <Menu.Screen
           name="Loading"
@@ -59,12 +60,12 @@ export function HamburgerMenu({ route }) {
         <Menu.Screen name="QueriesListPacient" component={QueriesListPacient} />
         <Menu.Screen name="QueryDetailPacient" component={QueryDetailPacient} />
         <Menu.Screen
-          name="QueriesListProfessional"
-          component={QueriesListProfessional}
+          name="QueriesListProf"
+          component={QueriesListProf}
         />
         <Menu.Screen
-          name="QueryDetailProfessional"
-          component={QueryDetailProfessional}
+          name="QueryDetailProf"
+          component={QueryDetailProf}
         />
         <Menu.Screen name="PagosUserPremium" component={PagosUserPremium} />
         <Menu.Screen name="SignOut" component={SignOut} />

@@ -24,7 +24,7 @@ export function CardPacient({ navigation, query }) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("QueriesDetail", {
+                navigation.navigate("QueryDetail", {
                   id: query.id,
                 });
               }}

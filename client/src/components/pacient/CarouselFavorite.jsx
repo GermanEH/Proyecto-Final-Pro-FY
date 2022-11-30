@@ -21,7 +21,7 @@ export function CarouselFavorite({ navigation }) {
           <Button
             onPress={() =>
               navigation.navigate("ProfessionalsList", {
-                parent: "HomePacient",
+               /*  parent: "HomePacient", */
               })
             }
             title="Elegir profesionales de confianza"

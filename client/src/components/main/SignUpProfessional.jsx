@@ -14,15 +14,17 @@ import { postProfessional } from "../../slices/professionalsActions";
 import { useForm, Controller } from "react-hook-form";
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   sendEmailVerification,
   updateProfile,
-  getAuth
+  
 } from "firebase/auth";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
 import Logo from "../../assets/logo.png";
 import { getSpecialties } from "../../slices/professionalsActions";
 import { SelectList } from "react-native-dropdown-select-list";
+/* import { auth } from "../../../firebase-config.js"; */
 import { LoadingImage } from "../professional/LoadingImage";
 import theme from "../../theme";
 const EMAIL_REGEX =
@@ -61,10 +63,11 @@ export function SignUpProfessional({ navigation }) {
     "Miercoles a Domingo",
     
   ];
+  const auth = getAuth();
   const modalidad = ["presential", "remote"];
   const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];
 
-  const auth = getAuth()
+
 
   async function onHandleSubmit(data) {
     try {
@@ -252,6 +255,9 @@ export function SignUpProfessional({ navigation }) {
                   data={modalidad}
                   placeholder="Modalidad"
                   setSelected={(value) => setValue("modality", value)}
+                  rules ={{
+                    required : "Modalidad es requerida"
+                  }}
                 />
               </View>
               <View style={{ paddingVertical: 10 }}>
@@ -259,12 +265,18 @@ export function SignUpProfessional({ navigation }) {
                   data={turnos}
                   placeholder="Turnos"
                   setSelected={(value) => setValue("schedule", value)}
+                  rules ={{
+                    required : "Turnos es requerido"
+                  }}
                 />
               </View>
               <SelectList
                 data={specialties.map((m) => m.name)}
                 placeholder="Especialidad"
                 setSelected={(value) => setValue("specialities", value)}
+                rules ={{
+                  required : "Especilidad es requerida"
+                }}
               />
             </View>
             <View style={{ width: "100%", height: 150, paddingVertical: 30 }}>

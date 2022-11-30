@@ -33,6 +33,7 @@ export function CardProfessional({
       //   }
       //   }
 
+console.log(id,first_name,last_name,country,scheduleDays,scheduleHours)
   return (
     <SafeAreaView>
       <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}>
@@ -95,12 +96,12 @@ export function CardProfessional({
                   });
                 }}
                 style={styles.btn}
-              >
+              />
                 <Text style={{ color: theme.colors.secondaryText }}>
                   Ver más {">"}
                 </Text>
                 
-              </TouchableOpacity>
+             
             {/* <ButtonDating
                 color={theme.colors.secondaryText}
                 text={"Select"}
@@ -112,7 +113,7 @@ export function CardProfessional({
         <View style={{ marginLeft: 10, justifyContent: "center" }}>
         </View>
       </View>
-      </TouchableOpacity>
+     </TouchableOpacity>
     </SafeAreaView>
   );
 }

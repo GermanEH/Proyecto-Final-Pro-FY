@@ -29,6 +29,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+          
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
           <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
           <Stack.Screen name="OnBoard" component={OnBoard} options={{ headerShown: false }} />

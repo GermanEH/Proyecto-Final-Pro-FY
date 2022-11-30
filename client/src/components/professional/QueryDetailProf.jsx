@@ -9,7 +9,7 @@ import {
 import theme from "../../theme";
 import { ButtonDating, ButtonGreen, ButtonRed } from "../shared/Button";
 
-export function QueryDetailProfessional() {
+export function QueryDetailProf() {
   return (
     <View>
       <ScrollView>

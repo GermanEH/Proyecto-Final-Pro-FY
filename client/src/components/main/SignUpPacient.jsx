@@ -195,6 +195,7 @@ export function SignUpPacient({ navigation }) {
             name="email"
             control={control}
             rules={{
+              required:"El correo electronico es requerido",
               pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
             }}
           />

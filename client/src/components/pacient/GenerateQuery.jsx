@@ -98,7 +98,7 @@ export function GenerateQuery({ navigation , route }) {
 if(scheduleHours){
   let horActual=fechaActual.getHours();
   
- if(scheduleHours==="08:00 - 18:00")
+   if(scheduleHours==="08:00 - 18:00")
       horarios=(horarioUno)
     if(scheduleHours==="10:00 - 20:00")
       horarios=(horarioDos)
@@ -107,9 +107,7 @@ if(scheduleHours){
 
 }
    
-
-
-    if(scheduleDays){
+if(scheduleDays){
 
      let diaSemana=fechaActual.getDay()
      let limiteInferior,limiteSuperior,sumaDias;
@@ -153,50 +151,13 @@ if(scheduleHours){
         fechaFinal.setDate(fechaPrueb)
         
       }
-
-      
-       
-
     }
-    if (scheduleDays === "Martes - Sabado") {
-      limiteInferior = 2;
-      limiteSuperior = 6;
-    }
-    if (scheduleDays === "jueves- lunes") {
-      limiteInferior = 3;
-      limiteSuperior = 7;
-    }
-
-    if (diaSemana > limiteSuperior || diaSemana < limiteInferior) {
-
-      // if(limiteInferior===4)
-      // {
-
-      //      let fechaPrueb= fechaActual.getDate()+(5)
-      //       fechaFinal.setDate(fechaPrueb)
-
-      // }
-      // else{
-      Alert.alert("Este Profesional no esta Disponible esta Semana")
-      navigation.navigate("ProfessionalsList", { name: "ProfessionalsList", })
-      // }
-
-    }
-    else {
-      let fechaPrueb = fechaActual.getDate() + (limiteSuperior - diaSemana)
-      fechaFinal.setDate(fechaPrueb)
-
-    }
-
-
-
-  }
-
-
 
 
   if (nombre)
     setValue("professionals", nombre)
+
+
 
   const onSubmit = (data) => {
 
@@ -340,10 +301,10 @@ setHoraConsulta(horarioN)
 
                 />
               </View>
-            </>
+                          </>
           )}
         />
-
+ </View>
 
         <View style={{ paddingVertical: 10 }}>
           {/* <Text style={styles.text}>Modalidad de consulta:</Text> */}
@@ -459,6 +420,7 @@ setHoraConsulta(horarioN)
 
         </View>
       </View>
+       
     </ScrollView>
   );
 }

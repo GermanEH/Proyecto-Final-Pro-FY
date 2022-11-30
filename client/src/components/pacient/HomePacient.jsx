@@ -5,50 +5,39 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  
   SafeAreaView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
 import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
-import { getProfessionalById } from "../../slices/professionalsActions";
-import { handleFavourite } from "../../slices/professionals";
 
-export function HomePacient({ navigation, route }) {
-  // const auth = getAuth();
-  // const user = auth.currentUser;
-  const logged = useSelector((state) => state.pacients.logged);
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     // The user object has basic properties such as display name, email, etc.
-  //     // displayName = user.displayName;
-  //     const email = user.email;
-  //     const photoURL = user.photoURL;
-  //     const emailVerified = user.emailVerified;
-  //     // The user's ID, unique to the Firebase project. Do NOT use
-  //     // this value to authenticate with your backend server, if
-  //     // you have one. Use User.getToken() instead.
-  //     const uid = user.uid;
-  //   }
-  // }, []);
-
+export function HomePacient({ navigation }) {
+  const payments = useSelector((state) => state.queries.payments);
+  const pacients = useSelector((state) => state.pacients);
+  const auth = getAuth();
+  const user = auth.currentUser;
   useEffect(() => {
-    if (route.params !== undefined) {
-      dispatch(getProfessionalById(route.params.id)).then((professional) =>
-        dispatch(handleFavourite(professional.payload))
-      );
+    if (user !== null) {
+      // The user object has basic properties such as display name, email, etc.
+      // displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+      const uid = user.uid;
     }
   }, []);
-
   return (
-    <SafeAreaView>
-      {logged === null ? (
+    <View>
+      {user === null ? (
         <Loading />
       ) : (
         <ScrollView
@@ -67,7 +56,7 @@ export function HomePacient({ navigation, route }) {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.textName}>{logged?.displayName}</Text>
+            <Text style={styles.textName}>{user.displayName}</Text>
             <Text style={styles.text}>
               Ya eres parte de la comunidad PRO-FY, estás listo para conectarte
               con profesionales de la medicina.
@@ -76,10 +65,10 @@ export function HomePacient({ navigation, route }) {
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
             <Text style={styles.textFavorite}>
-              Tus profesionales de confianza:
+              Tus profesionales favoritos:
             </Text>
             <View style={{ paddingBottom: 20 }}>
-              <CarouselFavorite navigation={navigation} />
+              <CarouselFavorite navigation={navigation}/>
             </View>
             <View style={{ paddingBottom: 20 }}>
               <Carousel role="pacient" navigation={navigation} />
@@ -87,7 +76,7 @@ export function HomePacient({ navigation, route }) {
           </View>
         </ScrollView>
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -7,10 +7,8 @@ module.exports = ({ config }) => ({
       "package": "com.proyecto_final_pro_fy",
       "versionCode": 1
     },
- /*    "ios": {
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.henry.profy"
-    }, */
+
+
     "plugins": ["@react-native-google-signin/google-signin"],
     "extra": {
       "eas": {
