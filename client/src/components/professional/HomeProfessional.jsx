@@ -48,7 +48,7 @@ export function HomeProfessional({ navigation }) {
   }, [])
 
   useEffect(() => {
-  /*   dispatch(getQueries()); */
+    dispatch(getQueries());
   }, []);
 
   return (
