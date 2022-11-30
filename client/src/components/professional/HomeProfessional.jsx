@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
 import { getQueries } from "../../slices/queriesActions";
 import { getAuth } from "firebase/auth";
-
+import {ReviewsList} from "./ReviewsList"
 
 
 export function HomeProfessional({ navigation }) {
@@ -132,8 +132,8 @@ export function HomeProfessional({ navigation }) {
               Consultas de los Pacientes:
             </Text>
           </View>
-          
-          <View style={styles.containerComments}>
+          <ReviewsList/>
+          {/* <View style={styles.containerComments}>
             <ScrollView>
               <View style={styles.comments}>
                 <Text>COMENTARIOS</Text>
@@ -165,7 +165,7 @@ export function HomeProfessional({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+          </View> */}
         </View>
         <View style={styles.containerCarousel}>
           <Carousel navigation={navigation}/>
