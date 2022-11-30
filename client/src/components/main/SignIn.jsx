@@ -56,13 +56,13 @@ export function SignIn({ route, navigation }) {
           user.emailVerified === true &&
           route.params.usertype === "pacient"
         ) {
-          navigation.navigate("HamburguerMenu", { usertype: "pacient" });
+          navigation.navigate("HamburguerMenu", { usertype: "Pacient" });
         } else if (
           user &&
           user.emailVerified === true &&
           route.params.usertype === "professional"
         ) {
-          navigation.navigate("HamburguerMenu", { usertype: "professional" });
+          navigation.navigate("HamburguerMenu", { usertype: "Professional" });
         }
       })
       .catch((error) => {
@@ -104,9 +104,9 @@ export function SignIn({ route, navigation }) {
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
         
-        route.params.usertype === "pacient" 
-            ? navigation.navigate("HamburguerMenu", { usertype: "pacient" }) 
-            : navigation.navigate("HamburguerMenu", { usertype: "professional" })
+        route.params.usertype === "Pacient" 
+            ? navigation.navigate("HamburguerMenu", { usertype: "Pacient" }) 
+            : navigation.navigate("HamburguerMenu", { usertype: "Professional" })
     }
   
   // useEffect(()=>{
@@ -141,7 +141,6 @@ export function SignIn({ route, navigation }) {
   //       // ...
   //     });
   // };
-console.log(route)
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
     {/* {(!userLogged) ? */}
@@ -179,7 +178,7 @@ console.log(route)
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(
-               ( route.params.usertype === "pacient") ? "SignUpPacient" : "SignUpProfessional"
+               ( route.params.usertype === "Pacient") ? "SignUpPacient" : "SignUpProfessional"
               )
             }
           >

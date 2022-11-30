@@ -28,7 +28,7 @@ export function HamburgerMenu({ route }) {
   return (
     <View style={styles.container}>
       <Menu.Navigator
-        initialRouteName="HomePacient"
+        initialRouteName={`Home${route.params.usertype}`}
         drawerContent={(props) => (
           <MenuComponent
             {...props}
