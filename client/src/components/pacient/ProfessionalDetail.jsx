@@ -7,7 +7,7 @@ import { Carousel } from '../Carousel/Carousel'
 import { handleFavourite } from '../../slices/professionals'
 import { getProfessionalById } from "../../slices/professionalsActions";
 import { getReviews } from '../../slices/reviewsActions'
-import { Review } from './Review'
+import { CardReviews } from '../professional/CardReviews'
 import { FontAwesome } from "@expo/vector-icons"; 
 
 export function ProfessionalDetail({ navigation, route }) {
@@ -80,7 +80,7 @@ export function ProfessionalDetail({ navigation, route }) {
         </View>
 
         <ScrollView>
-          {reviews?.map((r, i) => <Review review={r} key={i}/>)}
+          {reviews?.map((r, i) => <CardReviews review={r} key={i}/>)}
         </ScrollView>
         <ScrollView>
           <View 
