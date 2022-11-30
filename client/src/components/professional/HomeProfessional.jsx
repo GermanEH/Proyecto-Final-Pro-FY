@@ -166,26 +166,9 @@ export function HomeProfessional({ navigation }) {
               </View>
             </View>
           </View>
-          <View
-            style={{ textAlign: "center", width: 200, paddingBottom: 50 }}
-          >
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("DatingStatuses", {
-                  name: "DatingStatuses",
-                })
-              }
-              style={styles.btn}
-            >
-              
-              <Text style={{ textAlign: "center", color: "white" }}>
-                Estado de Consultas
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
         <View style={styles.containerCarousel}>
-          <Carousel />
+          <Carousel navigation={navigation}/>
         </View>
       </ScrollView>
     </SafeAreaView>

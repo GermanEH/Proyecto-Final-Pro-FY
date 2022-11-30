@@ -20,8 +20,7 @@ export function QueriesListProf() {
       <Text style={{alignText:"center", fontSize:"30", color:"grey"}}>Listado de consultas</Text>
       <View>
         {queries?.map((p, i) => <TouchableOpacity key={i} style={{margin:"20", backgroundColor:"grey", borderRadius:"10", width:"30", height:"20", }}>
-          <Text>Hola</Text>
-          
+          <Text>{p.name}</Text>
         </TouchableOpacity>)}
       </View>
     </View>
