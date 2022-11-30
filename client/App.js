@@ -33,8 +33,8 @@ export default function App() {
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
           <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
           <Stack.Screen name="OnBoard" component={OnBoard} options={{ headerShown: false }} />
-          <Stack.Screen name="SignIn" component={SignIn}  />
-          <Stack.Screen name="SignUpPacient" component={SignUpPacient} />
+          <Stack.Screen name="SignIn" component={SignIn} options={headerOptions} />
+          <Stack.Screen name="SignUpPacient" component={SignUpPacient} options={headerOptions}/>
           <Stack.Screen name="SignUpProfessional" component={SignUpProfessional} options={headerOptions} />
           <Stack.Screen name="HamburguerMenu" component={HamburgerMenu} options={{ headerShown: false }} />
         </Stack.Navigator>
