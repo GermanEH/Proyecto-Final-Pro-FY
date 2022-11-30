@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { CardProfessional } from"../pacient/CardProfessional";
+import { CardPacient } from"./CardPacient";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -67,7 +67,7 @@ export function HomeProfessional({ navigation }) {
               paddingLeft: 10,
             }}
           >
-             {user.displayName}
+              {user.displayName}
           </Text>
           <Text
             style={{
@@ -80,7 +80,7 @@ export function HomeProfessional({ navigation }) {
           <View>
             {todayQueries?.map((p, i) =>
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
+                <CardPacient navigation={navigation} query={p} />
               </View>)}
           </View>
           <View>
@@ -94,11 +94,11 @@ export function HomeProfessional({ navigation }) {
             </Text>
             {tomorrowQueries?.map((p, i) =>
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
+                <CardPacient navigation={navigation} query={p} />
               </View>)}
             {tomorrowAfterQueries?.map((p, i) =>
               <View key={i} style={{ paddingVertical: 10 }}>
-                <CardProfessional navigation={navigation} query={p} />
+                <CardPacient navigation={navigation} query={p} />
               </View>)}
           </View>
           <View
@@ -129,43 +129,10 @@ export function HomeProfessional({ navigation }) {
           </View>
           <View style={{ paddingTop: 15 }}>
             <Text style={{ fontSize: theme.fontSize.secondaryText }}>
-              Consultas de los Pacientes:
+              Reseñas de los pacientes:
             </Text>
           </View>
-          <ReviewsList/>
-          {/* <View style={styles.containerComments}>
-            <ScrollView>
-              <View style={styles.comments}>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-                <Text>COMENTARIOS</Text>
-              </View>
-              
-            </ScrollView>
-            <View
-              style={{ flexDirection: "row", paddingTop: 15, margin: 15 }}
-            >
-              <TextInput
-                style={styles.input}
-                placeholder="Responder Reviews"
-              />
-              <View style={{ justifyContent: "space-around" }}>
-                <TouchableOpacity style={styles.btn}>
-                  <Text style={{ textAlign: "center", color: "white" }}>
-                    Responder
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View> */}
+            <ReviewsList/>
         </View>
         <View style={styles.containerCarousel}>
           <Carousel navigation={navigation}/>

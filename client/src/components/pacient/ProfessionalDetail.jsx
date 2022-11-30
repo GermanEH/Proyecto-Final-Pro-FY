@@ -7,7 +7,7 @@ import { Carousel } from '../Carousel/Carousel'
 import { handleFavourite } from '../../slices/professionals'
 import { getProfessionalById } from "../../slices/professionalsActions";
 import { getReviews } from '../../slices/reviewsActions'
-import { Review } from './Review'
+import { ReviewsList } from '../professional/ReviewsList'
 import { FontAwesome } from "@expo/vector-icons"; 
 
 export function ProfessionalDetail({ navigation, route }) {
@@ -22,20 +22,20 @@ export function ProfessionalDetail({ navigation, route }) {
   useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
   useEffect(() => {dispatch(getReviews()); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
-  console.log(route.params.id)
-  console.log(professional)
+
   return ( 
-    <ScrollView>
-      <View 
-      style={styles.container}
-      >
-        {(Object.keys(professional).length > 0) ? (
+      <View>
+    {(Object.keys(professional).length > 0) ? (
+          <ScrollView>
+            <View 
+            style={styles.container}
+            >
         <View 
         style={styles.imgContainer}
         >
           <Image
             style={styles.imageStyle}
-            source={require("../../assets/foto.jpg")}
+            source={{uri:professional.image}}
           />
           <View
             style={{
@@ -47,6 +47,7 @@ export function ProfessionalDetail({ navigation, route }) {
           >
             <Text>{professional?.first_name} {professional?.last_name}</Text>
             <Text>Especialidad: {professional?.specialities}</Text>
+            <Text>Matrícula: {professional?.professionalId}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>Tipos de Consulta: {professional?.modality}</Text>
             </View>
@@ -76,33 +77,32 @@ export function ProfessionalDetail({ navigation, route }) {
         <View 
         style={{ marginTop: 30 }}
         >
-          <Text>Comentarios:</Text>
+          <Text>Reseñas recibidas:</Text>
         </View>
-
-        <ScrollView>
-          {reviews?.map((r, i) => <Review review={r} key={i}/>)}
-        </ScrollView>
-        <ScrollView>
+        <View>
+            <ReviewsList/>
+        </View>
           <View 
           style={styles.containerComments}
           >
-              <Carousel />
+              <Carousel navigation={navigation}/>
           </View>
-          <View
+          {/* <View
             style={{
               fontSize: theme.fontSize.primaryText,
               paddingBottom: 10,
               paddingLeft: 10,
             }}
-          ></View>
+          ></View> */}
+        </View>
+        </View>
         </ScrollView>
-        </View>) : (
+        ) : (
             <View>
               <Text> Loading...</Text>
             </View>
           )}
-      </View>
-    </ScrollView>
+          </View>
   );
 }
 

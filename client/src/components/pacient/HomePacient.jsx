@@ -65,7 +65,7 @@ export function HomePacient({ navigation }) {
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
             <Text style={styles.textFavorite}>
-              Tus profesionales favoritos:
+              Tus profesionales de confianza:
             </Text>
             <View style={{ paddingBottom: 20 }}>
               <CarouselFavorite navigation={navigation}/>

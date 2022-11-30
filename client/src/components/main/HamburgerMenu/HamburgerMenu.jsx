@@ -17,6 +17,7 @@ import { QueriesListPacient } from "../../pacient/QueriesListPacient";
 import { QueryDetailPacient } from "../../pacient/QueryDetailPacient";
 import { QueriesListProf } from "../../professional/QueriesListProf";
 import { QueryDetailProf } from "../../professional/QueryDetailProf";
+import { CardPacient } from "../../professional/CardPacient";
 import { PagosUserBasic } from "../../Stripe/Pagos/PagosUserBasic";
 import { PagosUserPremium } from "../../Stripe/Pagos/PagosUserPremium";
 import { PagosProBasic } from "../../Stripe/Pagos/PagosProBasic";
@@ -42,7 +43,7 @@ export function HamburgerMenu({ route }) {
           component={HomePacient}
           options={{ title: "" }}
         />
-        <Menu.Screen name="HomeProfessional" component={HomeProfessional} />
+        <Menu.Screen name="HomeProfessional" component={HomeProfessional} options={{ title: "" }}/>
         <Menu.Screen name="Notifications" component={Notifications} />
         <Menu.Screen name="FrequentQuestions" component={FrequentQuestions} />
        
@@ -56,19 +57,27 @@ export function HamburgerMenu({ route }) {
         <Menu.Screen
           name="QueriesHistorialPacient"
           component={QueriesHistorialPacient}
+          options={{ title: "" }}
         />
-        <Menu.Screen name="GenerateQuery" component={GenerateQuery} />
-        <Menu.Screen name="ProfessionalsList" component={ProfessionalsList} />
-        <Menu.Screen name="ProfessionalDetail" component={ProfessionalDetail} />
-        <Menu.Screen name="QueriesListPacient" component={QueriesListPacient} />
-        <Menu.Screen name="QueryDetailPacient" component={QueryDetailPacient} />
+        <Menu.Screen name="GenerateQuery" component={GenerateQuery} options={{ title: "" }}/>
+        <Menu.Screen name="ProfessionalsList" component={ProfessionalsList} options={{ title: "" }}/>
+        <Menu.Screen name="ProfessionalDetail" component={ProfessionalDetail} options={{ title: "" }}/>
+        <Menu.Screen name="QueriesListPacient" component={QueriesListPacient} options={{ title: "" }}/>
+        <Menu.Screen name="QueryDetailPacient" component={QueryDetailPacient} options={{ title: "" }}/>
         <Menu.Screen
           name="QueriesListProf"
           component={QueriesListProf}
+          options={{ title: "" }}
         />
         <Menu.Screen
           name="QueryDetailProf"
           component={QueryDetailProf}
+          options={{ title: "" }}
+        />
+        <Menu.Screen
+          name="CardPacient"
+          component={CardPacient}
+          options={{ title: "" }}
         />
         <Menu.Screen name="PagosUserBasic" component={PagosUserBasic} />
         <Menu.Screen name="PagosUserPremium" component={PagosUserPremium} />

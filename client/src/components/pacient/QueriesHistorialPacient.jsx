@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: theme.borderRadius.borderRadiusBotton,
+    marginTop:100
   },
 
   selectContainer: {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   containerHistorial: {
     margin: 35,
-    width: "90%",
+    width: "80%",
     height: 300,
     backgroundColor: "white",
     shadowColor: "#000",

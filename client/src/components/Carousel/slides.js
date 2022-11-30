@@ -1,7 +1,7 @@
 export const slidesPacient = [
   {
     id: '1',
-    user: 'pacient',
+    user: 'Pacient',
     title: 'Basico',
     characteristics: [
       'Generar consultas segun su tipo y modalidad.',
@@ -13,7 +13,7 @@ export const slidesPacient = [
   },
   {
     id: '2',
-    user: 'pacient',
+    user: 'Pacient',
     title: 'Premium',
     characteristics: [
       'Generar consultas segun su tipo y modalidad.',
@@ -32,11 +32,11 @@ export const slidesProfessional = [
   {
     id: '1',
     title: 'Basico',
-    user: 'professional',
+    user: 'Professional',
     characteristics: [
-      'Caracteristica profesional basico 1.',
-      'Caracteristica profesional basico 2.',
-      'Caracteristica profesional basico 3.',
+      'Recibir consultas.',
+      'Sincronización automática con su agenda.',
+      'Elegir modalidad y disponibilidad horaria.',
     ],
     price: '$1',
     image: require('../../assets/logo.png'),
@@ -44,11 +44,13 @@ export const slidesProfessional = [
   {
     id: '2',
     title: 'Premium',
-    user: 'professional',
+    user: 'Professional',
     characteristics: [
-      'Caracteristica profesional Premium 1.',
-      'Caracteristica profesional Premium 2.',
-      'Caracteristica profesional Premium 3.',
+      'Recibir consultas.',
+      'Sincronización automática con su agenda.',
+      'Elegir modalidad y disponibilidad horaria.',
+      'Confirmar/cancelar consultas.',
+      'Responder reseñas'
     ],
     price: '$2',
     image: require('../../assets/logo.png'),
