@@ -96,11 +96,11 @@ console.log(id,first_name,last_name,country,scheduleDays,scheduleHours)
                   });
                 }}
                 style={styles.btn}
-              />
+              >
                 <Text style={{ color: theme.colors.secondaryText }}>
                   Ver más {">"}
                 </Text>
-                
+              </TouchableOpacity>
              
             {/* <ButtonDating
                 color={theme.colors.secondaryText}

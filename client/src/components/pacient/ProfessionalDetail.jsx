@@ -22,7 +22,8 @@ export function ProfessionalDetail({ navigation, route }) {
   useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
   useEffect(() => {dispatch(getReviews()); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
-
+  console.log(route.params.id)
+  console.log(professional)
   return ( 
     <ScrollView>
       <View 
@@ -45,7 +46,7 @@ export function ProfessionalDetail({ navigation, route }) {
             }}
           >
             <Text>{professional?.first_name} {professional?.last_name}</Text>
-            <Text>Especialidad: {professional?.specialities.name}</Text>
+            <Text>Especialidad: {professional?.specialities}</Text>
             <View style={{ flexDirection: "row" }}>
               <Text>Tipos de Consulta: {professional?.modality}</Text>
             </View>
