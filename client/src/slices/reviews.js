@@ -20,7 +20,7 @@ export const reviewsSlice = createSlice({
             (action) => action.type.startsWith("reviews/getReviews") && action.type.endsWith("/fulfilled"),
             (state, action) => {
                 state.status = 'succeeded'
-                state.pacients = action.payload
+                state.reviews = action.payload
             }
         )
         .addMatcher(
@@ -33,7 +33,7 @@ export const reviewsSlice = createSlice({
             (action) => action.type.startsWith("reviews/deleteReview") && action.type.endsWith("/fulfilled"),
             (state) => {
                 state.status = 'succeeded'
-                state.pacients = state.reviews.filter(p => p.id !== action.payload.id)
+                state.reviews = state.reviews.filter(p => p.id !== action.payload.id)
             }
         )
         .addMatcher(
