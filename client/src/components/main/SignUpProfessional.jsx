@@ -17,6 +17,7 @@ import {
   getAuth,
   sendEmailVerification,
   updateProfile,
+  
 } from "firebase/auth";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButtom from "../CustomButton/CustomButton";
@@ -59,22 +60,21 @@ export function SignUpProfessional({ navigation }) {
   const dias = [
     "Lunes a Viernes",
     "Martes a Sabado",
-    "Miercoles a lunes",
-    "Jueves a Martes",
-    "Viernes a jueves",
+    "Miercoles a Domingo",
+    
   ];
   const auth = getAuth();
   const modalidad = ["presential", "remote"];
   const turnos = ["8:00 a 18:00", "10:00 a 20:00", "12:00 a 22:00"];
+
+
+
   async function onHandleSubmit(data) {
-    console.log(data);
     try {
       const selectedSpecialty = specialties.filter(
         (i) => i.name === data.specialities
       );
       data.specialities = selectedSpecialty[0]._id;
-      console.log(selectedSpecialty[0]._id);
-
       dispatch(postProfessional(data));
       await createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
@@ -116,12 +116,12 @@ export function SignUpProfessional({ navigation }) {
   const specialties = useSelector((state) => state.professionals.specialties);
 
   const onSignUpPress = () => {
-    navigation.navigate("SignIn", {usertype:"professional"});
+    navigation.navigate("SignIn", {usertype: "professional"});
+
   };
   
 
   const pwd = watch("password"); // desde aca se accede para ver las coincidencias de las password !
-
   const { height } = useWindowDimensions();
   const dispatch = useDispatch();
   useEffect(() => {

@@ -5,13 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  
   SafeAreaView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useSelector } from "react-redux";
 import theme from "../../theme";
 import { Carousel } from "../Carousel/Carousel";
-import { Loading } from "../loading/Loading";
+import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
@@ -67,7 +68,7 @@ export function HomePacient({ navigation }) {
               Tus profesionales favoritos:
             </Text>
             <View style={{ paddingBottom: 20 }}>
-              <CarouselFavorite />
+              <CarouselFavorite navigation={navigation}/>
             </View>
             <View style={{ paddingBottom: 20 }}>
               <Carousel role="pacient" navigation={navigation} />

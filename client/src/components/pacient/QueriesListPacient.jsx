@@ -16,34 +16,7 @@ import { getQueries, deleteQuery } from "../../slices/queriesActions";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import theme from "../../theme";
 
-// const Consultas=[
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 1",
-//                     SubCAtegory:[
-//                             {id:1, val:'datos 1 Consulta 1'},
-//                             {id:2, val:'datos 2 Consulta 1'}
-//                     ]
-//                 },
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 2",
-//                     SubCAtegory:[
-//                             {id:3, val:'datos 1 Consulta 2'},
-//                             {id:4, val:'datos 2 Consulta 2'}
-//                     ]
-//                 },
-//                 {
-//                     isExpanded:false,
-//                     category_name:"Consulta 3",
-//                     SubCAtegory:[
-//                             {id:5, val:'datos 1 Consulta 3'},
-//                             {id:6, val:'datos 2 Consulta 3'}
-//                     ]
-//                 }
-//     ];
-
-export function ListaConsultas({ navigation }) {
+export function QueriesListPacient({ navigation }) {
   const [multiSelect, setMultiSelect] = useState(false);
   const [render, setRender] = useState(false);
 
@@ -258,4 +231,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-export default ListaConsultas;
+

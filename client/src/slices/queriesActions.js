@@ -10,14 +10,16 @@ export const getQueries = createAsyncThunk('queries/getQueries', async () => {
             if(a.queryDate > b.queryDate) return 1;
             return 0
         })
+       
         return data.map(q => {
             return {
                 id:q._id,
-                doctorName: q.professionals.last_name,
-                pacientName: `${q.users.first_name} ${q.users.last_name}`,
+                doctorName: q.professionals,
+               // pacientName: `${q.users.first_name} ${q.users.last_name}`,
                 description: q.motive,
                 created: q.createdDate,
                 date: q.queryDate, 
+                hour: q.queryHour,
                 state: q.state,
                 // isExpanded: false,
             }
@@ -33,11 +35,12 @@ export const getQueryById = createAsyncThunk('queries/getQueryById', async (id) 
         const data = response.data.data.map(q => {
                     return {
                         id:q._id,
-                        doctorName: q.professionals.last_name,
-                        pacientName: `${q.users.first_name} ${q.users.last_name}`,
+                        doctorName: q.professionals,
+                        // pacientName: `${q.users.first_name} ${q.users.last_name}`,
                         description: q.motive,
                         created: q.createdDate,
                         date: q.queryDate, 
+                        hour: queryHour,
                         state: q.state,
                         // isExpanded: false,
                     }

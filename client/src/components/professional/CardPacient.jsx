@@ -1,7 +1,7 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import theme from "../../theme";
 
-export function CardProfessional({ navigation, query }) {
+export function CardPacient({ navigation, query }) {
   
   return (
     <View style={styles.container}>
@@ -24,7 +24,7 @@ export function CardProfessional({ navigation, query }) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("QueriesDetail", {
+                navigation.navigate("QueryDetail", {
                   id: query.id,
                 });
               }}

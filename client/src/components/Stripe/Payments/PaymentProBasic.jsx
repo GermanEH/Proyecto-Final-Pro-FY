@@ -16,13 +16,13 @@ const PaymentProBasic = ({ navigation }) => {
   const stripe = useStripe();
   const { confirmPayment, loading } = useConfirmPayment();
   const [CardDetails, setCardDetails] = useState();
-
-  const suscribe = async () => {
   useEffect(() => {
-    if (user !== null) {
+  
       setEmail(user.email)
-    }
+    
   }, [])
+  const suscribe = async () => {
+  
 
     try {
       const response = await axios.post(`https://localhost:3001/api/professionals/payProfessionalsBasic`, email)

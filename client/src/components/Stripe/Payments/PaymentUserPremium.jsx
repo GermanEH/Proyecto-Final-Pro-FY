@@ -16,14 +16,18 @@ const PaymentUserPremium = ({ navigation }) => {
   const { confirmPayment, loading } = useConfirmPayment();
   const [CardDetails, setCardDetails] = useState();
 
+  useEffect(() => {
+     
+    setEmail(user.email)
+    console.log(email)
+  
+
+}, [])
+
   const suscribe = async () => {
-
-    useEffect(() => {
-      if (user !== null) {
-        setEmail(user.email)
-      }
-    }, [])
-
+    
+   
+   
     try {
       const response = await axios.post(`https://api-pro-fy-production.up.railway.app/api/users/payUserPremium`, email)
       const clientSecret = response.data.clientSecret;
@@ -66,7 +70,7 @@ const PaymentUserPremium = ({ navigation }) => {
         placeholders={{ number: "4242 4242 4242", }}
         CardStyle={styles.Card}
         style={styles.cardContainer}
-        onCardChange={value => setCardDetails(CardDetails)}
+        onCardChange={value => setCardDetails(value)}
       />
 
       <Button

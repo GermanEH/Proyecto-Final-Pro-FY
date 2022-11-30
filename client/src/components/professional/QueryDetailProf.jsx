@@ -7,9 +7,9 @@ import {
   TextInput,
 } from "react-native";
 import theme from "../../theme";
-import { ButtonGreen, ButtonRed } from "../shared/Button";
+import { ButtonDating, ButtonGreen, ButtonRed } from "../shared/Button";
 
-export function DatingStatusesBasic(props) {
+export function QueryDetailProf() {
   return (
     <View>
       <ScrollView>
@@ -25,11 +25,19 @@ export function DatingStatusesBasic(props) {
             </View>
             <View style={{ flexDirection: "row", padding: 10 }}>
               <Text>Estado:</Text>
+              <Text style={{ color: "red", padding: 10 }}>Cancelado</Text>
+            </View>
+            <View style={{ flexDirection: "row", padding: 10 }}>
+              <Text>Estado:</Text>
               <Text style={{ color: "blue", padding: 10 }}>Resuelta</Text>
             </View>
             <View style={{ flexDirection: "row", padding: 10 }}>
               <Text>Estado:</Text>
               <Text style={{ color: "#f0c325", padding: 10 }}>Pendiente</Text>
+            </View>
+            <View style={{ flexDirection: "row", padding: 10 }}>
+              <Text>Estado:</Text>
+              <Text style={{ color: "green", padding: 10 }}>Confirmado</Text>
             </View>
             <View style={styles.containerObservations}>
               <View style={styles.observations}>
@@ -71,11 +79,13 @@ export function DatingStatusesBasic(props) {
               </View>
             </View>
           </View>
-          <ButtonRed
+          <ButtonDating
+            backgroundColor={"red"}
             text={"Cancelar consulta"}
             color={theme.colors.secondaryText}
           />
-          <ButtonGreen
+          <ButtonDating
+            backgroundColor={"green"}
             text={"Confirmar consulta"}
             color={theme.colors.secondaryText}
           />

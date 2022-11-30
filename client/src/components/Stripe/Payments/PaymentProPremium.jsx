@@ -15,13 +15,13 @@ const PaymentProPremium = ({ navigation }) => {
   const stripe = useStripe();
   const { confirmPayment, loading } = useConfirmPayment();
   const [CardDetails, setCardDetails] = useState();
-
+  useEffect(() => {
+   
+      setEmail(user.email)
+    
+  }, [])
   const suscribe = async () => {
-    useEffect(() => {
-      if (user !== null) {
-        setEmail(user.email)
-      }
-    }, [])
+   
     try {
       const response = await axios.post(`https://api-pro-fy-production.up.railway.app/api/professionals/payProfessionalsPremium`, email)
       const clientSecret = response.data.clientSecret;
