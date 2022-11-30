@@ -11,7 +11,7 @@ import {
   UIManager,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { getProfessionals } from "../../slices/professionalsActions";
+// import { getProfessionals } from "../../slices/professionalsActions";
 import { getQueries, deleteQuery } from "../../slices/queriesActions";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import theme from "../../theme";
@@ -23,18 +23,18 @@ export function QueriesListPacient({ navigation }) {
   // const [LIstaConsulta,setLIstaConsulta]=useState(Consultas);
 
   const queries = useSelector((state) => state.queries.queries);
-  const professionals = useSelector(
-    (state) => state.professionals.professionals
-  );
+  // const professionals = useSelector(
+  //   (state) => state.professionals.professionals
+  // );
   console.log(queries);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (professionals.length > 0) dispatch(getQueries(professionals));
-  }, [professionals]);
-  useEffect(() => {
-    dispatch(getProfessionals());
-  }, []);
+  // useEffect(() => {
+  //   if (professionals.length > 0) dispatch(getQueries());
+  // }, [professionals]);
+  // useEffect(() => {
+  //   dispatch(getProfessionals());
+  // }, []);
   useEffect(() => {
     if (queries) setRender(true);
   }, [queries]);
@@ -80,7 +80,7 @@ export function QueriesListPacient({ navigation }) {
             onPress={item.onPress}
           >
             <Text style={styles.itemText}>
-              Consulta con el Dr. {item.item.doctorName}
+              Consulta con el Dr. {item.item.doctorName.last_name}
             </Text>
           </TouchableOpacity>
           <View style={{ padding: 8 }}>
@@ -145,7 +145,7 @@ export function QueriesListPacient({ navigation }) {
                 key={key}
                 item={item}
                 onPress={() =>
-                  navigation.navigate("QueriesDetail", { id: `${item.id}` })
+                  navigation.navigate("QueryDetailPacient", { id: `${item.id}` })
                 }
                 style={[
                   item.state[0] === "rejected"
