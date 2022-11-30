@@ -28,7 +28,7 @@ export const getProfessionals = createAsyncThunk('professionals/getProfessionals
                 scheduleHours:d.scheduleHours,
                 modality: d.modality,
                 specialities: d.specialities.name,
-                image: d.image
+                image: d.image.url
             }
         })
     } catch (error) {
@@ -40,7 +40,29 @@ export const getProfessionalById = createAsyncThunk('professionals/getProfession
     try {
         const response = await axios.get(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`) 
         // const response = await axios.get(`http://192.168.0.215:3001/api/professionals/${id}`) 
-        return response.data.data
+        const data = response.data.data
+        // return data.map(d => {
+            return {
+                id: data._id,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+                dni: data.dni,
+                professionalId: data.professionalId,
+                country: data.country,
+                state: data.state,
+                city: data.city,
+                zip: data.zip,
+                // professionalAdress: d.professionalAdress,
+                scheduleDays: data.scheduleDays,
+                scheduleHours: data.scheduleHours,
+                modality: data.modality,
+                specialities: data.specialities.name,
+                image: data.image.url
+            }
+        // }
+        // )
     } catch (error) {
         return error.message
     }        
@@ -59,8 +81,8 @@ export const getSpecialties = createAsyncThunk('professionals/getSpecialties', a
 
 export const postProfessional = createAsyncThunk('professionals/postProfessional', async (newProfessional) => {
     try {
-        // const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/professionals', newProfessional)   
-        const response = await axios.post('http://192.168.0.215:3001/api/professionals', newProfessional)   
+        const response = await axios.post('https://api-pro-fy-production.up.railway.app/api/professionals', newProfessional)   
+        // const response = await axios.post('http://192.168.0.215:3001/api/professionals', newProfessional)   
         return response.data.data
     } catch (error) {
         return error.message
@@ -69,8 +91,8 @@ export const postProfessional = createAsyncThunk('professionals/postProfessional
 
 export const putProfessional = createAsyncThunk('professionals/putProfessional', async (id, professional) => {
     try {
-        // const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`, professional) 
-        const response = await axios.put(`http://192.168.0.215:3001/api/professionals/${id}`, professional) 
+        const response = await axios.put(`https://api-pro-fy-production.up.railway.app/api/professionals/${id}`, professional) 
+        // const response = await axios.put(`http://192.168.0.215:3001/api/professionals/${id}`, professional) 
         return response.data.data
     } catch (error) {
         return error.message
@@ -79,8 +101,8 @@ export const putProfessional = createAsyncThunk('professionals/putProfessional',
 
 export const deleteProfessional = createAsyncThunk('professionals/deleteProfessional', async (professional) => {
     try {
-        // const response = await axios.delete('https://api-pro-fy-production.up.railway.app/api/professionals', professional) 
-        const response = await axios.delete('http://192.168.0.215:3001/api/professionals', professional) 
+        const response = await axios.delete('https://api-pro-fy-production.up.railway.app/api/professionals', professional) 
+        // const response = await axios.delete('http://192.168.0.215:3001/api/professionals', professional) 
         return response.data.data
     } catch (error) {
         return error.message
