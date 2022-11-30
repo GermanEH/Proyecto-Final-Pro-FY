@@ -52,6 +52,9 @@ const professionalsSlice = createSlice({
       } else {
         handleFavourites(state, payload)
       }
+    },
+    cleanProfessional: (state) => {
+      state.professional = {}
     }
   },
   extraReducers(builder) {
@@ -126,6 +129,6 @@ export const professional = (state) => state.professional
 export const professionalStatus = (state) => state.status
 export const professionalError = (state) => state.error
 
-export const { equalFilters, replaceFilters, setFiltered, filterProfessionals, handleFavourite } = professionalsSlice.actions
+export const { equalFilters, replaceFilters, setFiltered, filterProfessionals, handleFavourite, cleanProfessional } = professionalsSlice.actions
 
 export default professionalsSlice.reducer
