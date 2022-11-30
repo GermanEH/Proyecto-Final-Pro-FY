@@ -41,19 +41,19 @@ export function QueryDetailProf() {
             </View>
             <View style={styles.containerObservations}>
               <View style={styles.observations}>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
-                <Text>Observasiones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
+                <Text>Observaciones</Text>
                 <View
                   style={{
                     flexDirection: "column",

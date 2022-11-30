@@ -55,7 +55,7 @@ const PaymentUserPremium = ({ navigation }) => {
         Alert.alert(`error en el pago ${error.message}`)
       } else if (paymentIntent) {
 
-        Alert.alert(`Pago completado su consulta ha sido agendada`)
+        Alert.alert(`Pago completado ahora formas parte de Premium!`)
       }
     }
     catch (error) {
