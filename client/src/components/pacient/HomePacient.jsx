@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux'
 import {
   View,
   Text,
@@ -16,8 +17,10 @@ import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
+import { handleFavourites} from "../../slices/professionals"
 
 export function HomePacient({ navigation }) {
+  const [render, setRender] = useState(false)
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
   const auth = getAuth();
@@ -35,6 +38,11 @@ export function HomePacient({ navigation }) {
       const uid = user.uid;
     }
   }, []);
+  // const dispatch = useDispatch()
+  // useEffect(() => {if(Object.keys(route.params.professional).length > 0) dispatch(handleFavourites(route.params.professional)); setRender(true)}, [])
+  // useEffect(() => {if(render) setRender(false)}, [render])
+  
+
   return (
     <View>
       {user === null ? (
