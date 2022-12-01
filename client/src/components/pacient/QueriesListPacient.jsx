@@ -77,9 +77,10 @@ export function QueriesListPacient({ navigation }) {
         <View
           style={{
             borderRadius: 10,
+            width: "80%",
             margin: 10,
             padding: 10,
-            color:"white",
+            color: "white",
             flexDirection: "row",
             backgroundColor:
               item.item.state[0] === "rejected"
@@ -99,20 +100,22 @@ export function QueriesListPacient({ navigation }) {
               Consulta con el Dr. {item.item.doctorName.last_name}
             </Text>
           </TouchableOpacity>
-          <View style={{ padding: 8 }}>
+          <View style={{ padding: 20 }}>
             <TouchableOpacity
-              style={{ backgroundColor: "red" }}
+              style={{ backgroundColor: "red", borderRadius: 10 }}
               onPress={() => dispatch(deleteQuery(item.item.id))}
             >
-              <Text
-                style={{
-                  textAlign: "center",
-                  flexDirection: "column",
-                  color: "white",
-                }}
-              >
-                X
-              </Text>
+              <View style={{ width: 30, height: 30 }}>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    flexDirection: "column",
+                    color: "white",
+                  }}
+                >
+                  X
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -201,7 +204,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 16,
     fontWeight: "500",
-    color:"white"
+    color: "white",
   },
   // content: {
   //   paddingLeft: 10,
