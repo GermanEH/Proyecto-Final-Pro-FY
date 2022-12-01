@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native'
@@ -6,40 +7,56 @@ import { CardReviews } from './CardReviews'
 // import { theme } from '../../../theme'
 
 export function ReviewsList() {
+  const reviews = useSelector((state) => state.reviews);
 
-  const reviews = useSelector(state => state.reviews.reviews)
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {dispatch(getReviews())}, [])
-
-  const [respuestaReview, setRespuestaReview] = useState("")
-
-const Respuesta=()=> {
-  setRespuestaReview("")
+  useEffect(() => {
+    dispatch(getReviews());
+  }, []);
+  const [respuestaReview, setRespuestaReview] = useState("");
+  const Respuesta = () => {
+    setRespuestaReview("");
     return respuestaReview;
-}
+  };
 
   return (
-    <View style={{ width: 350,height: 430, marginTop: 20}}>
-      <View>
+    <View
+      style={{
+        width: 350,
+        height: 300,
+        marginTop: 20,
+        backgroundColor: "white",
+      }}
+    >
+      <View style={{ paddingBottom: 20 }}>
         <ScrollView horizontal={true}>
-
-            {
-                reviews.map( (p,i)=> <CardReviews id={i+1 } review={p.review} CambioRespuesta={Respuesta} key={i} /> )
-        }
-        </ScrollView>
-        <TextInput
-                value={respuestaReview}
-                style={{
-                width: "70%",
-                height:20,
-                borderColor: "grey",
-                }}
-                placeholder="Responder"
-                onChangeText={value=>setRespuestaReview(value)}
+          <View style={{ flexDirection: "row" }}>
+            {reviews.reviews.map((p, i) => (
+              <CardReviews
+                id={i + 1}
+                review={p.review}
+                CambioRespuesta={Respuesta}
+                key={i}
               />
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+      <View style={{ paddingTop: 20 }}>
+        <TextInput
+          value={respuestaReview}
+          style={{
+            width: "70%",
+            height: 20,
+            backgroundColor: "#BCBCBC",
+            height: 40,
+            borderRadius: 10,
+          }}
+          placeholder="Coloque su respuesta aqui"
+          onChangeText={(value) => setRespuestaReview(value)}
+        />
       </View>
     </View>
-  )
+  );
 }

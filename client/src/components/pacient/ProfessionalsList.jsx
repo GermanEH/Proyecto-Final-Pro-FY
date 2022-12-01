@@ -109,24 +109,24 @@ export function ProfessionalsList({ navigation, route }) {
               }}
               data={countries}
               save="value"
-              // onSelect={() => alert(selected)}
-              // label="Categories"
             />
           </View>
-          {filtered.length > 0 && specialties.length > 0 ? (
-            filtered.map((p, index) => {
-              return (
-                <CardProfessional
-                  professional={p}
-                  key={index}
-                  parent={route.params.parent}
-                  navigation={navigation}
-                />
-              );
-            })
-          ) : (
-            <Text>Loading...</Text>
-          )}
+          <View style={{ padding: 20 }}>
+            {filtered.length > 0 && specialties.length > 0 ? (
+              filtered.map((p, index) => {
+                return (
+                  <CardProfessional
+                    professional={p}
+                    key={index}
+                    parent={route.params.parent}
+                    navigation={navigation}
+                  />
+                );
+              })
+            ) : (
+              <Text>Loading...</Text>
+            )}
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
