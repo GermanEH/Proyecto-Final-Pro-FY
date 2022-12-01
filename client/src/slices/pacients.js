@@ -30,13 +30,13 @@ export const pacientsSlice = createSlice({
             state.pacients = action.payload
           }
         )
-        .addMatcher(
-          (action) => action.type.startsWith("pacients/getPacient") && action.type.endsWith("/fulfilled"),
-          (state, action) => {
-            state.status = 'succeeded'
-            state.pacient = action.payload
-          }
-        )
+        // .addMatcher(
+        //   (action) => action.type.startsWith("pacients/getPacient") && action.type.endsWith("/fulfilled"),
+        //   (state, action) => {
+        //     state.status = 'succeeded'
+        //     state.pacient = action.payload
+        //   }
+        // )
         .addMatcher(
           (action) => action.type.startsWith("pacients/postPacient"||"pacients/putPacient") && action.type.endsWith("/fulfilled"),
           (state) => {

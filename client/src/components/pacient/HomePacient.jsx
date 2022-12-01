@@ -24,10 +24,19 @@ export function HomePacient({ navigation }) {
   const [render, setRender] = useState(false);
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
+
   const [planPacient, setPlanPacient] = useState("noSuscription");
+  // const pacient = pacients.filter(p => p.email === user.email)
+  
+
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
+
+  // let pacient = []
+  // useEffect(() => {if(pacients) {pacient = pacients.filter(p => p.email === user.email)}}, [pacients])
+  
+
   useEffect(() => {
     if (user !== null) {
       const email = user.email;
@@ -93,7 +102,7 @@ export function HomePacient({ navigation }) {
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
             <Text style={styles.textFavorite}>
-              Tus profesionales de confianza:
+              Sus profesionales de confianza:
             </Text>
             <View style={{ paddingTop: 15, paddingBottom: 30 }}>
               <CarouselFavorite navigation={navigation} />
