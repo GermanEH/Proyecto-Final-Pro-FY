@@ -16,7 +16,7 @@ import { useForm, Controller } from "react-hook-form";
 //import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { getProfessionals } from "../../slices/professionalsActions";
-import { getQueries } from "../../slices/queriesActions";
+import { getQueries, postQuery } from "../../slices/queriesActions";
 import { Loading } from "../main/Loading";
 export function GenerateQuery({ navigation, route }) {
   const dispatch = useDispatch();
@@ -94,24 +94,24 @@ export function GenerateQuery({ navigation, route }) {
       users: "",
       motive: "",
       ModalidadConsulta: "",
-      createdDate: fechaActual,
+      createdDate: fechaActual.toString(),
       Pago: "",
-      queryDate: fechaActual,
+      queryDate: fechaActual.toString(),
       professionals: "",
       queryHour: "",
-      state: "",
+      state: "pending",
     },
   });
 
-  const { nombre, scheduleDays, scheduleHours, id } = route.params;
+  const { nombre, scheduleDays, scheduleHours, _id, id } = route.params;
   //   let nombre="ivan"
   // let scheduleHours="12:00 - 22:00";
   // let scheduleDays="Martes - Sabado";
   // let id="1213";
 
-  console.log(scheduleDays, scheduleHours)
+  console.log(_id)
 
-  if (id) setValue("id", id);
+  if (_id) setValue("users", _id);
 
   if (scheduleHours) {
     let horActual = fechaActual.getHours();
@@ -154,7 +154,7 @@ export function GenerateQuery({ navigation, route }) {
     }
   }
 
-  if (nombre) setValue("professionals", nombre);
+  if (id) setValue("professionals", id);
 
   const onSubmit = (data) => {
     if (
@@ -171,7 +171,8 @@ export function GenerateQuery({ navigation, route }) {
       navigation.navigate("PagosUserPremium");
       setValue("state", "resolved");
     }
-    // dispatch(postQuery(data));   pasar consulta al back
+    console.log(data)
+    dispatch(postQuery(data)).then((response) => console.log(response));
   };
 
   const onChange = (arg) => {

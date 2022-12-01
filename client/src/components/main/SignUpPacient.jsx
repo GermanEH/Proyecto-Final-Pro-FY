@@ -80,13 +80,13 @@ export function SignUpPacient({ navigation }) {
           navigation.navigate("SignIn", { usertype: "Pacient" });
         });
       alert(
-        "User Created Successfully. Email verification sent to user (check spam)"
+        "Usuario creado exitosamente. Hemos enviado un mail de verificación a su correo electrónico (verifique spam)"
       );
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-      alert("User created failed");
+      alert("Creación de usuario fallida");
       alert(error);
     }
   }
@@ -107,7 +107,7 @@ export function SignUpPacient({ navigation }) {
             name="first_name"
             control={control}
             rules={{
-              required: "Nombre es requerido",
+              required: "El nombre es requerido",
               minLength: {
                 value: 4,
                 message: "El nombre deberia tener 4 letras como minimo",
@@ -123,10 +123,10 @@ export function SignUpPacient({ navigation }) {
             name="last_name"
             control={control}
             rules={{
-              required: "Apellido es requerido",
+              required: "El apellido es requerido",
               minLength: {
                 value: 4,
-                message: "El Apellido deberia tener 4 letras como minimo",
+                message: "El apellido deberia tener 4 letras como minimo",
               },
               maxLength: {
                 value: 20,
@@ -221,7 +221,7 @@ export function SignUpPacient({ navigation }) {
           </Text>
           <View>
             <CustomButtom
-              text="Ya tienes una cuenta? Ingresa Aquí"
+              text="¿Ya tienes una cuenta? Ingresa aquí"
               color="orange"
               onPress={onSignUpPress}
               type="TERTIARY"
