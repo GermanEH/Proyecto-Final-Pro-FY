@@ -10,11 +10,11 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
-import { auth1 } from "../../../firebase-config.js";
-
+/* import { auth1 } from "../../../firebase-config.js"; */
+import CustomInput from "../CustomInput/CustomInput";
 import { useSelector, useDispatch } from "react-redux";
 import { loggedUser } from "../../slices/pacients";
 import "expo-dev-client";
@@ -25,24 +25,32 @@ import {
 import auth from "@react-native-firebase/auth";
 import theme from "../../theme";
 import { useForm, Controller } from "react-hook-form";
+import { CustomInputLoging } from "../CustomInput/CustomInputLoging";
 
 // const provider = new GoogleAuthProvider();
 
 export function SignIn({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ email: "", password: "" });
   const [initializing, setInitializing] = useState(true);
   const [userLogged, setUserLogged] = useState(null);
-
+  const auth1 = getAuth();
+  const EMAIL_REGEX =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const loggedU = useSelector((state) => state.pacients.logged);
 
   const { height } = useWindowDimensions();
 
   const dispatch = useDispatch();
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth1, email, password)
+  const handleSignIn = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(auth1, data.email, data.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -151,75 +159,82 @@ export function SignIn({ route, navigation }) {
       <View style={styles.signInContainer}>
         <Image source={Logo} style={styles.logo} />
 
-        <View style={styles.inputsButtomsContainer}>
-          <TextInput
+        <View style={{ width: "100%", paddingLeft: 40 }}>
+          <CustomInputLoging
             onChangeText={(text) => setEmail(text)}
-            placeholder="Correo electrónico"
-            style={styles.input}
-          ></TextInput>
-
-          <TextInput
+            placeholder="Correo Electronico"
+            name="email"
+            control={control}
+            rules={{
+              required: "El correo electronico es requerido",
+              pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
+            }}
+          />
+          <CustomInputLoging
+            style={styles.inputsButtomsContainer}
             onChangeText={(text) => setPassword(text)}
             placeholder="Contraseña"
-            style={styles.input}
+            name="password"
+            control={control}
             secureTextEntry
-          ></TextInput>
-
-          <View style={{ width: "85%", paddingTop: 10 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: theme.colors.primaryColor,
-                borderRadius: 10,
-              }}
-              onPress={handleSubmit(handleSignIn)}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  padding: 10,
-                }}
-              >
-                Ingresar
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <GoogleSigninButton
-          text="Ingresar con Google"
-          onPress={onGoogleButtonPress}
-          style={{ width: "87%", marginTop: 20 }}
-        />
-        <View style={{ paddingTop: 150, alignItems: "center" }}>
-          <Text
-            style={{
-              fontSize: theme.fontSize.terciaryText,
-              fontWeight: theme.fontWeights.bold,
-              color: theme.colors.textColor,
+            rules={{
+              required: "Contraseña requerida",
+              minLength: {
+                value: 8,
+                message: "La contraseña deberia tener 8 letras como minimo",
+              },
             }}
-          >
-            ¿No tienes una cuenta?
-          </Text>
-          <View style={styles.container}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(
-                  route.params.usertype === "Pacient"
-                    ? "SignUpPacient"
-                    : "SignUpProfessional"
-                )
-              }
+          />
+        </View>
+        <View style={styles.inputsButtomsContainer}>
+          <View style={styles.inputsButtomsContainer}>
+            <View
+              style={{ width: "100%", paddingTop: 10, alignItems: "center" }}
             >
+              <TouchableOpacity
+                onPress={handleSubmit(handleSignIn)}
+                style={styles.btn}
+              >
+                <Text style={{ color: "white" }}>Ingresar</Text>
+              </TouchableOpacity>
+            </View>
+            <GoogleSigninButton
+              text="Ingresar con Google"
+              onPress={onGoogleButtonPress}
+              style={{ width: "87%", marginTop: 20 }}
+            />
+            <View style={{ paddingTop: 150, alignItems: "center" }}>
               <Text
                 style={{
-                  fontSize: theme.fontSize.secondaryText,
+                  fontSize: theme.fontSize.terciaryText,
                   fontWeight: theme.fontWeights.bold,
-                  color: theme.colors.primaryColor,
+                  color: theme.colors.textColor,
                 }}
               >
-                Registrate
+                ¿No tienes una cuenta?
               </Text>
-            </TouchableOpacity>
+              <View style={styles.container}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(
+                      route.params.usertype === "Pacient"
+                        ? "SignUpPacient"
+                        : "SignUpProfessional"
+                    )
+                  }
+                >
+                  <Text
+                    style={{
+                      fontSize: theme.fontSize.secondaryText,
+                      fontWeight: theme.fontWeights.bold,
+                      color: theme.colors.primaryColor,
+                    }}
+                  >
+                    Registrate
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </View>
       </View>
@@ -231,7 +246,6 @@ export function SignIn({ route, navigation }) {
 
 const styles = StyleSheet.create({
   signInContainer: {
-    // flex: 1,
     alignItems: "center",
     paddingTop: 40,
     backgroundColor: "white",
@@ -249,5 +263,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     ...theme.button,
+  },
+  container: {
+    paddingBottom: 115,
   },
 });

@@ -13,6 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 // import { getProfessionals } from "../../slices/professionalsActions";
 import { getQueries, deleteQuery } from "../../slices/queriesActions";
+import { getProfessionals } from "../../slices/professionalsActions";
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import theme from "../../theme";
 
@@ -23,17 +24,18 @@ export function QueriesListPacient({ navigation }) {
   // const [LIstaConsulta,setLIstaConsulta]=useState(Consultas);
 
   const queries = useSelector((state) => state.queries.queries);
-  // const professionals = useSelector(
-  //   (state) => state.professionals.professionals
-  // );
+  const professionals = useSelector(
+    (state) => state.professionals.professionals
+  );
+
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (professionals.length > 0) dispatch(getQueries());
-  // }, [professionals]);
-  // useEffect(() => {
-  //   dispatch(getProfessionals());
-  // }, []);
+  useEffect(() => {
+    if (professionals.length > 0) dispatch(getQueries());
+  }, [professionals]);
+  useEffect(() => {
+    dispatch(getProfessionals());
+  }, []);
   useEffect(() => {
     if (queries) setRender(true);
   }, [queries]);
@@ -73,14 +75,20 @@ export function QueriesListPacient({ navigation }) {
     // },[item.item.isExpanded])
     return (
       <View style={{}}>
-        <View style={{ padding: 10, flexDirection: "row", backgroundColor:
-                    (item.item.state[0] === "rejected")
-                    ? "red"
-                    : (item.item.state[0] === "resolved")
-                    ? "blue"
-                    : (item.item.state[0] === "unresolved")
-                    ? "yellow"
-                    : "green"}}>         
+        <View
+          style={{
+            padding: 10,
+            flexDirection: "row",
+            backgroundColor:
+              item.item.state[0] === "rejected"
+                ? "red"
+                : item.item.state[0] === "resolved"
+                ? "blue"
+                : item.item.state[0] === "unresolved"
+                ? "yellow"
+                : "green",
+          }}
+        >
           <TouchableOpacity
             style={[styles.item, styles.btnQueries, styles.textQueries]}
             onPress={item.onPress}
@@ -151,7 +159,9 @@ export function QueriesListPacient({ navigation }) {
                 key={key}
                 item={item}
                 onPress={() =>
-                  navigation.navigate("QueryDetailPacient", { id: `${item.id}` })
+                  navigation.navigate("QueryDetailPacient", {
+                    id: `${item.id}`,
+                  })
                 }
                 // onClickFunction={()=>{
                 //     upDateLayout(key)
@@ -216,4 +226,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-

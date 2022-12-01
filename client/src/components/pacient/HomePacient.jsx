@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView,
+  Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useSelector } from "react-redux";
@@ -16,31 +16,25 @@ import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
-import { handleFavourites} from "../../slices/professionals"
+import { getPacients } from "../../slices/pacientsActions";
 
 export function HomePacient({ navigation }) {
-  const [render, setRender] = useState(false)
+  const [image, setImage] = useState("../../assets/usuario.png");
+  const [render, setRender] = useState(false);
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
   const auth = getAuth();
   const user = auth.currentUser;
+  const dispatch = useDispatch();
   useEffect(() => {
     if (user !== null) {
-      // The user object has basic properties such as display name, email, etc.
-      // displayName = user.displayName;
       const email = user.email;
       const photoURL = user.photoURL;
       const emailVerified = user.emailVerified;
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
       const uid = user.uid;
     }
+    dispatch(getPacients());
   }, []);
-  // const dispatch = useDispatch()
-  // useEffect(() => {if(Object.keys(route.params.professional).length > 0) dispatch(handleFavourites(route.params.professional)); setRender(true)}, [])
-  // useEffect(() => {if(render) setRender(false)}, [render])
-  
 
   return (
     <View>
@@ -62,8 +56,23 @@ export function HomePacient({ navigation }) {
                 <Icon name="pencil" size={20} color="" />
               </TouchableOpacity>
             </View>
-
-            <Text style={styles.textName}>{user.displayName}</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                paddingTop: 30,
+              }}
+            >
+              <View style={{ justifyContent: "center" }}>
+                <Text style={styles.textName}>{user.displayName}</Text>
+              </View>
+              <View style={styles.containerImage}>
+                <Image
+                  style={{ width: 100, height: 100 }}
+                  source={{ uri: image }}
+                />
+              </View>
+            </View>
             <Text style={styles.text}>
               Ya eres parte de la comunidad PRO-FY, estás listo para conectarte
               con profesionales de la medicina.
@@ -77,7 +86,7 @@ export function HomePacient({ navigation }) {
             <View style={{ paddingTop: 15, paddingBottom: 30 }}>
               <CarouselFavorite navigation={navigation} />
             </View>
-            <View style={{ paddingBottom: 20 }}>
+            <View style={styles.containerCarousel}>
               <Carousel role="pacient" navigation={navigation} />
             </View>
           </View>
@@ -124,5 +133,29 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.terciaryText,
     color: theme.colors.terciaryText,
     paddingVertical: 20,
+  },
+  containerCarousel: {
+    width: "90%",
+    height: 670,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
+    marginVertical: 40,
+    justifyContent: "center",
+    paddingBottom: 40,
+    margin: 20,
+  },
+  containerImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "gray",
   },
 });
