@@ -10,6 +10,16 @@ export function QueriesListProf({ navigation }) {
   const [render, setRender] = useState(false);
   const pacients = useSelector((state) => state.pacients.pacient);
   const queries = useSelector((state) => state.queries.queries);
+
+  //solo para pruebas cuando no haya consuiltas
+  /*   const queries = [
+    {
+      hour: "14:00",
+      pacientName: "elvis",
+      state: "pendiente",
+    },
+  ]; */
+
   const dispatch = useDispatch();
 
   useEffect(() => {

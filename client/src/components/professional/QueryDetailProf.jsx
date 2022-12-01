@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -6,13 +7,40 @@ import {
   ScrollView,
   TextInput,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfessionals } from "../../slices/professionalsActions";
 import theme from "../../theme";
 import { ButtonDating, ButtonGreen, ButtonRed } from "../shared/Button";
-
+import { getAuth } from "firebase/auth";
 export function QueryDetailProf() {
+  const professionals = useSelector(
+    (state) => state.professionals.professionals
+  );
+  const [professional, setProfessional] = useState(null);
+  const dispatch = useDispatch();
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const [render, setRender] = useState(false);
+  useEffect(() => {
+    if (render) setRender(false);
+  }, [render]);
+  useEffect(() => {
+    dispatch(getProfessionals());
+  }, []);
+
+  useEffect(() => {
+    if (professionals.length) {
+      const prof = professionals.find((p) => p.email === user.email);
+      console.log("profffffff", prof);
+      if (prof) {
+        setProfessional(prof);
+      }
+    }
+  }, [professionals]);
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         <View>
           <View style={styles.container}>
             <View style={{ padding: 10 }}>
@@ -79,16 +107,22 @@ export function QueryDetailProf() {
               </View>
             </View>
           </View>
-          <ButtonDating
-            backgroundColor={"red"}
-            text={"Cancelar consulta"}
-            color={theme.colors.secondaryText}
-          />
-          <ButtonDating
-            backgroundColor={"green"}
-            text={"Confirmar consulta"}
-            color={theme.colors.secondaryText}
-          />
+          {professional && professional.plan === "noSuscription" ? (
+            <View></View>
+          ) : (
+            <View>
+              <ButtonDating
+                backgroundColor={"red"}
+                text={"Cancelar consulta"}
+                color={theme.colors.secondaryText}
+              />
+              <ButtonDating
+                backgroundColor={"green"}
+                text={"Confirmar consulta"}
+                color={theme.colors.secondaryText}
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>
@@ -113,7 +147,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
     borderRadius: theme.borderRadius.borderRadiusBotton,
-    marginVertical: 40,
+    marginVertical: 20,
   },
   containerBtn: {
     width: 300,
