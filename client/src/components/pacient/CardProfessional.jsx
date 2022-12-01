@@ -35,15 +35,15 @@ professional}
       // const handlePress = (parent === "HomePacient") ? ["HomePacient", { professional: professional}] : ["GenerateQuery", { id: id, nombre: professional.first_name+ "  " + professional.last_name , scheduleHours: professional.scheduleHours, scheduleDays: professional.scheduleDays }]
       const dispatch = useDispatch();
       const handlePress = () => {
-        if (parent === "HomePacient") {console.log('hola');dispatch(handleFavourite(professional)); navigation.navigate("HomePacient")}}
-        if (parent === "GenerateQuery") {() => { 
-        console.log('hola2');     
+        console.log('como va')
+        if (parent === "HomePacient") {console.log('hola');dispatch(handleFavourite(professional)); navigation.navigate("HomePacient")}
+        console.log(parent)
+        if (parent === "GenerateQuery") console.log('hola2');     
           navigation.navigate("GenerateQuery", { 
             id: professional.id, nombre: professional.first_name + "  " + professional.last_name, 
             scheduleHours: professional.scheduleHours, 
             scheduleDays: professional.scheduleDays  })
-          }}
-        
+          }
 
   return (
     <SafeAreaView>

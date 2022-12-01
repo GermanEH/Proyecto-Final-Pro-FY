@@ -76,7 +76,10 @@ export function QueriesListPacient({ navigation }) {
       <View style={{}}>
         <View
           style={{
+            borderRadius: 10,
+            margin: 10,
             padding: 10,
+            color:"white",
             flexDirection: "row",
             backgroundColor:
               item.item.state[0] === "rejected"
@@ -198,6 +201,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 16,
     fontWeight: "500",
+    color:"white"
   },
   // content: {
   //   paddingLeft: 10,

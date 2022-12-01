@@ -128,12 +128,13 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
     borderRadius: 10,
-    marginVertical: 40,
-    paddingBottom: 40,
+    marginVertical: 60,
+    paddingBottom: 20,
   },
   text: {
     fontWeight: theme.fontWeights.bold,
     padding: 10,
+    color: "white"
   },
   // textInput: {
   //   backgroundColor: "#A8A7A3",
