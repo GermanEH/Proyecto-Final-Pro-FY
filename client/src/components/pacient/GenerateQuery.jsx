@@ -321,7 +321,7 @@ export function GenerateQuery({ navigation, route }) {
             style={styles.boton}
             onPress={() =>
               navigation.navigate("ProfessionalsList", {
-                name: "ProfessionalsList",
+                parent: "GenerateQuery",
               })
             }
           >

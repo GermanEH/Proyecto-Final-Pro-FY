@@ -171,7 +171,6 @@ export function SignIn({ route, navigation }) {
           />
           <CustomInputLoging
             style={styles.inputsButtomsContainer}
-
             onChangeText={(text) => setPassword(text)}
             placeholder="Contraseña"
             name="password"
@@ -187,15 +186,15 @@ export function SignIn({ route, navigation }) {
           />
 
         <View style={{ width: "85%", paddingTop: 10 }}>
-          <CustomButtom text="Ingresar" onPress={handleSignIn} />
-          <TouchableOpacity
+          <CustomButtom text="Ingresar" onPress={handleSubmit(handleSignIn)} />
+          </View>
+          {/* <TouchableOpacity
             style={styles.btn}
             title="Ingresar"
-            onPress={handleSubmit(handleSignIn)}
+            onPress={}
           >
             <Text style={styles.text}>Ingresar</Text>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity> */}
         <GoogleSigninButton
           text="Ingresar con Google"
           onPress={onGoogleButtonPress}
@@ -211,8 +210,7 @@ export function SignIn({ route, navigation }) {
           />
         </View>
         <View style={styles.inputsButtomsContainer}>
-          <View style={styles.inputsButtomsContainer}>
-            <View
+            {/* <View
               style={{ width: "100%", paddingTop: 10, alignItems: "center" }}
             >
               <TouchableOpacity
@@ -221,13 +219,8 @@ export function SignIn({ route, navigation }) {
               >
                 <Text style={{ color: "white" }}>Ingresar</Text>
               </TouchableOpacity>
-            </View>
-            <GoogleSigninButton
-              text="Ingresar con Google"
-              onPress={onGoogleButtonPress}
-              style={{ width: "87%", marginTop: 20 }}
-            />
-            <View style={{ paddingTop: 150, alignItems: "center" }}>
+            </View> */}
+            <View style={{alignItems: "center" }}>
               <Text
                 style={{
                   fontSize: theme.fontSize.terciaryText,
@@ -259,11 +252,9 @@ export function SignIn({ route, navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
         </View>
       </View>
-      {/* // : */}
-      {/* navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" }) */}
+      </View>
     </ScrollView>
   );
 }
