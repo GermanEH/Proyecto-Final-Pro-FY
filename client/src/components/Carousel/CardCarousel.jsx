@@ -34,35 +34,35 @@ export function CardCarousel({ item, navigation }) {
           {item.price}{" "}
         </Text>
       </View>
-            {(item.title === "Basico" && item.user === "Pacient") ? 
-            <TouchableOpacity
-              onPress={() => navigation.navigate("PagosUserBasic")}
-              style={styles.btn}
-            >
-              <Text> Ir </Text>
-            </TouchableOpacity>
-            : (item.title === "Premium" && item.user === "Pacient") ?
-            <TouchableOpacity
-              onPress={() => navigation.navigate("PagosUserPremium")}
-              style={styles.btn}
-            >
-              <Text> Ir </Text>
-            </TouchableOpacity>
-            : (item.title === "Basico" && item.user === "Professional") ? 
-            <TouchableOpacity
-            onPress={() => navigation.navigate("PagosProBasic")}
-            style={styles.btn}
-          >
-            <Text> Ir </Text>
-          </TouchableOpacity>
-          :
-            <TouchableOpacity
-            onPress={() => navigation.navigate("PagosProPremium")}
-            style={styles.btn}
-          >
-            <Text> Ir </Text>
-          </TouchableOpacity>
-            }
+      {item.title === "Basico" && item.user === "Pacient" ? (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PagosUserBasic")}
+          style={styles.btn}
+        >
+          <Text style={styles.text}> Ir </Text>
+        </TouchableOpacity>
+      ) : item.title === "Premium" && item.user === "Pacient" ? (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PagosUserPremium")}
+          style={styles.btn}
+        >
+          <Text style={styles.text}> Ir </Text>
+        </TouchableOpacity>
+      ) : item.title === "Basico" && item.user === "Professional" ? (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PagosProBasic")}
+          style={styles.btn}
+        >
+          <Text style={styles.text}> Ir </Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PagosProPremium")}
+          style={styles.btn}
+        >
+          <Text style={styles.text}> Ir </Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -104,13 +104,12 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
   },
   btn: {
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: theme.colors.primaryColor,
     height: 50,
     width: 90,
-    borderRadius: 5,
+    borderRadius: 10,
     marginTop: 25,
     shadowOffset: {
       width: 0,
@@ -118,5 +117,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 9.11,
+  },
+  text: {
+    color: "white",
   },
 });

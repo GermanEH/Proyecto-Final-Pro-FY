@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     borderColor: "grey",
   },
   containerCarousel: {
-    width: "100%",
+    width: "90%",
     height: 670,
     backgroundColor: "white",
     shadowColor: "#000",
@@ -190,5 +190,6 @@ const styles = StyleSheet.create({
     marginVertical: 40,
     justifyContent: "center",
     paddingBottom: 40,
+    margin: 20,
   },
 });
