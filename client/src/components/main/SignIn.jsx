@@ -11,12 +11,12 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import {
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword,getAuth
 } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
-import { auth1 } from "../../../firebase-config.js";
-
+/* import { auth1 } from "../../../firebase-config.js"; */
+import CustomInput from "../CustomInput/CustomInput";
 import {useSelector, useDispatch} from 'react-redux'
 import { loggedUser } from '../../slices/pacients';
 import "expo-dev-client"
@@ -30,19 +30,22 @@ import {useForm, Controller } from 'react-hook-form';
 export function SignIn({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {control, handleSubmit} = useForm()
+  const {control, handleSubmit,formState: {errors}} = useForm({ email: "",
+  password: "",})
   const [initializing, setInitializing] = useState(true)
   const [userLogged, setUserLogged] = useState(null)
-  
-
+  const auth1 = getAuth()
+  const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const loggedU = useSelector((state) => state.pacients.logged)
 
   const { height } = useWindowDimensions();
 
   const dispatch = useDispatch()
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth1, email, password)
+  const handleSignIn = (data) => {
+    console.log(data)
+    signInWithEmailAndPassword(auth1, data.email, data.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -149,21 +152,40 @@ export function SignIn({ route, navigation }) {
 
       <View style={styles.inputsButtomsContainer}>
 
-        <TextInput
-          onChangeText={(text) => setEmail(text)}
-          placeholder="Correo electrónico"
-          style={styles.input}
-        ></TextInput>
-
-        <TextInput
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Contraseña"
-          style={styles.input}
-          secureTextEntry
-        ></TextInput>
+          <CustomInput
+            onChangeText={(text) => setEmail(text)} 
+            placeholder="Correo Electronico"
+            name="email"
+            control={control}
+            rules={{
+              required:"El correo electronico es requerido",
+              pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
+            }}
+            />
+          <CustomInput
+            onChangeText={(text) => setPassword(text)}
+            placeholder="Contraseña"
+            name="password"
+            control={control}
+            secureTextEntry
+            rules={{
+              required: "Contraseña requerida",
+              minLength: {
+                value: 8,
+                message: "La contraseña deberia tener 8 letras como minimo",
+              },
+            }}
+          />
 
         <View style={{ width: "85%", paddingTop: 10 }}>
-          <CustomButtom text="Ingresar" onPress={handleSubmit(handleSignIn)} />
+          <CustomButtom text="Ingresar" onPress={handleSignIn} />
+          <TouchableOpacity
+            style={styles.btn}
+            title="Ingresar"
+            onPress={handleSubmit(handleSignIn)}
+          >
+            <Text style={styles.text}>Ingresar</Text>
+          </TouchableOpacity>
         </View>
       </View>
         <GoogleSigninButton
