@@ -16,7 +16,9 @@ import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
+
 import { getPacients } from "../../slices/pacientsActions";
+
 
 export function HomePacient({ navigation }) {
   const [image, setImage] = useState("../../assets/usuario.png");

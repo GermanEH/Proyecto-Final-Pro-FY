@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-} from "react-native";
-import { getReviews } from "../../slices/reviewsActions";
-import { CardReviews } from "./CardReviews";
+
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native'
+import { getReviews } from '../../slices/reviewsActions'
+import { CardReviews } from './CardReviews'
 // import { theme } from '../../../theme'
 
 export function ReviewsList() {
@@ -19,9 +14,7 @@ export function ReviewsList() {
   useEffect(() => {
     dispatch(getReviews());
   }, []);
-
   const [respuestaReview, setRespuestaReview] = useState("");
-
   const Respuesta = () => {
     setRespuestaReview("");
     return respuestaReview;
