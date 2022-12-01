@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View, Text, Button } from "react-native";
+import { FlatList, View, Text, Button, TouchableOpacity } from "react-native";
 import { CardProfessional } from "./CardProfessional";
 import { useSelector } from "react-redux";
 import theme from "../../theme";
@@ -13,19 +13,26 @@ export function CarouselFavorite({ navigation }) {
         <View
           style={{
             alignItems: "center",
-            backgroundColor: "rgb(245, 245, 245)",
-            borderRadius: 5,
+
             padding: 5,
           }}
         >
-          <Button
+          <TouchableOpacity
+            style={{
+              padding: 15,
+              backgroundColor: theme.colors.primaryColor,
+              borderRadius: 10,
+            }}
             onPress={() =>
               navigation.navigate("ProfessionalsList", {
-               /*  parent: "HomePacient", */
+                /*  parent: "HomePacient", */
               })
             }
-            title="Elegir profesionales de confianza"
-          />
+          >
+            <Text style={{ color: "white" }}>
+              Elegir profesionales de confianza
+            </Text>
+          </TouchableOpacity>
         </View>
       ) : (
         <FlatList
