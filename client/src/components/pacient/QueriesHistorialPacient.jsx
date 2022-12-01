@@ -72,7 +72,7 @@ export function QueriesHistorialPacient({ navigation }) {
               <View>
                 <View
                   style={{
-                    paddingTop: 50,
+                    paddingTop: 40,
                     paddingBottom: 5,
                   }}
                 ></View>
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: theme.fontWeights.bold,
     padding: 10,
-    color: "white"
+    color: "white",
   },
   // textInput: {
   //   backgroundColor: "#A8A7A3",

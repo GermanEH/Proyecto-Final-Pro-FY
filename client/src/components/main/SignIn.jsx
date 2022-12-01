@@ -32,14 +32,17 @@ import { CustomInputLoging } from "../CustomInput/CustomInputLoging";
 export function SignIn({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {control, handleSubmit,formState: {errors}} = useForm({ email: "",
-  password: "",})
-  const [initializing, setInitializing] = useState(true)
-  const [userLogged, setUserLogged] = useState(null)
-  const auth1 = getAuth()
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ email: "", password: "" });
+  const [initializing, setInitializing] = useState(true);
+  const [userLogged, setUserLogged] = useState(null);
+  const auth1 = getAuth();
   const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  const loggedU = useSelector((state) => state.pacients.logged)
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  const loggedU = useSelector((state) => state.pacients.logged);
 
   const { height } = useWindowDimensions();
 
@@ -151,7 +154,6 @@ export function SignIn({ route, navigation }) {
   // };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-
       {/* {(!userLogged) ? */}
       <View style={styles.signInContainer}>
         <Image source={Logo} style={styles.logo} />
@@ -159,12 +161,10 @@ export function SignIn({ route, navigation }) {
         <View style={{ width: "100%", paddingLeft: 40 }}>
           <CustomInputLoging
             onChangeText={(text) => setEmail(text)}
-
             placeholder="Correo Electronico"
             name="email"
             control={control}
             rules={{
-
               required: "El correo electronico es requerido",
               pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
             }}
@@ -185,31 +185,33 @@ export function SignIn({ route, navigation }) {
             }}
           />
 
-        <View style={{ width: "85%", paddingTop: 10 }}>
-          <CustomButtom text="Ingresar" onPress={handleSubmit(handleSignIn)} />
-          </View>
-          {/* <TouchableOpacity
-            style={styles.btn}
-            title="Ingresar"
-            onPress={}
+          {/* <View style={{ width: "85%", paddingTop: 10 }}>
+            <CustomButtom
+              text="Ingresar"
+              onPress={handleSubmit(handleSignIn)}
+            />
+          </View> */}
+          <TouchableOpacity
+            style={[styles.btn, { width: "80%" }]}
+            onPress={handleSubmit(handleSignIn)}
           >
-            <Text style={styles.text}>Ingresar</Text>
-          </TouchableOpacity> */}
-        <GoogleSigninButton
-          text="Ingresar con Google"
-          onPress={onGoogleButtonPress}
-          style={{ width: "87%", marginTop: 20 }}
-        />
-        <View style={{ paddingTop: 150, alignItems: "center" }}>
-          <Text
-            style={{
-              fontSize: theme.fontSize.terciaryText,
-              fontWeight: theme.fontWeights.bold,
-              color: theme.colors.textColor,
-            }}
+            <Text style={{ color: "white" }}>Ingresar</Text>
+          </TouchableOpacity>
+          <GoogleSigninButton
+            text="Ingresar con Google"
+            onPress={onGoogleButtonPress}
+            style={{ width: "87%", marginTop: 20 }}
           />
-        </View>
-        <View style={styles.inputsButtomsContainer}>
+          <View style={{ paddingTop: 150, alignItems: "center" }}>
+            <Text
+              style={{
+                fontSize: theme.fontSize.terciaryText,
+                fontWeight: theme.fontWeights.bold,
+                color: theme.colors.textColor,
+              }}
+            />
+          </View>
+          <View style={styles.inputsButtomsContainer}>
             {/* <View
               style={{ width: "100%", paddingTop: 10, alignItems: "center" }}
             >
@@ -220,7 +222,7 @@ export function SignIn({ route, navigation }) {
                 <Text style={{ color: "white" }}>Ingresar</Text>
               </TouchableOpacity>
             </View> */}
-            <View style={{alignItems: "center" }}>
+            <View style={{ alignItems: "center", paddingRight: 50 }}>
               <Text
                 style={{
                   fontSize: theme.fontSize.terciaryText,
@@ -252,8 +254,8 @@ export function SignIn({ route, navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
+          </View>
         </View>
-      </View>
       </View>
     </ScrollView>
   );
