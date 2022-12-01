@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  
   SafeAreaView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -61,14 +60,14 @@ export function HomePacient({ navigation }) {
               Ya eres parte de la comunidad PRO-FY, estás listo para conectarte
               con profesionales de la medicina.
             </Text>
-            <View style={{ alignItems: "center", paddingVertical: 20 }}>
+            <View style={{ alignItems: "center", paddingVertical: 60 }}>
               <ButtonHomePacientQueries navigation={navigation} />
             </View>
             <Text style={styles.textFavorite}>
               Tus profesionales de confianza:
             </Text>
-            <View style={{ paddingBottom: 20 }}>
-              <CarouselFavorite navigation={navigation}/>
+            <View style={{ paddingTop: 15, paddingBottom: 30 }}>
+              <CarouselFavorite navigation={navigation} />
             </View>
             <View style={{ paddingBottom: 20 }}>
               <Carousel role="pacient" navigation={navigation} />

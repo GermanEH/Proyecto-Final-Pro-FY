@@ -18,11 +18,15 @@ export function ProfessionalsList({ navigation, route }) {
 
   const filters = useSelector(filtersSelectors.selectEntities);
   const filtersIds = useSelector(filtersSelectors.selectIds);
-  const professionals = useSelector((state) => state.professionals.professionals);
+  const professionals = useSelector(
+    (state) => state.professionals.professionals
+  );
   const filtered = useSelector((state) => state.professionals.filtered);
   const specialties = useSelector((state) => state.professionals.specialties);
   const countries = useSelector((state) => state.professionals.countries);
-  const specialtiesNames = useSelector((state) => state.professionals.specialtiesNames);
+  const specialtiesNames = useSelector(
+    (state) => state.professionals.specialtiesNames
+  );
 
   const dispatch = useDispatch();
   let s = {};
@@ -71,23 +75,45 @@ export function ProfessionalsList({ navigation, route }) {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-          {specialtiesNames.length > 0 ? (
+          <View style={{ padding: 50 }}>
+            <View style={{ paddingBottom: 70 }}>
+              <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+                Lista de Profesionales
+              </Text>
+            </View>
+            <Text style={{ paddingBottom: 10, fontWeight: "bold" }}>
+              Filtrar por especialidad:
+            </Text>
+            {specialtiesNames.length > 0 ? (
+              <SelectList
+                boxStyles={{
+                  backgroundColor: "#DEDEDE",
+                  paddingHorizontal: 60,
+                }}
+                setSelected={(val) => setSpeciality(val)}
+                data={specialtiesNames}
+                save="value"
+              />
+            ) : (
+              <Text>Loading...</Text>
+            )}
+            <Text
+              style={{ paddingTop: 50, paddingBottom: 8, fontWeight: "bold" }}
+            >
+              Filtrar por país:
+            </Text>
             <SelectList
-              setSelected={(val) => setSpeciality(val)}
-              data={specialtiesNames}
+              boxStyles={{ backgroundColor: "#DEDEDE", paddingHorizontal: 60 }}
+              setSelected={(val) => {
+                setCountry(val);
+              }}
+              data={countries}
               save="value"
+              // onSelect={() => alert(selected)}
+              // label="Categories"
             />
-          ) : (
-            <Text>Loading...</Text>
-          )}
-          <SelectList
-            setSelected={(val) => {setCountry(val)}}
-            data={countries}
-            save="value"
-            // onSelect={() => alert(selected)}
-            // label="Categories"
-          />
-          {(filtered.length > 0 && specialties.length > 0) ? (
+          </View>
+          {filtered.length > 0 && specialties.length > 0 ? (
             filtered.map((p, index) => {
               return (
                 <CardProfessional

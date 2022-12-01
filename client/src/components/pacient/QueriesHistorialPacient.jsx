@@ -46,7 +46,7 @@ export function QueriesHistorialPacient({ navigation }) {
               <Text
                 style={{
                   textAlign: "center",
-                  color: theme.colors.secondaryText,
+                  color: "white",
                 }}
               >
                 GENERAR CONSULTA
@@ -62,8 +62,10 @@ export function QueriesHistorialPacient({ navigation }) {
             Historial de Consultas
           </Text>
         </View>
-        {queries.length === 0 ? (
-          <Text>Loading...</Text>
+        {queries.length && queries.length === 0 ? (
+          <View style={{ width: "90%" }}>
+            <Loading />
+          </View>
         ) : (
           <View style={styles.containerHistorial}>
             <ScrollView>
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: theme.borderRadius.borderRadiusBotton,
-    marginTop:100
+    marginTop: 100,
   },
 
   selectContainer: {
