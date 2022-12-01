@@ -21,29 +21,31 @@ export function ReviewsList() {
   };
 
   return (
-    <View
-      style={{
-        width: 350,
-        height: 300,
-        marginTop: 20,
-        backgroundColor: "white",
-      }}
-    >
-      <View style={{ paddingBottom: 20 }}>
-        <ScrollView horizontal={true}>
-          <View style={{ flexDirection: "row" }}>
-            {reviews.reviews.map((p, i) => (
-              <CardReviews
-                id={i + 1}
-                review={p.review}
-                CambioRespuesta={Respuesta}
-                key={i}
-              />
-            ))}
-          </View>
-        </ScrollView>
+    <View>
+      <View
+        style={{
+          width: 350,
+          height: 300,
+          marginTop: 20,
+          backgroundColor: "white",
+        }}
+      >
+        <View>
+          <ScrollView horizontal={true}>
+            <View style={{ flexDirection: "row" }}>
+              {reviews.reviews.map((p, i) => (
+                <CardReviews
+                  id={i + 1}
+                  review={p.review}
+                  CambioRespuesta={Respuesta}
+                  key={i}
+                />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
       </View>
-      <View style={{ paddingTop: 20 }}>
+      <View style={{ paddingTop: 10 }}>
         <TextInput
           value={respuestaReview}
           style={{

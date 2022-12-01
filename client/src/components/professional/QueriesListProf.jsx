@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { View, Text, TouchableOpacity, Button } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { getQueries } from "../../slices/queriesActions";
+import theme from "../../theme";
+import { getPacients } from "../../slices/pacientsActions";
 // import { theme } from '../../../theme'
 
 export function QueriesListProf({ navigation }) {
   const [render, setRender] = useState(false);
-
+  const pacients = useSelector((state) => state.pacients.pacient);
   const queries = useSelector((state) => state.queries.queries);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQueries());
+    dispatch(getQueries(), getPacients());
     setRender(true);
   }, []);
   useEffect(() => {
@@ -39,21 +40,50 @@ export function QueriesListProf({ navigation }) {
                 borderRadius: 10,
               }}
             >
-              <Text>{p.description}</Text>
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  Fecha de la consulta :
+                </Text>
+                <Text>{p.hour}</Text>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  Nombre del paciente:
+                </Text>
+                <Text>{p.pacientName}</Text>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  Estado de la Consulta:
+                </Text>
+                <Text>{p.state}</Text>
+              </View>
+              <View style={{ paddingTop: 30 }}>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() =>
+                    navigation.navigate("QueryDetailProf", {
+                      name: "QueryDetailProf",
+                    })
+                  }
+                >
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    Detalles deconsultas
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <Text>{p.doctorName.email}</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("QueryDetailProf", {
-                  name: "QueryDetailProf",
-                })
-              }
-            >
-              <Text>Detalles deconsultas</Text>
-            </TouchableOpacity>
           </View>
         ))}
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  btn: {
+    backgroundColor: theme.colors.primaryColor,
+    padding: 10,
+    borderRadius: 15,
+  },
+});
