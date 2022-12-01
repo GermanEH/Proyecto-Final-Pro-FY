@@ -9,6 +9,7 @@ import { getProfessionalById } from "../../slices/professionalsActions";
 import { getReviews } from '../../slices/reviewsActions'
 import { ReviewsList } from '../professional/ReviewsList'
 import { FontAwesome } from "@expo/vector-icons"; 
+import { Loading } from "../main/Loading";
 
 export function ProfessionalDetail({ navigation, route }) {
 
@@ -27,26 +28,26 @@ export function ProfessionalDetail({ navigation, route }) {
   return ( 
       <View>
     {(Object.keys(professional).length > 0) ? (
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
             <View 
             style={styles.container}
             >
-        <View 
-        style={styles.imgContainer}
-        >
-          <Image
-            style={styles.imageStyle}
-            source={{uri:professional.image}}
-          />
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              margin: 10,
-              fontSize: 8,
-            }}
-          >
-            <Text>{professional?.first_name} {professional?.last_name}</Text>
+              <View 
+              style={styles.imgContainer}
+              >
+                <Image
+                  style={styles.imageStyle}
+                  source={{uri:professional.image}}
+                />
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: 10,
+                    fontSize: 8,
+                  }}
+                >
+            <Text>Dr. {professional?.first_name} {professional?.last_name}</Text>
             <Text>Especialidad: {professional?.specialities}</Text>
             <Text>Matrícula: {professional?.professionalId}</Text>
             <View style={{ flexDirection: "row" }}>
@@ -80,27 +81,22 @@ export function ProfessionalDetail({ navigation, route }) {
         >
           <Text>Reseñas recibidas:</Text>
         </View>
-        <View>
-            <ReviewsList/>
-        </View>
           <View 
           style={styles.containerComments}
           >
+              <ReviewsList/>
+          </View>
+          <View
+          style={styles.containerCarousel}
+          >
               <Carousel navigation={navigation}/>
           </View>
-          {/* <View
-            style={{
-              fontSize: theme.fontSize.primaryText,
-              paddingBottom: 10,
-              paddingLeft: 10,
-            }}
-          ></View> */}
         </View>
         </View>
-        </ScrollView>
+          </ScrollView>
         ) : (
             <View>
-              <Text> Loading...</Text>
+              <Loading/>
             </View>
           )}
           </View>
@@ -113,7 +109,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     height: 210,
-    width: 160,
+    width: "50%",
     zIndex: 1,
     marginLeft: 5,
     marginTop: 5,
@@ -123,7 +119,7 @@ const styles = StyleSheet.create({
   imgContainer: {
     width: "100%",
     backgroundColor: "white",
-    flexDirection: "row",
+    flexDirection: "column",
     borderRadius: 10,
   },
   containerComments: {
@@ -139,8 +135,22 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
     borderRadius: 10,
+    justifyContent: "center",
+  },
+  containerComments: {
+    width: "100%",
+    height: 200,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+    borderRadius: 10,
     marginVertical: 40,
     justifyContent: "center",
-    paddingBottom: 40,
   },
 });
