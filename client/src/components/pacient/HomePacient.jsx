@@ -19,12 +19,12 @@ import { getAuth } from "firebase/auth";
 
 import { getPacients } from "../../slices/pacientsActions";
 
-
 export function HomePacient({ navigation }) {
   const [image, setImage] = useState("../../assets/usuario.png");
   const [render, setRender] = useState(false);
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
+  const [planPacient, setPlanPacient] = useState("noSuscription");
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
@@ -37,6 +37,16 @@ export function HomePacient({ navigation }) {
     }
     dispatch(getPacients());
   }, []);
+
+  useEffect(() => {
+    if (pacients.length) {
+      const pacient = pacients.find((p) => p.email === user.email);
+      if (pacient) {
+        setPlanPacient(pacient.plan);
+      }
+    }
+    console.log("paciemtes useefect");
+  }, [pacients]);
 
   return (
     <View>
@@ -88,9 +98,15 @@ export function HomePacient({ navigation }) {
             <View style={{ paddingTop: 15, paddingBottom: 30 }}>
               <CarouselFavorite navigation={navigation} />
             </View>
-            <View style={styles.containerCarousel}>
-              <Carousel role="pacient" navigation={navigation} />
-            </View>
+            {planPacient !== "Premium" && (
+              <View style={styles.containerCarousel}>
+                <Carousel
+                  role="pacient"
+                  navigation={navigation}
+                  planUser={planPacient}
+                />
+              </View>
+            )}
           </View>
         </ScrollView>
       )}
