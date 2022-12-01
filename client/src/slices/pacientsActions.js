@@ -6,8 +6,8 @@ export const getPacients = createAsyncThunk('pacients/getPacients', async () => 
         const response = await axios.get('https://api-pro-fy-production.up.railway.app/api/users')
         // const response = await axios.get('http://192.168.0.1:3001/api/users')
         const data = response.data.data.sort(function(a, b) {
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
+            if(a.first_name < b.first_name) return -1;
+            if(a.first_name > b.first_name) return 1;
             return 0
         })
         return data

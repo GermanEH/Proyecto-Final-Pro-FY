@@ -13,15 +13,39 @@ import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import { QueriesListPacient } from "./QueriesListPacient";
 import { Loading } from "../main/Loading";
 import { getQueries } from "../../slices/queriesActions";
+import {getAuth} from "firebase/auth";
+import { getPacients } from '../../slices/pacientsActions'
 
 export function QueriesHistorialPacient({ navigation }) {
-  const queries = useSelector((state) => state.queries.queries);
 
+  const [id, setId] = useState("")
+  const queries = useSelector((state) => state.queries.queries);
+  const pacients = useSelector((state) => state.pacients.pacients);
+  const auth = getAuth();
+  const user = auth.currentUser;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQueries());
+    dispatch(getQueries()); 
   }, []);
+  useEffect(() => {
+    dispatch(getPacients()); 
+  }, []);
+
+  let pacient = []
+  // useEffect(() => {if(pacients){pacient = pacients.filter(p => p.email === user.email)}}, [pacients])
+  useEffect(() => {if(pacients){pacient = pacients.filter(p => p.email === user.email); setId(pacient[0]._id);
+  }}, [pacients])
+
+  console.log(id)
+  // const idPacient = ""
+  // if(pacient.length > 0) {
+  //   console.log('OOOO', pacient)
+  //   idPacient = pacient[0]._id
+  //   setRender(true)
+  // }
+
+  // useEffect(() => {if(render) setRender(false)}, [render])
 
   return (
     <View>
@@ -34,24 +58,28 @@ export function QueriesHistorialPacient({ navigation }) {
               paddingTop: 30,
             }}
           >
+            {id !== "" ? 
             <TouchableOpacity
-              title="GenerateQuery"
-              onPress={() =>
-                navigation.navigate("GenerateQuery", {
-                  name: "GenerateQuery",
-                })
-              }
-              style={styles.btn}
+            title="GenerateQuery"
+            onPress={() =>
+              navigation.navigate("GenerateQuery", {
+                _id: id
+              })
+            }
+            style={styles.btn}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+              }}
             >
-              <Text
-                style={{
-                  textAlign: "center",
-                  color: "white",
-                }}
-              >
-                GENERAR CONSULTA
-              </Text>
-            </TouchableOpacity>
+              GENERAR CONSULTA
+            </Text>
+          </TouchableOpacity>
+          :
+          <Text>Loading...</Text>
+            }
           </View>
         </View>
         <View style={styles.containerBtnQueries}></View>
