@@ -25,9 +25,8 @@ export function HomeProfessional({ navigation }) {
   const tomorrowAfterQueries = useSelector(
     (state) => state.queries.tomorrowAfterQueries
   );
-
+  const queries = useSelector((state) => state.queries.queries)
   const dispatch = useDispatch();
-  
   const payments = useSelector((state) => state.queries.payments);
   const pacients = useSelector((state) => state.pacients);
 

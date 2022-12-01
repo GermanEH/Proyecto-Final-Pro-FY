@@ -93,7 +93,7 @@ export function SignUpProfessional({ navigation }) {
           });
         })
         .then(() => {
-          navigation.navigate("SignIn", { usertype: "professional" });
+          navigation.navigate("SignIn", { usertype: "Professional" });
         });
       alert(
         "El Usuario Professional ha sido registrado correctamente, Por favor verifique su correo electronico (checkea spam)"

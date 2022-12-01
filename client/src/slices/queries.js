@@ -32,10 +32,10 @@ export const queriesSlice = createSlice({
                 for (const query of action.payload) {
                     if(!state.motives.includes(query['motive'])) state.motives.push(query['motive'])
                 }
-                const today = new Date().getDate()
-                const tomorrow = new Date().getDate() + 1
-                const tomorrowAfter = new Date().getDate() + 2
-                const month = new Date().getMonth() + 1 
+                const today = `0${new Date().getDate()}`
+                const tomorrow = `0${new Date().getDate()}` + 1
+                const tomorrowAfter = `0${new Date().getDate()}` + 2
+                const month = new Date().getMonth() + 1
                 const year = new Date().getFullYear()
                 const fullToday = year + '/' + month + '/' + today
                 const fullTomorrow = year + '/' + month + '/' + tomorrow

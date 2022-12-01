@@ -77,7 +77,7 @@ export function SignUpPacient({ navigation }) {
           });
         })
         .then(() => {
-          navigation.navigate("SignIn", { usertype: "pacient" });
+          navigation.navigate("SignIn", { usertype: "Pacient" });
         });
       alert(
         "User Created Successfully. Email verification sent to user (check spam)"
@@ -92,7 +92,7 @@ export function SignUpPacient({ navigation }) {
   }
 
   const onSignUpPress = () => {
-    navigation.navigate("SignIn", {usertype: "pacient"});
+    navigation.navigate("SignIn", {usertype: "Pacient"});
   };
 
   return (

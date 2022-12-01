@@ -11,9 +11,8 @@ import {
   UIManager,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-// import { getProfessionals } from "../../slices/professionalsActions";
+import { getProfessionals } from "../../slices/professionalsActions";
 import { getQueries, deleteQuery } from "../../slices/queriesActions";
-import { getProfessionals } from "../../slices/professionalsActions"
 import { ButtonBlue, ButtonQueries } from "../shared/Button";
 import theme from "../../theme";
 
