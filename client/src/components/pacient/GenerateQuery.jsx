@@ -109,6 +109,8 @@ export function GenerateQuery({ navigation, route }) {
   // let scheduleDays="Martes - Sabado";
   // let id="1213";
 
+  console.log(scheduleDays, scheduleHours)
+
   if (id) setValue("id", id);
 
   if (scheduleHours) {
