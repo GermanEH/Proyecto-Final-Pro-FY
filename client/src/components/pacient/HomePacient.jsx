@@ -16,7 +16,6 @@ import { Loading } from "../main/Loading";
 import { CarouselFavorite } from "./CarouselFavorite";
 import { ButtonHomePacientQueries } from "../shared/Button";
 import { getAuth } from "firebase/auth";
-import { handleFavourites} from "../../slices/professionals"
 
 export function HomePacient({ navigation }) {
   const [render, setRender] = useState(false)
@@ -37,10 +36,6 @@ export function HomePacient({ navigation }) {
       const uid = user.uid;
     }
   }, []);
-  // const dispatch = useDispatch()
-  // useEffect(() => {if(Object.keys(route.params.professional).length > 0) dispatch(handleFavourites(route.params.professional)); setRender(true)}, [])
-  // useEffect(() => {if(render) setRender(false)}, [render])
-  
 
   return (
     <View>

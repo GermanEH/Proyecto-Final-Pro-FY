@@ -117,6 +117,7 @@ export function CardProfessional(
                 </TouchableOpacity>
 
                 {/* <ButtonDating
+
                 color={theme.colors.secondaryText}
                 text={"Select"}
                 backgroundColor={theme.colors.primaryColor}

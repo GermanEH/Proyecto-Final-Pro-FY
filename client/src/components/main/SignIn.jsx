@@ -31,18 +31,22 @@ import { useForm, Controller } from "react-hook-form";
 export function SignIn({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { control, handleSubmit } = useForm();
-  const [initializing, setInitializing] = useState(true);
-  const [userLogged, setUserLogged] = useState(null);
-
-  const loggedU = useSelector((state) => state.pacients.logged);
+  const {control, handleSubmit,formState: {errors}} = useForm({ email: "",
+  password: "",})
+  const [initializing, setInitializing] = useState(true)
+  const [userLogged, setUserLogged] = useState(null)
+  const auth1 = getAuth()
+  const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  const loggedU = useSelector((state) => state.pacients.logged)
 
   const { height } = useWindowDimensions();
 
   const dispatch = useDispatch();
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth1, email, password)
+  const handleSignIn = (data) => {
+    console.log(data)
+    signInWithEmailAndPassword(auth1, data.email, data.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -147,43 +151,46 @@ export function SignIn({ route, navigation }) {
   // };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {/* {(!userLogged) ? */}
-      <View style={styles.signInContainer}>
-        <Image source={Logo} style={styles.logo} />
+    {/* {(!userLogged) ? */}
+    <View style={styles.signInContainer}>
+      <Image source={Logo} style={styles.logo} />
 
-        <View style={styles.inputsButtomsContainer}>
-          <TextInput
-            onChangeText={(text) => setEmail(text)}
-            placeholder="Correo electrónico"
-            style={styles.input}
-          ></TextInput>
+      <View style={styles.inputsButtomsContainer}>
 
-          <TextInput
+          <CustomInput
+            onChangeText={(text) => setEmail(text)} 
+            placeholder="Correo Electronico"
+            name="email"
+            control={control}
+            rules={{
+              required:"El correo electronico es requerido",
+              pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
+            }}
+            />
+          <CustomInput
             onChangeText={(text) => setPassword(text)}
             placeholder="Contraseña"
-            style={styles.input}
+            name="password"
+            control={control}
             secureTextEntry
-          ></TextInput>
+            rules={{
+              required: "Contraseña requerida",
+              minLength: {
+                value: 8,
+                message: "La contraseña deberia tener 8 letras como minimo",
+              },
+            }}
+          />
 
-          <View style={{ width: "85%", paddingTop: 10 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: theme.colors.primaryColor,
-                borderRadius: 10,
-              }}
-              onPress={handleSubmit(handleSignIn)}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  padding: 10,
-                }}
-              >
-                Ingresar
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <View style={{ width: "85%", paddingTop: 10 }}>
+          <CustomButtom text="Ingresar" onPress={handleSignIn} />
+          <TouchableOpacity
+            style={styles.btn}
+            title="Ingresar"
+            onPress={handleSubmit(handleSignIn)}
+          >
+            <Text style={styles.text}>Ingresar</Text>
+          </TouchableOpacity>
         </View>
         <GoogleSigninButton
           text="Ingresar con Google"
