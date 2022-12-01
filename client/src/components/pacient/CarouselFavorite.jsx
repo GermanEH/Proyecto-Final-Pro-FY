@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import theme from "../../theme";
 
 export function CarouselFavorite({ navigation }) {
+  
   const favourites = useSelector((state) => state.professionals.favourites);
 
   return (
@@ -25,7 +26,7 @@ export function CarouselFavorite({ navigation }) {
             }}
             onPress={() =>
               navigation.navigate("ProfessionalsList", {
-                /*  parent: "HomePacient", */
+                parent: "HomePacient"
               })
             }
           >
@@ -38,14 +39,13 @@ export function CarouselFavorite({ navigation }) {
         <FlatList
           data={favourites}
           renderItem={({ item }, index) => (
-            <CardProfessional {...item} key={index} navigation={navigation} />
+            <CardProfessional professional={item} key={index} navigation={navigation} />
           )}
           horizontal
           showsHorizontalScrollIndicator
           pagingEnabled
           bounces={false}
-          key={(item) => item._id}
-          keyExtractor={(item) => item._id}
+          keyExtractor={(item) => item.id}
         />
       )}
     </View>

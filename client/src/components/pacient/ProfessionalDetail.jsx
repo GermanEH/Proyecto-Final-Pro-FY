@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "rea
 import theme from "../../theme";
 import { ButtonQueries, ButtonQueriesDetail } from "../shared/Button";
 import { Carousel } from '../Carousel/Carousel'
-import { handleFavourite } from '../../slices/professionals'
+import { handleFavourite, cleanProfessional } from '../../slices/professionals'
 import { getProfessionalById } from "../../slices/professionalsActions";
 import { getReviews } from '../../slices/reviewsActions'
 import { ReviewsList } from '../professional/ReviewsList'
@@ -19,7 +19,8 @@ export function ProfessionalDetail({ navigation, route }) {
   const reviews = useSelector((state) => state.reviews.reviews);
   const dispatch = useDispatch();
 
-  useEffect(() => {dispatch(getProfessionalById(route.params.id)); setRender(true)}, [])
+  useEffect(() => {dispatch(getProfessionalById(route.params.id))
+    return () => {dispatch(cleanProfessional())}}, [dispatch, route.params.id])
   useEffect(() => {dispatch(getReviews()); setRender(true)}, [])
   useEffect(() => {if(render) setRender(false)}, [render])
 

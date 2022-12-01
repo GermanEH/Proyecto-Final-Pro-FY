@@ -10,50 +10,61 @@ import {
 import theme from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
 import { ButtonDating, ButtonQueries } from "../shared/Button";
+import { useDispatch } from 'react-redux'
+import { handleFavourite } from "../../slices/professionals";
 
-export function CardProfessional({
-  id,
-  first_name,
-  last_name,
-  country,
-  scheduleDays,
-  scheduleHours,
-  specialty,
-  navigation,
-  parent
-}) 
+export function CardProfessional(
+  // {
+  // id,
+  // image,
+  // first_name,
+  // last_name,
+  // country,
+  // scheduleDays,
+  // scheduleHours,
+  // specialty,
+  // navigation,
+  // parent
+// }
+{navigation,
+parent,
+professional}
+) 
     {
-      const handlePress = (parent === "HomePacient") ? ["HomePacient", { id: id}] : ["GenerateQuery", { id: id, nombre: first_name+ "  " + last_name , scheduleHours: scheduleHours, scheduleDays: scheduleDays }]
-      // const handlePress = () => {
-      //   (parent === "CarouselFavorite") ? 
-      //   () => {navigation.navigate("CarouselFavorite", { id: id})}
-      //   :
-      //   () => {      
-      //     navigation.navigate("GenerateQuery", { nombre: first_name+ "  " + last_name })
-      //   }
-      //   }
-
-console.log(id,first_name,last_name,country,scheduleDays,scheduleHours)
+      console.log(professional)
+      // const dispatch = useDispatch();
+      // const handlePress = (parent === "HomePacient") ? ["HomePacient", { professional: professional}] : ["GenerateQuery", { id: id, nombre: professional.first_name+ "  " + professional.last_name , scheduleHours: professional.scheduleHours, scheduleDays: professional.scheduleDays }]
+      const dispatch = useDispatch();
+      const handlePress = () => {
+        if (parent === "HomePacient") {dispatch(handleFavourite(professional)); navigation.navigate("HomePacient")}}
+        if (parent === "GenerayeQuery") {() => {      
+          navigation.navigate("GenerateQuery", { 
+            id: professional.id, nombre: professional.first_name + "  " + professional.last_name, 
+            scheduleHours: professional.scheduleHours, 
+            scheduleDays: professional.scheduleDays  })
+          }}
+        
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}>
-
+      {/* <TouchableOpacity onPress={handlePress(parent)}> */}
+      {/* <TouchableOpacity onPress={() => navigation.navigate(handlePress[0], handlePress[1])}> */}
+      <TouchableOpacity onPress={() => handlePress()}>
       <View style={{ flexDirection: "row" }}>
         <View style={styles.container}>
           <View>
             <Image
               style={styles.image}
-              source={require("../../assets/foto.jpg")}
+              source={{uri:professional?.image}}
             />
           </View>
           <View style={styles.description}>
             <Text style={styles.name}>
-              {first_name} {last_name}
+              {professional?.first_name} {professional?.last_name}
             </Text>
-            <Text style={styles.speciality}>{specialty}</Text>
+            <Text style={styles.speciality}>{professional?.specialty}</Text>
             <View style={{ flexDirection: "row" }}>
               <View>
-                <Text style={styles.location}>{country}</Text>
+                <Text style={styles.location}>{professional?.country}</Text>
                 {/* <Text style={styles.phone}>{phone} */}
                 {/* </Text> */}
                 <View style={styles.star}>
@@ -92,7 +103,7 @@ console.log(id,first_name,last_name,country,scheduleDays,scheduleHours)
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("ProfessionalDetail", {
-                    id: id,
+                    id: professional.id,
                   });
                 }}
                 style={styles.btn}

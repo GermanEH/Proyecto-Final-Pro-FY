@@ -121,7 +121,6 @@ export function HomeProfessional({ navigation }) {
                 })
               }
             >
-              
               <Text style={{ color: theme.colors.secondaryText }}>
                 Listado de Consultas
               </Text>

@@ -117,13 +117,7 @@ export function ProfessionalsList({ navigation, route }) {
             filtered.map((p, index) => {
               return (
                 <CardProfessional
-                  id={p.id}
-                  first_name={p.first_name}
-                  last_name={p.last_name}
-                  country={p.country}
-                  specialty={p.specialities}
-                  scheduleDays={p.scheduleDays}
-                  scheduleHours={p.scheduleHours}
+                  professional={p}
                   key={index}
                   parent={route.params.parent}
                   navigation={navigation}
