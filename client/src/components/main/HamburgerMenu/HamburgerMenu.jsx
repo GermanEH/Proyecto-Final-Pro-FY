@@ -43,10 +43,14 @@ export function HamburgerMenu({ route }) {
           component={HomePacient}
           options={{ title: "" }}
         />
-        <Menu.Screen name="HomeProfessional" component={HomeProfessional} options={{ title: "" }}/>
+        <Menu.Screen
+          name="HomeProfessional"
+          component={HomeProfessional}
+          options={{ title: "" }}
+        />
         <Menu.Screen name="Notifications" component={Notifications} />
         <Menu.Screen name="FrequentQuestions" component={FrequentQuestions} />
-       
+
         <Menu.Screen name="Settings" component={Settings} />
         <Menu.Screen
           name="Loading"
@@ -59,11 +63,31 @@ export function HamburgerMenu({ route }) {
           component={QueriesHistorialPacient}
           options={{ title: "" }}
         />
-        <Menu.Screen name="GenerateQuery" component={GenerateQuery} options={{ title: "" }}/>
-        <Menu.Screen name="ProfessionalsList" component={ProfessionalsList} options={{ title: "" }}/>
-        <Menu.Screen name="ProfessionalDetail" component={ProfessionalDetail} options={{ title: "" }}/>
-        <Menu.Screen name="QueriesListPacient" component={QueriesListPacient} options={{ title: "" }}/>
-        <Menu.Screen name="QueryDetailPacient" component={QueryDetailPacient} options={{ title: "" }}/>
+        <Menu.Screen
+          name="GenerateQuery"
+          component={GenerateQuery}
+          options={{ title: "" }}
+        />
+        <Menu.Screen
+          name="ProfessionalsList"
+          component={ProfessionalsList}
+          options={{ title: "" }}
+        />
+        <Menu.Screen
+          name="ProfessionalDetail"
+          component={ProfessionalDetail}
+          options={{ title: "" }}
+        />
+        <Menu.Screen
+          name="QueriesListPacient"
+          component={QueriesListPacient}
+          options={{ title: "" }}
+        />
+        <Menu.Screen
+          name="QueryDetailPacient"
+          component={QueryDetailPacient}
+          options={{ title: "" }}
+        />
         <Menu.Screen
           name="QueriesListProf"
           component={QueriesListProf}
@@ -83,7 +107,20 @@ export function HamburgerMenu({ route }) {
         <Menu.Screen name="PagosUserPremium" component={PagosUserPremium} />
         <Menu.Screen name="PagosProBasic" component={PagosProBasic} />
         <Menu.Screen name="PagosProPremium" component={PagosProPremium} />
-        <Menu.Screen name="SignOut" component={SignOut} />
+        {/* <Menu.Screen name="SignOut" component={SignOut} /> */}
+        {route.params.usertype === "Pacient" ? (
+          <Menu.Screen
+            name="SignOut"
+            component={SignOut}
+            usertype={"Pacient"}
+          />
+        ) : (
+          <Menu.Screen
+            name="SignOut"
+            component={SignOut}
+            usertype={"Professional"}
+          />
+        )}
       </Menu.Navigator>
     </View>
   );

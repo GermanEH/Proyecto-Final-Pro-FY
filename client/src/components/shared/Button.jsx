@@ -82,9 +82,7 @@ export function ButtonHomePacientQueries(props) {
       }
       style={styles.btnCenter}
     >
-      <Text style={{ textAlign: "center", color: theme.colors.secondaryText }}>
-        Consultas
-      </Text>
+      <Text style={{ textAlign: "center", color: "white" }}>Consultas</Text>
     </TouchableOpacity>
   );
 }
@@ -113,8 +111,8 @@ const styles = StyleSheet.create({
   },
   btnCenter: {
     backgroundColor: theme.colors.primaryColor,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
+    paddingHorizontal: 40,
+    paddingVertical: 15,
     borderRadius: theme.borderRadius.borderRadiusBotton,
   },
 });
