@@ -10,20 +10,22 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
-import {
-  signInWithEmailAndPassword,getAuth
-} from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import Logo from "../../assets/logo.png";
 import CustomButtom from "../CustomButton/CustomButton";
 /* import { auth1 } from "../../../firebase-config.js"; */
 import CustomInput from "../CustomInput/CustomInput";
-import {useSelector, useDispatch} from 'react-redux'
-import { loggedUser } from '../../slices/pacients';
-import "expo-dev-client"
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
+import { useSelector, useDispatch } from "react-redux";
+import { loggedUser } from "../../slices/pacients";
+import "expo-dev-client";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from "@react-native-google-signin/google-signin";
+import auth from "@react-native-firebase/auth";
 import theme from "../../theme";
-import {useForm, Controller } from 'react-hook-form';
+import { useForm, Controller } from "react-hook-form";
+import { CustomInputLoging } from "../CustomInput/CustomInputLoging";
 
 // const provider = new GoogleAuthProvider();
 
@@ -41,10 +43,9 @@ export function SignIn({ route, navigation }) {
 
   const { height } = useWindowDimensions();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSignIn = (data) => {
-    console.log(data)
     signInWithEmailAndPassword(auth1, data.email, data.password)
       .then((userCredential) => {
         // Signed in
@@ -75,43 +76,47 @@ export function SignIn({ route, navigation }) {
   };
 
   GoogleSignin.configure({
-    webClientId:'882289933965-m2vb8le0tsfhbib51bq33tmu02otvscr.apps.googleusercontent.com',
-})
+    webClientId:
+      "882289933965-m2vb8le0tsfhbib51bq33tmu02otvscr.apps.googleusercontent.com",
+  });
 
-    const onAuthStateChanged = (userL) =>{
-        setUserLogged(userL);
-        if(userL){
-            const loggedUs = {displayName: userL["displayName"], email: userL["email"], emailVerified: userL["emailVerified"]}
-            dispatch(loggedUser(loggedUs))
-            }
-        if (initializing) setInitializing(false);
+  const onAuthStateChanged = (userL) => {
+    setUserLogged(userL);
+    if (userL) {
+      const loggedUs = {
+        displayName: userL["displayName"],
+        email: userL["email"],
+        emailVerified: userL["emailVerified"],
+      };
+      dispatch(loggedUser(loggedUs));
     }
+    if (initializing) setInitializing(false);
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     // return subscriber; // unsubscribe on unmount
-    }, []);
+  }, []);
 
-    if (initializing) return null;
+  if (initializing) return null;
 
+  const onGoogleButtonPress = async () => {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
 
-    const onGoogleButtonPress = async () =>  {
-        // Check if your device supports Google Play
-        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-        // Get the users ID token
-        const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-        // Create a Google credential with the token
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    auth().signInWithCredential(googleCredential);
 
-        // Sign-in the user with the credential
-        auth().signInWithCredential(googleCredential);
-        
-        route.params.usertype === "Pacient" 
-            ? navigation.navigate("HamburguerMenu", { usertype: "Pacient" }) 
-            : navigation.navigate("HamburguerMenu", { usertype: "Professional" })
-    }
-  
+    route.params.usertype === "Pacient"
+      ? navigation.navigate("HamburguerMenu", { usertype: "Pacient" })
+      : navigation.navigate("HamburguerMenu", { usertype: "Professional" });
+  };
+
   // useEffect(()=>{
   //     const unsuscribe = auth.onAuthStateChanged( user => {
   //         if(user && user.emailVerified === 'false') {alert('Correo electronico no verificado')}
@@ -146,23 +151,27 @@ export function SignIn({ route, navigation }) {
   // };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-    {/* {(!userLogged) ? */}
-    <View style={styles.signInContainer}>
-      <Image source={Logo} style={styles.logo} />
 
-      <View style={styles.inputsButtomsContainer}>
+      {/* {(!userLogged) ? */}
+      <View style={styles.signInContainer}>
+        <Image source={Logo} style={styles.logo} />
 
-          <CustomInput
-            onChangeText={(text) => setEmail(text)} 
+        <View style={{ width: "100%", paddingLeft: 40 }}>
+          <CustomInputLoging
+            onChangeText={(text) => setEmail(text)}
+
             placeholder="Correo Electronico"
             name="email"
             control={control}
             rules={{
-              required:"El correo electronico es requerido",
+
+              required: "El correo electronico es requerido",
               pattern: { value: EMAIL_REGEX, message: "Email es invalido" },
             }}
-            />
-          <CustomInput
+          />
+          <CustomInputLoging
+            style={styles.inputsButtomsContainer}
+
             onChangeText={(text) => setPassword(text)}
             placeholder="Contraseña"
             name="password"
@@ -187,46 +196,81 @@ export function SignIn({ route, navigation }) {
             <Text style={styles.text}>Ingresar</Text>
           </TouchableOpacity>
         </View>
-      </View>
         <GoogleSigninButton
-              text="Ingresar con Google" 
-              onPress={onGoogleButtonPress}
-              style={{width:'87%', marginTop:20}} /> 
-        <View style={{ paddingTop: 150, alignItems: 'center'}}>
-            <Text style={{ fontSize: theme.fontSize.terciaryText, fontWeight: theme.fontWeights.bold, color: theme.colors.textColor }}>
-              ¿No tienes una cuenta?
-        </Text>
-        <View style={styles.container}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(
-               ( route.params.usertype === "Pacient") ? "SignUpPacient" : "SignUpProfessional"
-              )
-            }
-          >
-            <Text
-              style={{
-                fontSize: theme.fontSize.secondaryText,
-                fontWeight: theme.fontWeights.bold,
-                color: theme.colors.primaryColor,
-              }}
+          text="Ingresar con Google"
+          onPress={onGoogleButtonPress}
+          style={{ width: "87%", marginTop: 20 }}
+        />
+        <View style={{ paddingTop: 150, alignItems: "center" }}>
+          <Text
+            style={{
+              fontSize: theme.fontSize.terciaryText,
+              fontWeight: theme.fontWeights.bold,
+              color: theme.colors.textColor,
+            }}
+          />
+        </View>
+        <View style={styles.inputsButtomsContainer}>
+          <View style={styles.inputsButtomsContainer}>
+            <View
+              style={{ width: "100%", paddingTop: 10, alignItems: "center" }}
             >
-              Registrate
-            </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSubmit(handleSignIn)}
+                style={styles.btn}
+              >
+                <Text style={{ color: "white" }}>Ingresar</Text>
+              </TouchableOpacity>
+            </View>
+            <GoogleSigninButton
+              text="Ingresar con Google"
+              onPress={onGoogleButtonPress}
+              style={{ width: "87%", marginTop: 20 }}
+            />
+            <View style={{ paddingTop: 150, alignItems: "center" }}>
+              <Text
+                style={{
+                  fontSize: theme.fontSize.terciaryText,
+                  fontWeight: theme.fontWeights.bold,
+                  color: theme.colors.textColor,
+                }}
+              >
+                ¿No tienes una cuenta?
+              </Text>
+              <View style={styles.container}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(
+                      route.params.usertype === "Pacient"
+                        ? "SignUpPacient"
+                        : "SignUpProfessional"
+                    )
+                  }
+                >
+                  <Text
+                    style={{
+                      fontSize: theme.fontSize.secondaryText,
+                      fontWeight: theme.fontWeights.bold,
+                      color: theme.colors.primaryColor,
+                    }}
+                  >
+                    Registrate
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </View>
-    </View>
+      </View>
       {/* // : */}
-       {/* navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" }) */}
+      {/* navigation.navigate("HamburguerMenu", { usertype: (route.params.usertype === "pacient") ? "pacient" : "professional" }) */}
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   signInContainer: {
-    // flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     paddingTop: 40,
     backgroundColor: "white",
   },
@@ -243,5 +287,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     ...theme.button,
+  },
+  container: {
+    paddingBottom: 115,
   },
 });

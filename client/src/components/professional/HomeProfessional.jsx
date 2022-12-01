@@ -9,15 +9,15 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { CardPacient } from"./CardPacient";
+import { CardPacient } from "./CardPacient";
 import theme from "../../theme";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "../Carousel/Carousel";
 import { getQueries } from "../../slices/queriesActions";
 import { getAuth } from "firebase/auth";
-import {ReviewsList} from "./ReviewsList"
-
+import { ReviewsList } from "./ReviewsList";
+import { getProfessionals } from "../../slices/professionalsActions";
 
 export function HomeProfessional({ navigation }) {
   const todayQueries = useSelector((state) => state.queries.todayQueries);
@@ -28,23 +28,13 @@ export function HomeProfessional({ navigation }) {
   const queries = useSelector((state) => state.queries.queries)
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.queries.payments);
-  const pacients = useSelector((state) => state.pacients);
+  const professionals = useSelector((state) => state.professionals);
 
   const auth = getAuth();
-  const user = auth.currentUser
+  const user = auth.currentUser;
   useEffect(() => {
-    if (user !== null) {
-      // The user object has basic properties such as display name, email, etc.
-      // displayName = user.displayName;
-      const email = user.email;
-      const photoURL = user.photoURL;
-      const emailVerified = user.emailVerified;
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
-      const uid = user.uid;
-    }
-  }, [])
+    dispatch(getProfessionals());
+  }, []);
 
   useEffect(() => {
     dispatch(getQueries());
@@ -54,20 +44,21 @@ export function HomeProfessional({ navigation }) {
     <SafeAreaView>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         <View style={styles.container}>
-          <Text
-            style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 15 }}
-          >
-            Hola,
-          </Text>
-          <Text
-            style={{
-              fontSize: theme.fontSize.primaryText,
-              paddingBottom: 10,
-              paddingLeft: 10,
-            }}
-          >
+          <View style={{ paddingVertical: 40 }}>
+            <Text
+              style={{ fontSize: theme.fontSize.secondaryText, paddingTop: 50 }}
+            >
+              Hola,
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                paddingBottom: 10,
+              }}
+            >
               {user.displayName}
-          </Text>
+            </Text>
+          </View>
           <Text
             style={{
               fontSize: theme.fontSize.secondaryText,
@@ -77,10 +68,15 @@ export function HomeProfessional({ navigation }) {
             Consultas del dia de hoy:
           </Text>
           <View>
-            {todayQueries?.map((p, i) =>
-              <View key={i} style={{ paddingVertical: 10 }}>
-                <CardPacient navigation={navigation} query={p} />
-              </View>)}
+            {todayQueries ? (
+              todayQueries.map((p, i) => (
+                <View key={i} style={{ paddingVertical: 10 }}>
+                  <CardPacient navigation={navigation} query={p} />
+                </View>
+              ))
+            ) : (
+              <Text>¡No tienes consultas para hoy!</Text>
+            )}
           </View>
           <View>
             <Text
@@ -91,19 +87,21 @@ export function HomeProfessional({ navigation }) {
             >
               Proximas Consultas:
             </Text>
-            {tomorrowQueries?.map((p, i) =>
+            {tomorrowQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
                 <CardPacient navigation={navigation} query={p} />
-              </View>)}
-            {tomorrowAfterQueries?.map((p, i) =>
+              </View>
+            ))}
+            {tomorrowAfterQueries?.map((p, i) => (
               <View key={i} style={{ paddingVertical: 10 }}>
                 <CardPacient navigation={navigation} query={p} />
-              </View>)}
+              </View>
+            ))}
           </View>
           <View
             style={{
               alignItems: "center",
-              padding: 20,
+              padding: 40,
             }}
           >
             <TouchableOpacity
@@ -120,9 +118,7 @@ export function HomeProfessional({ navigation }) {
                 })
               }
             >
-              <Text style={{ color: theme.colors.secondaryText }}>
-                Listado de Consultas
-              </Text>
+              <Text style={{ color: "white" }}>Listado de Consultas</Text>
             </TouchableOpacity>
           </View>
           <View style={{ paddingTop: 15 }}>
@@ -130,10 +126,12 @@ export function HomeProfessional({ navigation }) {
               Reseñas de los pacientes:
             </Text>
           </View>
-            <ReviewsList/>
+          <View style={{ paddingBottom: 100 }}>
+            <ReviewsList />
+          </View>
         </View>
         <View style={styles.containerCarousel}>
-          <Carousel navigation={navigation}/>
+          <Carousel navigation={navigation} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -177,7 +175,7 @@ const styles = StyleSheet.create({
     borderColor: "grey",
   },
   containerCarousel: {
-    width: "100%",
+    width: "90%",
     height: 670,
     backgroundColor: "white",
     shadowColor: "#000",
@@ -192,5 +190,6 @@ const styles = StyleSheet.create({
     marginVertical: 40,
     justifyContent: "center",
     paddingBottom: 40,
+    margin: 20,
   },
 });
